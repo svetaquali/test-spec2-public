@@ -46,6 +46,8 @@ grains:
         compute-service: eks
         # region: eu-west-1
         # os: <os_moniker>
+      commands:
+        - "dep up bitnami/node"
 
       # inputs:
       #   - someInput: .grains.app1.outputs.output-name
