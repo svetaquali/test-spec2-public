@@ -25,8 +25,9 @@ grains:
     kind: terraform
     spec:
       source:
-        store: autogen_repo_sandbox_3416a76b
-        path: terraform/simple-tf-module
+#         store: autogen_repo_sandbox_3416a76b
+#         path: terraform/simple-tf-module
+        path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-module
       host:
         cloud-account: aws
         compute-service: eks
