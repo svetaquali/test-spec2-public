@@ -1,7 +1,7 @@
 output output1 {
-  value = local.output_tuple
+  value = local.key1
 }
 
 output output2 {
-  value = local.output_object
+  value = var.
 }
