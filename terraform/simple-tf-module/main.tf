@@ -19,5 +19,5 @@ resource "null_resource" "task_long" {
 }
 
 locals {
-  key = "somekey"
+  key1 = "somekey"
 }
