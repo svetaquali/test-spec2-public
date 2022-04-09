@@ -17,3 +17,7 @@ resource "null_resource" "task_long" {
     command = "echo \"long task start\" && sleep 5 && echo \"long task end\""
   }
 }
+
+locals {
+  key = "somekey"
+}
