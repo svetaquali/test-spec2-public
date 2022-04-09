@@ -3,5 +3,5 @@ output output1 {
 }
 
 output output2 {
-  value = var.
+  value = var.test_input1
 }
