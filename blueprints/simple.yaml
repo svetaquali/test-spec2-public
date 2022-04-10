@@ -19,11 +19,11 @@ inputs:
 
 outputs:
   output1:
-    value: {{sandboxId}}
+    value: '{{sandboxId}}'
   output2:
-    value: {{.inputs.input1}}
+    value: '{{.inputs.input1}}'
   output3:
-    value: {{.grains.terraform.outputs.tf-output1}}
+    value: '{{.grains.terraform.outputs.tf-output1}}'
     
 
 
