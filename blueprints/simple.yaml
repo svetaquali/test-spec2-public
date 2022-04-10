@@ -23,7 +23,7 @@ outputs:
   output2:
     value: '{{.inputs.input1}}'
   output3:
-    value: '{{.grains.terraform.outputs.output1}}'
+    value: '{{.grains.helloTF.outputs.output1}}'
     
 
 
