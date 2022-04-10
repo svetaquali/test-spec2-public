@@ -4,18 +4,28 @@ description: description text
 
 
 
-# inputs:
-#   some-name:
-#     type: string/numeric/boolean
-#     display-style: normal/multiline
-#     default: "abc"
-#     description: "description"
+inputs:
+  input1:
+    type: string
+    display-style: normal
+    default: "default1"
+    description: "environemnt input 1"
+  input2:
+    type: string
+    display-style: normal
+    description: "environemnt input 2"    
 
 
 
-# outputs:
-#   some-name:
-#     value: .grains.app1.outputs.output_name
+outputs:
+  output1:
+    value: {{sandboxId}}
+  output2:
+    value: {{.inputs.input1}}
+  output3:
+    value: {{.grains.terraform.outputs.tf-output1
+    
+
 
 
 
@@ -28,16 +38,18 @@ grains:
       host:
         cloud-account: aws
         compute-service: kubernetes-testing
-      # inputs:
-      #   - input_name: .inputs.some-name
-      # ouputs:
-      #   - output-name
+      inputs:
+        - test_input1: env-input-{{.inputs.input1}}
+        - test_input2: env-id-{{sandboxId}}
+      ouputs:
+        - output1
+        - output2
 
 
 
   helloHelm:
     kind: helm
-    #depends-on: app1(,another grain, another grain)
+    depends-on: helloTF
     spec:
       source:
         path: https://github.com/bitnami/charts.git//bitnami/node
@@ -49,5 +61,5 @@ grains:
       commands:
         - "dep up bitnami/node"
 
-      # inputs:
-      #   - someInput: .grains.app1.outputs.output-name
+      inputs:
+        - nameOverride: {{.grains.helloTF.outputs.output1}}
