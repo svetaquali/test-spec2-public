@@ -62,4 +62,4 @@ grains:
         - "dep up bitnami/node"
 
       inputs:
-        - nameOverride: {{.grains.helloTF.outputs.output1}}
+        - nameOverride: '{{.grains.helloTF.outputs.output1}}'
