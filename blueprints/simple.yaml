@@ -16,7 +16,7 @@ inputs:
     description: "environemnt input 2"    
 
 
-
+# values that starts with '{' for liquid template must be encosed with quotes so YAML won't consider them as dict
 outputs:
   output1:
     value: '{{sandboxId}}'
