@@ -21,49 +21,49 @@ description: description text
 
 grains:
 
-  helloTF1:
-    kind: terraform
-    spec:
-      source:
-        store: autogen_repo_sandbox_3416a76b
-        path: terraform/simple-tf-module
-        #path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-module
-      host:
-        cloud-account: aws
-        compute-service: eks
-      # inputs:
-      #   - input_name: .inputs.some-name
-      # ouputs:
-      #   - output-name
-
-  helloTF2:
-    kind: terraform
-    spec:
-      source:
-        path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-module
-      host:
-        cloud-account: aws
-        compute-service: eks
-      # inputs:
-      #   - input_name: .inputs.some-name
-      # ouputs:
-      #   - output-name
-
-
-
-#   helloHelm:
-#     kind: helm
-#     #depends-on: app1(,another grain, another grain)
+#   helloTF1:
+#     kind: terraform
 #     spec:
 #       source:
-#         path: https://github.com/bitnami/charts.git//bitnami/node
+#         store: autogen_repo_sandbox_3416a76b
+#         path: terraform/simple-tf-module
+#         #path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-module
 #       host:
 #         cloud-account: aws
 #         compute-service: eks
-#         # region: eu-west-1
-#         # os: <os_moniker>
-#       commands:
-#         - "dep up bitnami/node"
+#       # inputs:
+#       #   - input_name: .inputs.some-name
+#       # ouputs:
+#       #   - output-name
+
+#   helloTF2:
+#     kind: terraform
+#     spec:
+#       source:
+#         path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-module
+#       host:
+#         cloud-account: aws
+#         compute-service: eks
+#       # inputs:
+#       #   - input_name: .inputs.some-name
+#       # ouputs:
+#       #   - output-name
+
+
+
+  helloHelm:
+    kind: helm
+    #depends-on: app1(,another grain, another grain)
+    spec:
+      source:
+        path: https://github.com/bitnami/charts.git//bitnami/node
+      host:
+        cloud-account: aws
+        compute-service: eks
+        # region: eu-west-1
+        # os: <os_moniker>
+      commands:
+        - "dep up bitnami/node"
 
       # inputs:
       #   - someInput: .grains.app1.outputs.output-name
