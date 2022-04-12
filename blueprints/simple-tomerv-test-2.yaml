@@ -22,29 +22,26 @@ outputs:
     value: '{{sandboxId}}'
   output2:
     value: '{{.inputs.input1}}'
-  output3:
-    value: '{{.grains.helloTF.outputs.output1}}'
+#   output3:
+#     value: '{{.grains.helloTF.outputs.output1}}'
     
 
-
-
-
 grains:
-  helloTF:
-    kind: terraform
-    spec:
-      source:
-        store: autogen_repo_sandbox_3416a76b
-        path: terraform/simple-tf-module
-      host:
-        cloud-account: aws
-        compute-service: eks
-      inputs:
-        - test_input1: env-input-{{.inputs.input1}}
-        - test_input2: env-id-{{sandboxId}}
-      ouputs:
-        - output1
-        - output2
+#   helloTF:
+#     kind: terraform
+#     spec:
+#       source:
+#         store: autogen_repo_sandbox_3416a76b
+#         path: terraform/simple-tf-module
+#       host:
+#         cloud-account: aws
+#         compute-service: eks
+#       inputs:
+#         - test_input1: env-input-{{.inputs.input1}}
+#         - test_input2: env-id-{{sandboxId}}
+#       ouputs:
+#         - output1
+#         - output2
 
 
 
@@ -57,10 +54,9 @@ grains:
       host:
         cloud-account: aws
         compute-service: eks
-        # region: eu-west-1
-        # os: <os_moniker>
       commands:
         - "dep up bitnami/node"
 
       inputs:
-        - nameOverride: '{{.grains.helloTF.outputs.output1}}'
+        - nameOverride: '{{.inputs.input1}}'
+        #- nameOverride: '{{.grains.helloTF.outputs.output1}}'
