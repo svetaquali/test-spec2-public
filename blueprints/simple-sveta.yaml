@@ -57,7 +57,7 @@ grains:
         path: https://github.com/bitnami/charts.git//bitnami/node
       host:
         cloud-account: aws
-        compute-service: '{{sandboxId}}'
+        compute-service: '{{.inputs.jhakjah}}'
       commands:
         - "dep up bitnami/node"
 
