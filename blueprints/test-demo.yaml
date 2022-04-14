@@ -1,8 +1,5 @@
 spec_version: 2-preview
-
-description: description text
-
-
+description: Multi-grain blueprint demo
 
 inputs:
   input1:
@@ -15,7 +12,6 @@ inputs:
     display-style: normal
     description: "environemnt input 2"    
 
-
 # values that starts with '{' for liquid template must be encosed with quotes so YAML won't consider them as dict
 outputs:
   output1:
@@ -24,7 +20,6 @@ outputs:
     value: '{{.inputs.input1}}'
   output3:
     value: '{{.grains.helloTF.outputs.output1}}'
-    
 
 grains:
   helloTF:
@@ -43,8 +38,6 @@ grains:
         - output1
         - output2
 
-
-
   helloHelm:
     kind: helm
     depends-on: helloTF
@@ -56,7 +49,5 @@ grains:
         compute-service: eks
       commands:
         - "dep up bitnami/node"
-
       inputs:
-        #- nameOverride: '{{.inputs.input1}}'
         - nameOverride: '{{.grains.helloTF.outputs.output1}}'
