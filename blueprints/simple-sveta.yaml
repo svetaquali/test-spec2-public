@@ -14,10 +14,10 @@ inputs:
     type: string
     display-style: normal
     default: "bad_name"
-#   input2:
-#     type: string
-#     display-style: normal
-#     description: "environemnt input 2"    
+  input2:
+    type: string
+    sensitive: true
+    description: "environemnt input 2"    
 
 
 # values that starts with '{' for liquid template must be encosed with quotes so YAML won't consider them as dict
