@@ -31,7 +31,7 @@ grains:
     kind: terraform
     spec:
       source:
-        store: kkautogen_repo_sandbox_3416a76b
+        store: autogen_repo_sandbox_3416a76b
         path: terraform/simple-tf-module
       host:
         cloud-account: aws
