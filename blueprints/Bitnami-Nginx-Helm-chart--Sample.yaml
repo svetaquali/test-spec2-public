@@ -1,0 +1,17 @@
+spec_version: 2-preview
+
+description: Auto generated blueprint for helm chart Bitnami-Nginx-Helm-chart--Sample
+
+
+grains:
+
+  helloHelm:
+    kind: helm
+    spec:
+      source:
+        path: https://github.com/bitnami/charts.git//bitnami/nginx
+      host:
+        cloud-account: aws
+        compute-service: eks
+      commands:
+        - dep up bitnami/nginx
