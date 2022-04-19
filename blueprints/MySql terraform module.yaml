@@ -26,7 +26,7 @@ outputs:
     
 
 grains:
-  helloTF:
+  MySqlDB:
     kind: terraform
     spec:
       source:
