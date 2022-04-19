@@ -7,7 +7,7 @@ description: description text
 inputs:
   input1:
     type: string
-    display-style: aa
+    display-style: single_line
     default: "default1"
     description: "environemnt input 1"
   input2:
