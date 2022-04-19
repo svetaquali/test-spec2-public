@@ -1,6 +1,6 @@
 spec_version: 2-preview
 
-description: Auto generated blueprint for terraform module eks-rds--Sample
+description: Auto generated blueprint for MySql terraform module 
 
 
 inputs:
