@@ -22,7 +22,7 @@ outputs:
   output2:
     value: '{{.inputs.input1}}'
   output3:
-    value: '{{.grains.helloTF.outputs.output1}}'
+    value: 'https://www.google.com/'
     
 
 grains:
