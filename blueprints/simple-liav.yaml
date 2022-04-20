@@ -37,7 +37,7 @@ grains:
         path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-module
       host:
         cloud-account: aws
-        compute-service: kubernetes-testing
+        compute-service: kubernetes
       inputs:
         - test_input1: env-input-{{.inputs.input1}}
         - test_input2: env-id-{{sandboxId}}
