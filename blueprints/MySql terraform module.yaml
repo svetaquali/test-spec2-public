@@ -1,6 +1,6 @@
 spec_version: 2-preview
 
-description: Auto generated blueprint for terraform module eks-rds--Sample
+description: Auto generated blueprint for MySql terraform module 
 
 
 inputs:
@@ -22,11 +22,11 @@ outputs:
   output2:
     value: '{{.inputs.input1}}'
   output3:
-    value: '{{.grains.helloTF.outputs.output1}}'
+    value: 'https://www.google.com/'
     
 
 grains:
-  helloTF:
+  MySqlDB:
     kind: terraform
     spec:
       source:
