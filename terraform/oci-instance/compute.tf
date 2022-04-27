@@ -3,12 +3,17 @@ terraform {
   required_version = ">= 0.12.0"
 }
 
+provider "oci" {
+   auth = "InstancePrincipal"
+   region = var.region
+}
+
 resource "oci_core_instance" "terra_inst" {
   availability_domain  = "GKbV:UK-LONDON-1-AD-1"
   compartment_id       = var.compartment_ocid
-  display_name         = var.instance_display_name 
+  display_name         = var.instance_display_name
   preserve_boot_volume = var.preserve_boot_volume   # false
-  shape                = var.shape              
+  shape                = var.shape
   shape_config {
     memory_in_gbs = 6
     ocpus = 1
@@ -52,4 +57,4 @@ resource "oci_core_volume_attachment" "terra_attach" {
   volume_id       = oci_core_volume.terra_vol.id
   use_chap        = var.use_chap  # true
 }
-    
+
