@@ -43,17 +43,17 @@ grains:
         - output1
         - output2
        
-#   helloHelm:
-#     kind: helm
-#     spec:
-#       source:
-#         path: https://github.com/bitnami/charts.git//bitnami/node
-#       host:
-#         cloud-account: aws-demo
-#         compute-service: eks-demo
-#       commands:
-#         - "dep up bitnami/node"
+  helloHelm:
+    kind: helm
+    spec:
+      source:
+        path: https://github.com/bitnami/charts.git//bitnami/node
+      host:
+        cloud-account: aws-demo
+        compute-service: eks-demo
+      commands:
+        - "dep up bitnami/node"
 
-#       inputs:
-#         #- nameOverride: '{{.inputs.input1}}'
-#         - nameOverride: 'tomer'
+      inputs:
+        #- nameOverride: '{{.inputs.input1}}'
+        - nameOverride: 'tomer'
