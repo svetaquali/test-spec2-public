@@ -45,6 +45,7 @@ grains:
        
   helloHelm:
     kind: helm
+    depends-on: helloTF
     spec:
       source:
         path: https://github.com/bitnami/charts.git//bitnami/node
