@@ -1,0 +1,40 @@
+spec_version: 2-preview
+
+description: Oracle compute instance
+
+
+inputs:
+  compartment:
+    type: string
+    display-style: normal
+    description: "compartment"
+  tenancy:
+    type: string
+    display-style: normal
+    description: "tenancy"    
+  region:
+    type: string
+    display-style: normal
+    description: "region"    
+
+
+outputs:
+  output3:
+    value: '{{.grains.OracleInstance.outputs.instance_id}}'
+    
+
+grains:
+  OracleInstance:
+    kind: terraform
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public.git//terraform/oci-instance
+      host:
+        cloud-account: aws
+        compute-service: kubernetes-testing
+      inputs:
+        - compartment_ocid : '{{.inputs.compartment}}'
+        - tenancy_ocid : '{{.inputs.tenancy}}'
+        - region : '{{.inputs.region}}'
+      ouputs:
+        - instance_id
