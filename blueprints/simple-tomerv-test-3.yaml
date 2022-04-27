@@ -27,18 +27,33 @@ outputs:
     
 
 grains:
-  helloTF:
-    kind: terraform
+#   helloTF:
+#     kind: terraform
+#     spec:
+#       source:
+#         store: autogen_repo_sandbox_3416a76b
+#         path: terraform/simple-tf-module
+#       host:
+#         cloud-account: aws-demo
+#         compute-service: eks-demo
+#       inputs:
+#         - test_input1: env-input-{{.inputs.input1}}
+#         - test_input2: env-id-{{sandboxId}}
+#       ouputs:
+#         - output1
+#         - output2
+       
+  helloHelm:
+    kind: helm
     spec:
       source:
-        store: autogen_repo_sandbox_3416a76b
-        path: terraform/simple-tf-module
+        path: https://github.com/bitnami/charts.git//bitnami/node
       host:
         cloud-account: aws-demo
         compute-service: eks-demo
+      commands:
+        - "dep up bitnami/node"
+
       inputs:
-        - test_input1: env-input-{{.inputs.input1}}
-        - test_input2: env-id-{{sandboxId}}
-      ouputs:
-        - output1
-        - output2
+        #- nameOverride: '{{.inputs.input1}}'
+        - nameOverride: 'tomer'
