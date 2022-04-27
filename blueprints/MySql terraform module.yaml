@@ -21,8 +21,6 @@ outputs:
     value: '{{sandboxId}}'
   output2:
     value: '{{.inputs.input1}}'
-  output3:
-    value: 'https://www.google.com/'
     
 
 grains:
