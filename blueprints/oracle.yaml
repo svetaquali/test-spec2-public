@@ -31,7 +31,7 @@ grains:
         path: github.com/QualiNext/test-spec2-public.git//terraform/oci-instance
       host:
         cloud-account: aws
-        compute-service: kubernetes-testing
+        compute-service: oke-demo
       inputs:
         - compartment_ocid : '{{.inputs.compartment}}'
         - tenancy_ocid : '{{.inputs.tenancy}}'
