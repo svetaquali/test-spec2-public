@@ -52,7 +52,7 @@ resource "oci_core_volume" "terra_vol" {
 
 resource "oci_core_volume_attachment" "terra_attach" {
   attachment_type = var.attachment_type
-  compartment_id  = var.compartment_ocid
+  # compartment_id  = var.compartment_ocid
   instance_id     = oci_core_instance.terra_inst.id
   volume_id       = oci_core_volume.terra_vol.id
   use_chap        = var.use_chap  # true
