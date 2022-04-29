@@ -35,7 +35,7 @@ resource "oci_core_instance" "terra_inst" {
   source_details {
     boot_volume_size_in_gbs = var.boot_volume_size_in_gbs # 20G
     source_type = "image"
-    source_id   = "ocid1.image.oc1.uk-london-1.aaaaaaaa2bmwrd7wucqawzbwcfpcuo5jjefa4sex37fbfaxvn2x2ce3j6rra"
+    source_id   = "ocid1.image.oc1.uk-london-1.aaaaaaaa2bmwrd7wucqawzbwcfpcuo5jjefa4sex37fbfaxvn2x2ce3j6rrb"
   }
 
   timeouts {
