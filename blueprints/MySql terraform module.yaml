@@ -15,7 +15,6 @@ inputs:
     description: "environemnt input 2"    
 
 
-# values that starts with '{' for liquid template must be encosed with quotes so YAML won't consider them as dict
 outputs:
   output1:
     value: '{{sandboxId}}'
@@ -28,8 +27,7 @@ grains:
     kind: terraform
     spec:
       source:
-        store: autogen_repo_sandbox_24668a70
-        path: terraform/eks-rds
+        path: github.com/QualiNext/test-spec2-public.git//terraform/eks-rds
       host:
         cloud-account: aws
         compute-service: eks
