@@ -1,7 +1,12 @@
 spec_version: 2-preview
 
-description: Auto generated blueprint for bitnami nginx helm chart 
-
+description: Blueprint for bitnami nginx helm chart 
+inputs:
+  replicaCount:
+    type: number
+    display-style: normal
+    default: 1
+    description: "Number of NGINX replicas to deploy"
 
 grains:
 
@@ -13,5 +18,7 @@ grains:
       host:
         cloud-account: aws
         compute-service: eks
+      inputs:
+        - replicaCount: '{{ .inputs.replicaCount }}'
       commands:
         - dep up bitnami/nginx
