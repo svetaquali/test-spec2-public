@@ -9,5 +9,5 @@ grains:
       source:
         path: github.com/QualiNext/test-spec2-public.git//terraform/eks-rds
       host:
-        cloud-account: aws
-        compute-service: eks
+        cloud-account: aws-demo
+        compute-service: eks-demo
