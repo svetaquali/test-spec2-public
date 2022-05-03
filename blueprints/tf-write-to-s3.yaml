@@ -16,7 +16,7 @@ inputs:
     display-style: normal
 
 grains:
-  helloTF:
+  s3-write:
     kind: terraform
     spec:
       source:
