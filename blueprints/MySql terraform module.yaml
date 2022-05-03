@@ -1,5 +1,4 @@
 spec_version: 2-preview
-
 description: Blueprint for MySql terraform module 
 
 grains:
