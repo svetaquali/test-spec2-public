@@ -1,6 +1,6 @@
 spec_version: 2-preview
-
 description: Blueprint for bitnami nginx helm chart 
+
 inputs:
   replicaCount:
     type: number
@@ -16,8 +16,8 @@ grains:
       source:
         path: https://github.com/bitnami/charts.git//bitnami/nginx
       host:
-        cloud-account: aws
-        compute-service: eks
+        cloud-account: aws-demo
+        compute-service: eks-demo
       inputs:
         - replicaCount: '{{ .inputs.replicaCount }}'
       commands:
