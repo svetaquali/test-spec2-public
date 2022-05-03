@@ -5,12 +5,15 @@ description: write content to an existing s3 bucket
 inputs:
   bucket_name:
     type: string
+    display-style: normal
   content:
     type: string
     default: this is a default content
+    display-style: normal
   compute_service_name:
     type: string
     default: "eks"
+    display-style: normal
 
 grains:
   helloTF:
