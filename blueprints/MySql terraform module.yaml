@@ -1,29 +1,9 @@
 spec_version: 2-preview
 
-description: Auto generated blueprint for MySql terraform module 
-
-
-inputs:
-  input1:
-    type: string
-    display-style: normal
-    default: "default1"
-    description: "environemnt input 1"
-  input2:
-    type: string
-    display-style: normal
-    description: "environemnt input 2"    
-
-
-outputs:
-  output1:
-    value: '{{sandboxId}}'
-  output2:
-    value: '{{.inputs.input1}}'
-    
+description: Blueprint for MySql terraform module 
 
 grains:
-  MySqlDB:
+  mySqlDB:
     kind: terraform
     spec:
       source:
@@ -31,10 +11,3 @@ grains:
       host:
         cloud-account: aws
         compute-service: eks
-      inputs:
-        - test_input1: env-input-{{.inputs.input1}}
-        - test_input2: env-id-{{sandboxId}}
-      ouputs:
-        - output1
-        - output2
-
