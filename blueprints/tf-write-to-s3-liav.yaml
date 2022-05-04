@@ -29,3 +29,4 @@ grains:
         - BUCKET_NAME: '{{.inputs.bucket_name}}'
         - SANDBOX_ID: '{{sandboxId}}'
         - CONTENT: '{{.inputs.content}}'
+      tf-version: 1.1.2
