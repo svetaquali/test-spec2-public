@@ -56,8 +56,8 @@ grains:
       source:
         path: https://github.com/bitnami/charts.git//bitnami/node
       host:
-        cloud-account: aws
-        compute-service: kubernetes
+        cloud-account: dev2
+        compute-service: eks
       commands:
         - "dep up bitnami/node"
 
