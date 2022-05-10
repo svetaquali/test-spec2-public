@@ -60,6 +60,7 @@ grains:
       host:
         cloud-account: aws
         compute-service: eks
+        service-account: test-admin-sa
         # region: eu-west-1
         # os: <os_moniker>
       commands:
