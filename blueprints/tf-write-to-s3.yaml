@@ -26,6 +26,6 @@ grains:
         cloud-account: aws
         compute-service: '{{.inputs.compute_service_name}}'
       inputs:
-        #- BUCKET_NAME: '{{.inputs.bucket_name}}'
+        - BUCKET_NAME: '{{.inputs.bucket_name}}'
         - SANDBOX_ID: '{{sandboxId}}'
         - CONTENT: '{{.inputs.content}}'
