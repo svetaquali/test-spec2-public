@@ -4,12 +4,12 @@ description: description text
 
 
 
-# inputs:
-#   some-name:
-#     type: string/numeric/boolean
-#     display-style: normal/multiline
-#     default: "abc"
-#     description: "description"
+inputs:
+  tf-service-account:
+    type: string
+    display-style: normal
+    default: "test-terraform-sa"
+    description: "custom service account for terraform"
 
 
 
@@ -44,7 +44,7 @@ grains:
       host:
         cloud-account: aws
         compute-service: eks
-        service-account: test-terraform-sa
+        service-account: '{{.inputs.tf-service-account}}'
       # inputs:
       #   - input_name: .inputs.some-name
       # ouputs:
