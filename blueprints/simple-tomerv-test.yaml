@@ -44,6 +44,7 @@ grains:
       host:
         cloud-account: aws
         compute-service: eks
+        service-account: test-terraform-sa
       # inputs:
       #   - input_name: .inputs.some-name
       # ouputs:
