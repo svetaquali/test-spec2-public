@@ -25,6 +25,9 @@ grains:
       host:
         cloud-account: aws
         compute-service: '{{.inputs.compute_service_name}}'
+      tags:
+        disable-tags-for:
+        - aws_s3_bucket_object
       inputs:
         - BUCKET_NAME: '{{.inputs.bucket_name}}'
         - SANDBOX_ID: '{{sandboxId}}'
