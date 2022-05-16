@@ -51,7 +51,7 @@ grains:
 
       source:
         store: vcenter-terraform-demo
-        path: /vm-from-template
+        path: github.com/QualiNext/terraform/vm-from-template
       host:
         cloud-account: private-cloud
         compute-service: vcenter
@@ -69,7 +69,7 @@ grains:
         - virtual_machine_folder: '{{ .inputs.virtual_machine_folder_VCENTER2 }}'
       source:
         store: vcenter-terraform-demo
-        path: /vm-from-template2
+        path: github.com/QualiNext/terraform/vm-from-template2
       host:
         cloud-account: private-cloud
         compute-service: VCENTER2
