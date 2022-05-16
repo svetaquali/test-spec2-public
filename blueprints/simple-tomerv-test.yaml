@@ -4,66 +4,48 @@ description: description text
 
 
 
-# inputs:
-#   some-name:
-#     type: string/numeric/boolean
-#     display-style: normal/multiline
-#     default: "abc"
-#     description: "description"
-
-
-
-# outputs:
-#   some-name:
-#     value: .grains.app1.outputs.output_name
-
+inputs:
+  tf-service-account:
+    type: string
+    display-style: normal
+    default: "test-terraform-sa"
+    description: "custom service account for terraform"
+  sg-name:
+    type: string
+    display-style: normal
+    default: "my-simple-sg"
+    description: "the name of the security group to create"
 
 
 grains:
-
-#   helloTF1:
-#     kind: terraform
-#     spec:
-#       source:
-#         store: autogen_repo_sandbox_3416a76b
-#         path: terraform/simple-tf-module
-#         #path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-module
-#       host:
-#         cloud-account: aws
-#         compute-service: eks
-#       # inputs:
-#       #   - input_name: .inputs.some-name
-#       # ouputs:
-#       #   - output-name
-
-#   helloTF2:
-#     kind: terraform
-#     spec:
-#       source:
-#         path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-module
-#       host:
-#         cloud-account: aws
-#         compute-service: eks
-#       # inputs:
-#       #   - input_name: .inputs.some-name
-#       # ouputs:
-#       #   - output-name
-
-
-
-  helloHelm:
-    kind: helm
-    #depends-on: app1(,another grain, another grain)
+  MyTF:
+    kind: terraform
     spec:
       source:
-        path: https://github.com/bitnami/charts.git//bitnami/node
+        path: github.com/QualiNext/test-spec2-public.git//terraform/create-sg
+        #path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-module
       host:
         cloud-account: aws
         compute-service: eks
-        # region: eu-west-1
-        # os: <os_moniker>
-      commands:
-        - "dep up bitnami/node"
+        service-account: '{{.inputs.tf-service-account}}'
+      inputs:
+        - SG_NAME: '{{.inputs.sg-name}}'
 
-      # inputs:
-      #   - someInput: .grains.app1.outputs.output-name
+
+#   helloHelm:
+#     kind: helm
+#     #depends-on: app1(,another grain, another grain)
+#     spec:
+#       source:
+#         path: https://github.com/bitnami/charts.git//bitnami/node
+#       host:
+#         cloud-account: aws
+#         compute-service: eks
+#         service-account: test-admin-sa
+#         # region: eu-west-1
+#         # os: <os_moniker>
+#       commands:
+#         - "dep up bitnami/node"
+
+#       # inputs:
+#       #   - someInput: .grains.app1.outputs.output-name
