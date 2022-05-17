@@ -49,10 +49,12 @@ grains:
     kind: terraform
     spec:
       source:
-        path: github.com/QualiNext/test-spec2-public.git//terraform/create-sg
+        store: autogen_repo_sandbox_3416a76b
+        path: terraform/simple-tf-module
       hook:
         source:
-          path: https://raw.githubusercontent.com/QualiNext/test-spec2-public/master/scripts/tomerv_user_script.sh
+          store: autogen_repo_sandbox_3416a76b
+          path: scripts/tomerv_user_script.sh
       host:
         cloud-account: aws
         compute-service: eks
