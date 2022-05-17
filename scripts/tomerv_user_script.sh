@@ -5,5 +5,5 @@ echo "tomer" > /name.txt
 
 echo "install nano"
 apt update
-apt install nano
+apt install nano -y
 
