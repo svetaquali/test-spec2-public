@@ -51,7 +51,7 @@ grains:
       source:
         store: autogen_repo_sandbox_3416a76b
         path: terraform/simple-tf-module
-      hook:
+      hooks:
         before:
           source:
             store: autogen_repo_sandbox_3416a76b
