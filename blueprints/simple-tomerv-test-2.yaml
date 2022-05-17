@@ -52,9 +52,10 @@ grains:
         store: autogen_repo_sandbox_3416a76b
         path: terraform/simple-tf-module
       hook:
-        source:
-          store: autogen_repo_sandbox_3416a76b
-          path: scripts/tomerv_user_script.sh
+        before:
+          source:
+            store: autogen_repo_sandbox_3416a76b
+            path: scripts/tomerv_user_script.sh
       host:
         cloud-account: aws
         compute-service: eks
