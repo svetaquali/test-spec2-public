@@ -12,7 +12,7 @@ inputs:
     display-style: normal
   compute_service_name:
     type: string
-    default: "eks"
+    default: "vcenter"
     display-style: normal
 
 grains:
@@ -23,7 +23,7 @@ grains:
         # store: autogen_repo_sandbox_3416a76b
         path: github.com/QualiNext/terraform/s3-write
       host:
-        cloud-account: aws
+        cloud-account: private-cloud
         compute-service: '{{.inputs.compute_service_name}}'
       tags:
 #         disable-tags-for:
