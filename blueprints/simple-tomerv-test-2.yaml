@@ -54,8 +54,7 @@ grains:
       hooks:
         before:
           source:
-            store: autogen_repo_sandbox_3416a76b
-            path: scripts/tomerv_user_script.sh
+            path: https://raw.githubusercontent.com/QualiNext/test-spec2-public/master/scripts/tomerv_user_script.sh
       host:
         cloud-account: aws
         compute-service: eks
