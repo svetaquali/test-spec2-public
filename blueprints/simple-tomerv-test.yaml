@@ -24,6 +24,11 @@ grains:
       source:
         path: github.com/QualiNext/test-spec2-public.git//terraform/create-sg
         #path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-module
+      hooks:
+        before:
+          source:
+            path: github.com/QualiNext/test-spec2-public.git//scripts/tomerv_user_script.sh
+          arguments_line: "arg1"
       host:
         cloud-account: aws
         compute-service: eks
