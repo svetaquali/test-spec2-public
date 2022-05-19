@@ -12,7 +12,7 @@ inputs:
     description: "environemnt input 1"
   compute_service_name:
     type: string
-    display-style: normal
+    display-style: masked
     sensitive: true
     default: "bad_name"
 #   input2:
