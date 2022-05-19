@@ -7,5 +7,5 @@ echo "install nano"
 apt update
 apt install nano -y
 
-cat /wemrwrr/w
+#cat /wemrwrr/w
 
