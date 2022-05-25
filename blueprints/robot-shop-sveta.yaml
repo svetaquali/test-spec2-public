@@ -1,7 +1,5 @@
 spec_version: 2-preview
-description: |
-  this is a modification of the 'Helm Application with MySql and S3 Deployed by Terraform' sample:
-  Robotshot microservices application deployed on K8S with Helm and RDS deployed with TF
+description: Robotshot microservices application deployed on K8S with Helm and RDS deployed with TF
 
 # added
 inputs:
