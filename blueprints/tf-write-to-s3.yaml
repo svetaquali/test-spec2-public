@@ -26,6 +26,7 @@ grains:
         cloud-account: aws
         compute-service: '{{.inputs.compute_service_name}}'
       tags:
+        auto-tag: false
 #         disable-tags-for:
 #         - aws_s3_bucket_object
       inputs:
