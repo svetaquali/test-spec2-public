@@ -4,6 +4,7 @@ terraform {
 //    path    = "mybackend/terraform.tfstate"
 //  }
 }
+// test for drift changes
 
 resource "null_resource" "task_log" {
   provisioner "local-exec" {
