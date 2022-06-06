@@ -29,7 +29,7 @@ grains:
       source:
         path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-module
       host:
-        name: eks
+        name: eks-dbs
       inputs:
         - test_input1: env-input-{{.inputs.input1}}
         - test_input2: env-id-{{sandboxId}}
