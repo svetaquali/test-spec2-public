@@ -4,7 +4,6 @@ terraform {
 //    path    = "mybackend/terraform.tfstate"
 //  }
 }
-// liav
 
 resource "null_resource" "task_log" {
   provisioner "local-exec" {
