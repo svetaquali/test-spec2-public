@@ -8,6 +8,11 @@ inputs:
     display-style: normal
     default: "aws"
     description: "cloud account"
+  test1:
+    type: string
+    display-style: normal
+    default: "test1"
+    description: "test1"
   compute:
     type: string
     display-style: normal
