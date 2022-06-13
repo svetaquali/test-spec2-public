@@ -24,7 +24,7 @@ grains:
         path: github.com/QualiNext/terraform/s3-write
       host:
         cloud-account: aws
-        compute-service: '{{.inputs.compute_service_name}}'
+        compute-service: {{.params.default_compute_service}} # '{{.inputs.compute_service_name}}'
       tags:
 #         auto-tag: true
 #         disable-tags-for:
@@ -32,4 +32,4 @@ grains:
       inputs:
         - BUCKET_NAME: '{{.inputs.bucket_name}}'
         - SANDBOX_ID: '{{sandboxId}}'
-        - CONTENT: '{{.inputs.content}}'
+        - CONTENT: '{{.inputs.content}} {{.params.param1}}'
