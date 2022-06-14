@@ -15,6 +15,10 @@ inputs:
     default: "eks"
     display-style: normal
 
+outputs:
+  the_output:
+    value: 'for sandbox {{sandboxId}}, used bucket {{.inputs.bucket_name}} and parameter {{.params.param1}}'
+
 grains:
   s3-write:
     kind: terraform
