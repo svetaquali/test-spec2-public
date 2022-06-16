@@ -6,4 +6,5 @@ terraform {
 
 locals {
   key1 = ["a", 10, "c"]
+  key2 = "test"
 }
