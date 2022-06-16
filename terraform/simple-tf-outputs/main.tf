@@ -5,5 +5,5 @@ terraform {
 
 
 locals {
-  key1 = ["a", "b", "c"]
+  key1 = ["a", 10, "c"]
 }
