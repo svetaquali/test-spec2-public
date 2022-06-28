@@ -11,6 +11,9 @@ inputs:
    role_arn:
         type: string
         display-style: masked
+   external_id:
+        type: string
+        display-style: masked
 
 
 outputs:
