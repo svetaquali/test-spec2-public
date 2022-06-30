@@ -7,12 +7,10 @@ description: description text
 inputs:
   input1:
     type: string
-    display-style: normal
     default: "default1"
     description: "environemnt input 1"
   compute_service_name:
     type: string
-    display-style: masked
     sensitive: true
     default: "bad_name"
 #   input2:
@@ -31,21 +29,21 @@ outputs:
     
 
 grains:
-#   helloTF:
-#     kind: terraform
-#     spec:
-#       source:
-#         store: autogen_repo_sandbox_3416a76b
-#         path: terraform/simple-tf-module
-#       host:
-#         cloud-account: aws
-#         compute-service: eks
-#       inputs:
-#         - test_input1: env-input-{{.inputs.input1}}
-#         - test_input2: env-id-{{sandboxId}}
-#       ouputs:
-#         - output1
-#         - output2
+  helloTF:
+    kind: terraform
+    spec:
+      source:
+        store: autogen_repo_sandbox_3416a76b
+        path: '' # terraform/simple-tf-module
+      host:
+        cloud-account: aws
+        compute-service: eks
+      inputs:
+        - test_input1: env-input-{{.inputs.input1}}
+        - test_input2: env-id-{{sandboxId}}
+      ouputs:
+        - output1
+        - output2
 
 
 
