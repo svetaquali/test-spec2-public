@@ -39,7 +39,7 @@ grains:
         - vsphere_virtual_machine_name
         - vsphere_virtual_machine_default_ip_address
       source:
-        path: http://github.com/QualiNext/test-spec2-public//terraform/vm-from-template-wait-for-ip
+        path: github.com/QualiNext/test-spec2-public//terraform/vm-from-template-wait-for-ip
       host:
         name: docker-agent
 
