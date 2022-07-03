@@ -39,7 +39,7 @@ grains:
         - vsphere_virtual_machine_name
         - vsphere_virtual_machine_default_ip_address
       source:
-        path: https://github.com/QualiNext/test-spec2-public/terraform/vm-from-template-wait-for-ip
+        path: https://github.com/QualiNext/test-spec2-public//terraform/vm-from-template-wait-for-ip
       host:
         name: docker-agent
 
@@ -48,7 +48,7 @@ grains:
     kind: ansible
     spec: 
       source:
-        path: https://github.com/QualiNext/test-spec2-public/ansible/install_httpd.yaml
+        path: https://github.com/QualiNext/test-spec2-public//ansible/install_httpd.yaml
       host:
         name: docker-agent
       inventory-file:
