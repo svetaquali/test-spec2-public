@@ -9,13 +9,26 @@ inputs:
     display-style: normal
   vm_name:
     type: string
-    default: "my VM"
+    default: "MyVM"
     display-style: normal
+  subscription_id:
+    type: string
+    display-style: normal
+  tenant_id:
+    type: string
+    display-style: normal
+  client_id:
+    type: string
+    display-style: masked
+  client_secret:
+    type: string
+    display-style: masked
+
 
 outputs:
   vm1_name:
     value: '{{.grains.vm1.outputs.vm_id}}'
-    
+
 grains:
   vm1:
     kind: terraform
@@ -26,6 +39,10 @@ grains:
         cloud-account: private-cloud
         compute-service: '{{.inputs.compute_service_name}}'
       inputs:
-        - vm_name: '{{.inputs.vm_name}}'    
+        - vm_name: '{{.inputs.vm_name}}'
+        - tenant_id: '{{.inputs.tenant_id}}'
+        - subscription_id: '{{.inputs.subscription_id}}'
+        - client_id: '{{.inputs.client_id}}'
+        - client_secret: '{{.inputs.client_secret}}'
       outputs:
-        - vm_id    
+        - vm_id
