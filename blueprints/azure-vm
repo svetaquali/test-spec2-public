@@ -27,5 +27,5 @@ grains:
         compute-service: '{{.inputs.compute_service_name}}'
       inputs:
         - vm_name: '{{.inputs.vm_name}}'    
-      ouputs:
+      outputs:
         - vm_id    
