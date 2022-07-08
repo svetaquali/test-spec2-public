@@ -29,8 +29,7 @@ grains:
       host:
         cloud-account: private-cloud
         compute-service: '{{.inputs.compute_service_name}}'
-      inputs:
-        - vm_name: '{{.inputs.vm_name}}'
+      inputs:    
         - tenant_id: '{{.inputs.tenant_id}}'
         - subscription_id: '{{.inputs.subscription_id}}'
         - client_id: '{{.inputs.client_id}}'
