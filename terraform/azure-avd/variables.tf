@@ -25,7 +25,7 @@ description = "Location of the resource group."
 
 variable "rg_name" {
 type        = string
-default     = "rg-avd-resources"
+default     = "rg-avd-resources-1"
 description = "Name of the Resource group in which to deploy service objects"
 }
 
@@ -38,7 +38,7 @@ default     = "AVD TF Workspace"
 variable "hostpool" {
 type        = string
 description = "Name of the Azure Virtual Desktop host pool"
-default     = "AVD-TF-HP"
+default     = "AVD-TF-HP-1"
 }
 
 variable "rfc3339" {
@@ -49,6 +49,6 @@ description = "Registration token expiration"
 
 variable "prefix" {
 type        = string
-default     = "avdtf"
+default     = "avdtf-1"
 description = "Prefix of the name of the AVD machine(s)"
 }
