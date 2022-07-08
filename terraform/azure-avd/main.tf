@@ -12,20 +12,20 @@ terraform {
   }
 }
 
-//provider "azurerm" {
-//  features {}
-//  tenant_id       = var.tenant_id
-//  subscription_id = var.subscription_id
-//  client_id = var.client_id
-//  client_secret = var.client_secret
-//}
-
 provider "azurerm" {
-  // version = "=1.35.0"
   features {}
-  // Takes from env: ARM_SUBSCRIPTION_ID, ARM_CLIENT_ID, ARM_CLIENT_SECRET
-  tenant_id       = "ba0ce2f2-cd77-441d-88b1-71ebfa2e7067"
+  tenant_id       = var.tenant_id
+  subscription_id = var.subscription_id
+  client_id = var.client_id
+  client_secret = var.client_secret
 }
+
+//provider "azurerm" {
+//  // version = "=1.35.0"
+//  features {}
+//  // Takes from env: ARM_SUBSCRIPTION_ID, ARM_CLIENT_ID, ARM_CLIENT_SECRET
+//  tenant_id       = "ba0ce2f2-cd77-441d-88b1-71ebfa2e7067"
+//}
 
 # Resource group name is output when execution plan is applied.
 resource "azurerm_resource_group" "sh" {
