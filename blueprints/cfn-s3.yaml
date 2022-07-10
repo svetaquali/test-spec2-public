@@ -38,5 +38,3 @@ grains:
       outputs:
          - Arn
          - DomainName
-      tags:
-        auto-tag: true
