@@ -6,6 +6,6 @@ grains:
     spec:
       source:
         path: terraform/simple-tf-module
-        host: test-spec2-public
+        store: test-spec2-public
       host:
         compute-service: dev
