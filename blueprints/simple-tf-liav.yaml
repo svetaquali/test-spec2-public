@@ -8,4 +8,4 @@ grains:
         path: terraform/simple-tf-outputs
         host: test-spec2-public
       host:
-        name: dev
+        compute-service: dev
