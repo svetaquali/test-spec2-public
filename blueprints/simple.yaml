@@ -14,6 +14,10 @@ inputs:
     type: string
     display-style: normal
     description: "environemnt input 2"    
+  input3:
+    type: string
+    display-style: normal
+    description: "list test"      
 
 
 # values that starts with '{' for liquid template must be encosed with quotes so YAML won't consider them as dict
@@ -37,10 +41,11 @@ grains:
         path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-module
       host:
         cloud-account: aws
-        compute-service: kubernetes-testing
+        compute-service: eks
       inputs:
         - test_input1: env-input-{{.inputs.input1}}
         - test_input2: env-id-{{sandboxId}}
+        - test_input3: '{{.inputs.input3}}'
       ouputs:
         - output1
         - output2
@@ -55,7 +60,7 @@ grains:
         path: https://github.com/bitnami/charts.git//bitnami/node
       host:
         cloud-account: aws
-        compute-service: kubernetes-testing
+        compute-service: eks
         # region: eu-west-1
         # os: <os_moniker>
       commands:
