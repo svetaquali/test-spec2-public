@@ -15,6 +15,6 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public.git//manifests/nginx/nginxmanifest.yaml
-      #namespace: '{{ .inputs.namespace }}'
+      namespace: '{{ .inputs.namespace }}'
       host:
         name: eks
