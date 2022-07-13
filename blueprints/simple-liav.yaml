@@ -9,7 +9,8 @@ grains:
     kind: helm
     spec:
       source:
-        path: https://github.com/bitnami/charts.git//bitnami/node
+        path: bitnami/node
+        store: charts
       host:
         compute-service: dev
       commands:
