@@ -35,4 +35,4 @@ grains:
         name: '{{ inputs.compute_service_name }}'
         # service-account: '{{.inputs.tf-service-account}}'
       inputs:
-        - SG_NAME: sg-'{{ sandboxId }}'
+        - SG_NAME: '{{ sandboxId }}-sg'
