@@ -12,7 +12,7 @@ grains:
       source:
         path: github.com/QualiNext/test-spec2-public/terraform/simple-tf-module
       host:
-        name: '{{inputs.tf-host_name}}'
+        name: '{{inputs.tf-host-name}}'
       inputs:
         - test_input1: input-{{sandboxId}}
       outputs:
@@ -27,10 +27,10 @@ grains:
         store: spec2-public
         path: blueprints
       host:
-        name: '{{inputs.tf-host_name}}'
+        name: '{{inputs.tf-host-name}}'
       inputs:
         - bucket_name: '{{inputs.bucket_name}}'
-        - compute_service_name: '{{inputs.tf-host_name}}'
+        - compute_service_name: '{{inputs.tf-host-name}}'
         - content: 'output1 of simple-tf: {{grains.simple-tf.outputs.output1}}'
       outputs:
         - the_output
