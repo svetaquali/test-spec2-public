@@ -34,4 +34,4 @@ grains:
         - content: 'output1 of simple-tf: {{grains.simple-tf.outputs.output1}}'
       outputs:
         - the_output
-      
+  
