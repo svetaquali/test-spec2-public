@@ -2,7 +2,7 @@ spec_version: 2
 
 inputs:
   bucket_name:
-  tf-host_name:
+  tf-host-name:
     default: "eks"
 
 grains:
@@ -27,7 +27,7 @@ grains:
         store: spec2-public
         path: blueprints
       host:
-        name: whatever
+        name: '{{inputs.tf-host_name}}'
       inputs:
         - bucket_name: '{{inputs.bucket_name}}'
         - compute_service_name: '{{inputs.tf-host_name}}'
