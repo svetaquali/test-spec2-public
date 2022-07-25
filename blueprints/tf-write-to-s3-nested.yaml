@@ -1,0 +1,37 @@
+spec_version: 2
+
+inputs:
+  bucket_name:
+  tf-host_name:
+    default: "eks"
+
+grains:
+  simple-tf:
+    kind: terraform
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public/terraform/simple-tf-module
+      host:
+        name: '{{inputs.tf-host_name}}'
+      inputs:
+        - test_input1: input-{{sandboxId}}
+      outputs:
+        - output1
+        - output2
+  
+  tf-write-to-s3:
+    kind: blueprint
+    depends-on: simple-tf
+    spec:
+      source:
+        store: spec2-public
+        path: blueprints
+      host:
+        name: whatever
+      inputs:
+        - bucket_name: '{{inputs.bucket_name}}'
+        - compute_service_name: '{{inputs.tf-host_name}}'
+        - content: 'output1 of simple-tf: {{grains.simple-tf.outputs.output1}}'
+      outputs:
+        - the_output
+      
