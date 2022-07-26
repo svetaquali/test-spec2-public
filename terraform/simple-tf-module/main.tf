@@ -4,7 +4,7 @@ terraform {
 //    path    = "mybackend/terraform.tfstate"
 //  }
 }
-// comment
+// test test
 
 resource "null_resource" "task_log" {
   provisioner "local-exec" {
