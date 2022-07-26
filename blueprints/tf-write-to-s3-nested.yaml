@@ -15,6 +15,7 @@ grains:
         name: '{{inputs.tf-host-name}}'
       inputs:
         - test_input1: input-{{sandboxId}}
+        - test_input3: '["abc"]'
       outputs:
         - output1
         - output2
