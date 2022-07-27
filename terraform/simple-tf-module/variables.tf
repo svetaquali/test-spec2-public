@@ -11,4 +11,5 @@ variable "test_input2" {
 
 variable "test_input3" {
     type = list(string)
+    default = []
 }
