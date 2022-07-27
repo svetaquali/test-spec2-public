@@ -12,7 +12,7 @@ grains:
         path: bitnami/node
         store: charts
       host:
-        compute-service: dev2
+        compute-service: dev
       commands:
         - dep up bitnami/node
 
