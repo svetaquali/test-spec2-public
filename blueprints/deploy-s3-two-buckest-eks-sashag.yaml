@@ -15,7 +15,7 @@ grains:
       source:
         path: https://github.com/QualiNext/test-spec2-public//terraform/s3
       host:
-        name: eks
+        name: eks-sashag
       inputs:
         - region: us-west-1
         - acl: private
@@ -29,7 +29,7 @@ grains:
       source:
         path: github.com/QualiNext/test-spec2-public//terraform/s3
       host:
-        name: eks
+        name: eks-sashag
       inputs:
         - region: us-west-1
         - acl: private

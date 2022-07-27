@@ -8,6 +8,9 @@ outputs:
   bucket_2:
     value: '{{ .grains.bucket_2.outputs.s3_bucket_arn }}'
 
+  bucket_2:
+    value: '{{ .grains.bucket_3.outputs.s3_bucket_arn }}'
+
 grains:
   bucket_1:
     kind: terraform
@@ -15,7 +18,7 @@ grains:
       source:
         path: https://github.com/QualiNext/test-spec2-public//terraform/s3
       host:
-        name: eks
+        name: eks-sashag
       inputs:
         - region: us-west-1
         - acl: private
@@ -29,11 +32,25 @@ grains:
       source:
         path: github.com/QualiNext/test-spec2-public//terraform/s3
       host:
-        name: eks
+        name: eks-sashag
       inputs:
         - region: us-west-1
         - acl: private
         - name: 'amazing-bucket-2-s3-{{ sandboxid | downcase }}'
+      outputs:
+        - s3_bucket_arn
+
+  bucket_3:
+    kind: terraform
+    spec: 
+      source:
+        path: github.com/QualiNext/test-spec2-public/terraform/s3
+      host:
+        name: eks-sashag
+      inputs:
+        - region: us-west-1
+        - acl: private
+        - name: 'amazing-bucket-3-s3-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
 
