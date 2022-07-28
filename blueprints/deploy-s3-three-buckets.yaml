@@ -22,7 +22,7 @@ grains:
       inputs:
         - region: us-west-1
         - acl: private
-        - name: 'amazing-bucket-1-s3-{{ sandboxid | downcase }}'
+        - name: 'amazing-changed-first-bucket-1-s3-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
 
