@@ -14,7 +14,7 @@ grains:
     kind: kubernetes
     spec:
       source:
-        path: github.com/QualiNext/test-spec2-public.git//manifests/nginx/nginxmanifest.yaml
+        path: github.com/QualiNext/test-spec2-public.git//manifests/nginx1/nginxmanifest.yaml
       namespace: '{{ .inputs.namespace }}'
       host:
         name: eks
