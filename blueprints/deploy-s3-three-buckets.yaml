@@ -21,7 +21,6 @@ grains:
         name: eks
       inputs:
         - region: us-west-1
-        - acl: private
         - name: 'amazing-changed-second-bucket-1-s3-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
