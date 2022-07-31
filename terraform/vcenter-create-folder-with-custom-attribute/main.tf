@@ -27,6 +27,6 @@ resource "vsphere_folder" "folder" {
   path          = "alexander.g/terraform-test-folder"
   type          = "vm"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
-  custom_attributes = tomap({"${data.vsphere_custom_attribute.attribute.id}" = "John Doe"})
+  custom_attributes = tomap({"${data.vsphere_custom_attribute.attribute.id}" = "John Doe Changed from Asset"})
 }
 
