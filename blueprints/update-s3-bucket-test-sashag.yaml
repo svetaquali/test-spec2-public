@@ -1,0 +1,21 @@
+spec_version: 2-preview
+description: deploy s3 bucket
+
+outputs:
+  bucket_1:
+    value: '{{ .grains.bucket_1.outputs.s3_bucket_arn }}'
+
+grains:
+  bucket_1:
+    kind: terraform
+    spec: 
+      source:
+        path: https://github.com/QualiNext/test-spec2-public//terraform/s3-custom
+      host:
+        name: eks-sashag
+      inputs:
+        - region: us-west-1
+        - name: 'bucket-update-test-2-s3-{{ sandboxid | downcase }}'
+      outputs:
+        - s3_bucket_arn
+
