@@ -1,0 +1,13 @@
+spec_version: 2-preview
+description: Create a vm folder on a vcenter and sets custom attribute there
+
+
+grains:
+  folder:
+    kind: terraform
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public//terraform/vcenter-create-folder-with-custom-attribute
+      host:
+        name: docker-agent
+
