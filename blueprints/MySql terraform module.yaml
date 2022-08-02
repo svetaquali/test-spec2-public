@@ -1,6 +1,16 @@
 spec_version: 2-preview
 description: Blueprint for MySql terraform module 
 
+inputs:
+#  execution_host:
+#      type: execution-host
+  instance_class:
+    type: string
+    allowed-values:
+      - db.t3.micro
+      - db.t3.small
+      - db.t3.medium
+
 grains:
   mySqlDB:
     kind: terraform
@@ -9,3 +19,8 @@ grains:
         path: github.com/QualiNext/test-spec2-public.git//terraform/eks-rds
       host:
         name: review3
+#        name: '{{.inputs.execution_host}}'
+      inputs:
+        - instance_class: '{{.inputs.instance_class}}'
+
+
