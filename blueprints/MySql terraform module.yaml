@@ -4,12 +4,12 @@ description: Blueprint for MySql terraform module
 inputs:
 #  execution_host:
 #      type: execution-host
-  instance_class:
-    type: string
-    allowed-values:
-      - db.t3.micro
-      - db.t3.small
-      - db.t3.medium
+#  instance_class:
+#    type: string
+#    allowed-values:
+#      - db.t3.micro
+#      - db.t3.small
+#      - db.t3.medium
 
 grains:
   mySqlDB:
@@ -21,6 +21,6 @@ grains:
         name: review3
 #        name: '{{.inputs.execution_host}}'
       inputs:
-        - instance_class: '{{.inputs.instance_class}}'
+        - instance_class: db.t3.micro
 
 
