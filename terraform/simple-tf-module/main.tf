@@ -5,7 +5,7 @@ terraform {
 //  }
 }
 // test
-// vido was not here
+// vido was here
 
 resource "null_resource" "task_log" {
   provisioner "local-exec" {
