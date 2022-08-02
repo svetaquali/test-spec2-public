@@ -20,9 +20,9 @@ inputs:
     default: torque-vm
     type: string
     display-style: normal
-    description: "region"    
-    
-
+    description: "region"
+  execution_host:
+    type: execution-host
 
 outputs:
   output3:
@@ -36,8 +36,7 @@ grains:
       source:
         path: github.com/QualiNext/test-spec2-public.git//terraform/oci-instance
       host:
-        cloud-account: private-cloud
-        compute-service: oke
+        name: '{{.inputs.execution_host}}'
       inputs:
         - compartment_ocid : '{{.inputs.compartment}}'
         - tenancy_ocid : '{{.inputs.tenancy}}'
