@@ -15,6 +15,10 @@ inputs:
     default: "eks"
     display-style: normal
 
+outputs:
+  the_output:
+    value: 'for sandbox {{sandboxId}}, used bucket {{.inputs.bucket_name}} and parameter {{.params.param1}}'
+
 grains:
   s3-write:
     kind: terraform
@@ -24,7 +28,8 @@ grains:
         path: github.com/QualiNext/terraform/s3-write
       host:
         cloud-account: aws
-        compute-service: '{{.inputs.compute_service_name}}'
+        # '{{.inputs.compute_service_name}}'
+        compute-service: '{{.params.default_compute_service}}'
       tags:
 #         auto-tag: true
 #         disable-tags-for:
@@ -32,4 +37,4 @@ grains:
       inputs:
         - BUCKET_NAME: '{{.inputs.bucket_name}}'
         - SANDBOX_ID: '{{sandboxId}}'
-        - CONTENT: '{{.inputs.content}}'
+        - CONTENT: '{{.inputs.content}} {{.params.param1}}'
