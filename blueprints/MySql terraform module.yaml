@@ -1,6 +1,10 @@
 spec_version: 2-preview
 description: Blueprint for MySql terraform module 
 
+inputs:
+  execution_host:
+      type: execution-host
+
 grains:
   mySqlDB:
     kind: terraform
@@ -8,5 +12,4 @@ grains:
       source:
         path: github.com/QualiNext/test-spec2-public.git//terraform/eks-rds
       host:
-        cloud-account: aws-demo
-        compute-service: eks-demo
+        name: '{{.inputs.execution_host}}'
