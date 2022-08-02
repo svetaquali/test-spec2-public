@@ -39,7 +39,7 @@ grains:
         - username: adminuser
         - vpc_id: vpc-02e3bca90b081cd0f
         - region: us-east-1
-      ouputs:
+      outputs:
         - hostname
         - connection_string
 
@@ -57,6 +57,8 @@ grains:
         - acl: public-read
         - name: 'robotshop-s3-{{ sandboxid | downcase }}'
       # added
+      outputs:
+        - s3_bucket_arn
 #       tags:
 #         auto-tag: false
 

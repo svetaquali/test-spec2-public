@@ -24,7 +24,7 @@ resource "aws_s3_bucket" "bucket" {
   tags = {
     Name        = "My bucket"
     Environment = "Dev"
-    A_NEW_TAG = "NEW TAG"
+    NEW_MANDATORY_TAG = "NEW_MANDATORY_TAG_VALUE"
   }
 }
 

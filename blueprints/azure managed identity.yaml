@@ -1,0 +1,27 @@
+spec_version: 2
+
+description: Azure RG.
+
+inputs:
+  host_name:
+    type: string
+    display-style: normal
+      
+grains:
+  azure_resource_group:
+    kind: terraform
+    spec:
+      source:
+        store: spec2_repo_blue
+        path: terraform/azure-RG
+      host:
+        name: '{{ .inputs.host_name }}'
+        kubernetes:
+          pod-labels:
+          - aadpodidbinding: 
+      env-vars: 
+      - ARM_USE_MSI: true
+      - ARM_SUBSCRIPTION_ID: 
+      - ARM_TENANT_ID: 
+      - ARM_CLIENT_ID: 
+      tf-version: 1.2.3
