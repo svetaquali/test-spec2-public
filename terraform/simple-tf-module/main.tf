@@ -19,12 +19,6 @@ resource "null_resource" "task_long" {
   }
 }
 
-resource "null_resource" "task_log" {
-  provisioner "local-exec" {
-    command = "echo \"just echo task\""
-  }
-}
-
 locals {
   key1 = "somekey"
 }
