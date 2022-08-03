@@ -4,7 +4,7 @@ terraform {
 //    path    = "mybackend/terraform.tfstate"
 //  }
 }
-// test
+// torque rocks!
 
 resource "null_resource" "task_log" {
   provisioner "local-exec" {
