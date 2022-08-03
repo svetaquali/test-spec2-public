@@ -22,8 +22,11 @@ outputs:
   bucket_2:
     value: '{{ .grains.bucket_2.outputs.s3_bucket_arn }}'
 
-  cfn_bucket_3":
-    value: '{{ .grains.cfn-bucket-3.outputs.Arn }}'
+  bucket_3:
+    value: '{{ .grains.bucket_3.outputs.s3_bucket_arn }}'
+
+  cfn_bucket_4":
+    value: '{{ .grains.cfn-bucket-4.outputs.Arn }}'
 
 grains:
   bucket_1:
@@ -52,8 +55,22 @@ grains:
         - name: 'amazing-bucket-2-s3-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
+
+  bucket_3:
+    kind: terraform
+    spec: 
+      source:
+        path: github.com/QualiNext/test-spec2-public/terraform/s3
+      host:
+        name: eks
+      inputs:
+        - region: us-west-1
+        - acl: private
+        - name: 'amazing-bucket-3-s3-{{ sandboxid | downcase }}'
+      outputs:
+        - s3_bucket_arn
   
-  cfn-bucket-3:
+  cfn-bucket-4:
     kind: cloudformation
     spec:
       source:
@@ -66,3 +83,4 @@ grains:
         - accesscontrol: '{{ .inputs.access_control }}'
       outputs:
          - Arn
+
