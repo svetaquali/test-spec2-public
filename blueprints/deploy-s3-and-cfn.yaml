@@ -70,17 +70,17 @@ grains:
       outputs:
         - s3_bucket_arn
   
-  cfn-bucket-4:
-    kind: cloudformation
-    spec:
-      source:
-        path: https://quali-dannyk-storage.s3.amazonaws.com/AWSS3Bucket_in_out.json    
-      region: us-east-1
-      authentication:
-        role-arn: '{{ .inputs.role_arn }}'
-        external-id: '{{ .inputs.external_id }}'
-      inputs:
-        - accesscontrol: '{{ .inputs.access_control }}'
-      outputs:
-         - Arn
+  # cfn-bucket-4:
+  #   kind: cloudformation
+  #   spec:
+  #     source:
+  #       path: https://quali-dannyk-storage.s3.amazonaws.com/AWSS3Bucket_in_out.json    
+  #     region: us-east-1
+  #     authentication:
+  #       role-arn: '{{ .inputs.role_arn }}'
+  #       external-id: '{{ .inputs.external_id }}'
+  #     inputs:
+  #       - accesscontrol: '{{ .inputs.access_control }}'
+  #     outputs:
+  #        - Arn
 
