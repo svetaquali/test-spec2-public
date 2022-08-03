@@ -4,7 +4,7 @@ terraform {
 //    path    = "mybackend/terraform.tfstate"
 //  }
 }
-// 
+// Torque can now update environments!!!
 
 resource "null_resource" "task_log" {
   provisioner "local-exec" {
