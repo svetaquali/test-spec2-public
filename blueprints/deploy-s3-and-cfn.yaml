@@ -22,8 +22,8 @@ outputs:
   bucket_2:
     value: '{{ .grains.bucket_2.outputs.s3_bucket_arn }}'
 
-  cfn_bucket_4":
-    value: '{{ .grains.cfn_bucket_4.outputs.Arn }}'
+  cfn_bucket_3":
+    value: '{{ .grains.cfn-bucket-3.outputs.Arn }}'
 
 grains:
   bucket_1:
@@ -52,13 +52,13 @@ grains:
         - name: 'amazing-bucket-2-s3-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
-
-  cfn_bucket_4:
+  
+  cfn-bucket-3:
     kind: cloudformation
     spec:
       source:
         path: https://quali-dannyk-storage.s3.amazonaws.com/AWSS3Bucket_in_out.json    
-      region: us-west-1
+      region: us-east-1
       authentication:
         role-arn: '{{ .inputs.role_arn }}'
         external-id: '{{ .inputs.external_id }}'
@@ -66,4 +66,3 @@ grains:
         - accesscontrol: '{{ .inputs.access_control }}'
       outputs:
          - Arn
-
