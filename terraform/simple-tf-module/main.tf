@@ -15,7 +15,7 @@ resource "null_resource" "task_log" {
 
 resource "null_resource" "task_long" {
   provisioner "local-exec" {
-    command = "echo \"long task start\" && sleep 5 && echo \"long task end\""
+    command = "echo \"some task\""
   }
 }
 
