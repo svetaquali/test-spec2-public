@@ -1,6 +1,20 @@
 spec_version: 2-preview
 description: deploy s3 buckets using terraform and cloudformation
 
+inputs:
+   The access_control property is case-sensitive and must be one of the following values:
+   Private, PublicRead, PublicReadWrite, AuthenticatedRead, LogDeliveryWrite, BucketOwnerRead, BucketOwnerFullControl, or AwsExecRead
+   access_control:
+       type: string
+       display-style: normal
+       default: "Private"
+   role_arn:
+        type: string
+        display-style: masked
+   external_id:
+        type: string
+        display-style: masked
+
 outputs:
   bucket_1:
     value: '{{ .grains.bucket_1.outputs.s3_bucket_arn }}'
@@ -11,6 +25,9 @@ outputs:
   bucket_3:
     value: '{{ .grains.bucket_3.outputs.s3_bucket_arn }}'
 
+  cfn_bucket_4:
+    value: '{{ .grains.cfn-bucket-4.outputs.Arn }}'
+
 grains:
   bucket_1:
     kind: terraform
@@ -18,7 +35,7 @@ grains:
       source:
         path: https://github.com/QualiNext/test-spec2-public//terraform/s3
       host:
-        name: eks
+        name: eks-sashag
       inputs:
         - region: us-west-1
         - name: 'amazing-changed-second-bucket-1-s3-{{ sandboxid | downcase }}'
@@ -31,7 +48,7 @@ grains:
       source:
         path: github.com/QualiNext/test-spec2-public//terraform/s3
       host:
-        name: eks
+        name: eks-sashag
       inputs:
         - region: us-west-1
         - acl: private
@@ -45,10 +62,24 @@ grains:
       source:
         path: github.com/QualiNext/test-spec2-public/terraform/s3
       host:
-        name: eks
+        name: eks-sashag
       inputs:
         - region: us-west-1
         - acl: private
         - name: 'amazing-bucket-3-s3-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
+  
+  cfn-bucket-4:
+    kind: cloudformation
+    spec:
+      source:
+        path: https://quali-dannyk-storage.s3.amazonaws.com/AWSS3Bucket_in_out.json    
+      region: us-east-1
+      authentication:
+        role-arn: '{{ .inputs.role_arn }}'
+        external-id: '{{ .inputs.external_id }}'
+      inputs:
+        - accesscontrol: '{{ .inputs.access_control }}'
+      outputs:
+         - Arn
