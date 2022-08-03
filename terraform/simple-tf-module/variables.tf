@@ -13,3 +13,8 @@ variable "test_input3" {
     type = list(string)
     default = []
 }
+
+variable "test_input4" {
+    type = string
+    default = "default4"
+}
