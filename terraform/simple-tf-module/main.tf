@@ -18,6 +18,20 @@ resource "null_resource" "task_long" {
   }
 }
 
+resource "null_resource" "set_initial_state" {
+  provisioner "local-exec" {
+    interpreter = ["bash", "-c"]
+    command = "echo \"0\" > counter"
+  }
+}
+
+resource "null_resource" "wait" {
+  provisioner "local-exec" {
+    interpreter = ["bash", "-c"]
+    command = "while [[ $(cat counter) != \"10\" ]]; do sleep 5; done; sleep 3;"
+  }
+}
+
 locals {
   key1 = "somekey"
 }
