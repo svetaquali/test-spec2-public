@@ -14,23 +14,23 @@ resource "null_resource" "task_log" {
 
 resource "null_resource" "task_long" {
   provisioner "local-exec" {
-    command = "for i in {1..30}; do echo waiting; sleep 5; done"
+    command = "for i in {1..3}; do echo waiting; sleep 2; done"
   }
 }
 
-resource "null_resource" "set_initial_state" {
-  provisioner "local-exec" {
-    interpreter = ["bash", "-c"]
-    command = "echo \"0\" > counter"
-  }
-}
+# resource "null_resource" "set_initial_state" {
+#   provisioner "local-exec" {
+#     interpreter = ["bash", "-c"]
+#     command = "echo \"0\" > counter"
+#   }
+# }
 
-resource "null_resource" "wait" {
-  provisioner "local-exec" {
-    interpreter = ["bash", "-c"]
-    command = "while [[ $(cat counter) != \"10\" ]]; do sleep 5; done; sleep 3;"
-  }
-}
+# resource "null_resource" "wait" {
+#   provisioner "local-exec" {
+#     interpreter = ["bash", "-c"]
+#     command = "while [[ $(cat counter) != \"10\" ]]; do sleep 5; done; sleep 3;"
+#   }
+# }
 
 locals {
   key1 = "somekey"
