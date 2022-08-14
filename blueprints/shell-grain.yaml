@@ -47,7 +47,7 @@ grains:
     depends-on: validate
     spec:
       host:
-        name: kubernetes-testing1
+        name: eks
       source:
         path: github.com/QualiNext/test-spec2-public.git//manifests/nginx1/nginxmanifest-fixed.yaml
       namespace: '{{ .inputs.namespace }}'
