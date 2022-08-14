@@ -33,7 +33,7 @@ grains:
     kind: shell
     spec:
       host:
-        name: kubernetes-testing1
+        name: eks
       activities:
         deploy:
           commands:
