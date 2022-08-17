@@ -15,5 +15,5 @@ grains:
       host:
         name: '{{.inputs.compute_service_name}}'
       inputs:
-        - test_input1: '["key1","val1"]'
-#         - test_input1: '{"key1":"val1"}'
+#         - test_input1: '["key1","val1"]'
+        - test_input1: '{"key1":"val1"}'
