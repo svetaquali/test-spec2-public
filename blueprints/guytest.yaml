@@ -1,45 +1,24 @@
 spec_version: 2
-description: Simple s3 buckets provisioning
+description: Simple
 
 inputs:
   host:
     type: execution-host
 
-outputs:
-  service-1-logs-bucket:
-    value: '{{ .grains.service-1-logs-bucket.outputs.s3_bucket_arn }}'
-    kind: link
-  service-2-logs-bucket:
-    value: '{{ .grains.service-2-logs-bucket.outputs.s3_bucket_arn }}'
-    kind: link
-
-#change
 grains:
-  service-1-logs-bucket:
+  TF1:
     kind: terraform
     spec: 
       source:
-        path: https://github.com/QualiNext/torque-demo.git//terraform/s3
+        path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-outputs
       host:
         name: '{{ .inputs.host }}'
-      inputs:
-        - region: us-west-1
-        - acl: private
-        - name: 'demo-s3-service-1-logs-bucket-{{ sandboxid | downcase }}'
-      outputs:
-        - s3_bucket_arn
 
-  service-2-logs-bucket:
+  TF2:
     kind: terraform
     spec: 
       source:
-        path: https://github.com/QualiNext/torque-demo.git//terraform/s3
+        path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-outputs
       host:
         name: '{{ .inputs.host }}'
-      inputs:
-        - region: us-west-1
-        - acl: private
-        - name: 'demo-s3-service-2-logs-bucket-{{ sandboxid | downcase }}'
-      outputs:
-        - s3_bucket_arn
-      depends-on: service-1-logs-bucket
+      depends-on: TF1
