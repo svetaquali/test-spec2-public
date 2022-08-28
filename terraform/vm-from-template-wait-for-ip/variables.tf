@@ -1,14 +1,14 @@
-variable "private_cloud_login" {
+variable "username" {
   type = string
   sensitive = true
 }
 
-variable "private_cloud_password" {
+variable "password" {
   type = string
   sensitive = true
 }
 
-variable "private_cloud_host" {
+variable "hostname" {
   type = string
   sensitive = true
 }
