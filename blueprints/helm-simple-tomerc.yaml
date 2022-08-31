@@ -1,0 +1,42 @@
+spec_version: 2-preview
+
+description: description text
+
+
+
+# inputs:
+#   some-name:
+#     type: string/numeric/boolean
+#     display-style: normal/multiline
+#     default: "abc"
+#     description: "description"
+
+
+
+# outputs:
+#   some-name:
+#     value: .grains.app1.outputs.output_name
+
+inputs:
+  execution_host:
+    type: string
+    default: qualidev2
+    description: the name of the execution host to be used
+
+grains:
+
+  helloHelm:
+    kind: helm
+    #depends-on: app1(,another grain, another grain)
+    spec:
+      source:
+        path: https://github.com/bitnami/charts.git//bitnami/node
+      host:
+        name: '{{.inputs.execution_host}}'
+        # region: eu-west-1
+        # os: <os_moniker>
+      commands:
+        - dep up bitnami/node
+
+      # inputs:
+      #   - someInput: .grains.app1.outputs.output-name
