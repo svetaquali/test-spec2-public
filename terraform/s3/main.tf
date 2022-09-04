@@ -25,6 +25,7 @@ resource "aws_s3_bucket" "bucket" {
     Name        = "My bucket"
     Environment = "Dev"
     A_NEW_TAG = "NEW TAG"
+    One_More_Tag = "the other tag"
   }
 }
 
