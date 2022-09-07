@@ -6,7 +6,6 @@ description: Blueprint with nginx kubernetes grain.
 inputs:
   namespace:
     type: string
-    display-style: normal
     description: "Kubernetes namespace for sandbox to be ran in."
   compute_service_name:
     type: string
