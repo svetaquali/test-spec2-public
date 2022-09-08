@@ -11,11 +11,11 @@ inputs:
     description: "environemnt input 1"
   compute_service_name:
     type: string
-    sensitive: true
-    default: "bad_name"
+#     sensitive: true
+    default: "eks"
   helm_namespace:
     type: string
-    default: sveta-test
+#     default: sveta-test
 #   input2:
 #     type: string
 #     description: "environemnt input 2"    
@@ -32,28 +32,26 @@ outputs:
     
 
 grains:
-#   helloTF:
-#     kind: terraform
-#     spec:
-#       source:
-#         store: autogen_repo_sandbox_a53708f7
-#         path: terraform/simple-tf-module
-#       host:
-#         name: '{{.inputs.compute_service_name}}'
-# #         cloud-account: aws
-# #         compute-service: eks
-#       inputs:
-#         - test_input1: env-input-{{.inputs.input1}}
-#         - test_input2: env-id-{{sandboxId}}
-#       ouputs:
-#         - output1
-#         - output2
+  helloTF:
+    kind: terraform
+    spec:
+      source:
+        store: test-spec2-public
+        path: terraform/simple-tf-module
+      host:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input1: env-input-{{.inputs.input1}}
+        - test_input2: env-id-{{sandboxId}}
+      ouputs:
+        - output1
+        - output2
 
 
 
   helloHelm:
     kind: helm
-    #depends-on: helloTF
+    depends-on: helloTF
     spec:
       source:
         path: https://github.com/bitnami/charts.git//bitnami/node
