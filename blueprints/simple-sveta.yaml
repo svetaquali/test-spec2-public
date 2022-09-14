@@ -57,7 +57,7 @@ grains:
         path: https://github.com/bitnami/charts.git//bitnami/node
       host:
         name: '{{.inputs.compute_service_name}}'
-      namespace: '{{inputs.helm_namespace}}'
+#       namespace: '{{inputs.helm_namespace}}'
       commands:
         - "dep up bitnami/node"
 
