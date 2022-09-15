@@ -16,3 +16,7 @@ variable "test_object" {
         key2 = number
     })
 }
+
+variable "test_liquid" {
+    type = string
+}

@@ -7,19 +7,23 @@ inputs:
   compute_service_name:
     type: string
     default: "eks"
-  input1:
+  input_string:
     type: string
     display-style: normal
     default: "default1"
-    description: "environemnt input 1"
-  input2:
+    description: "string"
+  input_list_string:
     type: string
     display-style: normal
-    description: "environemnt input 2"
-  input3:
+    description: "list string"
+  input_map_string:
     type: string
     display-style: normal
-    description: "list test"
+    description: "map string"
+  input_object:
+    type: string
+    display-style: normal
+    description: "object"
 
 
 outputs:
@@ -38,9 +42,11 @@ grains:
       host:
         name: '{{.inputs.compute_service_name}}'
       inputs:
-        - test_input1: env-input-{{.inputs.input1}}
-        - test_input2: env-id-{{sandboxId}}
-        - test_input3: '{{.inputs.input3}}'
+        - test_string: '{{.inputs.input_string}}'
+        - test_list_string: '{{.inputs.input_list_string}}'
+        - test_map_string: '{{.inputs.input_map_string}}'
+        - test_map_string: '{{.inputs.input_object}}'
+        - test_liquid: env-id-{{sandboxId}}
       ouputs:
         - output1
         - output2
