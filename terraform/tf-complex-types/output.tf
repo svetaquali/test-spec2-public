@@ -10,7 +10,7 @@ output test_list_string {
   value = var.test_list_string
 }
 
-output test_map {
+output test_map_string {
   value = var.test_map_string
 }
 

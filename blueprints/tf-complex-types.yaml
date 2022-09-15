@@ -31,10 +31,12 @@ outputs:
     value: '{{sandboxId}}'
   output2:
     value: '{{.inputs.input_string}}'
+  output3:
+    value: '{{ .grains.second.outputs.test_map_string}}'
 
 
 grains:
-  helloTF:
+  first:
     kind: terraform
     spec:
       source:
@@ -48,5 +50,27 @@ grains:
         - test_object: '{{.inputs.input_object}}'
         - test_liquid: env-id-{{sandboxId}}
       ouputs:
-        - output1
-        - output2
+        - test_string
+        - test_list_string
+        - test_map_string
+        - test_object
+
+  second:
+    kind: terraform
+    depends-on: first
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public.git//terraform/tf-complex-types
+      host:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_string: '{{ .grains.first.outputs.test_string }}'
+        - test_list_string: '{{.grains.first.outputs.test_list_string}}'
+        - test_map_string: '{{.grains.first.outputs.test_map_string}}'
+        - test_object: '{{.grains.first.outputs.test_object}}'
+        - test_liquid: env-id-{{sandboxId}}
+      ouputs:
+        - test_string
+        - test_list_string
+        - test_map_string
+        - test_object
