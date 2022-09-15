@@ -30,7 +30,7 @@ outputs:
   output1:
     value: '{{sandboxId}}'
   output2:
-    value: '{{.inputs.input1}}'
+    value: '{{.inputs.input_string}}'
 
 
 grains:
@@ -45,7 +45,7 @@ grains:
         - test_string: '{{.inputs.input_string}}'
         - test_list_string: '{{.inputs.input_list_string}}'
         - test_map_string: '{{.inputs.input_map_string}}'
-        - test_map_string: '{{.inputs.input_object}}'
+        - test_object: '{{.inputs.input_object}}'
         - test_liquid: env-id-{{sandboxId}}
       ouputs:
         - output1
