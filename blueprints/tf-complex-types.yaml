@@ -49,7 +49,7 @@ grains:
         - test_map_string: '{{.inputs.input_map_string}}'
         - test_object: '{{.inputs.input_object}}'
         - test_liquid: env-id-{{sandboxId}}
-      ouputs:
+      outputs:
         - test_string
         - test_list_string
         - test_map_string
@@ -69,7 +69,7 @@ grains:
         - test_map_string: '{{.grains.first.outputs.test_map_string}}'
         - test_object: '{{.grains.first.outputs.test_object}}'
         - test_liquid: env-id-{{sandboxId}}
-      ouputs:
+      outputs:
         - test_string
         - test_list_string
         - test_map_string
