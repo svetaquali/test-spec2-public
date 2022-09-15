@@ -10,6 +10,22 @@ variable "test_map_string" {
     type = map(string)
 }
 
+variable "test_map_string_default" {
+    type = map(string)
+    default = {
+        key1 = "val1"
+        key2 = "val2"
+    }
+}
+
+variable "test_map_string_default2" {
+    type = map(string)
+    default = {
+        "key1" : "val1",
+        "key2" : "val2"
+    }
+}
+
 variable "test_object" {
     type = object({
         key1 = string,
