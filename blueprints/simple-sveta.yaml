@@ -7,6 +7,7 @@ description: description text
 inputs:
   input1:
     type: string
+    sensitive: true
     default: "default1"
     description: "environemnt input 1"
   compute_service_name:
