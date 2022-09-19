@@ -33,6 +33,11 @@ variable "test_object" {
     })
 }
 
+variable "test_tuple" {
+    type = [(string, number, bool)]
+    default = ["a", 15, true]
+}
+
 variable "test_liquid" {
     type = string
 }
