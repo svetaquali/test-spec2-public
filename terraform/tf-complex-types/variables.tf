@@ -34,7 +34,7 @@ variable "test_object" {
 }
 
 variable "test_tuple" {
-    type = [(string, number, bool)]
+    type = tuple(string, number, bool)
     default = ["a", 15, true]
 }
 
