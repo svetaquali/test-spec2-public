@@ -19,8 +19,7 @@ grains:
     kind: kubernetes
     spec:
       source:
-        store: Torque-Spec2-Demos
-        path: manifests/nginx/nginxmanifest.yaml
+        path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml
       namespace: '{{ .inputs.namespace }}'
       env-vars:
       - test: newValue
