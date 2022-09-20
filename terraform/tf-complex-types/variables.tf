@@ -2,6 +2,11 @@ variable "test_string" {
     type = string
 }
 
+variable "test_number" {
+   type = number
+   default = 3
+}
+
 variable "test_list_string" {
     type = list(string)
 }
