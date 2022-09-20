@@ -44,12 +44,14 @@ grains:
       host:
         name: '{{.inputs.compute_service_name}}'
       inputs:
+        - test_number: 6
         - test_string: '{{.inputs.input_string}}'
         - test_list_string: '{{.inputs.input_list_string}}'
         - test_map_string: '{{.inputs.input_map_string}}'
         - test_object: '{{.inputs.input_object}}'
         - test_liquid: env-id-{{sandboxId}}
       outputs:
+        - test_number
         - test_string
         - test_list_string
         - test_map_string
@@ -64,6 +66,7 @@ grains:
       host:
         name: '{{.inputs.compute_service_name}}'
       inputs:
+        - test_number: '{{ .grains.first.outputs.test_number }}'
         - test_string: '{{ .grains.first.outputs.test_string }}'
         - test_list_string: '{{.grains.first.outputs.test_list_string}}'
         - test_map_string: '{{.grains.first.outputs.test_map_string}}'
