@@ -37,6 +37,9 @@ resource "aws_network_interface" "foo" {
 resource "aws_instance" "foo" {
   ami           = "ami-005e54dee72cc1d00" # us-west-2
   instance_type = "t2.micro"
+  subnet_id = aws_subnet.my_subnet.id
+
+  security_groups = [ aws_security_group.allow_tls.id ]
 
   network_interface {
     network_interface_id = aws_network_interface.foo.id
@@ -45,5 +48,32 @@ resource "aws_instance" "foo" {
 
   credit_specification {
     cpu_credits = "unlimited"
+  }
+}
+
+
+resource "aws_security_group" "allow_tls" {
+  name        = "allow_tls"
+  description = "Allow TLS inbound traffic"
+
+  ingress {
+    description      = "TLS from VPC"
+    from_port        = 443
+    to_port          = 443
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "allow_tls"
   }
 }
