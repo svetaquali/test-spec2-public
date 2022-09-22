@@ -34,7 +34,7 @@ resource "aws_network_interface" "foo" {
 }
 
 resource "aws_instance" "foo" {
-  ami           = "ami-005e54dee72cc1d00" # us-west-2
+  ami           = "ami-2757f631" # us-west-2
   instance_type = "t2.micro"
 
   security_groups = [aws_security_group.allow_tls.id ]
