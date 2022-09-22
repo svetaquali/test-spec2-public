@@ -1,0 +1,79 @@
+spec_version: 2-preview
+
+description: description text
+
+
+inputs:
+  compute_service_name:
+    type: string
+    default: "eks"
+  input_string:
+    type: string
+    display-style: normal
+    default: "default1"
+    description: "string"
+  input_list_string:
+    type: string
+    display-style: normal
+    description: "list string"
+  input_map_string:
+    type: string
+    display-style: normal
+    description: "map string"
+  input_object:
+    type: string
+    display-style: normal
+    description: "object"
+
+
+outputs:
+  output1:
+    value: '{{sandboxId}}'
+  output2:
+    value: '{{.inputs.input_string}}'
+  output3:
+    value: '{{ .grains.second.outputs.test_map_string}}'
+
+
+grains:
+  first:
+    kind: terraform
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public.git//terraform/tf-complex-types
+      host:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_number: 6
+        - test_string: '{{.inputs.input_string}}'
+        - test_list_string: '{{.inputs.input_list_string}}'
+        - test_map_string: '{{.inputs.input_map_string}}'
+        - test_object: '{{.inputs.input_object}}'
+        - test_liquid: env-id-{{sandboxId}}
+      outputs:
+        - test_number
+        - test_string
+        - test_list_string
+        - test_map_string
+        - test_object
+
+  second:
+    kind: terraform
+    depends-on: first
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public.git//terraform/tf-complex-types
+      host:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_number: '{{ .grains.first.outputs.test_number }}'
+        - test_string: '{{ .grains.first.outputs.test_string }}'
+        - test_list_string: '{{.grains.first.outputs.test_list_string}}'
+        - test_map_string: '{{.grains.first.outputs.test_map_string}}'
+        - test_object: '{{.grains.first.outputs.test_object}}'
+        - test_liquid: env-id-{{sandboxId}}
+      outputs:
+        - test_string
+        - test_list_string
+        - test_map_string
+        - test_object

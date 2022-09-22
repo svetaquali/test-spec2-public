@@ -1,0 +1,21 @@
+spec_version: 2
+
+description: description text
+
+grains:
+  helloHelm:
+    kind: helm
+    spec:
+      source:
+        path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx
+      host:
+        cloud-account: aws
+        compute-service: eks
+      commands:
+        - dep up helm/nginx
+
+      inputs:
+        - replicaSet: 1
+        - input_2: 'test'
+        - input_3: 3
+

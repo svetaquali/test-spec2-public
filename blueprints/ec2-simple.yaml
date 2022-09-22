@@ -1,0 +1,12 @@
+spec_version: 2-preview
+description: deploy ec2 instance
+
+grains:
+  ec2:
+    kind: terraform
+    spec: 
+      source:
+        path: https://github.com/QualiNext/test-spec2-public//terraform/ec2
+      host:
+        name: demo-dev
+
