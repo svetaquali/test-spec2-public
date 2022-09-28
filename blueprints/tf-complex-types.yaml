@@ -20,6 +20,11 @@ inputs:
     type: string
     display-style: normal
     description: "map string"
+  input_map_string_default:
+    type: string
+    default: '{     "key1" : "val_default1",     "key2" : "val_default2"   }'
+    display-style: normal
+    description: "map string"
   input_object:
     type: string
     display-style: normal
@@ -53,6 +58,7 @@ grains:
 #         - test_list_string: '{{.inputs.input_list_string}}'
         - test_list_string: '["a","b","c"]'
         - test_map_string: '{{.inputs.input_map_string}}'
+        - test_map_string2: '{{.inputs.input_map_string_default}}'       
         - test_object: '{{.inputs.input_object}}'
         - test_liquid: env-id-{{sandboxId}}
       outputs:
