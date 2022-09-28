@@ -46,7 +46,8 @@ grains:
       inputs:
         - test_number: 6
         - test_string: '{{.inputs.input_string}}'
-        - test_list_string: '{{.inputs.input_list_string}}'
+#         - test_list_string: '{{.inputs.input_list_string}}'
+        - test_list_string: '["a","b","c"]'
         - test_map_string: '{{.inputs.input_map_string}}'
         - test_object: '{{.inputs.input_object}}'
         - test_liquid: env-id-{{sandboxId}}
