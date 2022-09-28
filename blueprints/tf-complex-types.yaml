@@ -33,9 +33,9 @@ outputs:
     value: '{{.inputs.input_string}}'
   output3:
     value: '{{ .grains.second.outputs.test_map_string}}'
-  output3:
+  output4:
     value: '{{ .grains.second.outputs.test_list_string}}'
-  output3:
+  output5:
     value: '{{ .grains.second.outputs.test_object}}'
 
 
