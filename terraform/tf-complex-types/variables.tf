@@ -15,6 +15,10 @@ variable "test_map_string" {
     type = map(string)
 }
 
+variable "test_map_string2" {
+    type = map(string)
+}
+
 variable "test_map_string_default" {
     type = map(string)
     default = {
