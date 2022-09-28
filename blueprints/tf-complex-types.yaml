@@ -12,10 +12,10 @@ inputs:
     display-style: normal
     default: "default1"
     description: "string"
-  input_list_string:
-    type: string
-    display-style: normal
-    description: "list string"
+#   input_list_string:
+#     type: string
+#     display-style: normal
+#     description: "list string"
   input_map_string:
     type: string
     display-style: normal
