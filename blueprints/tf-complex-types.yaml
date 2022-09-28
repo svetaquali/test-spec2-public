@@ -81,6 +81,7 @@ grains:
         - test_string: '{{ .grains.first.outputs.test_string }}'
         - test_list_string: '{{.grains.first.outputs.test_list_string}}'
         - test_map_string: '{     "key1" : "val1",     "key2" : "val2"   }'
+        - test_map_string2: '{{.grains.first.outputs.test_map_string}}'   
         - test_object: '{{.grains.first.outputs.test_object}}'
         - test_liquid: env-id-{{sandboxId}}
       outputs:
