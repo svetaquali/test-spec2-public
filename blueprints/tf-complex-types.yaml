@@ -33,6 +33,10 @@ outputs:
     value: '{{.inputs.input_string}}'
   output3:
     value: '{{ .grains.second.outputs.test_map_string}}'
+  output3:
+    value: '{{ .grains.second.outputs.test_list_string}}'
+  output3:
+    value: '{{ .grains.second.outputs.test_object}}'
 
 
 grains:
