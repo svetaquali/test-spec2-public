@@ -7,14 +7,43 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = var.region
+resource "aws_vpc" "my_vpc" {
+  cidr_block = "172.16.0.0/16"
+
+  tags = {
+    Name = "tf-example"
+  }
 }
 
-resource "aws_instance" "example" {
-  ami           = "ami-2757f631"
-  instance_type = "t2.micro"
+resource "aws_subnet" "my_subnet" {
+  vpc_id            = aws_vpc.my_vpc.id
+  cidr_block        = "172.16.10.0/24"
+
+  tags = {
+    Name = "tf-example"
+  }
 }
+
+resource "aws_network_interface" "foo" {
+  subnet_id   = aws_subnet.my_subnet.id
+  private_ips = ["172.16.10.100"]
+
+  tags = {
+    Name = "primary_network_interface"
+  }
+}
+
+resource "aws_instance" "foo" {
+  ami           = "ami-2757f631" # us-west-2
+  instance_type = "t2.micro"
+
+  security_groups = [aws_security_group.allow_tls.id ]
+
+  credit_specification {
+    cpu_credits = "unlimited"
+  }
+}
+
 
 resource "aws_security_group" "allow_tls" {
   name        = "allow_tls"
