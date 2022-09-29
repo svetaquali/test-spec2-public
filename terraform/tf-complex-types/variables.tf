@@ -2,6 +2,10 @@ variable "test_string" {
     type = string
 }
 
+variable "test_string_liquid" {
+    type = string
+}
+
 variable "test_number" {
    type = number
    default = 3
