@@ -15,7 +15,7 @@ inputs:
     description: the name of the execution host to be used
   bucket_name:
     type: string
-    default: 'amazing-bucket-1-s3-{{.sandboxid}}'
+    default: 'amazing-bucket-1-s3'
     description: the name of the bucket to be created
 
 grains:
@@ -29,7 +29,7 @@ grains:
       inputs:
         - region: us-west-1
         - acl: private
-        - name: '{{.bucket_name}}}'
+        - name: '{{ .inputs.bucket_name }}-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
 #
