@@ -13,6 +13,10 @@ inputs:
     type: string
     default: qualidev2
     description: the name of the execution host to be used
+  bucket_name:
+    type: string
+    default: 'amazing-bucket-1-s3-{{ sandboxid | downcase }}'
+    description: the name of the bucket to be created
 
 grains:
   bucket_1:
@@ -25,7 +29,7 @@ grains:
       inputs:
         - region: us-west-1
         - acl: private
-        - name: 'amazing-bucket-1-s3-{{ sandboxid | downcase }}'
+        - name: '{{.bucket_name}}}'
       outputs:
         - s3_bucket_arn
 #
