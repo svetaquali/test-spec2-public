@@ -83,6 +83,7 @@ grains:
       inputs:
         - test_number: '{{ .grains.first.outputs.test_number }}'
         - test_string: '{{ .grains.first.outputs.test_string }}'
+        - test_string_liquid: '{{.inputs.input_string | strip_newlines}}/32'
         - test_list_string: '{{.grains.first.outputs.test_list_string}}'
         - test_map_string: '{     "key1" : "val1",     "key2" : "val2"   }'
         - test_map_string2: '{{.grains.first.outputs.test_map_string}}'   
