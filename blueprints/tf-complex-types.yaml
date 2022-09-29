@@ -54,6 +54,10 @@ grains:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - test_number: 6
+        # - vm_name: '{{ .inputs.["VM Name"] }}'
+        #  - source_cidr: '{{ .inputs.["Source CIDR"] }}'
+        # - test_string_liquid: '{{.grains.helm-qualix.scripts.post-helm-install.outputs.qualixoutboundip | strip_newlines}}/32'
+        - test_string_liquid: '{{.inputs.input_string | strip_newlines}}/32'
         - test_string: '{{.inputs.input_string}}'
 #         - test_list_string: '{{.inputs.input_list_string}}'
         - test_list_string: '["a","b","c"]'
