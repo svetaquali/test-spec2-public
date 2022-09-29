@@ -24,6 +24,12 @@ resource "aws_s3_bucket" "bucket" {
   tags = {
     Name        = "My bucket"
     Environment = "Dev"
+<<<<<<< HEAD
+=======
+    A_NEW_TAG = "NEW TAG"
+    One_More_Tag = "the other tag 123"
+    The_last_Tag = "last one"
+>>>>>>> 784c28144330e29f77fee7880b8a1105a1041f70
   }
 }
 

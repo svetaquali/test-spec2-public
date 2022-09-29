@@ -12,12 +12,17 @@ inputs:
     display-style: normal
     default: "default1"
     description: "string"
-  input_list_string:
-    type: string
-    display-style: normal
-    description: "list string"
+#   input_list_string:
+#     type: string
+#     display-style: normal
+#     description: "list string"
   input_map_string:
     type: string
+    display-style: normal
+    description: "map string"
+  input_map_string_default:
+    type: string
+    default: '{     "key1" : "val_default1",     "key2" : "val_default2"   }'
     display-style: normal
     description: "map string"
   input_object:
@@ -33,6 +38,10 @@ outputs:
     value: '{{.inputs.input_string}}'
   output3:
     value: '{{ .grains.second.outputs.test_map_string}}'
+  output4:
+    value: '{{ .grains.second.outputs.test_list_string}}'
+  output5:
+    value: '{{ .grains.second.outputs.test_object}}'
 
 
 grains:
@@ -46,8 +55,10 @@ grains:
       inputs:
         - test_number: 6
         - test_string: '{{.inputs.input_string}}'
-        - test_list_string: '{{.inputs.input_list_string}}'
+#         - test_list_string: '{{.inputs.input_list_string}}'
+        - test_list_string: '["a","b","c"]'
         - test_map_string: '{{.inputs.input_map_string}}'
+        - test_map_string2: '{{.inputs.input_map_string_default}}'       
         - test_object: '{{.inputs.input_object}}'
         - test_liquid: env-id-{{sandboxId}}
       outputs:
@@ -69,7 +80,8 @@ grains:
         - test_number: '{{ .grains.first.outputs.test_number }}'
         - test_string: '{{ .grains.first.outputs.test_string }}'
         - test_list_string: '{{.grains.first.outputs.test_list_string}}'
-        - test_map_string: '{{.grains.first.outputs.test_map_string}}'
+        - test_map_string: '{     "key1" : "val1",     "key2" : "val2"   }'
+        - test_map_string2: '{{.grains.first.outputs.test_map_string}}'   
         - test_object: '{{.grains.first.outputs.test_object}}'
         - test_liquid: env-id-{{sandboxId}}
       outputs:
