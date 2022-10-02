@@ -13,30 +13,34 @@ description: description text
 
 
 
-# outputs:
-#   some-name:
-#     value: .grains.app1.outputs.output_name
+outputs:
+ generic_output:
+   value: '{{.inputs.generic_input}}'
 
 inputs:
   execution_host:
     type: string
     default: qualidev2
     description: the name of the execution host to be used
+  generic_input:
+    type: string
+    default: nothing
+    description: an input for testing
+  replica_count:
+    type: string
+    default: 1
+    description: passing the replica set to the helm chart
 
 grains:
-
   helloHelm:
     kind: helm
-    #depends-on: app1(,another grain, another grain)
     spec:
       source:
-        path: https://github.com/bitnami/charts.git//bitnami/node
+        path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx
       host:
         name: '{{.inputs.execution_host}}'
-        # region: eu-west-1
-        # os: <os_moniker>
       commands:
-        - dep up bitnami/node
+        - dep up helm/nginx
 
-      # inputs:
-      #   - someInput: .grains.app1.outputs.output-name
+      inputs:
+        - replicaCount: '{{.inputs.replica_count}}'
