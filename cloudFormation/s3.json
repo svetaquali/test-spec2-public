@@ -38,6 +38,10 @@
 					{
 						"Key": "TestName",
 						"Value": "My Bucket"
+					},
+					{
+						"Key": "Tag",
+						"Value": "Shirel"
 					}
 				]
 			}
