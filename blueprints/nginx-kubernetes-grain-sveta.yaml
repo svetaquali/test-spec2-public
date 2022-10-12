@@ -17,6 +17,7 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public.git//manifests/nginx1/nginxmanifest.yaml
-      namespace: '{{ .inputs.namespace }}'
+#       namespace: '{{ .inputs.namespace }}'
+      namespace: '{{ sandboxid }}'
       host:
         name: '{{.inputs.compute_service_name}}'
