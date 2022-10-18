@@ -26,7 +26,7 @@ resource "aws_s3_bucket" "bucket" {
     Environment = "Dev"
     A_NEW_TAG = "NEW TAG"
     One_More_Tag = "the other tag 123"
-    One_Last_Tag = "the last tag 123"
+    One_Last_Tag = "the last tag 1234"
   }
 }
 
