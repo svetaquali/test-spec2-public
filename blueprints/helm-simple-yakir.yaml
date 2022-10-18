@@ -44,7 +44,7 @@ grains:
       host:
         name: '{{.inputs.execution_host}}'
       commands:
-        - dep up helm/nginx
+        - dep up helm/nginx-test
       release: '{{.inputs.release_name}}'
       inputs:
         - replicaCount: '{{.inputs.replica_count}}'
