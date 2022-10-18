@@ -22,6 +22,10 @@ inputs:
     type: string
     default: qualidev2
     description: the name of the execution host to be used
+  release_name:
+    type: string
+    default: ''
+    description: the name of helm release
   generic_input:
     type: string
     default: nothing
@@ -41,6 +45,6 @@ grains:
         name: '{{.inputs.execution_host}}'
       commands:
         - dep up helm/nginx
-
+      release: '{{.inputs.release_name}}'
       inputs:
         - replicaCount: '{{.inputs.replica_count}}'
