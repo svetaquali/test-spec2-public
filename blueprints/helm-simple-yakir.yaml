@@ -48,3 +48,4 @@ grains:
       release: '{{.inputs.release_name}}'
       inputs:
         - replicaCount: '{{.inputs.replica_count}}'
+        - image.debug: 'true'
