@@ -1,0 +1,29 @@
+
+spec_version: 2
+description: long running ansible playbook
+
+grains:
+  grain_1:
+    kind: ansible
+    spec: 
+      source:
+        path: https://github.com/QualiNext/test-spec2-public//ansible/long_running_playbook.yaml
+      host:
+        name: docker-agent
+
+      inventory-file:
+        all:
+          hosts:
+            docker_host_one:
+              ansible_host: host.docker.internal
+              ansible_port: 22
+
+            docker_host_two:
+              ansible_host: host.docker.internal
+              ansible_port: 23
+
+          vars:
+            ansible_user: testuser
+            ansible_password: 1111
+
+
