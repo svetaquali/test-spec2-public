@@ -24,6 +24,7 @@ grains:
 
   nginx:
     kind: kubernetes
+    depends-on: helloTF
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml
