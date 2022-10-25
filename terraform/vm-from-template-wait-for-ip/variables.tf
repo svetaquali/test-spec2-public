@@ -15,7 +15,7 @@ variable "hostname" {
 
 variable "datacenter_name" {
   type = string
-  default = "Sandbox vCenter"
+  default = "Sandbox"
 }
 
 variable "datastore_name" {

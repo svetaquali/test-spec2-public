@@ -40,11 +40,12 @@ grains:
     kind: helm
     spec:
       source:
-        path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx
+        path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx-test
       host:
         name: '{{.inputs.execution_host}}'
       commands:
-        - dep up helm/nginx
+        - dep up helm/nginx-test
       release: '{{.inputs.release_name}}'
       inputs:
         - replicaCount: '{{.inputs.replica_count}}'
+        - image.debug: 'true'
