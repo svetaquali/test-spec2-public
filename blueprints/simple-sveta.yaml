@@ -63,7 +63,7 @@ grains:
         - "dep up bitnami/node"
 
       inputs:
-        - nameOverride: '{{.inputs.input1}}'
+        #- nameOverride: '{{.inputs.input1}}'
         #- nameOverride: '{{.grains.helloTF.outputs.output1}}'
   
   # helloHelm2:
