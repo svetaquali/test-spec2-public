@@ -33,20 +33,20 @@ outputs:
     
 
 grains:
-  helloTF:
-    kind: terraform
-    spec:
-      source:
-        store: test-spec2-public
-        path: terraform/simple-tf-module
-      host:
-        name: '{{.inputs.compute_service_name}}'
-      inputs:
-        - test_input1: env-input-{{.inputs.input1}}
-        - test_input2: env-id-{{sandboxId}}
-      ouputs:
-        - output1
-        - output2
+#   helloTF:
+#     kind: terraform
+#     spec:
+#       source:
+#         store: test-spec2-public
+#         path: terraform/simple-tf-module
+#       host:
+#         name: '{{.inputs.compute_service_name}}'
+#       inputs:
+#         - test_input1: env-input-{{.inputs.input1}}
+#         - test_input2: env-id-{{sandboxId}}
+#       ouputs:
+#         - output1
+#         - output2
 
 
 
