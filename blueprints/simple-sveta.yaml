@@ -33,26 +33,26 @@ outputs:
     
 
 grains:
-#   helloTF:
-#     kind: terraform
-#     spec:
-#       source:
-#         store: test-spec2-public
-#         path: terraform/simple-tf-module
-#       host:
-#         name: '{{.inputs.compute_service_name}}'
-#       inputs:
-#         - test_input1: env-input-{{.inputs.input1}}
-#         - test_input2: env-id-{{sandboxId}}
-#       ouputs:
-#         - output1
-#         - output2
+  helloTF:
+    kind: terraform
+    spec:
+      source:
+        store: test-spec2-public
+        path: terraform/simple-tf-module
+      host:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input1: env-input-{{.inputs.input1}}
+        - test_input2: env-id-{{sandboxId}}
+      ouputs:
+        - output1
+        - output2
 
 
 
   helloHelm:
     kind: helm
-#     depends-on: helloTF
+    depends-on: helloTF, helloTF
     spec:
       source:
         path: https://github.com/bitnami/charts.git//bitnami/node
@@ -63,7 +63,7 @@ grains:
         - "dep up bitnami/node"
 
       inputs:
-        #- nameOverride: '{{.inputs.input1}}'
+        - nameOverride: '{{.inputs.input1}}'
         #- nameOverride: '{{.grains.helloTF.outputs.output1}}'
   
   # helloHelm2:
