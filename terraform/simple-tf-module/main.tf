@@ -36,4 +36,3 @@ locals {
   key1 = "somekey"
 }
 
-# vido was here
