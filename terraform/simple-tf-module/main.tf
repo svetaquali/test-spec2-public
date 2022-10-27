@@ -35,3 +35,5 @@ resource "null_resource" "task_long" {
 locals {
   key1 = "somekey"
 }
+
+# vido was here
