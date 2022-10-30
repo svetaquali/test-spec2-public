@@ -11,6 +11,11 @@ variable "test_number" {
    default = 3
 }
 
+variable "test_bool" {
+    type = bool
+    default = true
+}
+
 variable "test_list_string" {
     type = list(string)
 }
