@@ -17,6 +17,11 @@ inputs:
     type: string
     default: 'amazing-bucket-1-s3'
     description: the name of the bucket to be created
+  tf-service-account:
+    type: string
+    display-style: normal
+    default: tomerc-s3-full-control
+    description: "custom service account for terraform - s3"
 
 grains:
   bucket_1:
@@ -26,24 +31,10 @@ grains:
         path: https://github.com/QualiNext/test-spec2-public//terraform/s3-tomerc
       host:
         name: '{{.inputs.execution_host}}'
+        service-account: '{{.inputs.tf-service-account}}'
       inputs:
         - region: us-west-1
         - acl: private
         - name: '{{ .inputs.bucket_name }}-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
-#
-#  bucket_2:
-#    kind: terraform
-#    spec:
-#      source:
-#        path: github.com/QualiNext/test-spec2-public//terraform/s3
-#      host:
-#        name: '{{.inputs.execution_host}}'
-#      inputs:
-#        - region: us-west-1
-#        - acl: private
-#        - name: 'amazing-bucket-2-s3-{{ sandboxid | downcase }}'
-#      outputs:
-#        - s3_bucket_arn
-
