@@ -1,9 +1,14 @@
-spec_version: 2-preview
+spec_version: 2
 description: deploy s3 bucket
 
 outputs:
   bucket_1:
     value: '{{ .grains.bucket_1.outputs.s3_bucket_arn }}'
+
+inputs:
+  compute_service_name:
+    type: string
+    default: "eks"
 
 grains:
   bucket_1:
@@ -12,7 +17,7 @@ grains:
       source:
         path: github.com/QualiNext/test-spec2-public//terraform/s3
       host:
-        name: eks
+        name: '{{.inputs.compute_service_name}}'
       inputs:
         - region: us-west-1
         - acl: private
