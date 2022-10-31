@@ -11,7 +11,7 @@ provider "aws" {
   region = var.region
 }
 
-data "aws_iam_user" "input_user" {
+data "aws_iam_user" "input_user"
   count = "${var.user == "none" ? 0 : 1}"
   user_name = var.user
 }
