@@ -30,7 +30,7 @@ variable "compute_cluster_name" {
 
 variable "network_name" {
   type = string
-  default = "Local"
+  default = "VLan65-1"
 }
 
 variable "virtual_machine_template_name" {
