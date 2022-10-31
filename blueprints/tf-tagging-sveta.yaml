@@ -8,6 +8,8 @@ inputs:
     default: this is a default content
   compute_service_name:
     default: "eks"
+  tf-service-account:
+    default: "aws-power"
 
 grains:
   s3-write:
@@ -17,6 +19,7 @@ grains:
         path: github.com/QualiNext/terraform/s3-write
       host:
         name: '{{ inputs.compute_service_name }}'
+        service-account: '{{.inputs.tf-service-account}}'
       tags:
 #         auto-tag: true
 #         disable-tags-for:
@@ -33,6 +36,6 @@ grains:
         path: github.com/QualiNext/test-spec2-public.git//terraform/create-sg
       host:
         name: '{{ inputs.compute_service_name }}'
-        # service-account: '{{.inputs.tf-service-account}}'
+        service-account: '{{.inputs.tf-service-account}}'
       inputs:
         - SG_NAME: '{{ sandboxId }}-sg'
