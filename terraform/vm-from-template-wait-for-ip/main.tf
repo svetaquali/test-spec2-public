@@ -2,8 +2,6 @@ provider "vsphere" {
   user           = var.username
   password       = var.password
   vsphere_server = var.hostname
-  version        = "=1.15.0"
-  # If you have a self-signed cert
   allow_unverified_ssl = true
 }
 
@@ -33,11 +31,11 @@ data "vsphere_virtual_machine" "template" {
 
 resource "vsphere_virtual_machine" "vm" {
   name             = var.virtual_machine_name
- #  resource_pool_id = data.vsphere_resource_pool.pool.id
   datastore_id     = data.vsphere_datastore.ds.id
   resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
   guest_id = data.vsphere_virtual_machine.template.guest_id
   folder = var.virtual_machine_folder
+
   network_interface {
     network_id   = data.vsphere_network.network.id
     adapter_type = data.vsphere_virtual_machine.template.network_interface_types[0]
