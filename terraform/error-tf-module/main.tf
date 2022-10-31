@@ -10,7 +10,7 @@ resource "null_resource" "task_log" {
 
 resource "null_resource" "task_long" {
   provisioner "local-exec" {
-    command = "bad-command"
+    command = "echo hello"
   }
 }
 
