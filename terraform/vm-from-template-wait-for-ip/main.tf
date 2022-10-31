@@ -33,6 +33,7 @@ resource "vsphere_virtual_machine" "vm" {
   name             = var.virtual_machine_name
   datastore_id     = data.vsphere_datastore.ds.id
   resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
+  scsi_type        = data.vsphere_virtual_machine.template.scsi_type
   guest_id = data.vsphere_virtual_machine.template.guest_id
   folder = var.virtual_machine_folder
 

@@ -48,7 +48,7 @@ grains:
     kind: ansible
     spec: 
       source:
-        path: https://github.com/QualiNext/test-spec2-public//ansible/install_httpd.yaml
+        path: https://github.com/QualiNext/test-spec2-public//ansible/install_httpd_rhel.yaml
       host:
         name: docker-agent
       inventory-file:
