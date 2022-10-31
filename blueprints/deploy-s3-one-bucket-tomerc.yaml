@@ -23,7 +23,7 @@ grains:
     kind: terraform
     spec: 
       source:
-        path: https://github.com/QualiNext/test-spec2-public//terraform/s3
+        path: https://github.com/QualiNext/test-spec2-public//terraform/s3-tomerc
       host:
         name: '{{.inputs.execution_host}}'
       inputs:
