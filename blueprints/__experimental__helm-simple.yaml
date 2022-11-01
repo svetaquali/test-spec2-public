@@ -5,7 +5,11 @@ description: description text
 inputs:
   compute_service_name:
     type: string   
-    
+  inputs:
+  release:
+    type: string
+    default: ""
+  
 grains:
   helloHelm:
     kind: helm
@@ -14,6 +18,7 @@ grains:
         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx
       host:
         name: '{{.inputs.compute_service_name}}'       
+      release: '{{inputs.release}}'
       commands:
         - dep up helm/nginx
 
