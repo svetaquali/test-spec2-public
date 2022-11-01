@@ -9,11 +9,7 @@ inputs:
     type: string
     display-style: normal
     default: "yakir-agent"
-    description: "Kubernetes namespace for sandbox to be ran in."
-  release:
-    type: string
-    display-style: normal
-    default: ""   
+    description: "Kubernetes namespace for sandbox to be ran in."  
 
 
 grains:
@@ -32,8 +28,7 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml
-      namespace: '{{ .inputs.namespace }}'
-      release: '{{inputs.release}}'
+      namespace: '{{ .inputs.namespace }}'      
       env-vars:
         - test: newValue
       tags:
