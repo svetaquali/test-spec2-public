@@ -20,7 +20,7 @@ grains:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - region: us-west-1
-        - acl: public
+        - acl: private
         - name: 'test-bucket-1-s3-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
