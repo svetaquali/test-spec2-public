@@ -21,7 +21,7 @@ grains:
         store: test-spec2-public
       host:
         name: '{{.inputs.compute_service_name}}'
-        service-account: "default"
+        
 
   nginx:
     kind: kubernetes
