@@ -10,7 +10,7 @@ inputs:
     default: ""
   
 grains:
-  nginx:
+  A_b:
     kind: helm
     spec:
       source:
