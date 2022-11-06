@@ -9,7 +9,7 @@ inputs:
     type: string
     display-style: normal
     default: "yakir-agent"
-    description: "Kubernetes namespace for sandbox to be ran in."  
+    description: "Kubernetes namespace for sandbox to be ran in."
 
 
 grains:
@@ -17,11 +17,10 @@ grains:
     kind: terraform
     spec:
       source:
-        path: terraform/error-tf-module
+        path: terraform/debug-module
         store: test-spec2-public
       host:
         name: '{{.inputs.compute_service_name}}'
-        
 
   nginx:
     kind: kubernetes
@@ -29,11 +28,11 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml
-      namespace: '{{ .inputs.namespace }}'      
+      namespace: '{{ .inputs.namespace }}'
       env-vars:
         - test: newValue
       tags:
         auto-tag: false
       host:
         name: '{{.inputs.compute_service_name}}'
-        service-account: "yakir-sa"
+        service-account: "default"
