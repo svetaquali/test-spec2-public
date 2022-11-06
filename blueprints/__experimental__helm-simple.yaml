@@ -10,14 +10,13 @@ inputs:
     default: ""
   
 grains:
-  helloHelm:
+  Qualix_helm:
     kind: helm
     spec:
       source:
         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx
       host:
         name: '{{.inputs.compute_service_name}}'       
-      release: '{{inputs.release}}'
       commands:
         - dep up helm/nginx
 
