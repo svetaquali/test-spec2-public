@@ -10,7 +10,7 @@ inputs:
     default: ""
   
 grains:
-  Qualix_helm:
+  nginx:
     kind: helm
     spec:
       source:
