@@ -10,7 +10,7 @@ grains:
     kind: terraform
     spec:
       source:
-        path: terraform/1/simple-tf-module
+        path: terraform/1/simple-tf-module-2
         store: test-spec2-public
       host:
         name: '{{.inputs.compute_service_name}}'
