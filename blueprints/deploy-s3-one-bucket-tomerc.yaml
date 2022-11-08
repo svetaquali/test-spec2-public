@@ -5,8 +5,8 @@ outputs:
   bucket_1:
     value: '{{ .grains.bucket_1.outputs.s3_bucket_arn }}'
 
-#  bucket_2:
-#    value: '{{ .grains.bucket_2.outputs.s3_bucket_arn }}'
+  bucket_2:
+    value: '{{ .grains.bucket_2.outputs.s3_bucket_arn }}'
 
 inputs:
   execution_host:
@@ -27,6 +27,21 @@ grains:
   bucket_1:
     kind: terraform
     spec: 
+      source:
+        store: autogen_repo_asset_0af60acf
+        path: terraform/s3-tomerc
+      host:
+        name: '{{.inputs.execution_host}}'
+        service-account: '{{.inputs.tf-service-account}}'
+      inputs:
+        - region: us-west-1
+        - acl: private
+        - name: '{{ .inputs.bucket_name }}-{{ sandboxid | downcase }}'
+      outputs:
+        - s3_bucket_arn
+  bucket_2:
+    kind: terraform
+    spec:
       source:
         store: autogen_repo_asset_0af60acf
         path: terraform/s3-tomerc
