@@ -36,7 +36,7 @@ grains:
       inputs:
         - region: us-west-1
         - acl: private
-        - name: '{{ .inputs.bucket_name }}-{{ sandboxid | downcase }}'
+        - name: '{{ .inputs.bucket_name }}-1-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
   bucket_2:
@@ -51,6 +51,6 @@ grains:
       inputs:
         - region: us-west-1
         - acl: private
-        - name: '{{ .inputs.bucket_name }}-{{ sandboxid | downcase }}'
+        - name: '{{ .inputs.bucket_name }}-2-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
