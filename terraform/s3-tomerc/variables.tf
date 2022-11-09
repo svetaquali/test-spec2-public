@@ -11,7 +11,7 @@ variable "region" {
 }
 
 variable "acl" {
-    description = "Canned ACL to apply to the bucket. Default is private."
+    description = "Canned ACL to apply to the bucket. Default is private. tomerc"
     type = string
     default = "public-read"
 
