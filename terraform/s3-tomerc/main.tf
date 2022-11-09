@@ -18,7 +18,6 @@ data "aws_iam_user" "input_user" {
 
 resource "aws_s3_bucket" "bucket" {
   bucket = var.name
-  acl    = var.acl
   force_destroy = true
 
   tags = {
