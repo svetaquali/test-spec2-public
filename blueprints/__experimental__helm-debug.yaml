@@ -42,8 +42,8 @@ grains:
         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx-test
       host:
         name: '{{.inputs.execution_host}}'
-      commands:
-        - dep up helm/nginx-test
+#       commands:
+#         - dep up helm/nginx-test
       release: '{{.inputs.release_name}}'
       inputs:
         - replicaCount: '{{.inputs.replica_count}}'
