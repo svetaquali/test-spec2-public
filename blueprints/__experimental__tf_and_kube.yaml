@@ -36,4 +36,4 @@ grains:
         auto-tag: false
       host:
         name: '{{.inputs.compute_service_name}}'
-        service-account: "yakir-sa"
+#         service-account: "yakir-sa"
