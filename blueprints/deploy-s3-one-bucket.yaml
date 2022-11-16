@@ -17,7 +17,7 @@ grains:
       source:
         path: github.com/QualiNext/test-spec2-public//terraform/s3
       host:
-        name: 'My bucket'
+        name: '{{.inputs.compute_service_name}}'
       inputs:
         - region: us-west-1
         - acl: private
