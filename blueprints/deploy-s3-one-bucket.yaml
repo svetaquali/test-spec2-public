@@ -19,7 +19,7 @@ grains:
       host:
         name: '{{.inputs.compute_service_name}}'
       inputs:
-        - region: us-west-1
+        - region: eu-west-1
         - acl: private
         - name: 'test-bucket-1-s3-{{ sandboxid | downcase }}'
       outputs:
