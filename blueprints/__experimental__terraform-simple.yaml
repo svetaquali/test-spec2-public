@@ -4,6 +4,19 @@ inputs:
   compute_service_name:
     type: string
     default: "eks"
+  Application Version:
+    type: string
+    default: "0.4.3"
+    description: "Version of the robotShop micorservices application"
+  DB Size:
+    type: string
+    default: "small"
+    description: "The instance type of the RDS instance. Small, medium, or large."
+    allowed-values: ["small", "medium", "large"]
+  DB Engine Version:
+    type: string
+    default: "8.0.26"
+    description: "Version of RDS MySQL DB Engine. Default is 5.7"  
 
 grains:
   helloTF:
