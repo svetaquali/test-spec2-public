@@ -1,0 +1,32 @@
+spec_version: 2
+description: deploy s3 bucket
+
+outputs:
+  bucket_1:
+    value: '{{ .grains.bucket_1.outputs.s3_bucket_arn }}'
+
+inputs:
+  compute_service_name:
+    type: execution-host
+
+
+grains:
+  bucket_1:
+    kind: terraform
+    spec: 
+      source:
+        path: github.com/QualiNext/test-spec2-public//terraform/s3
+      host:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - region: eu-west-1
+        - acl: private
+        - name: 'test-bucket-1-s3-{{ sandboxid | downcase }}'
+      outputs:
+        - s3_bucket_arn
+      env-vars:
+        - AWS_ACCESS_KEY_ID: '{{ params.accessKey}}'
+        - AWS_SECRET_ACCESS_KEY: '{{ params.SecretKey }}'
+        - AWS_SESSION_TOKEN: '{{ params.Token }}'
+
+
