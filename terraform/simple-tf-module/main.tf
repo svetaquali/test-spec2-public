@@ -8,7 +8,7 @@ terraform {
 
 resource "time_static" "example" {}
 
-resource "null_resource" "task_log" {
+resource "null_resource" "task_logg" {
   provisioner "local-exec" {
     command = "echo task_log. variables: rabbit_endpoint=bla."
   }
