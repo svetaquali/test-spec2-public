@@ -16,14 +16,18 @@ inputs:
   DB Engine Version:
     type: string
     default: "8.0.26"
-    description: "Version of RDS MySQL DB Engine. Default is 5.7"  
+    description: "Version of RDS MySQL DB Engine. Default is 5.7"
+  env_test:
+    type: string
+    default: "val1"
+    description: "environment variable test"
 
 grains:
   helloTF:
     kind: terraform
     spec:
       env-vars:
-        - env1: val1
+        - env1: '{{ .inputs.env_test }}'
       source:
         path: terraform/simple-tf-module
         store: test-spec2-public
