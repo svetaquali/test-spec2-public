@@ -5,7 +5,6 @@ outputs:
   bucket_1:
     value: '{{ .grains.bucket_1.outputs.s3_bucket_arn }}'
 
-
 inputs:
   execution_host:
     type: string
@@ -30,10 +29,11 @@ grains:
         path: terraform/s3-tomerc
       host:
         name: '{{.inputs.execution_host}}'
-        service-account: ''
+        service-account: '{{.inputs.tf-service-account}}'
       inputs:
         - region: us-west-1
         - acl: private
         - name: '{{ .inputs.bucket_name }}-1-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
+
