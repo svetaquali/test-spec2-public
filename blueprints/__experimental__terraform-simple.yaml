@@ -23,7 +23,7 @@ grains:
     kind: terraform
     spec:
       env-vars:
-        env1: val1
+        - env1: val1
       source:
         path: terraform/simple-tf-module
         store: test-spec2-public
