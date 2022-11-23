@@ -29,6 +29,7 @@ grains:
         path: terraform/s3-tomerc
       host:
         name: '{{.inputs.execution_host}}'
+        service-account: '{{.inputs.tf-service-account}}'
       inputs:
         - region: us-west-1
         - acl: private
