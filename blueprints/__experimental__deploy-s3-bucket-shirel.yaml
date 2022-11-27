@@ -15,9 +15,9 @@ grains:
     spec: 
       source:
         path: github.com/QualiNext/test-spec2-public//terraform/s3
-        service-account: torque-sa-0d7db5
       host:
         name: '{{.inputs.compute_service_name}}' 
+        service-account: torque-sa-0d7db5
       inputs:
         - region: us-west-1
         - acl: private
