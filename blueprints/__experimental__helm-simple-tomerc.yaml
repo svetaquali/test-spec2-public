@@ -22,6 +22,10 @@ inputs:
     type: string
     default: qualidev2-test1
     description: the name of the execution host to be used
+  service_account:
+    type: string
+    default: default
+    description: the name of the service account to run with
   release_name:
     type: string
     default: ''
@@ -47,6 +51,7 @@ grains:
       namespace: '{{ inputs.namespace }}'
       host:
         name: '{{.inputs.execution_host}}'
+        service-account: '{{.inputs.service_account}}'
       commands:
         - dep up helm/nginx
       release: '{{.inputs.release_name}}'
