@@ -20,7 +20,7 @@ outputs:
 inputs:
   execution_host:
     type: string
-    default: qualidev2
+    default: qualidev2-test1
     description: the name of the execution host to be used
   release_name:
     type: string
@@ -34,6 +34,9 @@ inputs:
     type: string
     default: 1
     description: passing the replica set to the helm chart
+  namespace:
+    type: string
+    default: 'tomer-c-test2'
 
 grains:
   helloHelm:
@@ -41,6 +44,7 @@ grains:
     spec:
       source:
         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx
+      namespace: '{{ inputs.namespace }}'
       host:
         name: '{{.inputs.execution_host}}'
       commands:
