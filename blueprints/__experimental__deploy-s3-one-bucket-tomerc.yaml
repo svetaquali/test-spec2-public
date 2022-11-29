@@ -4,6 +4,10 @@ description: deploy s3 bucket
 outputs:
   bucket_1:
     value: '{{ .grains.bucket_1.outputs.s3_bucket_arn }}'
+  bucket_2:
+    value: '{{ .grains.bucket_2.outputs.s3_bucket_arn }}'
+  bucket_3:
+    value: '{{ .grains.bucket_3.outputs.s3_bucket_arn }}'
 
 inputs:
   execution_host:
@@ -34,6 +38,38 @@ grains:
         - region: us-west-1
         - acl: private
         - name: '{{ .inputs.bucket_name }}-1-{{ sandboxid | downcase }}'
+      outputs:
+        - s3_bucket_arn
+  bucket_2:
+    depends-on: bucket_1
+    kind: terraform
+    spec:
+      source:
+        store: autogen_repo_asset_0af60acf
+        path: terraform/s3-tomerc
+      host:
+        name: '{{.inputs.execution_host}}'
+        service-account: '{{.inputs.tf-service-account}}'
+      inputs:
+        - region: us-west-1
+        - acl: private
+        - name: '{{ .inputs.bucket_name }}-2-{{ sandboxid | downcase }}'
+      outputs:
+        - s3_bucket_arn
+  bucket_3:
+    depends-on: bucket_2
+    kind: terraform
+    spec:
+      source:
+        store: autogen_repo_asset_0af60acf
+        path: terraform/s3-tomerc
+      host:
+        name: '{{.inputs.execution_host}}'
+        service-account: '{{.inputs.tf-service-account}}'
+      inputs:
+        - region: us-west-1
+        - acl: private
+        - name: '{{ .grains.bucket_1.outputs.s3_bucket_arn }}-3-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
 
