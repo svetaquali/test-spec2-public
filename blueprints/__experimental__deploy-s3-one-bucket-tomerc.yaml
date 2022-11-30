@@ -90,12 +90,12 @@ grains:
       inputs:
         - region: us-west-1
         - acl: private
-        - name: '{{ .inputs.bucket_name }}-5-{{ sandboxid | downcase }}'
+        - name: '{{ .inputs.bucket_name }}-4-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
 
   tomerc_bucket_5:
-    depends-on: tomerc_bucket_3
+    depends-on: tomerc_bucket_2
     kind: terraform
     spec:
       source:
