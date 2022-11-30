@@ -59,7 +59,7 @@ grains:
         - name: '{{ .inputs.bucket_name }}-2-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
-        - s3_bucket_id
+        - s3_bucket_regional_domain_name
   tomerc_bucket_3:
     depends-on: tomerc_bucket_2
     kind: terraform
@@ -107,6 +107,6 @@ grains:
       inputs:
         - region: us-west-1
         - acl: private
-        - name: '{{ .grains.tomerc_bucket_2.outputs.s3_bucket_id }}-5-{{ sandboxid | downcase }}'
+        - name: '{{ .grains.tomerc_bucket_2.outputs.s3_bucket_regional_domain_name }}-5-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
