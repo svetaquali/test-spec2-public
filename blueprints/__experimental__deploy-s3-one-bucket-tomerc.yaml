@@ -6,10 +6,10 @@ outputs:
     value: '{{ .grains.tomerc_bucket_1.outputs.s3_bucket_arn }}'
   bucket_2:
     value: '{{ .grains.tomerc_bucket_2.outputs.s3_bucket_arn }}'
-  bucket_3:
-    value: '{{ .grains.tomerc_bucket_3.outputs.s3_bucket_arn }}'
-  bucket_4:
-    value: '{{ .grains.tomerc_bucket_4.outputs.s3_bucket_arn }}'
+#  bucket_3:
+#    value: '{{ .grains.tomerc_bucket_3.outputs.s3_bucket_arn }}'
+#  bucket_4:
+#    value: '{{ .grains.tomerc_bucket_4.outputs.s3_bucket_arn }}'
   bucket_5:
     value: '{{ .grains.tomerc_bucket_5.outputs.s3_bucket_arn }}'
 inputs:
@@ -43,6 +43,9 @@ grains:
         - name: '{{ .inputs.bucket_name }}-1-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
+        - s3_bucket_regional_domain_name
+        - s3_bucket_id
+
   tomerc_bucket_2:
     depends-on: tomerc_bucket_1
     kind: terraform
@@ -60,39 +63,40 @@ grains:
       outputs:
         - s3_bucket_arn
         - s3_bucket_regional_domain_name
-  tomerc_bucket_3:
-    depends-on: tomerc_bucket_2
-    kind: terraform
-    spec:
-      source:
-        store: autogen_repo_asset_0af60acf
-        path: terraform/s3-tomerc
-      host:
-        name: '{{.inputs.execution_host}}'
-        service-account: '{{.inputs.tf-service-account}}'
-      inputs:
-        - region: us-west-1
-        - acl: private
-        - name: '{{ .inputs.bucket_name }}-3-{{ sandboxid | downcase }}'
-      outputs:
-        - s3_bucket_arn
-
-  tomerc_bucket_4:
-    depends-on: tomerc_bucket_2, tomerc_bucket_1
-    kind: terraform
-    spec:
-      source:
-        store: autogen_repo_asset_0af60acf
-        path: terraform/s3-tomerc
-      host:
-        name: '{{.inputs.execution_host}}'
-        service-account: '{{.inputs.tf-service-account}}'
-      inputs:
-        - region: us-west-1
-        - acl: private
-        - name: '{{ .inputs.bucket_name }}-4-{{ sandboxid | downcase }}'
-      outputs:
-        - s3_bucket_arn
+        - s3_bucket_id
+#  tomerc_bucket_3:
+#    depends-on: tomerc_bucket_2
+#    kind: terraform
+#    spec:
+#      source:
+#        store: autogen_repo_asset_0af60acf
+#        path: terraform/s3-tomerc
+#      host:
+#        name: '{{.inputs.execution_host}}'
+#        service-account: '{{.inputs.tf-service-account}}'
+#      inputs:
+#        - region: us-west-1
+#        - acl: private
+#        - name: '{{ .inputs.bucket_name }}-3-{{ sandboxid | downcase }}'
+#      outputs:
+#        - s3_bucket_arn
+#
+#  tomerc_bucket_4:
+#    depends-on: tomerc_bucket_2, tomerc_bucket_1
+#    kind: terraform
+#    spec:
+#      source:
+#        store: autogen_repo_asset_0af60acf
+#        path: terraform/s3-tomerc
+#      host:
+#        name: '{{.inputs.execution_host}}'
+#        service-account: '{{.inputs.tf-service-account}}'
+#      inputs:
+#        - region: us-west-1
+#        - acl: private
+#        - name: '{{ .inputs.bucket_name }}-4-{{ sandboxid | downcase }}'
+#      outputs:
+#        - s3_bucket_arn
 
   tomerc_bucket_5:
     depends-on: tomerc_bucket_2
@@ -107,6 +111,7 @@ grains:
       inputs:
         - region: us-west-1
         - acl: private
-        - name: '{{ .grains.tomerc_bucket_2.outputs.s3_bucket_regional_domain_name }}-5-{{ sandboxid | downcase }}'
+        - name: '{{ .grains.tomerc_bucket_1.outputs.s3_bucket_id }}'
       outputs:
         - s3_bucket_arn
+        - s3_bucket_id
