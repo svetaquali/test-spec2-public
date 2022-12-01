@@ -40,7 +40,9 @@ grains:
     kind: helm
     spec:
       source:
-        path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx-test
+        store: test-spec2-public
+        path: helm/nginx-test
+#         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx-test
       host:
         name: '{{.inputs.execution_host}}'
       commands:
