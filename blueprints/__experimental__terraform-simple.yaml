@@ -33,3 +33,5 @@ grains:
         store: test-spec2-public
       host:
         name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test: '1-{{.inputs.env_test}}-2'
