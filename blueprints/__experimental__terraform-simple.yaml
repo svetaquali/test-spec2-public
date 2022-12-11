@@ -23,7 +23,7 @@ inputs:
     description: "environment variable test"
 
 grains:
-  helloTF:
+  first:
     kind: terraform
     spec:
       env-vars:
@@ -35,3 +35,20 @@ grains:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - test: '1-{{.inputs.env_test}}-2'
+      outputs:
+        - output2
+        
+  second:
+   kind: terraform
+   depennds-on: first
+   spec:
+     env-vars:
+       - env1: '{{ .inputs.env_test }}'
+     source:
+       path: terraform/simple-tf-module
+       store: test-spec2-public
+     host:
+       name: '{{.inputs.compute_service_name}}'
+     inputs:
+       - test_input1: '1-{{.grains.first.outputs.output2}}-2'
+       - test_input2: '1-{{.inputs.env_test}}-2'
