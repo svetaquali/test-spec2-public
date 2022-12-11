@@ -24,7 +24,7 @@ inputs:
   tf-service-account:
     type: string
     display-style: normal
-    default: tomerc-power-user
+    default: tomer-c-power-user
     description: "custom service account for terraform - s3"
 
 grains:
