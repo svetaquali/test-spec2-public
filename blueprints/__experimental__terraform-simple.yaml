@@ -40,7 +40,7 @@ grains:
         
   second:
    kind: terraform
-   depennds-on: first
+   depends-on: first
    spec:
      env-vars:
        - env1: '{{ .inputs.env_test }}'
