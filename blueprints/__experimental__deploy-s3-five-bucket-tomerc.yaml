@@ -65,7 +65,7 @@ grains:
         - s3_bucket_regional_domain_name
         - s3_bucket_id
   tomerc_bucket_3:
-    depends-on: tomerc_bucket_1
+    depends-on: tomerc_bucket_2
     kind: terraform
     spec:
       source:
@@ -83,7 +83,7 @@ grains:
         - s3_bucket_id
 
   tomerc_bucket_4:
-    depends-on: tomerc_bucket_2
+    depends-on: tomerc_bucket_3
     kind: terraform
     spec:
       source:
@@ -101,7 +101,7 @@ grains:
         - s3_bucket_id
 
   tomerc_bucket_5:
-    depends-on: tomerc_bucket_1
+    depends-on: tomerc_bucket_4
     kind: terraform
     spec:
       source:
@@ -113,7 +113,7 @@ grains:
       inputs:
         - region: us-west-1
         - acl: private
-        - name: '5-{{ .grains.tomerc_bucket_1.outputs.s3_bucket_id }}-5'
+        - name: '{{ .grains.tomerc_bucket_1.outputs.s3_bucket_id }}-5'
       outputs:
         - s3_bucket_arn
         - s3_bucket_id
