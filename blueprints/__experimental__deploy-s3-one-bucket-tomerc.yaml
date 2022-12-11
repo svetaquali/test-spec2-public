@@ -19,7 +19,7 @@ inputs:
     description: the name of the execution host to be used
   bucket_name:
     type: string
-    default: 'amazing-bucket-1-s3'
+    default: 'tomer-c'
     description: the name of the bucket to be created
   tf-service-account:
     type: string
