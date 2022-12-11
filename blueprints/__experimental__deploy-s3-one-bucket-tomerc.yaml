@@ -95,7 +95,7 @@ grains:
       inputs:
         - region: us-west-1
         - acl: private
-        - name: '{{ .inputs.bucket_name }}-4-{{ sandboxid | downcase }}'
+        - name: '{{ .inputs.bucket_name }}-4-{{ .grains.tomerc_bucket_3.outputs.s3_bucket_id }}'
       outputs:
         - s3_bucket_arn
         - s3_bucket_id
@@ -113,7 +113,7 @@ grains:
       inputs:
         - region: us-west-1
         - acl: private
-        - name: '{{ .grains.tomerc_bucket_1.outputs.s3_bucket_id }}'
+        - name: '{{ .inputs.bucket_name }}-5-{{ .grains.tomerc_bucket_1.outputs.s3_bucket_id }}'
       outputs:
         - s3_bucket_arn
         - s3_bucket_id
