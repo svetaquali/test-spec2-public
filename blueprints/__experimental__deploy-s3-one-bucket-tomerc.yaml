@@ -113,7 +113,7 @@ grains:
       inputs:
         - region: us-west-1
         - acl: private
-        - name: '{{ .grains.tomerc_bucket_1.outputs.s3_bucket_id }}'
+        - name: '{{ .grains.tomerc_bucket_1.outputs.s3_bucket_id }}-5'
       outputs:
         - s3_bucket_arn
         - s3_bucket_id
