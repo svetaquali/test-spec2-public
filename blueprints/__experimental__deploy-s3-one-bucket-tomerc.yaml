@@ -101,7 +101,7 @@ grains:
         - s3_bucket_id
 
   tomerc_bucket_5:
-    depends-on: tomerc_bucket_4
+    depends-on: tomerc_bucket_3
     kind: terraform
     spec:
       source:
