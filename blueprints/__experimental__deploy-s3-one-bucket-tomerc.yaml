@@ -117,5 +117,3 @@ grains:
       outputs:
         - s3_bucket_arn
         - s3_bucket_id
-
-Value '{{ .inputs.bucket_name }}-4-{{ .grains.tomerc_bucket_3.outputs.s3_bucket_id }}' of field 'grains->tomerc_bucket_4->spec->inputs->name' can't be resolved
