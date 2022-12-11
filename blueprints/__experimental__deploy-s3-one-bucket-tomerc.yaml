@@ -11,7 +11,7 @@ outputs:
   bucket_4:
     value: '{{ .grains.tomerc_bucket_4.outputs.s3_bucket_arn }}'
   bucket_5:
-    value: '{{ .grains.tomerc_bucket_5.outputs.name }}'
+    value: '{{ .grains.tomerc_bucket_5.outputs.s3_bucket_arn }}'
 inputs:
   execution_host:
     type: string
