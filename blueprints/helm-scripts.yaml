@@ -6,6 +6,8 @@ inputs:
   name:
     type: string
     default: defaultbob
+  compute_service_name:
+    type: string     
     
 grains:
   helloHelm:
@@ -14,8 +16,7 @@ grains:
       source:
         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx
       host:
-        cloud-account: aws
-        compute-service: yakir-eks
+        name: '{{.inputs.compute_service_name}}'       
       commands:
         - dep up helm/nginx
       scripts:
