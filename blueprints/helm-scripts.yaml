@@ -18,7 +18,7 @@ grains:
       host:
         name: '{{.inputs.compute_service_name}}'       
       commands:
-        - dep up helm/nginx
+        - dep up helm/nginx-test
       scripts:
         post-helm-install:
           source:
