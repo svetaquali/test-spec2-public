@@ -1,5 +1,12 @@
+# this is to test the output between grains when the depends_on is set to a grain that depends_on the grain we need
+# grain tomerc_bucket_5 is depends_on tomerc_bucket_3, tomerc_bucket_3 grain depends_on tomerc_bucket_1 but tomerc_bucket_5
+# can still use {{ .grains.tomerc_bucket_1.outputs.s3_bucket_hosted_zone_id | downcase }}  (not the tomerc_bucket_1 in the liquid)
 spec_version: 2-preview
-description: deploy s3 bucket
+description: |
+  deploy 3 s3 bucket -  this is to test the output between grains when the depends_on is set to a grain that 
+  depends_on the grain we need grain tomerc_bucket_5 is depends_on tomerc_bucket_3, tomerc_bucket_3 grain depends_on 
+  tomerc_bucket_1 but tomerc_bucket_5 can still use 
+  {{ .grains.tomerc_bucket_1.outputs.s3_bucket_hosted_zone_id | downcase }}  (not the tomerc_bucket_1 in the liquid)
 
 outputs:
   bucket_1:
@@ -66,7 +73,7 @@ grains:
         - s3_bucket_hosted_zone_id
 
   tomerc_bucket_5:
-    depends-on: tomerc_bucket_1
+    depends-on: tomerc_bucket_3
     kind: terraform
     spec:
       source:
