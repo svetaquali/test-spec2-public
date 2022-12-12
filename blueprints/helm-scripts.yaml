@@ -47,7 +47,7 @@ grains:
     spec:     
       host:
         name: '{{.inputs.compute_service_name}}'       
-      sources:
+      source:
         path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml        
       scripts:
         post-kubernetes-install:
