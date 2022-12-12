@@ -28,7 +28,7 @@ grains:
     spec:
       source:
         path: terraform/create-ec2-instance
-        store: tomer_playground
+        store: test-spec2-public
       host:
         name: '{{.inputs.compute-service}}'
         service-account: tomerv-sa
