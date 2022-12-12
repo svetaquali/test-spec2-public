@@ -15,7 +15,8 @@ grains:
     kind: terraform
     spec: 
       source:
-        path: github.com/QualiNext/test-spec2-public//terraform/s3
+        store: test-spec2-public
+        path: terraform/s3
       host:
         name: '{{.inputs.compute_service_name}}'
       inputs:

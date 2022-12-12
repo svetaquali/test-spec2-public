@@ -20,8 +20,12 @@ outputs:
 inputs:
   execution_host:
     type: string
-    default: qualidev2
+    default: qualidev2-test1
     description: the name of the execution host to be used
+  service_account:
+    type: string
+    default: default
+    description: the name of the service account to run with
   release_name:
     type: string
     default: ''
@@ -34,20 +38,22 @@ inputs:
     type: string
     default: 1
     description: passing the replica set to the helm chart
+  namespace:
+    type: string
+    default: 'tomer-c-test2'
 
 grains:
   helloHelm:
     kind: helm
     spec:
       source:
-        store: test-spec2-public
-        path: helm/nginx-test
-#         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx-test
+        path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx
+      namespace: '{{ inputs.namespace }}'
       host:
         name: '{{.inputs.execution_host}}'
+        service-account: '{{.inputs.service_account}}'
       commands:
-        - dep up helm/nginx-test
+        - dep up helm/nginx
       release: '{{.inputs.release_name}}'
       inputs:
         - replicaCount: '{{.inputs.replica_count}}'
-        - image.debug: 'true'
