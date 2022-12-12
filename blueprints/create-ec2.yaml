@@ -31,7 +31,7 @@ grains:
         store: test-spec2-public
       host:
         name: '{{.inputs.compute-service}}'
-        service-account: tomerv-sa
+        service-account: torque-sa-0d7db5
 #       inputs:
 #         - access_key: '{{.inputs.access_key}}'
 #         - secret_key: '{{.inputs.secret_key}}'
