@@ -4,12 +4,8 @@ description: deploy s3 bucket
 outputs:
   bucket_1:
     value: '{{ .grains.tomerc_bucket_1.outputs.s3_bucket_arn }}'
-#  bucket_2:
-#    value: '{{ .grains.tomerc_bucket_2.outputs.s3_bucket_arn }}'
   bucket_3:
     value: '{{ .grains.tomerc_bucket_3.outputs.s3_bucket_arn }}'
-#  bucket_4:
-#    value: '{{ .grains.tomerc_bucket_4.outputs.s3_bucket_arn }}'
   bucket_5:
     value: '{{ .grains.tomerc_bucket_5.outputs.s3_bucket_arn }}'
 inputs:
@@ -46,26 +42,8 @@ grains:
         - s3_bucket_regional_domain_name
         - s3_bucket_id
         - s3_bucket_region
+        - s3_bucket_hosted_zone_id
 
-#  tomerc_bucket_2:
-#    depends-on: tomerc_bucket_1
-#    kind: terraform
-#    spec:
-#      source:
-#        store: autogen_repo_asset_0af60acf
-#        path: terraform/s3-tomerc
-#      host:
-#        name: '{{.inputs.execution_host}}'
-#        service-account: '{{.inputs.tf-service-account}}'
-#      inputs:
-#        - region: us-west-1
-#        - acl: private
-#        - name: '{{ .inputs.bucket_name }}-2-{{ sandboxid | downcase }}'
-#      outputs:
-#        - s3_bucket_arn
-#        - s3_bucket_regional_domain_name
-#        - s3_bucket_id
-#        - s3_bucket_region
   tomerc_bucket_3:
     depends-on: tomerc_bucket_1
     kind: terraform
@@ -85,26 +63,7 @@ grains:
         - s3_bucket_regional_domain_name
         - s3_bucket_id
         - s3_bucket_region
-
-#  tomerc_bucket_4:
-#    depends-on: tomerc_bucket_2
-#    kind: terraform
-#    spec:
-#      source:
-#        store: autogen_repo_asset_0af60acf
-#        path: terraform/s3-tomerc
-#      host:
-#        name: '{{.inputs.execution_host}}'
-#        service-account: '{{.inputs.tf-service-account}}'
-#      inputs:
-#        - region: us-west-1
-#        - acl: private
-#        - name: '{{ .inputs.bucket_name }}-4-{{ .inputs.bucket_name }}'
-#      outputs:
-#        - s3_bucket_arn
-#        - s3_bucket_regional_domain_name
-#        - s3_bucket_id
-#        - s3_bucket_region
+        - s3_bucket_hosted_zone_id
 
   tomerc_bucket_5:
     depends-on: tomerc_bucket_3
@@ -119,9 +78,10 @@ grains:
       inputs:
         - region: us-west-1
         - acl: private
-        - name: '{{ .grains.tomerc_bucket_1.outputs.s3_bucket_region }}'
+        - name: '{{ .grains.tomerc_bucket_1.outputs.s3_bucket_hosted_zone_id | downcase }}'
       outputs:
         - s3_bucket_arn
         - s3_bucket_regional_domain_name
         - s3_bucket_id
         - s3_bucket_region
+        - s3_bucket_hosted_zone_id
