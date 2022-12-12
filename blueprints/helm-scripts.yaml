@@ -22,7 +22,7 @@ grains:
         post-helm-install:
           source:
             store: test-spec2-public
-            path:  helmscripts/sample-k8s.sh
+            path:  scripts/sample-k8s.sh
           arguments: '{{ .inputs.name }}'
           outputs:
             - testoutput
