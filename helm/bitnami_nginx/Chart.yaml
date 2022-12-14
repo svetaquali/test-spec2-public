@@ -18,6 +18,7 @@ keywords:
   - web
   - www
   - reverse proxy
+  - tomerc
 maintainers:
   - name: Bitnami
     url: https://github.com/bitnami/charts
