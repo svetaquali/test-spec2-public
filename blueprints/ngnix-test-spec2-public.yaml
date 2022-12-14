@@ -11,7 +11,7 @@ grains:
     spec:
       source:
         store: test-spec2-public
-        path: helm/nginx
+        path: helm/bitnami_nginx
       host:
         name: '{{ .inputs.host_name }}'
       commands:
