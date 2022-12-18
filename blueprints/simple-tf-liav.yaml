@@ -12,5 +12,6 @@ grains:
       source:
         path: terraform/simple-tf-module
         store: test-spec2-public
+      namespace: dont-care
       host:
         name: '{{.inputs.compute_service_name}}'
