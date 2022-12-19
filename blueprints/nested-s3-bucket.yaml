@@ -1,14 +1,19 @@
 spec_version: 2-preview
 description: deploy s3 bucket nested
 
+inputs:
+  compute_service_name:
+    type: string
+    default: "eks-main"
+
 grains:
   s3-buckets:
     kind: blueprint
     spec:
       source:
         path: blueprints\deploy-s3-two-buckets.yaml
-      host:
-        name: eks
+#       host:
+#         name: '{{.inputs.compute_service_name}}'
 
   bucket_outer:
     kind: terraform
@@ -16,7 +21,7 @@ grains:
       source:
         path: github.com/QualiNext/test-spec2-public/terraform/s3
       host:
-        name: eks
+        name: '{{.inputs.compute_service_name}}'
       inputs:
         - region: us-west-1
         - acl: private
