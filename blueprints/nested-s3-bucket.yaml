@@ -12,8 +12,8 @@ grains:
     spec:
       source:
         path: blueprints\deploy-s3-two-buckets.yaml
-#       host:
-#         name: '{{.inputs.compute_service_name}}'
+      host:
+        name: '{{.inputs.compute_service_name}}'
 
   bucket_outer:
     kind: terraform
