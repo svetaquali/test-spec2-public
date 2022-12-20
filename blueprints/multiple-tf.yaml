@@ -2,7 +2,8 @@ spec_version: 2-preview
 
 inputs:
   compute_service_name:
-    type: string
+#     type: string
+    type: execution-host
     default: "eks"
   Application Version:
     type: string
