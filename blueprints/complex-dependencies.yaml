@@ -88,7 +88,7 @@ grains:
         path: https://github.com/open-toolchain/hello-helm.git//chart/hello
       host:
         name: '{{.inputs.execution_host}}'
-        service-account: '{{.inputs.service-account}}'
+        service-account: '{{.inputs.service_account}}'
       commands:
         - dep up chart/hello
       release: '{{.inputs.release_name}}'
