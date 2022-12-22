@@ -15,6 +15,9 @@ inputs:
     type: string
     default: yakir-eks
     description: the name of the execution host to be used
+  service_account:
+    type: string
+    default: default
   release_name:
     type: string
     default: ''
@@ -40,7 +43,7 @@ grains:
         path: terraform/error-tf-module
         store: test-spec2-public
       host:
-        name: '{{.inputs.execution_host}}'
+        name: '{{.inputs.execution_host}}'        
         
   helm1:
     kind: helm
@@ -85,6 +88,7 @@ grains:
         path: https://github.com/open-toolchain/hello-helm.git//chart/hello
       host:
         name: '{{.inputs.execution_host}}'
+        service-account: '{{.inputs.service-account}}'
       commands:
         - dep up chart/hello
       release: '{{.inputs.release_name}}'
