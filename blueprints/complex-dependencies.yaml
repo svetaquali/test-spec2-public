@@ -1,0 +1,104 @@
+spec_version: 2-preview
+
+description: description text
+
+
+outputs:
+ generic_output:
+   value: '{{.inputs.generic_input}}'
+
+inputs:
+  namespace:
+    type: string
+    default: yakir-agent
+  execution_host:
+    type: string
+    default: yakir-eks
+    description: the name of the execution host to be used
+  release_name:
+    type: string
+    default: ''
+    description: the name of helm release
+  generic_input:
+    type: string
+    default: nothing
+    description: an input for testing
+
+# 
+#                                               /-----> terraform3
+#   terraform1 -------\______> terraform2 -----/
+#                     /                        \------> helm2 -----> helm3
+#   helm1 -----------/   
+#
+
+grains:
+
+  terraform1:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/error-tf-module
+        store: test-spec2-public
+      host:
+        name: '{{.inputs.compute_service_name}}'
+        
+  helm1:
+    kind: helm
+    spec:
+      source:
+#         store: test-spec2-public
+#         path: helm/nginx-test      
+      path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+      host:
+        name: '{{.inputs.execution_host}}'
+      commands:
+        - dep up helm/nginx-test
+      release: '{{.inputs.release_name}}'
+      namespace: '{{.inputs.namespace}}'     
+      
+  terraform2:
+    depends-on: terraform1, helm1
+    kind: terraform
+    spec:
+      source:
+        path: terraform/error-tf-module
+        store: test-spec2-public
+      host:
+        name: '{{.inputs.compute_service_name}}'      
+        
+  terraform3:
+    depends-on: terraform2
+    kind: terraform
+    spec:
+      source:
+        path: terraform/error-tf-module
+        store: test-spec2-public
+      host:
+        name: '{{.inputs.compute_service_name}}'              
+        
+  helm2:
+    kind: helm
+    depends-on: terraform2
+    spec:
+      source:
+        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+      host:
+        name: '{{.inputs.execution_host}}'
+      commands:
+        - dep up helm/nginx-test
+      release: '{{.inputs.release_name}}'
+      namespace: '{{.inputs.namespace}}'      
+  
+  helm3:
+    kind: helm
+    depends-on: helm2
+    spec:
+      source:
+        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+      host:
+        name: '{{.inputs.execution_host}}'
+      commands:
+        - dep up helm/nginx-test
+      release: '{{.inputs.release_name}}'
+      namespace: '{{.inputs.namespace}}'        
+        
