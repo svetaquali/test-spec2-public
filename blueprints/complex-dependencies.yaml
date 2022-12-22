@@ -53,7 +53,7 @@ grains:
       host:
         name: '{{.inputs.execution_host}}'
       commands:
-        - dep up helm/nginx-test
+        - dep up chart/hello
       release: '{{.inputs.release_name}}'
       namespace: '{{.inputs.namespace}}'     
       
@@ -86,7 +86,7 @@ grains:
       host:
         name: '{{.inputs.execution_host}}'
       commands:
-        - dep up helm/nginx-test
+        - dep up chart/hello
       release: '{{.inputs.release_name}}'
       namespace: '{{.inputs.namespace}}'      
   
@@ -99,7 +99,7 @@ grains:
       host:
         name: '{{.inputs.execution_host}}'
       commands:
-        - dep up helm/nginx-test
+        - dep up chart/hello
       release: '{{.inputs.release_name}}'
       namespace: '{{.inputs.namespace}}'        
         
