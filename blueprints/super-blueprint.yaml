@@ -98,7 +98,7 @@ grains:
       host:
         name: '{{.inputs.execution_host1}}'
       inputs:
-        - test_input1: '{{.grains.outputs.output1}}'
+        - test_input1: '{{.grains.terraform1.outputs.output1}}'
 
   helm2:
     kind: helm
