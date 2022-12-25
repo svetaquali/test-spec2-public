@@ -4,7 +4,6 @@ inputs:
   compute_service_name:
 #     type: string
     type: execution-host
-    default: "eks-main"
   env_test:
     type: string
     default: "val1"
