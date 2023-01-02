@@ -167,4 +167,4 @@ grains:
       activities:
         deploy:
           commands:
-            - kubectl create namespace '{{ sandboxid | downcase }}'
+            - echo environment id '{{ sandboxid | downcase }}'
