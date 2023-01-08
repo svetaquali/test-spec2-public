@@ -7,18 +7,18 @@ outputs:
 
 inputs:
   execution_host:
-    type: string
-    default: qualidev2
+    type: execution-host
+    default: playground
     description: the name of the execution host to be used
   bucket_name:
     type: string
     default: 'amazing-bucket-1-s3'
     description: the name of the bucket to be created
-  tf-service-account:
-    type: string
-    display-style: normal
-    default: tomerc-s3-full-control
-    description: "custom service account for terraform - s3"
+#  tf-service-account:
+#    type: string
+#    display-style: normal
+#    default: tomerc-s3-full-control
+#    description: "custom service account for terraform - s3"
 
 grains:
   bucket_1:
