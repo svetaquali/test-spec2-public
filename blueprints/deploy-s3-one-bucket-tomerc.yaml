@@ -29,7 +29,9 @@ grains:
         path: terraform/s3-tomerc
       host:
         name: '{{.inputs.execution_host}}'
-        service-account: '{{.inputs.tf-service-account}}'
+#        service-account: '{{.inputs.tf-service-account}}'
+      authentication:
+        - aws_qualidev1
       inputs:
         - region: us-west-1
         - acl: private
