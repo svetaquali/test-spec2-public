@@ -38,4 +38,3 @@ grains:
         - name: '{{ .inputs.bucket_name }}-1-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
-
