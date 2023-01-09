@@ -7,7 +7,7 @@ outputs:
 
 inputs:
   execution_host:
-    type: execution-host
+    type: agent
     default: playground
     description: the name of the execution host to be used
   bucket_name:
