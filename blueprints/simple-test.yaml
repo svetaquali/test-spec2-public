@@ -2,6 +2,8 @@ spec_version: 2
 description: a blueprint for a simple testing
 
 inputs:
+  hello_release_name:
+    type: string
 #   input1:
 #     type: string
 #     sensitive: false
@@ -47,7 +49,18 @@ grains:
         - output1
         - output2
 
-
+  hello-helm:
+    kind: helm
+    spec:
+      source:
+        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+      agent:
+#         name: '{{.inputs.agent_name}}'
+        name: eks1
+      commands:
+        - dep up chart/hello
+      release: '{{.inputs.hello_release_name}}'
+#       namespace: '{{.inputs.namespace}}'
 
 #   helloHelm:
 #     kind: helm
