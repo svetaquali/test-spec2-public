@@ -13,7 +13,7 @@ grains:
     kind: terraform
     spec:
       source:
-        store: spec2_repo_blue
+        store: test-spec2-public
         path: terraform/azure-RG
       host:
         name: '{{ .inputs.host_name }}'
