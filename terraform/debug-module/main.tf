@@ -15,7 +15,7 @@ resource "null_resource" "task_log" {
 resource "null_resource" "task_long" {
   provisioner "local-exec" {
     interpreter = ["bash", "-c"]
-    command = "counter=1; while (( counter != 200 )); do echo sleeping; sleep 10; counter=$((counter+1)); done"
+    command = "counter=1; while (( counter != 900 )); do echo sleeping; sleep 900; counter=$((counter+1)); done"
   }
 }
 
