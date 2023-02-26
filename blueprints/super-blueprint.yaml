@@ -36,6 +36,11 @@ inputs:
     type: string
     default: nothing
     description: an input for testing
+  secret_input:
+    type: string
+    display-style: masked
+    default: my-secret
+    description: secret input for testing  
 
 
 # Dependencies Schema
