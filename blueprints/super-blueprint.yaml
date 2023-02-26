@@ -38,6 +38,7 @@ inputs:
     description: an input for testing
   secret_input:
     type: string
+    sensitive: true
     display-style: masked
     default: my-secret
     description: secret input for testing  
