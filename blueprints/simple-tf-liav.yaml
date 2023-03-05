@@ -14,4 +14,3 @@ grains:
         store: autogen_repo_sandbox_3e8b5800
       host:
         name: '{{.inputs.compute_service_name}}'
-        
