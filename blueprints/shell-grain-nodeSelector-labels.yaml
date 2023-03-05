@@ -25,7 +25,7 @@ inputs:
   namespace:
     type: string
     display-style: normal
-    default: "shaip-sandbox"
+    default: "default"
     description: "Kubernetes namespace for sandbox to be ran in"
 
 grains:
