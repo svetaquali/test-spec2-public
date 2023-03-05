@@ -11,6 +11,6 @@ grains:
     spec:
       source:
         path: terraform/simple-tf-module
-        store: test-spec2-public-non-extisting
+        store: test-spec2-public
       host:
         name: '{{.inputs.compute_service_name}}'
