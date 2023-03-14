@@ -7,7 +7,7 @@ servers:
   - url: https://review1.qualilabs.net
   - url: https://review2.qualilabs.net
   - url: https://review3.qualilabs.net
-  - url: https://preview.qtorque.io
+  - url: https://preview.qualilabs.net
 paths:
   /api/about:
     get:
