@@ -11,6 +11,7 @@ grains:
     spec:
       source:
         path: terraform/simple-tf-module
-        store: autogen_repo_sandbox_3e8b5800
+        store: test-spec2-public
+      namespace: dont-care
       host:
         name: '{{.inputs.compute_service_name}}'

@@ -1,0 +1,50 @@
+spec_version: 2-preview
+
+description: description text
+
+
+
+# inputs:
+#   some-name:
+#     type: string/numeric/boolean
+#     display-style: normal/multiline
+#     default: "abc"
+#     description: "description"
+
+
+
+outputs:
+ generic_output:
+   value: '{{.inputs.generic_input}}'
+
+inputs:
+  execution_host:
+    type: string
+    description: the name of the execution host to be used
+  release_name:
+    type: string
+    default: ''
+    description: the name of helm release
+  generic_input:
+    type: string
+    default: nothing
+    description: an input for testing
+  replica_count:
+    type: string
+    default: 1
+    description: passing the replica set to the helm chart
+
+grains:
+  helloHelm:
+    kind: helm
+    spec:
+      source:
+        path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx-test
+      host:
+        name: '{{.inputs.execution_host}}'
+      commands:
+        - dep up helm/nginx-test
+      release: '{{.inputs.release_name}}'
+      inputs:
+        - replicaCount: '{{.inputs.replica_count}}'
+        - image.debug: 'true'

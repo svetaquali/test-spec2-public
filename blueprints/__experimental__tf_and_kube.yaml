@@ -1,0 +1,39 @@
+spec_version: 2-preview
+
+inputs:
+  compute_service_name:
+    type: string
+    default: "eks"
+
+  namespace:
+    type: string
+    display-style: normal
+    default: "yakir-agent"
+    description: "Kubernetes namespace for sandbox to be ran in."  
+
+
+grains:
+  helloTF:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/error-tf-module
+        store: test-spec2-public
+      host:
+        name: '{{.inputs.compute_service_name}}'
+        
+
+  nginx:
+    kind: kubernetes
+    depends-on: helloTF
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml
+      namespace: '{{ .inputs.namespace }}'      
+      env-vars:
+        - test: newValue
+      tags:
+        auto-tag: false
+      host:
+        name: '{{.inputs.compute_service_name}}'
+#         service-account: "yakirl-sa"

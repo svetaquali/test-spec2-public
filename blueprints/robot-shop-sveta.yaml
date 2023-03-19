@@ -3,14 +3,12 @@ description: Robotshot microservices application deployed on K8S with Helm and R
 
 # added
 inputs:
-  cloud_account_name:
-    type: string
-    default: "aws"
-    display-style: normal
   compute_service_name:
     type: string
     default: "eks"
-    display-style: normal
+  helm_namespace:
+    type: string
+    default: sveta-test
 
 outputs:
   WebsiteUrl:
@@ -27,8 +25,7 @@ grains:
         path: github.com/QualiTorque/samples.git//terraform/rds
       host:
         # modified
-        cloud-account: '{{.inputs.cloud_account_name}}'
-        compute-service: '{{.inputs.compute_service_name}}'
+        name: '{{.inputs.compute_service_name}}'
       inputs:
         - sandbox_id: '{{ sandboxid | downcase }}'
         - size: small 
@@ -50,8 +47,7 @@ grains:
         path: github.com/QualiTorque/samples.git//terraform/s3
       host:
         # modified
-        cloud-account: '{{.inputs.cloud_account_name}}'
-        compute-service: '{{.inputs.compute_service_name}}'
+        name: '{{.inputs.compute_service_name}}'
       inputs:
         - region: eu-west-1
         - acl: public-read
@@ -70,8 +66,8 @@ grains:
         path: https://github.com/QualiTorque/samples.git//helm/robotshop
       host:
         # modified
-        cloud-account: '{{.inputs.cloud_account_name}}'
-        compute-service: '{{.inputs.compute_service_name}}'
+        name: '{{.inputs.compute_service_name}}'
+      namespace: '{{inputs.helm_namespace}}'
       inputs:
         - hostname: 'robotshop-{{ sandboxid | downcase }}'
         - version: 0.4.3

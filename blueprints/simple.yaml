@@ -3,7 +3,6 @@ spec_version: 2-preview
 description: description text
 
 
-
 inputs:
   input1:
     type: string
@@ -20,7 +19,7 @@ inputs:
     description: "list test"      
 
 
-# values that starts with '{' for liquid template must be encosed with quotes so YAML won't consider them as dict
+# values that starts with '{' for liquid template must be enclosed with quotes so YAML won't consider them as dict
 outputs:
   output1:
     value: '{{sandboxId}}'

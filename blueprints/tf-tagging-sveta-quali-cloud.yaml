@@ -1,0 +1,57 @@
+spec_version: 2
+
+description: check the tf tagging feature
+
+inputs:
+  bucket_name:
+  content:
+    default: this is a default content
+  compute_service_name:
+    default: "quali"
+  aws_acccess_key:
+    sensitive: true
+  aws_secret_key:
+    sensitive: true
+  aws_session_token:
+    sensitive: true
+#   tf-service-account:
+#     default: "aws-power"
+
+grains:
+  s3-write:
+    kind: terraform
+    spec:
+      source:
+        path: github.com/QualiNext/terraform/s3-write
+      host:
+        name: '{{ inputs.compute_service_name }}'
+#         service-account: '{{.inputs.tf-service-account}}'
+      tags:
+#         auto-tag: true
+#         disable-tags-for:
+#         - aws_s3_bucket_object
+      inputs:
+        - BUCKET_NAME: '{{ inputs.bucket_name }}'
+        - SANDBOX_ID: '{{ sandboxId }}'
+        - CONTENT: '{{ inputs.content }}'
+      env-vars:
+      - AWS_ACCESS_KEY_ID: '{{.inputs.aws_acccess_key}}'
+      - AWS_SECRET_ACCESS_KEY: '{{.inputs.aws_secret_key}}'
+      - AWS_SESSION_TOKEN: '{{.inputs.aws_session_token}}'
+  
+#   create-sg:
+#     kind: terraform
+#     spec:
+#       source:
+#         path: github.com/QualiNext/test-spec2-public.git//terraform/create-sg
+#       host:
+#         name: '{{ inputs.compute_service_name }}'
+# #         service-account: '{{.inputs.tf-service-account}}'
+#       inputs:
+#         - SG_NAME: '{{ sandboxId }}-sg'
+#       env-vars:
+#       - AWS_ACCESS_KEY_ID: '{{.inputs.aws_acccess_key}}'
+#       - AWS_SECRET_ACCESS_KEY: '{{.inputs.aws_secret_key}}'
+#       - AWS_SESSION_TOKEN: '{{.inputs.aws_session_token}}'
+      
+      

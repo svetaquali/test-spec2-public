@@ -4,7 +4,12 @@ terraform {
 //    path    = "mybackend/terraform.tfstate"
 //  }
 }
-// test test
+
+
+
+// Torque can now update environments!!!
+
+resource "time_static" "example" {}
 
 resource "null_resource" "task_log" {
   provisioner "local-exec" {
@@ -12,12 +17,28 @@ resource "null_resource" "task_log" {
   }
 }
 
-resource "null_resource" "task_long" {
-  provisioner "local-exec" {
-    command = "echo \"long task start\" && sleep 5 && echo \"long task end\""
-  }
-}
+# resource "null_resource" "task_long" {
+#   provisioner "local-exec" {
+#     command = "for i in {1..3}; do echo waiting; sleep 2; done"
+#   }
+# }
+
+# resource "null_resource" "set_initial_state" {
+#   provisioner "local-exec" {
+#     interpreter = ["bash", "-c"]
+#     command = "echo \"0\" > counter"
+#   }
+# }
+
+# resource "null_resource" "wait" {
+#   provisioner "local-exec" {
+#     interpreter = ["bash", "-c"]
+#     command = "while [[ $(cat counter) != \"10\" ]]; do sleep 5; done; sleep 3;"
+#   }
+# }
 
 locals {
   key1 = "somekey"
 }
+
+#vido was here

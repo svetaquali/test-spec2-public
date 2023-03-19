@@ -1,0 +1,36 @@
+spec_version: 2-preview
+
+inputs:
+  compute_service_name:
+#     type: string
+    type: execution-host
+  env_test:
+    type: string
+    default: "val1"
+    description: "environment variable test"
+
+grains:
+  bp:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprints/multiple-tf.yaml
+        store: test-spec2-public
+#       host:
+#         name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - compute_service_name: '{{.inputs.compute_service_name}}'     
+        
+  tf:
+   kind: terraform
+   depends-on: bp
+   spec:
+     env-vars:
+       - env1: '{{ .inputs.env_test }}'
+     source:
+       path: terraform/simple-tf-module
+       store: test-spec2-public
+     host:
+       name: '{{.inputs.compute_service_name}}'
+     inputs:   
+       - test_input2: '1-{{.inputs.env_test}}-2'

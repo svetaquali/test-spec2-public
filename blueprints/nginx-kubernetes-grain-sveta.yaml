@@ -1,0 +1,26 @@
+kind: blueprint
+spec: 2
+spec_version: 2-preview
+description: Blueprint with nginx kubernetes grain.
+
+inputs:
+  namespace:
+    type: string
+    description: "Kubernetes namespace for sandbox to be ran in."
+  compute_service_name:
+    type: string
+    default: eks
+
+grains:
+  nginx:
+    kind: kubernetes
+    spec:
+#       source:
+#         path: github.com/QualiNext/test-spec2-public.git//manifests/nginx1/nginxmanifest.yaml
+      sources:
+      - store: test-spec2-public
+        path: manifests/nginx1/nginxmanifest.yaml
+#       namespace: '{{ .inputs.namespace }}'
+      namespace: '{{ sandboxid }}'
+      host:
+        name: '{{.inputs.compute_service_name}}'

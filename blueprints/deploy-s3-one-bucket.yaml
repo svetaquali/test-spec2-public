@@ -1,20 +1,26 @@
-spec_version: 2-preview
+spec_version: 2
 description: deploy s3 bucket
 
 outputs:
   bucket_1:
     value: '{{ .grains.bucket_1.outputs.s3_bucket_arn }}'
 
+inputs:
+  compute_service_name:
+    type: string
+    default: "My bucket"
+
 grains:
   bucket_1:
     kind: terraform
     spec: 
       source:
-        path: github.com/QualiNext/test-spec2-public//terraform/s3
+        store: test-spec2-public
+        path: terraform/s3
       host:
-        name: eks
+        name: '{{.inputs.compute_service_name}}'
       inputs:
-        - region: us-west-1
+        - region: eu-west-1
         - acl: private
         - name: 'test-bucket-1-s3-{{ sandboxid | downcase }}'
       outputs:

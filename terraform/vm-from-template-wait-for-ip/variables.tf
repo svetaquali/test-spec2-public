@@ -1,21 +1,21 @@
-variable "private_cloud_login" {
+variable "username" {
   type = string
   sensitive = true
 }
 
-variable "private_cloud_password" {
+variable "password" {
   type = string
   sensitive = true
 }
 
-variable "private_cloud_host" {
+variable "hostname" {
   type = string
   sensitive = true
 }
 
 variable "datacenter_name" {
   type = string
-  default = "Sandbox vCenter"
+  default = "Sandbox"
 }
 
 variable "datastore_name" {
@@ -30,7 +30,7 @@ variable "compute_cluster_name" {
 
 variable "network_name" {
   type = string
-  default = "Local"
+  default = "VLan65-1"
 }
 
 variable "virtual_machine_template_name" {

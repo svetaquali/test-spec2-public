@@ -1,0 +1,28 @@
+spec_version: 2
+description: deploy s3 bucket
+
+inputs:
+  compute_service_name:
+    type: string   
+
+outputs:
+  bucket_1:
+    value: '{{ .grains.bucket_1.outputs.s3_bucket_arn }}'
+
+grains:
+  bucket_1:
+    kind: terraform
+    spec: 
+      source:
+        store: test-spec2-public
+        path: terraform/s3
+      host:
+        name: '{{.inputs.compute_service_name}}' 
+        service-account: torque-sa-0d7db5
+      inputs:
+        - region: us-west-1
+        - acl: private
+        - name: 'test-bucket-1-s3-wow-{{ sandboxid | downcase }}'
+      outputs:
+        - s3_bucket_arn
+

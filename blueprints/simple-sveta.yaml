@@ -7,12 +7,16 @@ description: description text
 inputs:
   input1:
     type: string
+    sensitive: true
     default: "default1"
     description: "environemnt input 1"
   compute_service_name:
     type: string
-    sensitive: true
-    default: "bad_name"
+#     sensitive: true
+    default: "eks"
+  helm_namespace:
+    type: string
+#     default: sveta-test
 #   input2:
 #     type: string
 #     description: "environemnt input 2"    
@@ -33,12 +37,10 @@ grains:
     kind: terraform
     spec:
       source:
-        store: autogen_repo_sandbox_a53708f7
+        store: test-spec2-public
         path: terraform/simple-tf-module
       host:
         name: '{{.inputs.compute_service_name}}'
-#         cloud-account: aws
-#         compute-service: eks
       inputs:
         - test_input1: env-input-{{.inputs.input1}}
         - test_input2: env-id-{{sandboxId}}
@@ -48,21 +50,21 @@ grains:
 
 
 
-#   helloHelm:
-#     kind: helm
-#     #depends-on: helloTF
-#     spec:
-#       source:
-#         path: https://github.com/bitnami/charts.git//bitnami/node
-#       host:
-#         cloud-account: aws
-#         compute-service: '{{.inputs.compute_service_name}}'
-#       commands:
-#         - "dep up bitnami/node"
+  helloHelm:
+    kind: helm
+#     depends-on: helloTF, helloTF
+    spec:
+      source:
+        path: https://github.com/bitnami/charts.git//bitnami/node
+      host:
+        name: '{{.inputs.compute_service_name}}'
+      namespace: '{{inputs.helm_namespace}}'
+      commands:
+        - "dep up bitnami/node"
 
-#       inputs:
-#         - nameOverride: '{{.inputs.input1}}'
-#         #- nameOverride: '{{.grains.helloTF.outputs.output1}}'
+      inputs:
+        - nameOverride: '{{.inputs.input1}}'
+        #- nameOverride: '{{.grains.helloTF.outputs.output1}}'
   
   # helloHelm2:
   #   kind: helm

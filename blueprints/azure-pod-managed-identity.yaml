@@ -1,0 +1,37 @@
+spec_version: 2
+
+description: Azure RG.
+
+inputs:
+  host_name:
+    type: string
+    display-style: normal
+    default: "aks"
+  subscription_id:
+    type: string
+    display-style: normal
+  tenant_id:
+    type: string
+    display-style: normal
+  client_id:
+    type: string
+    display-style: normal
+      
+grains:
+  azure_resource_group:
+    kind: terraform
+    spec:
+      source:
+        store: spec2_repo_blue
+        path: terraform/azure-RG
+      host:
+        name: '{{ .inputs.host_name }}'
+        kubernetes:
+          pod-labels:
+          - aadpodidbinding: my-pod-identity
+      env-vars: 
+      - ARM_USE_MSI: true
+      - ARM_SUBSCRIPTION_ID: '{{ .inputs.subscription_id }}'
+      - ARM_TENANT_ID: '{{ .inputs.tenant_id }}'
+      - ARM_CLIENT_ID: '{{ .inputs.client_id }}'
+      tf-version: 1.3.6

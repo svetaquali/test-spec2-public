@@ -1,0 +1,43 @@
+spec_version: 2-preview
+description: description text
+
+inputs:
+  compute-service:
+    type: string
+    display-style: normal
+    default: eks
+#   access_key:
+#     type: string
+#     display-style: normal
+#   secret_key:
+#     type: string
+#     display-style: normal
+#   token:
+#     type: string
+#     display-style: normal
+
+outputs:
+  public_ip:
+    value: '{{.grains.MyTF.outputs.public_ip}}'
+  password:
+    value: '{{.grains.MyTF.outputs.password}}'
+
+grains:
+  MyTF:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/create-ec2-instance
+        store: test-spec2-public
+      host:
+        name: '{{.inputs.compute-service}}'
+        service-account: torque-sa-0d7db5
+#       inputs:
+#         - access_key: '{{.inputs.access_key}}'
+#         - secret_key: '{{.inputs.secret_key}}'
+#         - token: '{{.inputs.token}}'
+      outputs:
+        - public_ip
+        - password
+          
+

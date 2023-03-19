@@ -1,3 +1,4 @@
+## katet test
 ## @section Global parameters
 ## Global Docker image parameters
 ## Please, note that this will override the image parameters, including dependencies, configured to use the global value
@@ -51,8 +52,9 @@ commonAnnotations: {}
 ##
 image:
   registry: docker.io
-  repository: bitnami/nginx
-  tag: 1.21.6-debian-10-r93
+  repository: nginx
+# tag: 1.21.6-debian-10-r93
+  tag: '1.22.1'
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -775,3 +777,4 @@ metrics:
     ##       summary: Tomcat instance is down.
     ##
     rules: []
+

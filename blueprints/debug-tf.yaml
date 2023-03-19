@@ -1,0 +1,19 @@
+spec_version: 2-preview
+
+inputs:
+  compute_service_name:
+    type: string
+    default: "dev"
+
+grains:
+  helloTF:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/debug-module
+        store: test-spec2-public
+      host:
+        name: '{{.inputs.compute_service_name}}'
+#       inputs:
+#         - test_input1: '["key1","val1"]'
+#         - test_input1: '{"key1":"val1"}'

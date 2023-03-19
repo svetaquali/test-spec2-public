@@ -1,8 +1,8 @@
 variable "test_input1" {
     type = string
     default = "default1"
+    description = "blah!"
 }
-// comment
 
 variable "test_input2" {
     type = string
@@ -12,4 +12,9 @@ variable "test_input2" {
 variable "test_input3" {
     type = list(string)
     default = []
+}
+
+variable "test_input4" {
+    type = string
+    default = "default4"
 }

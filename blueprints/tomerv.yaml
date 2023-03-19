@@ -1,0 +1,28 @@
+kind: blueprint
+spec: 2
+spec_version: 2-preview
+description: Blueprint with nginx kubernetes grain.
+
+inputs:
+  host:
+    type: execution-host
+
+grains:
+  namespace:
+    kind: shell
+    spec:
+      host:
+        name: '{{.inputs.host}}'
+      activities:
+        deploy:
+          commands:
+            - kubectl create namespace '{{ sandboxid | downcase }}'
+
+  nginx:
+    kind: kubernetes
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public.git//manifests/nginx1/nginxmanifest.yaml
+      namespace: '{{ sandboxid | downcase }}'
+      host:
+        name: '{{.inputs.host}}'

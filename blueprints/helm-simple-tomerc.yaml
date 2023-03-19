@@ -1,0 +1,54 @@
+spec_version: 2-preview
+
+description: description text
+
+
+
+# inputs:
+#   some-name:
+#     type: string/numeric/boolean
+#     display-style: normal/multiline
+#     default: "abc"
+#     description: "description"
+
+
+
+outputs:
+ generic_output:
+   value: '{{.inputs.generic_input}}'
+
+inputs:
+  execution_host:
+    type: string
+    default: qualidev2-test1
+    description: the name of the execution host to be used
+  release_name:
+    type: string
+    default: ''
+    description: the name of helm release
+  generic_input:
+    type: string
+    default: nothing
+    description: an input for testing
+  replica_count:
+    type: string
+    default: 1
+    description: passing the replica set to the helm chart
+  namespace:
+    type: string
+    default: 'tomer-c-test2'
+
+grains:
+  helloHelm:
+    kind: helm
+    spec:
+      source:
+        path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx
+      namespace: '{{ inputs.namespace }}'
+      host:
+        name: '{{.inputs.execution_host}}'
+      commands:
+        - dep up helm/nginx
+      release: '{{.inputs.release_name}}'
+      inputs:
+        - replicaCount: '{{.inputs.replica_count}}'
