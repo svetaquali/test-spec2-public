@@ -15,7 +15,7 @@ grains:
     spec:
       source:
         store: base-grains
-        path: cml
+        path: terraform/simple-tf-module
       agent:
         name: "moshe-localhost"
       inputs: 
