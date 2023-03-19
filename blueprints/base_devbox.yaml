@@ -1,0 +1,31 @@
+spec_version: 2
+description: base grain for CML
+inputs:
+  pod_id:
+    type: string
+  num_cpu:
+    type: string
+  ram_mib:
+    type: string
+  
+outputs: {}
+grains:
+  devbox:
+    kind: terraform
+    spec:
+      source:
+        store: base-grains
+        path: devbox
+      agent:
+        name: "TQ-EH-USW1-E01"
+      inputs: 
+      - vsphere_user: "{{ .params.vsphere_user }}"
+      - vsphere_password: "{{ .params.vsphere_password }}"
+      - vsphere_server: "{{ .params.vsphere_server }}"
+      - admin_username: "{{ .params.ubuntu_admin_username }}"
+      - admin_password: "{{ .params.ubuntu_admin_password }}"
+      - num_cpu: "{{ .inputs.num_cpu }}"
+      - ram_mib: "{{ .inputs.ram_mib }}"
+      - pod_id: "{{ .inputs.pod_id }}"
+      - vm_name: "devbox_{{ sandboxid }}"
+        

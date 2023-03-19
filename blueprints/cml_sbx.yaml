@@ -1,0 +1,22 @@
+spec_version: 2
+description: test CML blueprint
+inputs: {}
+outputs: {}
+grains:
+  cml:
+    kind: blueprint
+    spec:
+      source:
+        store: ux-testing-blueprints
+        path: blueprints/base_cml.yaml
+    inputs:
+      - vsphere_user: "{{ .params.vsphere_user }}"
+      - vsphere_password: "{{ .params.vsphere_password }}"
+      - vsphere_server: "{{ .params.vsphere_server }}"
+      - admin_username: "{{ .params.admin_user }}"
+      - admin_password: "{{ .params.admin_password }}"
+      - num_cpu: "12"
+      - ram_mib: "4096"
+      - pod_id: "242"
+      - vm_name: "cml_{{ sandboxid }}"
+  
