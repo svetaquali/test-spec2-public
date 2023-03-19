@@ -17,7 +17,7 @@ grains:
         store: base-grains
         path: cml
       agent:
-        name: "TQ-EH-USW1-E01"
+        name: "moshe-localhost"
       inputs: 
       - vsphere_user: "{{ .params.vsphere_user }}"
       - vsphere_password: "{{ .params.vsphere_password }}"
