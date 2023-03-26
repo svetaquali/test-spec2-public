@@ -7,7 +7,7 @@ inputs:
     type: string
     display-style: normal
     description: "tenancy-id"
-    default: "ocid1.tenancy.oc1..aaaaaaaawcs4f7u6mu5qoehbq4xhyeqao3drudw6he5nzbpavpjz7qzou5jq"
+    default: "ocid1.compartment.oc1..aaaaaaaaut2cmm4miujip6ndufri4lybfc6tllrbd5pptctl6eilum42ohka"
   tenancy:
     type: string
     display-style: normal
