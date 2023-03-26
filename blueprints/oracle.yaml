@@ -1,43 +1,42 @@
-spec_version: 2-preview
+spec_version: 2
 
 description: Oracle compute instance
-
 
 inputs:
   compartment:
     type: string
     display-style: normal
-    description: "compartment"
+    description: "tenancy-id"
+    default: "ocid1.tenancy.oc1..aaaaaaaawcs4f7u6mu5qoehbq4xhyeqao3drudw6he5nzbpavpjz7qzou5jq"
   tenancy:
     type: string
     display-style: normal
-    description: "tenancy"    
+    description: "tenancy"
+    default: "ocid1.tenancy.oc1..aaaaaaaawcs4f7u6mu5qoehbq4xhyeqao3drudw6he5nzbpavpjz7qzou5jq"
   region:
     type: string
     display-style: normal
-    description: "region"    
+    description: "region"
+    default: "uk-london-1"
   instance_display_name:
     default: torque-vm
     type: string
     display-style: normal
     description: "region"    
     
-
-
 outputs:
   output3:
     value: '{{.grains.OracleInstance.outputs.instance_id}}'
     
-
 grains:
   OracleInstance:
     kind: terraform
     spec:
       source:
-        path: github.com/QualiNext/test-spec2-public.git//terraform/oci-instance
-      host:
-        cloud-account: private-cloud
-        compute-service: oke
+        store: testing
+        path: terraform/oci-instance
+      agent:
+        name: oke
       inputs:
         - compartment_ocid : '{{.inputs.compartment}}'
         - tenancy_ocid : '{{.inputs.tenancy}}'
