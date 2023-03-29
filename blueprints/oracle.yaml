@@ -44,3 +44,16 @@ grains:
         - instance_display_name : '{{.inputs.instance_display_name}}'
       outputs:
         - instance_id
+  Health Check:
+    kind: shell
+    depends-on: OracleInstance
+    spec:
+      agent:
+        name: tomer-laptop
+      activities:
+        deploy:
+          commands:
+            - "echo fetching Webgame page"
+#            - "apt update -y"
+            - "apt-get install curl -y"
+            - "curl -I http://{{.grains.OracleInstance.outputs.instance_id}} | head -n 1"
