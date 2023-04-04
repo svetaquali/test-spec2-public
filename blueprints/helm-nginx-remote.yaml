@@ -5,6 +5,11 @@ description: description text
 inputs:
   compute_service_name:
     type: execution-host
+  namespace:
+    type: string
+    display-style: normal
+    default: "test-namespace1"
+    description: "Kubernetes namespace for sandbox to be ran in."   
   release:
     type: string
     default: ""
