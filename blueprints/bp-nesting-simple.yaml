@@ -19,18 +19,4 @@ grains:
 #       host:
 #         name: '{{.inputs.compute_service_name}}'
       inputs:
-        - compute_service_name: '{{.inputs.compute_service_name}}'     
-        
-  tf:
-   kind: terraform
-   depends-on: bp
-   spec:
-     env-vars:
-       - env1: '{{ .inputs.env_test }}'
-     source:
-       path: terraform/simple-tf-module
-       store: test-spec2-public
-     host:
-       name: '{{.inputs.compute_service_name}}'
-     inputs:   
-       - test_input2: '1-{{.inputs.env_test}}-2'
+        - compute_service_name: '{{.inputs.compute_service_name}}'  
