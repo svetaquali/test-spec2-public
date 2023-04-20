@@ -24,7 +24,7 @@ grains:
       source:
         store: spec2_repo_blue
         path: terraform/azure-RG
-      host:
+      agent:
         name: '{{ .inputs.host_name }}'
         kubernetes:
           pod-labels:

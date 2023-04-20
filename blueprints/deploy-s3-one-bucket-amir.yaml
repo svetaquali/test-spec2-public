@@ -7,7 +7,7 @@ outputs:
 
 inputs:
   compute_service_name:
-    type: execution-host
+    type: agent
 
 
 grains:
@@ -16,7 +16,7 @@ grains:
     spec: 
       source:
         path: github.com/QualiNext/test-spec2-public//terraform/s3
-      host:
+      agent:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - region: eu-west-1

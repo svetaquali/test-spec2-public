@@ -37,7 +37,7 @@ grains:
 #       source:
 #         store: autogen_repo_sandbox_3416a76b
 #         path: terraform/simple-tf-module
-#       host:
+#       agent:
 #         cloud-account: aws
 #         compute-service: eks
 #       inputs:
@@ -55,7 +55,7 @@ grains:
     spec:
       source:
         path: https://github.com/bitnami/charts.git//bitnami/node
-      host:
+      agent:
         compute-service: eks
       commands:
         - "dep up bitnami/node"
@@ -70,7 +70,7 @@ grains:
   #   spec:
   #     source:
   #       path: https://github.com/bitnami/charts.git//bitnami/node
-  #     host:
+  #     agent:
   #       cloud-account: aws
   #       compute-service: '{{.inputs.compute_service_name}}'
   #     commands:

@@ -7,6 +7,6 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public.git//terraform/eks-rds
-      host:
+      agent:
         cloud-account: aws-demo
         compute-service: eks-demo

@@ -23,7 +23,7 @@ grains:
     spec: 
       source:
         path: https://github.com/QualiNext/test-spec2-public//ansible/test_playbook.yaml
-      host:
+      agent:
         name: docker-agent
 
       inventory-file:

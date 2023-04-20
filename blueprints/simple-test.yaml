@@ -68,7 +68,7 @@ grains:
 #     spec:
 #       source:
 #         path: https://github.com/bitnami/charts.git//bitnami/node
-#       host:
+#       agent:
 #         name: '{{.inputs.compute_service_name}}'
 #       namespace: '{{inputs.helm_namespace}}'
 #       commands:

@@ -17,7 +17,7 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/terraform/s3-write
-      host:
+      agent:
         name: '{{ inputs.compute_service_name }}'
         service-account: '{{.inputs.tf-service-account}}'
       tags:
@@ -34,7 +34,7 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public.git//terraform/create-sg
-      host:
+      agent:
         name: '{{ inputs.compute_service_name }}'
         service-account: '{{.inputs.tf-service-account}}'
       inputs:

@@ -40,7 +40,7 @@ grains:
         - vsphere_virtual_machine_default_ip_address
       source:
         path: github.com/QualiNext/test-spec2-public//terraform/vm-from-template-wait-for-ip
-      host:
+      agent:
         name: docker-agent
 
   apache_install:
@@ -49,7 +49,7 @@ grains:
     spec: 
       source:
         path: https://github.com/QualiNext/test-spec2-public//ansible/install_httpd_rhel.yaml
-      host:
+      agent:
         name: docker-agent
       inventory-file:
         all:

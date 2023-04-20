@@ -6,7 +6,7 @@ grains:
   sleep:
     kind: shell
     spec:
-      host:
+      agent:
         name: eks
       activities:
         deploy:

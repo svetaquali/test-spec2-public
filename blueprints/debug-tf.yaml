@@ -12,7 +12,7 @@ grains:
       source:
         path: terraform/debug-module
         store: test-spec2-public
-      host:
+      agent:
         name: '{{.inputs.compute_service_name}}'
 #       inputs:
 #         - test_input1: '["key1","val1"]'

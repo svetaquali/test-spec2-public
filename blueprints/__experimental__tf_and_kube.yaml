@@ -19,7 +19,7 @@ grains:
       source:
         path: terraform/error-tf-module
         store: test-spec2-public
-      host:
+      agent:
         name: '{{.inputs.compute_service_name}}'
         
 
@@ -34,6 +34,6 @@ grains:
         - test: newValue
       tags:
         auto-tag: false
-      host:
+      agent:
         name: '{{.inputs.compute_service_name}}'
 #         service-account: "yakirl-sa"

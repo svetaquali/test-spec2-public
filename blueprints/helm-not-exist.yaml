@@ -13,7 +13,7 @@ grains:
     spec:
       source:
         path: https://github.com/QualiNext/test-spec2-public.git//helm/not-exist
-      host:
+      agent:
         cloud-account: aws
         compute-service: yakir-eks
       commands:

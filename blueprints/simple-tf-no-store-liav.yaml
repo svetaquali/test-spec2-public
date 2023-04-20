@@ -6,5 +6,5 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-module
-      host:
+      agent:
         compute-service: dev2

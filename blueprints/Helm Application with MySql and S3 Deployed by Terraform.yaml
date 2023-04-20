@@ -12,7 +12,7 @@ grains:
     spec:
       source:
         path: github.com/qualinext/test-spec2-public.git//terraform/rds
-      host:
+      agent:
         cloud-account: aws-demo
         compute-service: eks-demo
       inputs:
@@ -34,7 +34,7 @@ grains:
     spec: 
       source:
         path: github.com/qualinext/test-spec2-public.git//terraform/s3
-      host:
+      agent:
         cloud-account: aws-demo
         compute-service: eks-demo
       inputs:
@@ -48,7 +48,7 @@ grains:
     spec:
       source:
         path: https://github.com/qualinext/test-spec2-public.git//helm/robotshop
-      host:
+      agent:
         cloud-account: aws-demo
         compute-service: eks-demo
       inputs:

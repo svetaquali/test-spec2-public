@@ -2,8 +2,8 @@ spec_version: 2
 description: Simple
 
 inputs:
-  host:
-    type: execution-host
+  agent:
+    type: agent
 
 grains:
   TF1:
@@ -11,7 +11,7 @@ grains:
     spec: 
       source:
         path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-outputs
-      host:
+      agent:
         name: '{{ .inputs.host }}'
 
   TF2:
@@ -19,6 +19,6 @@ grains:
     spec: 
       source:
         path: github.com/QualiNext/test-spec2-public.git//terraform/simple-tf-outputs
-      host:
+      agent:
         name: '{{ .inputs.host }}'
       depends-on: TF1

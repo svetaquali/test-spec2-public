@@ -15,7 +15,7 @@ grains:
     spec:
       source:
         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx
-      host:
+      agent:
         name: '{{.inputs.compute_service_name}}'
         service-account: torque-sa-0d7db5       
       commands:

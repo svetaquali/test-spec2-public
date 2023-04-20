@@ -10,7 +10,7 @@ inputs:
     default: "test-namespace1"
     description: "Kubernetes namespace for sandbox to be ran in."
   host_name:
-    type: execution-host
+    type: agent
     display-style: normal
     description: "execution host name"
 
@@ -30,7 +30,7 @@ grains:
         store: test-spec2-public
         path: manifests/nginx/nginxmanifest.yaml
       namespace: '{{ .inputs.namespace }}'
-      host:
+      agent:
         name: '{{.inputs.host_name}}'
         kubernetes:
           permissions:

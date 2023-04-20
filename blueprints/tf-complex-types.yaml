@@ -50,7 +50,7 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public.git//terraform/tf-complex-types
-      host:
+      agent:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - test_number: 6
@@ -78,7 +78,7 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public.git//terraform/tf-complex-types
-      host:
+      agent:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - test_number: '{{ .grains.first.outputs.test_number }}'

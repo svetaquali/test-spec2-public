@@ -27,7 +27,7 @@ grains:
     spec:
       source:
         path: https://github.com/bitnami/charts.git//bitnami/node
-      host:
+      agent:
         name: eks
         # region: eu-west-1
         # os: <os_moniker>

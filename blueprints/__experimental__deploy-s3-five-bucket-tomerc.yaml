@@ -34,7 +34,7 @@ grains:
       source:
         store: autogen_repo_asset_0af60acf
         path: terraform/s3-tomerc
-      host:
+      agent:
         name: '{{.inputs.execution_host}}'
         service-account: '{{.inputs.tf-service-account}}'
       inputs:
@@ -53,7 +53,7 @@ grains:
       source:
         store: autogen_repo_asset_0af60acf
         path: terraform/s3-tomerc
-      host:
+      agent:
         name: '{{.inputs.execution_host}}'
         service-account: '{{.inputs.tf-service-account}}'
       inputs:
@@ -71,7 +71,7 @@ grains:
       source:
         store: autogen_repo_asset_0af60acf
         path: terraform/s3-tomerc
-      host:
+      agent:
         name: '{{.inputs.execution_host}}'
         service-account: '{{.inputs.tf-service-account}}'
       inputs:
@@ -89,7 +89,7 @@ grains:
       source:
         store: autogen_repo_asset_0af60acf
         path: terraform/s3-tomerc
-      host:
+      agent:
         name: '{{.inputs.execution_host}}'
         service-account: '{{.inputs.tf-service-account}}'
       inputs:
@@ -107,7 +107,7 @@ grains:
       source:
         store: autogen_repo_asset_0af60acf
         path: terraform/s3-tomerc
-      host:
+      agent:
         name: '{{.inputs.execution_host}}'
         service-account: '{{.inputs.tf-service-account}}'
       inputs:

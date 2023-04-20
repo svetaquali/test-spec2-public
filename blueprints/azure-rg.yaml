@@ -15,6 +15,6 @@ grains:
       source:
         store: test-spec2-public
         path: terraform/azure-RG
-      host:
+      agent:
         name: '{{ .inputs.host_name }}'
       tf-version: 1.3.6

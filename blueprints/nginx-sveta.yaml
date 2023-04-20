@@ -17,7 +17,7 @@ grains:
       source:
         store: test-spec2-public
         path: helm/nginx
-      host:
+      agent:
         name: '{{ .inputs.host_name }}'
       namespace: '{{ inputs.namespace }}'
       commands:

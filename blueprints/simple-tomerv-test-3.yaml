@@ -33,7 +33,7 @@ grains:
       source:
         store: autogen_repo_sandbox_3416a76b
         path: terraform/simple-tf-module
-      host:
+      agent:
         cloud-account: aws-demo
         compute-service: eks-demo
       inputs:
@@ -49,7 +49,7 @@ grains:
     spec:
       source:
         path: https://github.com/bitnami/charts.git//bitnami/node
-      host:
+      agent:
         cloud-account: aws-demo
         compute-service: eks-demo
       commands:

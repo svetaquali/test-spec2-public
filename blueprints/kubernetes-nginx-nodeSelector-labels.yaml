@@ -10,7 +10,7 @@ inputs:
     default: "default"
     description: "Kubernetes namespace for sandbox to be ran in."
   host_name:
-    type: execution-host
+    type: agent
     display-style: normal
     description: "execution host name"
 
@@ -25,7 +25,7 @@ grains:
       - test: newValue
       tags:
         auto-tag: false
-      host:
+      agent:
         name: '{{.inputs.host_name}}'
         service-account: "default"
         kubernetes:

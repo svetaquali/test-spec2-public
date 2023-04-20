@@ -25,7 +25,7 @@ grains:
     spec:
       source:
         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx-test
-      host:
+      agent:
         name: '{{.inputs.compute_service_name}}'       
       commands:
         - dep up helm/nginx-test
@@ -45,7 +45,7 @@ grains:
   helloKube:
     kind: kubernetes
     spec:     
-      host:
+      agent:
         name: '{{.inputs.compute_service_name}}'       
       source:
         path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml              

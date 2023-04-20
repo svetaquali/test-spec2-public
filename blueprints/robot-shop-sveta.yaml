@@ -23,7 +23,7 @@ grains:
     spec:
       source:
         path: github.com/QualiTorque/samples.git//terraform/rds
-      host:
+      agent:
         # modified
         name: '{{.inputs.compute_service_name}}'
       inputs:
@@ -45,7 +45,7 @@ grains:
     spec: 
       source:
         path: github.com/QualiTorque/samples.git//terraform/s3
-      host:
+      agent:
         # modified
         name: '{{.inputs.compute_service_name}}'
       inputs:
@@ -64,7 +64,7 @@ grains:
 #     spec:
 #       source:
 #         path: https://github.com/QualiTorque/samples.git//helm/robotshop
-#       host:
+#       agent:
 #         # modified
 #         name: '{{.inputs.compute_service_name}}'
 #       namespace: '{{inputs.helm_namespace}}'

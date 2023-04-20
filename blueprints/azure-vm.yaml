@@ -35,7 +35,7 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public.git//terraform/azure-vm
-      host:
+      agent:
         cloud-account: private-cloud
         compute-service: '{{.inputs.compute_service_name}}'
       inputs:

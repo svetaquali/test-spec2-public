@@ -32,7 +32,7 @@ grains:
   validate:
     kind: shell
     spec:
-      host:
+      agent:
         name: eks
         kubernetes:
           pod-labels:
@@ -51,7 +51,7 @@ grains:
     kind: kubernetes
     depends-on: validate
     spec:
-      host:
+      agent:
         name: eks
         kubernetes:
           pod-labels:

@@ -32,7 +32,7 @@ grains:
   validate:
     kind: shell
     spec:
-      host:
+      agent:
         name: eks
       activities:
         deploy:
@@ -46,7 +46,7 @@ grains:
     kind: kubernetes
     depends-on: validate
     spec:
-      host:
+      agent:
         name: eks
       source:
         path: github.com/QualiNext/test-spec2-public.git//manifests/nginx1/nginxmanifest-fixed.yaml

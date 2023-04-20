@@ -4,7 +4,7 @@ description: description text
 
 inputs:
   compute_service_name:
-    type: execution-host
+    type: agent
   namespace:
     type: string
     display-style: normal
@@ -29,7 +29,7 @@ grains:
         store: test-spec2-public
         path: helm/nginx
       namespace:  '{{ .inputs.namespace }}'
-      host:
+      agent:
         name: '{{.inputs.compute_service_name}}'
         kubernetes:
           permissions:

@@ -40,7 +40,7 @@ grains:
     spec:
       source:
         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx-test
-      host:
+      agent:
         name: '{{.inputs.execution_host}}'
       commands:
         - dep up helm/nginx-test

@@ -13,6 +13,6 @@ grains:
     spec: 
       source:
         path: https://github.com/QualiNext/test-spec2-public//terraform/ec2-example
-      host:
+      agent:
         name: '{{.inputs.execution_host}}'
 

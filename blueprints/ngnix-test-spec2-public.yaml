@@ -3,7 +3,7 @@ description: Blueprint for nginx helm chart
 
 inputs:
   host_name:
-    type: execution-host
+    type: agent
 
 grains:
   nginx:
@@ -12,7 +12,7 @@ grains:
       source:
         store: test-spec2-public
         path: helm/bitnami_nginx
-      host:
+      agent:
         name: '{{ .inputs.host_name }}'
       commands:
         - dep up helm/bitnami_nginx

@@ -11,7 +11,7 @@ grains:
       source:
         path: bitnami/node
         store: charts
-      host:
+      agent:
         compute-service: dev
       commands:
         - dep up bitnami/node

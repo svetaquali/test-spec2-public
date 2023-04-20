@@ -11,7 +11,7 @@ grains:
     spec: 
       source:
         path: https://github.com/QualiNext/test-spec2-public//terraform/s3-custom
-      host:
+      agent:
         name: eks-sashag
       inputs:
         - region: us-west-1

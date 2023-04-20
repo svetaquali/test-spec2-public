@@ -22,7 +22,7 @@ grains:
       source:
         # store: autogen_repo_sandbox_3416a76b
         path: github.com/QualiNext/terraform/s3-write
-      host:
+      agent:
         cloud-account: aws
         compute-service: kubernetes
       inputs:

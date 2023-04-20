@@ -16,7 +16,7 @@ grains:
       source:
         path: terraform/simple-tf-module
         store: test-spec2-public
-      host:
+      agent:
         name: '{{.inputs.compute_service_name}}'
       scripts:
         pre-tf-init:

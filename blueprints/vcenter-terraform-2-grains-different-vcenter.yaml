@@ -70,6 +70,6 @@ grains:
       source:
         store: vcenter-terraform-demo
         path: github.com/QualiNext/terraform/vm-from-template2
-      host:
+      agent:
         cloud-account: private-cloud
         compute-service: VCENTER2

@@ -49,7 +49,7 @@ grains:
       source:
         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx
       namespace: '{{ inputs.namespace }}'
-      host:
+      agent:
         name: '{{.inputs.execution_host}}'
         service-account: '{{.inputs.service_account}}'
       commands:

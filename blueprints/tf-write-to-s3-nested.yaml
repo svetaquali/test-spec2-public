@@ -11,7 +11,7 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public/terraform/simple-tf-module
-      host:
+      agent:
         name: '{{inputs.tf-host-name}}'
       inputs:
         - test_input1: input-{{sandboxId}}
@@ -27,7 +27,7 @@ grains:
       source:
         store: spec2-public
         path: blueprints
-      host:
+      agent:
         name: '{{inputs.tf-host-name}}'
       inputs:
         - bucket_name: '{{inputs.bucket_name}}'

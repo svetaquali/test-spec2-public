@@ -42,7 +42,7 @@ grains:
       source:
         path: terraform/error-tf-module
         store: test-spec2-public
-      host:
+      agent:
         name: '{{.inputs.execution_host}}'        
         
   helm1:
@@ -53,7 +53,7 @@ grains:
 #         store: test-spec2-public
 #         path: helm/nginx-test      
         
-      host:
+      agent:
         name: '{{.inputs.execution_host}}'
       commands:
         - dep up chart/hello
@@ -67,7 +67,7 @@ grains:
       source:
         path: terraform/error-tf-module
         store: test-spec2-public
-      host:
+      agent:
         name: '{{.inputs.execution_host}}'      
         
   terraform3:
@@ -77,7 +77,7 @@ grains:
       source:
         path: terraform/error-tf-module
         store: test-spec2-public
-      host:
+      agent:
         name: '{{.inputs.execution_host}}'              
         
   helm2:
@@ -86,7 +86,7 @@ grains:
     spec:
       source:
         path: https://github.com/open-toolchain/hello-helm.git//chart/hello
-      host:
+      agent:
         name: '{{.inputs.execution_host}}'
         service-account: '{{.inputs.service_account}}'
       commands:
@@ -100,7 +100,7 @@ grains:
     spec:
       source:
         path: https://github.com/open-toolchain/hello-helm.git//chart/hello
-      host:
+      agent:
         name: '{{.inputs.execution_host}}'
       commands:
         - dep up chart/hello

@@ -12,6 +12,6 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public//terraform/vcenter-create-folder-with-custom-attribute
-      host:
+      agent:
         name: '{{.inputs.compute_service_name}}'
 

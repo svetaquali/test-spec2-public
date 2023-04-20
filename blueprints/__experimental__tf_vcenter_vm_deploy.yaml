@@ -44,6 +44,6 @@ grains:
         - vsphere_virtual_machine_default_ip_address
       source:
         path: github.com/QualiNext/test-spec2-public//terraform/vm-from-template-wait-for-ip
-      host:
+      agent:
         name: '{{.inputs.compute_service_name}}'
 

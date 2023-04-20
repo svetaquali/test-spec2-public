@@ -22,5 +22,5 @@ grains:
         path: manifests/nginx1/nginxmanifest.yaml
 #       namespace: '{{ .inputs.namespace }}'
       namespace: '{{ sandboxid }}'
-      host:
+      agent:
         name: '{{.inputs.compute_service_name}}'

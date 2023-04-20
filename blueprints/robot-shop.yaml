@@ -38,7 +38,7 @@ grains:
       source:
         store: Terraform-Assets
         path: rds
-      host:
+      agent:
         cloud-account: aws
         compute-service: eks
       inputs:
@@ -61,7 +61,7 @@ grains:
       source:
         store: Terraform-Assets
         path: s3
-      host:
+      agent:
         cloud-account: aws
         compute-service: eks
       inputs:
@@ -76,7 +76,7 @@ grains:
       source:
         store: Project-Pivot-Assets
         path: robotShop
-      host:
+      agent:
         cloud-account: aws
         compute-service: eks
       # commands:
