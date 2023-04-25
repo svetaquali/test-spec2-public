@@ -15,5 +15,6 @@ variable "test_input3" {
 
 variable "test_input4" {
     type = string
-    default = "default4"
+    description = "test input4 description"
+    default = ""
 }
