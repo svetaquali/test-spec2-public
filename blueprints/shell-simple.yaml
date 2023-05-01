@@ -17,7 +17,7 @@ grains:
         name: '{{ .inputs.compute-service }}'
       files:
       - path: "scripts/echo.sh"
-        source: OauthApiTest
+        source: test-spec2-public
       activities:
         deploy:
           commands:
