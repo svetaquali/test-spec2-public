@@ -4,12 +4,7 @@ description: a blueprint for a simple testing
 inputs:
   hello_release_name:
     type: string
-#   input1:
-#     type: string
-#     sensitive: false
-#     default: "default1"
-#     description: "environemnt input 1"
-   agent_name:
+  agent_name:
     type: string
 
 # values that starts with '{' for liquid template must be encosed with quotes so YAML won't consider them as dict
