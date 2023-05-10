@@ -24,7 +24,7 @@ grains:
       source:
 #         store: test-spec2-public
 #         path: terraform/simple-tf-module
-        path: http://Torque.Maill%40nothing.co.il:BBDC-NDE1MTMxMTM3MTI5OvR+kIx4qlj+PNwMxoL9ILPpS9lu@bitbucket.alm.leumi-aws.dev:8443/scm/TOR/devops.git//terraform/simple-tf-module
+        path: http://Torque.Maill%40nothing.co.il:<GIT_TOKEN>@bitbucket.alm.leumi-aws.dev:8443/scm/TOR/devops.git
       agent:
         name: '{{.inputs.agent_name}}'
       inputs:
