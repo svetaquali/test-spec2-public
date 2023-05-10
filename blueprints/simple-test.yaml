@@ -10,7 +10,7 @@ inputs:
 #     default: "default1"
 #     description: "environemnt input 1"
    agent_name:
-     type: string
+    type: string
 
 # values that starts with '{' for liquid template must be encosed with quotes so YAML won't consider them as dict
 outputs:
