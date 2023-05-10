@@ -24,7 +24,7 @@ grains:
       source:
 #         store: test-spec2-public
 #         path: terraform/simple-tf-module
-        path: http://quali:BBDC-NDE1MTMxMTM3MTI5OvR+kIx4qlj+PNwMxoL9ILPpS9lu@my-bitbucket.bitbucket.svc.cluster.local:7990/rest/api/latest/projects/QUAL/repos/test-spec2-public
+        path: http://quali:BBDC-NDE1MTMxMTM3MTI5OvR+kIx4qlj+PNwMxoL9ILPpS9lu@my-bitbucket.bitbucket.svc.cluster.local:7990/scm/qual/test-spec2-public-small.git
       agent:
         name: '{{.inputs.agent_name}}'
       inputs:
