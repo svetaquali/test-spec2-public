@@ -1,0 +1,52 @@
+spec_version: 2
+
+description: description text
+
+inputs:
+  compute_service_name:
+    type: execution-host
+  namespace:
+    type: string
+    display-style: normal
+    default: "test-namespace1"
+    description: "Kubernetes namespace for sandbox to be ran in."   
+  release:
+    type: string
+    default: ""
+
+#outputs:
+#  output1:
+#    value: 'https://{{.grains.nginx-simple.scripts.post-helm-install.outputs.output1}}'
+#    kind: link
+#  output2:
+#    value: '{{.grains.nginx-simple.scripts.post-helm-install.outputs.output2}}'
+
+grains:
+  nginx-simple:
+    kind: helm
+    spec:
+      source:
+        store: test-spec2-public
+        path: helm/nginx
+      namespace:  '{{ .inputs.namespace }}'
+      host:
+        name: '{{.inputs.compute_service_name}}'
+        kubernetes:
+          permissions:
+            destination-context-name: qualidev
+            secret-name: cluster-config       
+#            secret-namespace: katet-environments
+      commands:
+        - dep up helm/nginx
+      inputs:
+        - replicaSet: 1
+        - input_2: 'test'
+        - input_3: 3
+#      scripts:
+#        post-helm-install:
+#          source:
+#            store: private-blueprints
+#            path:  scripts/post-install-script.sh
+#          outputs:
+#            - output1
+#            - output2

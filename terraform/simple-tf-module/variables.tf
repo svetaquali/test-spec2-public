@@ -1,7 +1,6 @@
 variable "test_input1" {
     type = string
-    default = "default1"
-    description = "blah!"
+    default = "default"
 }
 
 variable "test_input2" {

@@ -1,42 +1,42 @@
-spec_version: 2-preview
+spec_version: 2
 
 description: Oracle compute instance
-
 
 inputs:
   compartment:
     type: string
     display-style: normal
-    description: "compartment"
+    description: "tenancy-id"
+    default: "ocid1.compartment.oc1..aaaaaaaaut2cmm4miujip6ndufri4lybfc6tllrbd5pptctl6eilum42ohka"
   tenancy:
     type: string
     display-style: normal
-    description: "tenancy"    
+    description: "tenancy"
+    default: "ocid1.tenancy.oc1..aaaaaaaawcs4f7u6mu5qoehbq4xhyeqao3drudw6he5nzbpavpjz7qzou5jq"
   region:
     type: string
     display-style: normal
-    description: "region"    
+    description: "region"
+    default: "uk-london-1"
   instance_display_name:
     default: torque-vm
     type: string
     display-style: normal
-    description: "region"
-  execution_host:
-    type: execution-host
-
+    description: "region"    
+    
 outputs:
   output3:
     value: '{{.grains.OracleInstance.outputs.instance_id}}'
     
-
 grains:
   OracleInstance:
     kind: terraform
     spec:
       source:
-        path: github.com/QualiNext/test-spec2-public.git//terraform/oci-instance
-      host:
-        name: '{{.inputs.execution_host}}'
+        store: testing
+        path: terraform/oci-instance
+      agent:
+        name: oke
       inputs:
         - compartment_ocid : '{{.inputs.compartment}}'
         - tenancy_ocid : '{{.inputs.tenancy}}'
@@ -44,3 +44,16 @@ grains:
         - instance_display_name : '{{.inputs.instance_display_name}}'
       outputs:
         - instance_id
+  Health Check:
+    kind: shell
+    depends-on: OracleInstance
+    spec:
+      agent:
+        name: tomer-laptop
+      activities:
+        deploy:
+          commands:
+            - "echo fetching Webgame page"
+#            - "apt update -y"
+            - "apt-get install curl -y"
+            - "curl -I http://{{.grains.OracleInstance.outputs.instance_id}} | head -n 1"

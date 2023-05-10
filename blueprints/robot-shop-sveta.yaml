@@ -6,9 +6,9 @@ inputs:
   compute_service_name:
     type: string
     default: "eks"
-  helm_namespace:
-    type: string
-    default: sveta-test
+#   helm_namespace:
+#     type: string
+#     default: sveta-test
 
 outputs:
   WebsiteUrl:
@@ -58,19 +58,19 @@ grains:
 #       tags:
 #         auto-tag: false
 
-  robotShopMicroservices:
-    kind: helm
-    depends-on: mySqlDB, s3Bucket
-    spec:
-      source:
-        path: https://github.com/QualiTorque/samples.git//helm/robotshop
-      host:
-        # modified
-        name: '{{.inputs.compute_service_name}}'
-      namespace: '{{inputs.helm_namespace}}'
-      inputs:
-        - hostname: 'robotshop-{{ sandboxid | downcase }}'
-        - version: 0.4.3
-        - connectionString: '{{ .grains.mySqlDB.outputs.connection_string }}'
-        - objectStore.s3BucketArn: '{{ .grains.s3Bucket.outputs.s3_bucket_arn }}'
-        - redis.storageClassName: gp2
+#   robotShopMicroservices:
+#     kind: helm
+#     depends-on: mySqlDB, s3Bucket
+#     spec:
+#       source:
+#         path: https://github.com/QualiTorque/samples.git//helm/robotshop
+#       host:
+#         # modified
+#         name: '{{.inputs.compute_service_name}}'
+#       namespace: '{{inputs.helm_namespace}}'
+#       inputs:
+#         - hostname: 'robotshop-{{ sandboxid | downcase }}'
+#         - version: 0.4.3
+#         - connectionString: '{{ .grains.mySqlDB.outputs.connection_string }}'
+#         - objectStore.s3BucketArn: '{{ .grains.s3Bucket.outputs.s3_bucket_arn }}'
+#         - redis.storageClassName: gp2
