@@ -9,7 +9,7 @@ inputs:
   compute_service_name:
 #     type: string
     type: agent
-    default: "eks-2"
+    default: "eks-pg"
   Application Version:
     type: string
     default: "0.4.3"
