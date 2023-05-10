@@ -1,5 +1,10 @@
 spec_version: 2-preview
 
+instructions:
+  source:
+    store: test-spec2-public
+    path: instructions/torque-documentation/index.md
+    
 inputs:
   compute_service_name:
 #     type: string
