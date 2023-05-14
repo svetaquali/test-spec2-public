@@ -24,4 +24,5 @@ grains:
 #       namespace: '{{ sandboxid }}'
       agent:
         name: '{{.inputs.compute_service_name}}'
+        service-account: default
 # dummy
