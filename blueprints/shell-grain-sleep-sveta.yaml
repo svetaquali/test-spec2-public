@@ -1,0 +1,14 @@
+kind: bluperint 
+spec_version: 2-preview
+description: sleep
+
+grains:
+  sleep:
+    kind: shell
+    spec:
+      agent:
+        name: eks1
+      activities:
+        deploy:
+          commands:
+            - "sleep 600"
