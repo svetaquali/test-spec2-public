@@ -23,10 +23,10 @@ inputs:
     default: "val1"
     description: "environment variable test"
     
-instructions:
-  source:
-    store: test-spec2-public
-    path: instructions/torque-documentation/index.md
+# instructions:
+  # source:
+    # store: test-spec2-public
+    # path: instructions/torque-documentation/index.md
 
 grains:
   first:
