@@ -75,3 +75,30 @@ grains:
         - s3_bucket_arn
       env-vars:
         - AWS_ACCESS_KEY_ID: 'itdoesntwork'
+        
+        
+tf4:
+  azure_resource_group:
+    kind: terraform
+    spec:
+      source:
+        store: test-spec2-public
+        path: terraform/azure-RG
+      agent:
+        name: '{{ .inputs.execution_host}}'
+      tf-version: 1.3.6
+
+  tf5:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/error-tf-module
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.execution_host}}'
+      scripts:
+        pre-tf-destroy:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"
