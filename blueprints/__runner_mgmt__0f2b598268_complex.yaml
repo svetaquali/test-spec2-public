@@ -142,7 +142,7 @@ grains:
 
   tf7:
     kind: terraform
-    depends-on: tf6
+    depends-on: tf1, tf6
     spec:
       source:
         path: terraform/simple-tf-module
