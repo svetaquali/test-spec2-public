@@ -1,0 +1,79 @@
+spec_version: 2-preview
+description: do some stuff
+
+outputs:
+  bucket_1:
+    value: '{{ .grains.tf3.outputs.s3_bucket_arn }}'
+
+inputs:
+  execution_host:
+    type: agent    
+    description: the name of the execution host to be used
+  bucket_name:
+    type: string
+    default: 'amazing-bucket-1-s3'
+    description: the name of the bucket to be created
+#  tf-service-account:
+#    type: string
+#    display-style: normal
+#    default: tomerc-s3-full-control
+#    description: "custom service account for terraform - s3"
+
+grains:
+  tf1:
+    kind: terraform
+    spec: 
+      source:
+        store: autogen_repo_asset_0af60acf
+        path: terraform/s3-tomerc
+      agent:
+        name: '{{.inputs.execution_host}}'
+#        service-account: '{{.inputs.tf-service-account}}'
+      authentication:
+        - aws_qualidev1
+      inputs:
+        - region: us-west-1
+        - acl: private
+        - name: '{{ .inputs.bucket_name }}-1-{{ sandboxid | downcase }}'
+      outputs:
+        - s3_bucket_arn
+        
+  tf2:
+    kind: terraform
+    spec:
+      backend:
+        type: s3
+        bucket: my-bucket
+        region: eu-west-1
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.execution_host}}'
+      scripts:
+        pre-tf-init:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"
+        pre-tf-destroy:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"
+       
+  tf3:
+    kind: terraform
+    spec: 
+      source:
+        path: github.com/QualiNext/test-spec2-public//terraform/s3
+      agent:
+        name: '{{.inputs.execution_host}}'
+      inputs:
+        - region: eu-west-1
+        - acl: private
+        - name: 'test-bucket-1-s3-{{ sandboxid | downcase }}'
+      outputs:
+        - s3_bucket_arn
+      env-vars:
+        - AWS_ACCESS_KEY_ID: 'itdoesntwork'
