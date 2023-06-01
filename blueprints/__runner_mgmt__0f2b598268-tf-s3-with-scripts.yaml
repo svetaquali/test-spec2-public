@@ -75,10 +75,8 @@ grains:
         - s3_bucket_arn
       env-vars:
         - AWS_ACCESS_KEY_ID: 'itdoesntwork'
-        
-        
-tf4:
-  azure_resource_group:
+                
+  tf4:    
     kind: terraform
     spec:
       source:
