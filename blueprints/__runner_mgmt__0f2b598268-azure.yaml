@@ -1,0 +1,140 @@
+spec_version: 2-preview
+
+inputs:
+  compute_service_name:
+    type: agent   
+
+grains:
+  tf1:
+    kind: terraform
+    spec:
+      source:
+        store: test-spec2-public
+        path: terraform/azure-RG
+      agent:
+        name: '{{ .inputs.compute_service_name }}'
+      tf-version: 1.3.6
+          
+  tf2:
+    kind: terraform
+    spec:
+      source:
+        store: test-spec2-public
+        path: terraform/azure-RG
+      agent:
+        name: '{{ .inputs.compute_service_name }}'
+      tf-version: 1.3.6  
+          
+  tf3:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input2: "input2"
+      scripts: 
+        pre-tf-init:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"
+        pre-tf-destroy:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"  
+         
+  tf4:
+    kind: terraform
+    depends-on: tf3
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input2: "input2"
+      scripts: 
+        pre-tf-init:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"
+        pre-tf-destroy:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value" 
+          
+  tf5:
+    kind: terraform
+    depends-on: tf3
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input2: "input2"
+      scripts: 
+        pre-tf-init:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"
+        pre-tf-destroy:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"   
+          
+  tf6:
+    kind: terraform
+    depends-on: tf4, tf5
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input2: "input2"
+      scripts: 
+        pre-tf-init:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"
+        pre-tf-destroy:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"             
+
+  tf7:
+    kind: terraform
+    depends-on: tf1, tf6
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input2: "input2"
+      scripts: 
+        pre-tf-init:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"
+        pre-tf-destroy:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"   
