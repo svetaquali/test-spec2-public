@@ -3,9 +3,7 @@ description: description text
 
 inputs:
   compute-service:
-    type: string
-    display-style: normal
-    default: eks
+    type: agent        
 #   access_key:
 #     type: string
 #     display-style: normal
@@ -31,7 +29,7 @@ grains:
         store: test-spec2-public
       agent:
         name: '{{.inputs.compute-service}}'
-        service-account: torque-sa-0d7db5
+#         service-account: torque-sa-0d7db5
 #       inputs:
 #         - access_key: '{{.inputs.access_key}}'
 #         - secret_key: '{{.inputs.secret_key}}'
