@@ -34,6 +34,8 @@ grains:
 #         - access_key: '{{.inputs.access_key}}'
 #         - secret_key: '{{.inputs.secret_key}}'
 #         - token: '{{.inputs.token}}'
+      env-vars:
+        - TF_LOG: debug
       outputs:
         - public_ip
         - password
