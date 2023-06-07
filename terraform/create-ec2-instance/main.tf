@@ -15,7 +15,7 @@ resource "aws_vpc" "this" {
 }
 
 resource "aws_internet_gateway" "this" {
-  vpc_id = aws_vpc.this.id
+  avpc_id = aws_vpc.this.id
 }
 
 resource "aws_route_table" "this" {
