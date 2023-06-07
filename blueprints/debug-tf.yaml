@@ -14,8 +14,8 @@ grains:
         store: test-spec2-public
       agent:
         name: '{{.inputs.compute_service_name}}'
-      env-vars:
-        - TF_LOG: debug
+     # env-vars:
+      #  - TF_LOG: debug
 #       inputs:
 #         - test_input1: '["key1","val1"]'
 #         - test_input1: '{"key1":"val1"}'
