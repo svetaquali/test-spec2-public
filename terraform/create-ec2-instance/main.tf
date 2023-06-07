@@ -15,7 +15,7 @@ resource "aws_vpc" "this" {
 }
 
 resource "aws_internet_gateway" "this" {
-  avpc_id = aws_vpc.this.id
+  vpc_id = aws_vpc.this.id
 }
 
 resource "aws_route_table" "this" {
@@ -83,7 +83,7 @@ resource "random_password" "password" {
 }
 
 resource "aws_instance" "this" {
-  ami             = var.ami != "" ? var.ami : data.aws_ami.ubuntu.id
+  kami             = var.ami != "" ? var.ami : data.aws_ami.ubuntu.id
   instance_type   = var.instance_type
   subnet_id       = aws_subnet.this.id
   security_groups = [aws_security_group.allow_ssh.id]
