@@ -53,5 +53,5 @@ grains:
       inputs:
         - region: eu-west-1        
         - object_key: 'object-key'
-        - bucket_name: {{ .inputs.bucket_name }}
-        - content: {{ .inputs.content }}
+        - bucket_name: '{{ .inputs.bucket_name }}'
+        - content: '{{ .inputs.content }}'
