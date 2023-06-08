@@ -13,9 +13,9 @@ locals {
 resource "aws_s3_bucket_object" "object" {
   bucket  = "${var.bucket_name}"
   key     = "${var.object_key}.json"
-  #content = "{ \"Content\": \"${var.CONTENT}\"}"
+  #content = "{ \"Content\": \"${var.content}\"}"
   content = <<EOF
-Content: ${var.CONTENT}
+Content: ${var.content}
 EOF
   
   tags = merge(
