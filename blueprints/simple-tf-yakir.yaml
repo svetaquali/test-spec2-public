@@ -82,17 +82,6 @@ grains:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - test_input2: "input2"
-      scripts: 
-        pre-tf-init:
-          source:
-            store: test-spec2-public
-            path : scripts/tomerv_user_script.sh
-          arguments: "value"
-        pre-tf-destroy:
-          source:
-            store: test-spec2-public
-            path : scripts/tomerv_user_script.sh
-          arguments: "value" 
           
   tf5:
     kind: terraform
@@ -103,15 +92,4 @@ grains:
       agent:
         name: '{{.inputs.compute_service_name}}'
       inputs:
-        - test_input2: "input2"
-      scripts: 
-        pre-tf-init:
-          source:
-            store: test-spec2-public
-            path : scripts/tomerv_user_script.sh
-          arguments: "value"
-        pre-tf-destroy:
-          source:
-            store: test-spec2-public
-            path : scripts/tomerv_user_script.sh
-          arguments: "value"             
+        - test_input2: "input2"           
