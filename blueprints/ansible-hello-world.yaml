@@ -15,10 +15,9 @@ grains:
       agent:
         name: '{{ .inputs.agent }}'
       inventory-file:
-        all:
-          hosts:
-            localhost:
-              vars:
-                ansible_connection: local
+        hosts:
+          localhost:
+            vars:
+              ansible_connection: local
 
 
