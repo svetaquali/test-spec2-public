@@ -10,7 +10,7 @@ grains:
     kind: ansible
     spec: 
       source:
-        # store: test-spec2-public
+        store: test-spec2-public
         path: ansible/hello_world.yaml
       agent:
         name: '{{ .inputs.agent }}'
