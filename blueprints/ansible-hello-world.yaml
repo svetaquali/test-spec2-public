@@ -14,8 +14,8 @@ grains:
         path: ansible/hello_world.yaml
       agent:
         name: '{{ .inputs.agent }}'
-      inventory-file:
-        localhost:
-          hosts:
-            127.0.0.1:
-              ansible_connection: local
+      # inventory-file:
+      #   localhost:
+      #     hosts:
+      #       127.0.0.1:
+      #         ansible_connection: local
