@@ -24,8 +24,7 @@ grains:
         # store: autogen_repo_sandbox_3416a76b
         path: github.com/QualiNext/terraform/s3-write
       agent:
-        # '{{.inputs.compute_service_name}}'
-        name: '{{.params.default_compute_service}}'
+        name: '{{.inputs.compute_service_name}}'
       tags:
 #         auto-tag: true
 #         disable-tags-for:
