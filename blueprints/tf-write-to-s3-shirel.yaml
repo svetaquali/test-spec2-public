@@ -14,7 +14,7 @@ inputs:
 
 outputs:
   the_output:
-    value: 'in {{envId}}, used bucket {{.inputs.bucket_name}} and parameters: param1={{.params.param1}}, snowflake={{params.snowflake}}, space_param={{params.space_param}}'
+    value: 'in {{envId}}, used bucket {{.inputs.bucket_name}}'
 
 grains:
   s3-write:
@@ -33,4 +33,4 @@ grains:
       inputs:
         - BUCKET_NAME: '{{.inputs.bucket_name}}'
         - SANDBOX_ID: '{{envId}}'
-        - CONTENT: '{{.inputs.content}} {{.params.param1}}'
+        - CONTENT: '{{.inputs.content}} {{blueprintName}} {{environmentName}} {{EnvironmentCollaborators}} {{ownerEmail}}'
