@@ -32,4 +32,4 @@ grains:
       inputs:
         - BUCKET_NAME: '{{.inputs.bucket_name}}'
         - SANDBOX_ID: '{{envId}}'
-        - CONTENT: '{{.inputs.content}} {{accountid}} {{spaceid}} {{blueprintName}} {{environmentName}} {{EnvironmentCollaborators}} {{ownerEmail}}'
+        - CONTENT: '{{.inputs.content}} {{accountname}} {{spacename}} {{blueprintName}} {{environmentName}} {{ownerEmail}}'
