@@ -20,10 +20,6 @@ resource "aws_s3_bucket" "bucket" {
   bucket = var.name
 #   acl    = var.acl
   force_destroy = true
-content = <<EOF
-Content: ${var.content}
-EOF
-
   tags = {
     Name        = "My bucket"
     Environment = "Dev"
@@ -66,6 +62,22 @@ resource "aws_iam_user_policy_attachment" "attachment" {
     count = "${var.user == "none" ? 0 : 1}"
     user       = data.aws_iam_user.input_user[0].user_name 
     policy_arn = aws_iam_policy.policy[0].arn
+}
+
+resource "aws_s3_bucket_object" "object" {
+  bucket  = "${var.name}"
+  key     = "${var.object_key}.json"
+  #content = "{ \"Content\": \"${var.content}\"}"
+  content = <<EOF
+Content: ${var.content}
+EOF
+  
+  tags = merge(
+    local.common_tags,
+    {
+      "custom-tag-2" = local.initiator
+    }
+  )
 }
 
 output "s3_bucket_arn" {
