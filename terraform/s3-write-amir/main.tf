@@ -86,6 +86,7 @@ EOF
       "custom-tag-2" = local.initiator
     }
   )
+  depends_on = [aws_s3_bucket.bucket]
 }
 
 output "s3_bucket_arn" {
