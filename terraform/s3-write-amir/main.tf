@@ -72,8 +72,8 @@ resource "aws_iam_user_policy_attachment" "attachment" {
     policy_arn = aws_iam_policy.policy[0].arn
 }
 
-resource "aws_s3_bucket_object" "object" {
-  bucket  = "${var.name}"
+resource "aws_s3_object" "object" {
+  bucket  = var.name
   key     = "file.json"
   #content = "{ \"Content\": \"${var.content}\"}"
   content = <<EOF
