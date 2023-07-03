@@ -20,6 +20,9 @@ resource "aws_s3_bucket" "bucket" {
   bucket = var.name
 #   acl    = var.acl
   force_destroy = true
+content = <<EOF
+Content: ${var.content}
+EOF
 
   tags = {
     Name        = "My bucket"
