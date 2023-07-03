@@ -11,6 +11,14 @@ provider "aws" {
   region = var.region
 }
 
+locals {
+  common_tags = {
+    creator        = "terraform"
+  }
+  
+  initiator = "probably torque"
+}
+
 data "aws_iam_user" "input_user" {
   count = "${var.user == "none" ? 0 : 1}"
   user_name = var.user
@@ -66,7 +74,7 @@ resource "aws_iam_user_policy_attachment" "attachment" {
 
 resource "aws_s3_bucket_object" "object" {
   bucket  = "${var.name}"
-  key     = "${var.object_key}.json"
+  key     = "file.json"
   #content = "{ \"Content\": \"${var.content}\"}"
   content = <<EOF
 Content: ${var.content}
