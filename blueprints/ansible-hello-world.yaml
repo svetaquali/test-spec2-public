@@ -4,6 +4,8 @@ description: ansible hello world
 inputs:
   agent:
     type: agent
+  name:
+    type: string
 
 grains:
   grain_1:
@@ -14,6 +16,8 @@ grains:
         path: ansible/hello_world.yaml
       agent:
         name: '{{ .inputs.agent }}'
+      inputs:
+        name: '{{ .inputs.name }}'
       inventory-file:
         localhost:
           hosts:
