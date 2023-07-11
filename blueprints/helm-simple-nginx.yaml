@@ -36,7 +36,7 @@ grains:
       scripts:
         post-helm-install:
           source:
-            store: private-blueprints
+            store: test-spec2-public
             path:  scripts/post-install-script.sh
           outputs:
             - output1
