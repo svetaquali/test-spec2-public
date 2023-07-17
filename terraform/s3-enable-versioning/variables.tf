@@ -29,5 +29,5 @@ variable "user" {
 variable "enable_versioning" {
   type        = bool
   description = "Enable versioning for the S3 bucket"
-  default     = false
+  default     = true
 }
