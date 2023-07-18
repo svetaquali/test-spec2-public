@@ -4,8 +4,6 @@ description: ansible hello world
 inputs:
   agent:
     type: agent
-  name:
-    type: string
 
 grains:
   grain_1:
