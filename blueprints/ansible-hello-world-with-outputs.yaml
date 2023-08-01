@@ -7,6 +7,10 @@ inputs:
   name:
     type: string
 
+outputs:
+  ansible_output1:
+    value: '{{.grains.grain_1.outputs.output1}}'
+
 grains:
   grain_1:
     kind: ansible
@@ -23,3 +27,5 @@ grains:
           hosts:
             127.0.0.1:
               ansible_connection: local
+      outputs:
+        - output1
