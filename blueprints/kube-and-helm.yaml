@@ -9,13 +9,16 @@ outputs:
 
 inputs:
   namespace:
-    type: string    
+    type: string
+    default: ''
   runner_namespace:
     type: string      
+    default: ''
   service_account:
-    type: string        
+    type: string
+    default: ''
   execution_host:
-    type: agent    
+    type: agent
     description: the name of the execution host to be used
   release_name:
     type: string
