@@ -1,0 +1,54 @@
+spec_version: 2-preview
+
+description: simple helm and kubernetes grains
+
+
+outputs:
+ generic_output:
+   value: '{{.inputs.generic_input}}'
+
+inputs:
+  namespace:
+    type: string    
+  execution_host:
+    type: agent    
+    description: the name of the execution host to be used
+  release_name:
+    type: string
+    default: ''
+    description: the name of helm release
+  generic_input:
+    type: string
+    default: nothing
+    description: an input for testing
+  replica_count:
+    type: string
+    default: 1
+    description: passing the replica set to the helm chart
+
+grains:
+  helloHelm:
+    kind: helm
+    spec:
+      source:
+        store: test-spec2-public
+        path: helm/nginx-test
+#         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx-test
+      agent:
+        name: '{{.inputs.execution_host}}'
+      commands:
+        - dep up helm/nginx-test
+      release: '{{.inputs.release_name}}'
+      namespace: '{{.inputs.namespace}}'
+      inputs:
+        - replicaCount: '{{.inputs.replica_count}}'
+        - image.debug: 'true'
+
+  helloKubernetes:
+    kind: kubernetes
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public.git//manifests/nginx1/nginxmanifest.yaml
+      namespace: '{{ .inputs.namespace }}'
+      agent:
+        name: '{{.inputs.execution_host}}'
