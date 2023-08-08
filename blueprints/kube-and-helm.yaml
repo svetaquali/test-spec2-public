@@ -10,6 +10,10 @@ outputs:
 inputs:
   namespace:
     type: string    
+  runner_namespace:
+    type: string      
+  service_account:
+    type: string        
   execution_host:
     type: agent    
     description: the name of the execution host to be used
@@ -34,12 +38,15 @@ grains:
         store: test-spec2-public
         path: helm/nginx-test
 #         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx-test
+      namespace: '{{.inputs.namespace}}'
       agent:
         name: '{{.inputs.execution_host}}'
+        runner-namespace: '{{ .inputs.runner_namespace }}'
+        service-account: '{{ .inputs.service_account }}'        
       commands:
         - dep up helm/nginx-test
       release: '{{.inputs.release_name}}'
-      namespace: '{{.inputs.namespace}}'
+      
       inputs:
         - replicaCount: '{{.inputs.replica_count}}'
         - image.debug: 'true'
@@ -49,6 +56,8 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public.git//manifests/nginx1/nginxmanifest.yaml
-      namespace: '{{ .inputs.namespace }}'
+      target-namespace: '{{ .inputs.namespace }}'
       agent:
         name: '{{.inputs.execution_host}}'
+        runner-namespace: '{{ .inputs.runner_namespace }}'
+        service-account: '{{ .inputs.service_account }}'        
