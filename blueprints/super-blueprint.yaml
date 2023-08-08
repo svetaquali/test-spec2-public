@@ -86,7 +86,7 @@ grains:
     kind: terraform
     spec:
       source:
-        path: terraform/error-tf-module
+        path: terraform/simple-tf-module
         store: test-spec2-public
       agent:
         name: '{{.inputs.execution_host2}}'
