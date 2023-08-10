@@ -45,7 +45,7 @@ grains:
       agent:
         name: '{{.inputs.execution_host}}'
      #   runner-namespace: '{{ .inputs.runner_namespace }}'
-        service-account: '{{ .inputs.service_account }}'        
+     #   service-account: '{{ .inputs.service_account }}'        
       commands:
         - dep up helm/nginx-test
       release: '{{.inputs.release_name}}'
