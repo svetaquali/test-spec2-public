@@ -41,10 +41,10 @@ grains:
         store: test-spec2-public
         path: helm/nginx-test
 #         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx-test
-      namespace: '{{.inputs.namespace}}'
+   #   namespace: '{{.inputs.namespace}}'
       agent:
         name: '{{.inputs.execution_host}}'
-        runner-namespace: '{{ .inputs.runner_namespace }}'
+     #   runner-namespace: '{{ .inputs.runner_namespace }}'
         service-account: '{{ .inputs.service_account }}'        
       commands:
         - dep up helm/nginx-test
@@ -60,8 +60,8 @@ grains:
       source:
         path: github.com/QualiNext/test-spec2-public.git//manifests/nginx1/nginxmanifest.yaml
       # target-namespace: '{{ .inputs.namespace }}'
-      namespace: '{{ .inputs.namespace }}'
+   #   namespace: '{{ .inputs.namespace }}'
       agent:
         name: '{{.inputs.execution_host}}'
   #      runner-namespace: '{{ .inputs.runner_namespace }}'
-        service-account: '{{ .inputs.service_account }}'        
+    #    service-account: '{{ .inputs.service_account }}'        
