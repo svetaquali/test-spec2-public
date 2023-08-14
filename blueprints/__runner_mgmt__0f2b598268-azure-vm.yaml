@@ -9,6 +9,10 @@ inputs:
     type: string
     default: "MyVM1"
     display-style: normal
+  resource_group1:
+    type: string
+    default: "rg_test1"
+    display-style: normal   
   vm_name2:
     type: string
     default: "MyVM2"
@@ -18,30 +22,31 @@ inputs:
 outputs:
   vm1_name:
     value: '{{.grains.vm1.outputs.vm_id}}'
-  vm2_name:
-    value: '{{.grains.vm2.outputs.vm_id}}'  
+  # vm2_name:
+  #   value: '{{.grains.vm2.outputs.vm_id}}'  
 
 grains:
   vm1:
     kind: terraform
     spec:
       source:
-        path: github.com/QualiNext/test-spec2-public.git//terraform/azure-vm
+        path: github.com/QualiNext/test-spec2-public.git//terraform/azure_vm_legacy_wi
       agent:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - vm_name: '{{.inputs.vm_name1}}'        
+        - resource_group: '{{.inputs.resource_group1}}'        
       outputs:
         - vm_id
         
-  vm2:
-    kind: terraform
-    spec:
-      source:
-        path: github.com/QualiNext/test-spec2-public.git//terraform/azure-vm
-      agent:
-        name: '{{.inputs.compute_service_name}}'
-      inputs:
-        - vm_name: '{{.inputs.vm_name2}}'        
-      outputs:
-        - vm_id
+  # vm2:
+  #   kind: terraform
+  #   spec:
+  #     source:
+  #       path: github.com/QualiNext/test-spec2-public.git//terraform/azure_vm_legacy_wi
+  #     agent:
+  #       name: '{{.inputs.compute_service_name}}'
+  #     inputs:
+  #       - vm_name: '{{.inputs.vm_name2}}'        
+  #     outputs:
+  #       - vm_id
