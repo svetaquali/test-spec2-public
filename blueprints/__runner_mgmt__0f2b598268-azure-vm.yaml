@@ -1,0 +1,49 @@
+spec_version: 2-preview
+
+description: deploy azure vm
+
+inputs:
+  compute_service_name:
+    type: string
+    default: "eks"
+    display-style: normal
+  vm_name1:
+    type: string
+    default: "MyVM1"
+    display-style: normal
+  vm_name2:
+    type: string
+    default: "MyVM2"
+    display-style: normal
+
+
+outputs:
+  vm1_name:
+    value: '{{.grains.vm1.outputs.vm_id}}'
+  vm2_name:
+    value: '{{.grains.vm2.outputs.vm_id}}'  
+
+grains:
+  vm1:
+    kind: terraform
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public.git//terraform/azure-vm
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - vm_name: '{{.inputs.vm_name1}}'        
+      outputs:
+        - vm_id
+        
+  vm2:
+    kind: terraform
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public.git//terraform/azure-vm
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - vm_name: '{{.inputs.vm_name2}}'        
+      outputs:
+        - vm_id
