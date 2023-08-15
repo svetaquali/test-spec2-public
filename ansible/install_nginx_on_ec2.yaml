@@ -4,8 +4,12 @@
   gather_facts: false
   connection: ssh
   tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
     - name: Install Nginx
-      yum:
+      apt:
         name: nginx
         state: present
 
