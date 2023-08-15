@@ -1,0 +1,17 @@
+---
+- name: Configure EC2 Instance
+  hosts: "{{ ec2_ip }}"
+  remote_user: "{{ user }}"
+  become: yes
+
+  tasks:
+    - name: Install Nginx
+      yum:
+        name: nginx
+        state: present
+
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
