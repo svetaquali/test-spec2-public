@@ -2,7 +2,14 @@
 - name: Configure EC2 Instance
   hosts: all
   connection: ssh
+  gather_facts: no
   tasks:
+    - name: Wait for system to become reachable
+      wait_for_connection:
+
+    - name: Gather facts for the first time
+      setup:
+    
     - name: Update apt cache
       apt:
         update_cache: yes
