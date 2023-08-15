@@ -1,7 +1,6 @@
 ---
 - name: Configure EC2 Instance
   hosts: all
-  gather_facts: false
   connection: ssh
   tasks:
     - name: Update apt cache
