@@ -6,29 +6,28 @@ inputs:
     type: agent
 
 grains:
-  grains:
-    create-ec2:
-      kind: terraform
-      spec:
-        source:
-          path: terraform/create-ec2-instance
-          store: test-spec2-public
-        agent:
-          name: '{{.inputs.agent}}'
-        env-vars:
-          - TF_LOG: debug
-        outputs:
-          - public_ip
-          
-    install-nginx:
-      kind: ansible
-      depends-on: create-ec2
-      spec: 
-        source:
-          store: test-spec2-public
-          path: ansible/install_nginx_on_ec2.yaml
-        agent:
-          name: '{{ .inputs.agent }}'
-        inputs:
-          - ec2_ip: '{{ .grains.create-ec2.outputs.public_ip }}'
-          - user: 'ubuntu'
+  create-ec2:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/create-ec2-instance
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.agent}}'
+      env-vars:
+        - TF_LOG: debug
+      outputs:
+        - public_ip
+        
+  install-nginx:
+    kind: ansible
+    depends-on: create-ec2
+    spec: 
+      source:
+        store: test-spec2-public
+        path: ansible/install_nginx_on_ec2.yaml
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - ec2_ip: '{{ .grains.create-ec2.outputs.public_ip }}'
+        - user: 'ubuntu'
