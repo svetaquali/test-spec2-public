@@ -1,9 +1,8 @@
 ---
 - name: Configure EC2 Instance
-  hosts: "{{ ec2_ip }}"
-  remote_user: "{{ user }}"
-  become: yes
-
+  hosts: all
+  gather_facts: false
+  connection: ssh
   tasks:
     - name: Install Nginx
       yum:
