@@ -33,8 +33,9 @@ grains:
   vm1:
     kind: terraform
     spec:
-      source:
-        path: github.com/QualiNext/test-spec2-public.git//terraform/azure_vm_legacy_wi
+      source:        
+        store: test-spec2-public
+        path: terraform/azure_vm_legacy_wi
       agent:
         name: '{{.inputs.compute_service_name}}'
       inputs:
