@@ -91,12 +91,12 @@ resource "aws_instance" "this" {
 }
 
 data "aws_instance" "this_running" {
-  filter = {
+  filter {
     name =  "instance-state-name"
     values = ["running"]
   }
 
-  instance_ids = [aws_instance.this.id]
-  
+  instance_id = aws_instance.this.id
+
   depends_on = [aws_instance.this]
 }
