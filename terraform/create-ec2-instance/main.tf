@@ -96,6 +96,7 @@ data "aws_instance" "this_running" {
     values = ["running"]
   }
 
-  instance_id = [aws_instance.this.id]
+  instance_ids = [aws_instance.this.id]
+  
   depends_on = [aws_instance.this]
 }
