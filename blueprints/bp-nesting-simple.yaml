@@ -19,8 +19,8 @@ grains:
 #       agent:
 #         name: '{{.inputs.compute_service_name}}'
       inputs:
-        - compute_service_name: '{{.inputs.compute_service_name}}'     
-        
+        - compute_service_name: '{{.inputs.compute_service_name}}'
+
   tf:
    kind: terraform
    depends-on: bp

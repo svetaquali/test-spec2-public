@@ -52,7 +52,7 @@ grains:
     spec:
       source:
         path: https://github.com/QualiSystemsLab/terraform-modules.git//rds
-      agent:
+      host:
         cloud-account: '{{.inputs.account}}'
         compute-service: '{{.inputs.compute}}'
       inputs:
@@ -74,7 +74,7 @@ grains:
     spec: 
       source:
         path: https://github.com/QualiSystemsLab/terraform-modules.git//s3
-      agent:
+      host:
         cloud-account: '{{.inputs.account}}'
         compute-service: '{{.inputs.compute}}'
       inputs:
@@ -88,7 +88,7 @@ grains:
     spec:
       source:
         path: https://github.com/QualiSystemsLab/Torque-Project-Pivot.git//robotShop
-      agent:
+      host:
         cloud-account: '{{.inputs.account}}'
         compute-service: '{{.inputs.compute}}'
       # commands:
