@@ -89,14 +89,3 @@ resource "aws_instance" "this" {
   security_groups = [aws_security_group.allow_ssh.id]
   user_data       = templatefile("${path.module}/ssh-authentication.tftpl", {"password" = random_password.password[0].result})
 }
-
-data "aws_instance" "this_running" {
-  filter {
-    name =  "instance-state-name"
-    values = ["running"]
-  }
-
-  instance_id = aws_instance.this.id
-
-  depends_on = [aws_instance.this]
-}
