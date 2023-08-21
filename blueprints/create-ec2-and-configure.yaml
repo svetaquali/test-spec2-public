@@ -57,4 +57,5 @@ grains:
   outputs:
     nginx:
       value: '{{ .grains.install-nginx.outputs.nginx_service_result }}'
+      kind: regular
               
