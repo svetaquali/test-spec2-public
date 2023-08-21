@@ -41,7 +41,7 @@ grains:
         - connection_delay: '{{ .inputs.connection_delay }}'
         - connection_timeout: '{{ .inputs.connection_timeout }}'
       inventory-file:
-        ec2-instances:
+        ec2_instances:
           hosts:
             ec2_instance_1:
               ansible_host: '{{ .grains.create-ec2.outputs.public_ip }}'
@@ -51,7 +51,7 @@ grains:
               ansible_become_method: sudo
               ansible_become_pass: '{{ .grains.create-ec2.outputs.password }}'
         local:
-          host:   
+          hosts:   
             localhost:
               ansible_connection: local
               
