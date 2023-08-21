@@ -30,4 +30,4 @@
     - name: Export outputs
       torque.collections.export_torque_outputs:
         outputs: 
-          nginx_service_result: '{{ nginx_service_result }}'
+          nginx_service_result: '{{ hostvars["ec2-instances"]["nginx_service_result"] }}'
