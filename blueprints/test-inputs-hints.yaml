@@ -1,0 +1,23 @@
+spec_version: 2-preview
+description: Multi-grain blueprint demo
+
+inputs:
+  no_field:
+    type: string
+    default: "value0"
+  one_field:
+    type: string
+    default: "value1"
+  two_fields:
+    type: string
+    description: Just a wn input with 2 fields
+    default: "value2"
+  three_fields:
+    type: string
+    description: Just a wn input with 3 fields
+    default: "value3"
+  three_fields_2:
+    type: string
+    description: Just a wn input with 3 fields masked
+    default: "value4"
+
