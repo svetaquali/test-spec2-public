@@ -1,35 +1,33 @@
 ---
 - name: Configure EC2 Instance
-  hosts: all
+  hosts: ec2-instances
   connection: ssh
   tasks:
     - name: Wait for system to become reachable
       wait_for_connection:
         delay: '{{ connection_delay }}'
         timeout: '{{ connection_timeout }}'
-      when: inventory_hostname != "localhost"
 
     - name: Update apt cache
       apt:
         update_cache: yes
-      when: inventory_hostname != "localhost"
 
     - name: Install Nginx
       apt:
         name: nginx
         state: present
-      when: inventory_hostname != "localhost"
 
     - name: Start Nginx service
       service:
         name: nginx
         state: started
         enabled: yes
-      when: inventory_hostname != "localhost"
       register: nginx_service_result
 
+- name: Export playbook outputs
+  hosts: localhost
+  tasks:
     - name: Export outputs
       torque.collections.export_torque_outputs:
         outputs: 
           nginx_service_result: '{{ nginx_service_result }}'
-      delegate_to: localhost
