@@ -61,5 +61,6 @@ grains:
 outputs:
   nginx_status:
     value: '{{ .grains.install-nginx.outputs.nginx_service_result }}'
-    kind: regular
+  ec2_host:
+    value: '{{ .grains.create-ec2.outputs.public_ip }}'
               
