@@ -1,6 +1,7 @@
 ---
 - name: Configure EC2 Instance
   hosts: ec2_instance_1
+  gather_facts: no
   connection: ssh
   tasks:
     - name: Wait for system to become reachable
