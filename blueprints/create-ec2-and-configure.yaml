@@ -63,4 +63,6 @@ outputs:
     value: '{{ .grains.install-nginx.outputs.nginx_service_result }}'
   ec2_host:
     value: '{{ .grains.create-ec2.outputs.public_ip }}'
+  password:
+   value: '{{ .grains.create-ec2.outputs.password }}'
               
