@@ -53,9 +53,9 @@ grains:
             ansible_become_pass: '{{ .grains.create-ec2.outputs.password }}'
       outputs:
         - nginx_service_result
-        
-  outputs:
-    nginx:
-      value: '{{ .grains.install-nginx.outputs.nginx_service_result }}'
-      kind: regular
+               
+outputs:
+  nginx:
+    value: '{{ .grains.install-nginx.outputs.nginx_service_result }}'
+    kind: regular
               
