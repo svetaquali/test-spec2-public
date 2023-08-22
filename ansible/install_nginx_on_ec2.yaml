@@ -1,5 +1,5 @@
 ---
-- name: Configure EC2 Instance
+- name: Installed Nginx on EC2 Instance
   hosts: ec2_instance
   gather_facts: no
   connection: ssh
