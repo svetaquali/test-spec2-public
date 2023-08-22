@@ -1,6 +1,6 @@
 ---
 - name: Configure EC2 Instance
-  hosts: ec2_instance_1
+  hosts: ec2_instance
   gather_facts: no
   connection: ssh
   tasks:
@@ -31,4 +31,4 @@
     - name: Export outputs
       torque.collections.export_torque_outputs:
         outputs: 
-          nginx_service_result: '{{ hostvars["ec2_instance_1"]["nginx_service_result"]["status"] }}'
+          nginx_service_result: '{{ hostvars["ec2_instance"]["nginx_service_result"]["status"] }}'
