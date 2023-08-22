@@ -4,6 +4,17 @@ inputs:
   compute_service_name:
     type: agent
 
+outputs:
+  output1:
+    value: "http://www.google.com"
+    kind: link
+    quick: true
+  output2:
+    value: '{{.inputs.compute_service_name}}'
+    kind: link
+    quick: true
+    
+
 grains:
   tf1:
     kind: terraform
