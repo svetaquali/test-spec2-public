@@ -25,7 +25,7 @@ inputs:
   namespace:
     type: string
     display-style: normal
-    default: "meir-sandboxes"
+    default: "shirel-sandboxes"
     description: "Kubernetes namespace for sandbox to be ran in"
 
 grains:
@@ -45,7 +45,7 @@ grains:
             - echo "hello command 1"
             # - echo "hello command 2"
             # - echo "hello command 3"
-            # - sleep 300s
+            - sleep 300s
             # - echo "hello command 4"
             # - echo "hello command 5"
             # - echo "hello command 6"
