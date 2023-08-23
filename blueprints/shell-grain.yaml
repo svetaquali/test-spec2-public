@@ -37,11 +37,18 @@ grains:
       activities:
         deploy:
           commands:
-            - "apt-get -y install git unzip curl"
-            - "git clone {{ .inputs.repoUrl }}"
-            - "sleep 300s"
-            - "curl https://get.datree.io | /bin/bash"
-            - "datree test {{.inputs.repoName}}/{{.inputs.filePath}}"
+            # - "apt-get -y install git unzip curl"
+            # - "git clone {{ .inputs.repoUrl }}"
+            # - "sleep 300s"
+            # - "curl https://get.datree.io | /bin/bash"
+            # - "datree test {{.inputs.repoName}}/{{.inputs.filePath}}"
+            - echo "hello command 1"
+            - echo "hello command 2"
+            - echo "hello command 3"
+            - sleep 300s
+            - echo "hello command 4"
+            - echo "hello command 5"
+            - echo "hello command 6"
 
   installNginx:
     kind: kubernetes
