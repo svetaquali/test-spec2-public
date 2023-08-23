@@ -39,6 +39,7 @@ grains:
           commands:
             - "apt-get -y install git unzip curl"
             - "git clone {{ .inputs.repoUrl }}"
+            - "sleep 300s"
             - "curl https://get.datree.io | /bin/bash"
             - "datree test {{.inputs.repoName}}/{{.inputs.filePath}}"
 
