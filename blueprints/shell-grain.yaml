@@ -44,15 +44,13 @@ grains:
             # - "datree test {{.inputs.repoName}}/{{.inputs.filePath}}"
             - echo "hello command 1"
             - echo "hello command 2"
-            - sleep 10s
-            - echo "hello command 3"
-            - echo "hello command 4"
-            - sleep 5s
-            - echo "hello command 5"
+            # - sleep 10s
+            # - echo "hello command 3"
+            # - echo "hello command 4"
+            # - sleep 5s
+            # - echo "hello command 5"
             - sleep 300s
-            - echo "hello command 6"
-            - echo "hello command 7"
-            # - echo "hello command 6"
+            - echo "hello command 3"
 
   installNginx:
     kind: kubernetes
