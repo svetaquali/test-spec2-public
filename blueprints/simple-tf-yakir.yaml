@@ -13,6 +13,10 @@ outputs:
     value: '{{.inputs.compute_service_name}}'
     kind: link
     quick: true
+  output3:
+    value: 'http://my-env-{{ sandboxid }}/some/api'
+    kind: link
+    quick: true    
     
 
 grains:
