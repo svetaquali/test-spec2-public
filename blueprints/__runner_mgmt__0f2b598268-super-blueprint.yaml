@@ -16,14 +16,12 @@ outputs:
 inputs:
   namespace:
     type: string
-    default: yakir-agent
+    default: yakir-test
   execution_host1:
-    type: string
-    default: yakir-eks
+    type: agent    
     description: must be k8s
   execution_host2:
-    type: string
-    default: yakir-eks
+    type: agent    
     description: can be k8s or docker
   service_account:
     type: string
