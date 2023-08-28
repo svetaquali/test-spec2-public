@@ -1,0 +1,179 @@
+spec_version: 2-preview
+
+description: description text
+
+
+outputs:
+ generic_output:
+   value: '{{.inputs.generic_input}}'
+ kubernetes_output:
+   value: '{{.grains.kubernetes1.scripts.post-kubernetes-install.outputs.testoutput}}'
+ helm_output:
+   value: '{{.grains.helm3.scripts.post-helm-install.outputs.testoutput}}'
+ terraform_output:
+   value: '{{.grains.terraform2.outputs.output1}}'
+
+inputs:
+  namespace:
+    type: string
+    default: yakir-agent
+  execution_host1:
+    type: string
+    default: yakir-eks
+    description: must be k8s
+  execution_host2:
+    type: string
+    default: yakir-eks
+    description: can be k8s or docker
+  service_account:
+    type: string
+    default: default
+  release_name:
+    type: string
+    default: ''
+    description: the name of helm release
+  generic_input:
+    type: string
+    default: nothing
+    description: an input for testing
+  secret_input:
+    type: string
+    sensitive: true
+    display-style: masked
+    default: my-secret
+    description: secret input for testing  
+
+
+# Dependencies Schema
+#
+#                                                  /-----> terraform3
+#   terraform1 -------\_________> terraform2 -----/
+#                     /   \                       \------> helm2 -----> helm3
+#   helm1 -----------/     \---> kubernetes1
+#                                           \_____> shell1
+#
+
+grains:
+
+  terraform1:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.execution_host1}}'
+      inputs:
+        - test_input1: '{{.inputs.generic_input}}'
+        - test_input2: dontcare
+      outputs:
+        - output1
+
+  helm1:
+    kind: helm
+    spec:
+      source:
+        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+      agent:
+        name: '{{.inputs.execution_host1}}'
+      commands:
+        - dep up chart/hello
+      release: '{{.inputs.release_name}}'
+      namespace: '{{.inputs.namespace}}'
+
+  terraform2:
+    depends-on: terraform1, helm1
+    kind: terraform
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.execution_host2}}'
+      inputs:
+        - test_input1: '{{.inputs.generic_input}}'
+        - test_input2: dontcare
+      outputs:
+        - output1
+
+  terraform3:
+    depends-on: terraform2
+    kind: terraform
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.execution_host1}}'
+      inputs:
+        - test_input1: '{{.grains.terraform1.outputs.output1}}'
+        - test_input2: dontcare
+
+  helm2:
+    kind: helm
+    depends-on: terraform2
+    spec:
+      source:
+        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+      agent:
+        name: '{{.inputs.execution_host1}}'
+        service-account: '{{.inputs.service_account}}'
+      commands:
+        - dep up chart/hello
+      release: '{{.inputs.release_name}}'
+      namespace: '{{.inputs.namespace}}'
+
+  helm3:
+    kind: helm
+    depends-on: helm2
+    spec:
+      source:
+        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+      agent:
+        name: '{{.inputs.execution_host1}}'
+      commands:
+        - dep up chart/hello
+      release: '{{.inputs.release_name}}'
+      namespace: '{{.inputs.namespace}}'
+      scripts:
+        post-helm-install:
+          source:
+            store: test-spec2-public
+            path: scripts/sample-k8s.sh
+          arguments: '{{ .inputs.generic_input }}'
+          outputs:
+            - testoutput
+
+  kubernetes1:
+    kind: kubernetes
+    depends-on: terraform1, helm1
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml
+      namespace: '{{ .inputs.namespace }}'
+      env-vars:
+        - test: newValue
+      agent:
+        name: '{{.inputs.execution_host1}}'
+      #         service-account: "yakirl-sa"
+      tags:
+        auto-tag: false
+      scripts:
+        post-kubernetes-install:
+          source:
+            store: test-spec2-public
+            path: scripts/sample-k8s.sh
+          arguments: '{{ .inputs.generic_input }}'
+          outputs:
+            - testoutput
+
+  shell1:
+    kind: shell
+    depends-on: kubernetes1
+    spec:
+      agent:
+        name: '{{.inputs.execution_host1}}'
+      activities:
+        deploy:
+          commands:
+            - echo environment id '{{ sandboxid | downcase }}'
