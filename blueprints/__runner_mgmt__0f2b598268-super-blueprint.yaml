@@ -47,8 +47,10 @@ inputs:
 #                                                  /-----> terraform3
 #   terraform1 -------\_________> terraform2 -----/
 #                     /   \                       \------> helm2 -----> helm3
-#   helm1 -----------/     \---> kubernetes1
-#                                           \_____> shell1
+#   helm1 -----------/     \---> kubernetes1                        /
+#        \                                  \_____> shell1         /
+#          \                                                      /
+#            -----------------> bp  -----------------------------/
 #
 
 grains:
@@ -78,6 +80,15 @@ grains:
         - dep up chart/hello
       release: '{{.inputs.release_name}}'
       namespace: '{{.inputs.namespace}}'
+
+  bp:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprints/__runner_mgmt__0f2b598268-tf-simple.yaml
+        store: test-spec2-public
+      inputs:
+        - compute_service_name: '{{.inputs.execution_host1}}'
 
   terraform2:
     depends-on: terraform1, helm1
