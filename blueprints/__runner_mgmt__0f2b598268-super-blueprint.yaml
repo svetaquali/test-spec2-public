@@ -82,6 +82,7 @@ grains:
       namespace: '{{.inputs.namespace}}'
 
   bp:
+    depends-on: helm1
     kind: blueprint
     spec:
       source:
