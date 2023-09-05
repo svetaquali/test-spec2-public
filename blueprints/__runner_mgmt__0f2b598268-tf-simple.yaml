@@ -14,5 +14,6 @@ grains:
         store: test-spec2-public
       agent:
         name: '{{.inputs.compute_service_name}}'
+        isolated: true
       inputs:
         - test_input2: "input2"      
