@@ -18,7 +18,7 @@ grains:
     kind: shell
     spec:
       agent:
-        name: {{.inputs.compute_service_name}}
+        name: '{{.inputs.compute_service_name}}'
       activities:
         deploy:
           commands:            
