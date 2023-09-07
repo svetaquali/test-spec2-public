@@ -28,7 +28,7 @@ grains:
             - echo "hello1"
             - echo "printing filesystem"
             - df
-            - echo "done
+            - echo "done"
         destroy:
           commands:
             - echo "destroying"
