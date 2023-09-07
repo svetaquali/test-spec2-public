@@ -1,0 +1,34 @@
+kind: bluperint 
+spec_version: 2-preview
+
+
+inputs:
+  compute_service_name:
+    type: agent
+    
+  repoUrl:
+    type: string
+    display-style: normal
+    default: "http://github.com/QualiNext/test-spec2-public"
+    description: "path to the repo to clone"
+
+
+grains:
+  shell1:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      activities:
+        deploy:
+          commands:            
+            # - "sleep 300s"
+            # - "curl https://get.datree.io | /bin/bash"
+            # - "datree test {{.inputs.repoName}}/{{.inputs.filePath}}"
+            - echo "hello1"
+            - echo "printing filesystem"
+            - df
+            - echo "done
+        destroy:
+          commands:
+            - echo "destroying"
