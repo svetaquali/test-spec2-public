@@ -123,6 +123,18 @@ grains:
       inputs:
         - test_input1: '{{.grains.terraform1.outputs.output1}}'
         - test_input2: dontcare
+      scripts: 
+        pre-tf-init:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+            branch: yakir-test
+          arguments: "value"
+        pre-tf-destroy:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"  
 
   helm2:
     kind: helm
