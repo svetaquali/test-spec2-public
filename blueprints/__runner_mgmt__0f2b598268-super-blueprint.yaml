@@ -96,6 +96,7 @@ grains:
 
   ansible1:
     kind: ansible
+    depends-on: terraform1
     spec: 
       source:
         store: test-spec2-public
@@ -103,7 +104,7 @@ grains:
       agent:
         name: '{{ .inputs.execution_host1 }}'
       inputs:
-        - name: '{{ .inputs.name }}'
+        - name: '{{ .inputs.generic_input }}'
       inventory-file:
         localhost:
           hosts:
