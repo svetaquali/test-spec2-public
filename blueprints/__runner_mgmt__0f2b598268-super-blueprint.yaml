@@ -11,7 +11,7 @@ outputs:
  helm_output:
    value: '{{.grains.helm3.scripts.post-helm-install.outputs.testoutput}}'
  terraform_output:
-   value: '{{.grains.terraform2.outputs.output1}}'
+   value: '{{.grains.terraform1.outputs.output1}}'
 
 inputs:
   namespace:
@@ -45,13 +45,16 @@ inputs:
 # Dependencies Schema
 #
 #                                                  /-----> terraform3
-#   terraform1 -------\_________> terraform2 -----/
+#   terraform1 -------\_________> ansible1 -----/
 #                     /   \                       \------> helm2 -----> helm3
-#   helm1 -----------/     \---> kubernetes1                        /
-#        \                                  \_____> shell1         /
-#          \                                                      /
-#            -----------------> bp  -----------------------------/
-#
+#   helm1 -----------/     \---> kubernetes1                         /
+#        \                                  \_____> shell1          /
+#          \                   __________________                  /
+#            ----------------->|   bp           |----------------/
+#                              |      \         |
+#                              |         tf1    |
+#                              |________________|
+#                                 
 
 grains:
 
@@ -91,23 +94,24 @@ grains:
       inputs:
         - compute_service_name: '{{.inputs.execution_host1}}'
 
-  terraform2:
-    depends-on: terraform1, helm1
-    kind: terraform
-    spec:
+  ansible1:
+    kind: ansible
+    spec: 
       source:
-        path: terraform/simple-tf-module
         store: test-spec2-public
+        path: ansible/hello_world.yaml
       agent:
-        name: '{{.inputs.execution_host2}}'
+        name: '{{ .inputs.execution_host1 }}'
       inputs:
-        - test_input1: '{{.inputs.generic_input}}'
-        - test_input2: dontcare
-      outputs:
-        - output1
-
+        - name: '{{ .inputs.name }}'
+      inventory-file:
+        localhost:
+          hosts:
+            127.0.0.1:
+              ansible_connection: local
+              
   terraform3:
-    depends-on: terraform2
+    depends-on: ansible1
     kind: terraform
     spec:
       source:
@@ -121,7 +125,7 @@ grains:
 
   helm2:
     kind: helm
-    depends-on: terraform2
+    depends-on: ansible1
     spec:
       source:
         path: https://github.com/open-toolchain/hello-helm.git//chart/hello
