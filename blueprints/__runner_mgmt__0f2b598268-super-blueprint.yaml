@@ -118,6 +118,7 @@ grains:
       source:
         path: terraform/simple-tf-module
         store: test-spec2-public
+        branch: yakir-test
       agent:
         name: '{{.inputs.execution_host1}}'
       inputs:
