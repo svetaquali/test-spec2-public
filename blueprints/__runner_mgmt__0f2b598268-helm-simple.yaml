@@ -14,7 +14,8 @@ grains:
     spec:
       namespace: '{{.inputs.namespace}}'
       source:
-        path: https://github.com/bitnami/charts.git//bitnami/node
+        store: test-spec2-public
+        path: helm/nginx-test        
       agent:
         name: '{{.inputs.compute_service_name}}'
       commands:
