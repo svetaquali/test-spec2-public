@@ -1,0 +1,21 @@
+spec_version: 2-preview
+
+inputs:
+  compute_service_name:
+    type: agent
+  namespace:
+    type: string
+    default: yakir-test
+     
+    
+grains:
+  helloHelm:
+    kind: helm    
+    spec:
+      namespace: '{{.inputs.namespace}}'
+      source:
+        path: https://github.com/bitnami/charts.git//bitnami/node
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      commands:
+        - dep up bitnami/node
