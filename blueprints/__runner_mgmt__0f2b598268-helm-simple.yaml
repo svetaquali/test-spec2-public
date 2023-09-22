@@ -19,4 +19,4 @@ grains:
       agent:
         name: '{{.inputs.compute_service_name}}'
       commands:
-        - dep up bitnami/node
+        - dep up helm/nginx-test
