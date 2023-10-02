@@ -42,6 +42,10 @@
 					{
 						"Key": "Tag2",
 						"Value": "Shirel2"
+					},
+					{
+						"Key": "Tag3",
+						"Value": "Shirel3"
 					}
 				]
 			}
