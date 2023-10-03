@@ -1,0 +1,23 @@
+kind: blueprint
+spec: 2
+spec_version: 2-preview
+description: Blueprint with nginx kubernetes grain.
+    
+inputs:
+  compute_service_name:
+    type: agent
+  namespace:
+    type: string
+    default: yakir-test
+    description: "Kubernetes namespace for sandbox to be ran in."
+
+
+grains:
+  nginx:
+    kind: kubernetes
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public.git//manifests/nginx1/nginxmanifest.yaml
+      namespace: '{{ .inputs.namespace }}'
+      agent:
+        name: '{{.inputs.compute_service_name}}'
