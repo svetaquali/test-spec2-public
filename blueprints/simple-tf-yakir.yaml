@@ -16,7 +16,9 @@ outputs:
   output3:
     value: 'http://my-env-{{ sandboxid }}/some/api'
     kind: link
-    quick: true    
+    quick: true
+  output4:
+    value: '{{ .params.MY_PARAM }}'
     
 
 grains:
