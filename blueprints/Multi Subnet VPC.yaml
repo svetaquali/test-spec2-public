@@ -25,8 +25,8 @@ grains:
       source:
         store: test-spec2-public
         path: cloudFormation/MultiSubnetVPC.yaml
-      # agent:
-      #   name: '{{ .inputs.agent }}'
+      agent:
+        name: '{{ .inputs.agent }}'
       inputs:
       - Region: '{{ .inputs.aws_region }}'
       env-vars: []
@@ -35,5 +35,3 @@ grains:
       - AppSubnetBID
       - DefaultSecurityGroupID
       region: '{{ .inputs.aws_region }}'
-      authentication:
-      - vido-aws
