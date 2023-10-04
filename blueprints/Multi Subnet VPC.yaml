@@ -23,7 +23,7 @@ grains:
     kind: cloudformation
     spec:
       source:
-        store: bps
+        store: test-spec2-public
         path: cloudFormation/MultiSubnetVPC.yaml
       # agent:
       #   name: '{{ .inputs.agent }}'
