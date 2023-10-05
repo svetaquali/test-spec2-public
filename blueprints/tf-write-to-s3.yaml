@@ -12,9 +12,9 @@ inputs:
     type: agent
     default: "eks"
 
-outputs:
-  the_output:
-    value: 'in {{envId}}, used bucket {{.inputs.bucket_name}} and parameters: param1={{.params.param1}}, snowflake={{params.snowflake}}, space_param={{params.space_param}}'
+# outputs:
+#   the_output:
+#     value: 'in {{envId}}, used bucket {{.inputs.bucket_name}} and parameters: param1={{.params.param1}}, snowflake={{params.snowflake}}, space_param={{params.space_param}}'
 
 grains:
   s3-write:
