@@ -9,12 +9,12 @@ inputs:
     type: string
     default: this is a default content
   compute_service_name:
-    type: agent
+    type: string
     default: "eks"
 
 # outputs:
 #   the_output:
-#     value: 'in {{envId}}, used bucket {{.inputs.bucket_name}} and parameters: param1={{.params.param1}}, snowflake={{params.snowflake}}, space_param={{params.space_param}}'
+#     value: 'in {{sandboxId}}, used bucket {{.inputs.bucket_name}} and parameters: param1={{.params.param1}}, snowflake={{params.snowflake}}, space_param={{params.space_param}}'
 
 grains:
   s3-write:
@@ -30,5 +30,5 @@ grains:
 # #         - aws_s3_bucket_object
       inputs:
         - BUCKET_NAME: '{{.inputs.bucket_name}}'
-        - SANDBOX_ID: '{{envId}}'
+        - SANDBOX_ID: '{{sandboxId}}'
         - CONTENT: '{{.inputs.content}} {{.params.param1}}'
