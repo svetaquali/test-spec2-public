@@ -9,8 +9,7 @@ inputs:
     type: string
     default: this is a default content
   compute_service_name:
-    type: string
-    default: "eks"
+    type: agent    
 
 # outputs:
 #   the_output:
