@@ -26,7 +26,7 @@
 			}
 		}
 	},
-	"Description": "Creates an S3 Bucket blah blah1",
+	"Description": "Creates an S3 Bucket blah blah12",
 	"Resources": {
 		"S3Bucket": {
 			"Type": "AWS::S3::Bucket",
