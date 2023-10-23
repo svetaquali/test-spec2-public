@@ -1,3 +1,18 @@
+Parameters:
+  BucketName:
+    Type: String
+Outputs:
+  BucketName:
+    Value: !Ref S3Bucket
+    Description: The Bucket Name
+    Export:
+      Name: !Sub "${AWS::StackName}-BucketName"
+Description: Creates an S3 Bucket
 Resources:
-  HelloBucket:
+  S3Bucket:
     Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Ref BucketName
+      Tags: 
+        - Key: TestName
+          Value: My Bucket
