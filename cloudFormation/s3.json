@@ -42,6 +42,10 @@
 					{
 						"Key": "Tag1",
 						"Value": "Shirel1"
+					},
+					{
+						"Key": "drifted-tag",
+						"Value": "drifted"
 					}
 				]
 			}
