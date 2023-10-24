@@ -86,7 +86,7 @@ Resources:
             - ','
             - Ref: AvailabilityZones
         NumberOfAZs: '2'
-        CreatePrivateSubnets: 'false'
+        CreatePrivateSubnets: 'true'
         PublicSubnet1CIDR: !FindInMap
           - DefaultConfiguration
           - NetworkConfiguration
