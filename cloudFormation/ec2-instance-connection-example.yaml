@@ -210,7 +210,7 @@ Resources:
         Variables:
           ip_ranges_url: 'https://ip-ranges.amazonaws.com/ip-ranges.json'
       Handler: "index.handler"
-      Runtime: "python3.6"
+      Runtime: "python3.9"
       Timeout: "30"
       Role: !GetAtt BasicLambdaExecutionRole.Arn
   FetchIPRange:
