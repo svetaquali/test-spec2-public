@@ -190,8 +190,7 @@ Resources:
               - Key: Name
                 Value: CustomTerminationExampleInstance            
         UserData: 
-          'Fn::Base64': 
-            !Sub 
+          'Fn::Base64': !Sub 
               - |- 
                 Content-Type: multipart/mixed; boundary="//"
                 MIME-Version: 1.0
