@@ -76,13 +76,16 @@ grains:
     kind: helm
     spec:
       source:
-        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+        store: test-spec2-public
+        path: helm/nginx        
       agent:
         name: '{{.inputs.execution_host1}}'
       commands:
         - dep up chart/hello
       release: '{{.inputs.release_name}}'
-      namespace: '{{.inputs.namespace}}'
+      namespace: '{{.inputs.namespace}}'           
+      inputs:        
+        - EnvironmentID: '{{ envid | downcase }}'
 
   bp:
     depends-on: helm1
