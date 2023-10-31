@@ -72,6 +72,7 @@ Resources:
       StaticRoutesOnly: false
       Type: ipsec.1
       VpnGatewayId: !Ref myVPNGateway
+    DependsOn: MyVPNGateway
 
 Outputs:
   CustomerGatewayId:
