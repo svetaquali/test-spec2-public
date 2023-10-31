@@ -21,7 +21,6 @@ Resources:
     Properties:
       AvailabilityZones:
         - us-east-1a
-      Engine: docdb
       MasterUsername: !Ref DBMasterUsername
       MasterUserPassword: !Ref DBMasterPassword
       BackupRetentionPeriod: 7
