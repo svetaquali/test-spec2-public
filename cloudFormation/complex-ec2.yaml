@@ -59,6 +59,11 @@ Resources:
     Properties:
       PeerVpcId: !Ref MyPeerVPC
       VpcId: !Ref MyVPC
+  
+  MyVPNGateway:
+    Type: AWS::EC2::VPNGateway
+    Properties:
+      Type: ipsec.1
 
   MyVPNConnection:
     Type: AWS::EC2::VPNConnection
@@ -67,11 +72,6 @@ Resources:
       StaticRoutesOnly: false
       Type: ipsec.1
       VpnGatewayId: !Ref myVPNGateway
-
-  MyVPNGateway:
-    Type: AWS::EC2::VPNGateway
-    Properties:
-      Type: ipsec.1
 
 Outputs:
   CustomerGatewayId:
