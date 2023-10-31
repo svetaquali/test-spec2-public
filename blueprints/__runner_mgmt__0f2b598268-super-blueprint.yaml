@@ -81,7 +81,7 @@ grains:
       agent:
         name: '{{.inputs.execution_host1}}'
       commands:
-        - dep up chart/nginx
+        - dep up helm/nginx
       release: '{{.inputs.release_name}}'
       namespace: '{{.inputs.namespace}}'           
       inputs:        
