@@ -29,7 +29,7 @@ Resources:
     Type: AWS::DocDB::DBInstance
     Properties:
       DBInstanceIdentifier: !Ref DBInstanceIdentifier
-      DBInstanceClass: db.r4.large
+      DBInstanceClass: db.r5.large
       DBClusterIdentifier: !Ref DBCluster
 
 Outputs:
