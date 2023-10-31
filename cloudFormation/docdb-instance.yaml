@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Simple CloudFormation template for Amazon DocumentDB
+
+Parameters:
+  DBInstanceIdentifier:
+    Type: String
+    Description: Identifier for the DocumentDB instance
+    Default: MyDBInstance
+  DBMasterUsername:
+    Type: String
+    Description: Master username for the DocumentDB instance
+    Default: admin
+  DBMasterPassword:
+    Type: String
+    Description: Master password for the DocumentDB instance
+    Default: MySecretPassword
+
+Resources:
+  DBCluster:
+    Type: AWS::DocDB::DBCluster
+    Properties:
+      AvailabilityZones:
+        - us-east-1a
+      Engine: docdb
+      MasterUsername: !Ref DBMasterUsername
+      MasterUserPassword: !Ref DBMasterPassword
+      BackupRetentionPeriod: 7
+
+  DBInstance:
+    Type: AWS::DocDB::DBInstance
+    Properties:
+      DBInstanceIdentifier: !Ref DBInstanceIdentifier
+      DBInstanceClass: db.r4.large
+      DBClusterIdentifier: !Ref DBCluster
+
+Outputs:
+  DBClusterEndpoint:
+    Description: Endpoint of the DocumentDB Cluster
+    Value: !GetAtt DBCluster.Endpoint
+  DBInstanceEndpoint:
+    Description: Endpoint of the DocumentDB instance
+    Value: !GetAtt DBInstance.Endpoint
