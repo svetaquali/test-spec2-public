@@ -67,7 +67,3 @@ Outputs:
   ECSTaskRoleArn:
     Description: The ARN of the ECS Task Execution Role
     Value: !GetAtt MyECSTaskRole.Arn
-
-  ECSTaskDefinitionArn:
-    Description: The ARN of the ECS Task Definition
-    Value: !GetAtt MyECSTaskDefinition.Arn
