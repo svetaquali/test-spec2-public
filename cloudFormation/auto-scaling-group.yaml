@@ -1,13 +1,48 @@
-myASG:
-  Type: AWS::AutoScaling::AutoScalingGroup
-  Properties:
-    VPCZoneIdentifier:
-    - subnetIdAz1
-    - subnetIdAz2
-    - subnetIdAz3
-    LaunchTemplate:
-      LaunchTemplateId: !Ref myLaunchTemplate
-      Version: !GetAtt myLaunchTemplate.LatestVersionNumber
-    MaxSize: '1'
-    MinSize: '0'
-    DesiredCapacity: '1'
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  ImageId:
+    Description: EC2 Image ID
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
+  InstanceType:
+    Description: EC2 Instance Type
+    Type: String
+    Default: t2.micro
+  AvailabilityZones:
+    Description: List of Availability Zones
+    Type: List<AWS::EC2::AvailabilityZone::Name>
+
+Resources:
+  MySecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Security group for EC2 instances
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          FromPort: 22
+          ToPort: 22
+          IpProtocol: tcp
+
+  MyLaunchConfiguration:
+    Type: AWS::AutoScaling::LaunchConfiguration
+    Properties:
+      ImageId: !Ref ImageId
+      InstanceType: !Ref InstanceType
+      SecurityGroups:
+        - !GetAtt MySecurityGroup.GroupId
+      KeyName: !Ref KeyName
+  
+  MyAutoScalingGroup:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      AvailabilityZones: !Ref AvailabilityZones
+      LaunchConfigurationName:
+        Ref: MyLaunchConfiguration
+      MinSize: 2
+      MaxSize: 5
+      DesiredCapacity: 2
+
+Outputs:
+  AutoScalingGroup:
+    Description: Auto Scaling Group Name
+    Value: !Ref MyAutoScalingGroup
