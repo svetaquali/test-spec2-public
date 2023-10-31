@@ -1,0 +1,70 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template for ECS resources with IAM Role
+
+Resources:
+  MyECSCluster:
+    Type: AWS::ECS::Cluster
+
+  MyECSTaskRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: ecsTaskExecutionRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: ECSPermissions
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - ecs:CreateCluster
+                  - ecs:RegisterTaskDefinition
+                  - ecs:RunTask
+                  # Add other necessary ECS permissions here
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                  # Add other necessary CloudWatch Logs permissions here
+                Resource: "*"
+              # Add permissions for other AWS services and resources as needed
+
+  MyECSTaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: MyTaskFamily
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      ExecutionRoleArn: !GetAtt MyECSTaskRole.Arn
+      ContainerDefinitions:
+        - Name: MyContainer
+          Image: nginx:latest
+          PortMappings:
+            - ContainerPort: 80
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: /ecs/my-ecs-app
+              awslogs-region: us-east-1
+
+Outputs:
+  ECSClusterName:
+    Description: The name of the ECS Cluster
+    Value: !Ref MyECSCluster
+
+  ECSTaskRoleArn:
+    Description: The ARN of the ECS Task Execution Role
+    Value: !GetAtt MyECSTaskRole.Arn
+
+  ECSTaskDefinitionArn:
+    Description: The ARN of the ECS Task Definition
+    Value: !GetAtt MyECSTaskDefinition.Arn
