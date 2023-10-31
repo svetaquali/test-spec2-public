@@ -45,6 +45,8 @@ Resources:
       RequiresCompatibilities:
         - FARGATE
       ExecutionRoleArn: !GetAtt MyECSTaskRole.Arn
+      Cpu: '256'
+      Memory: '512'
       ContainerDefinitions:
         - Name: MyContainer
           Image: nginx:latest
@@ -56,7 +58,6 @@ Resources:
               awslogs-group: /ecs/my-ecs-app
               awslogs-region: us-east-1
               awslogs-stream-prefix: my-ecs-app
-          Memory: 512
 
 Outputs:
   ECSClusterName:
