@@ -55,6 +55,7 @@ Resources:
             Options:
               awslogs-group: /ecs/my-ecs-app
               awslogs-region: us-east-1
+          Memory: 512
 
 Outputs:
   ECSClusterName:
