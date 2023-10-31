@@ -11,6 +11,12 @@ Parameters:
   AvailabilityZones:
     Description: List of Availability Zones
     Type: List<AWS::EC2::AvailabilityZone::Name>
+  SecurityGroup:
+    Description: Security Group ID
+    Type: 'AWS::EC2::SecurityGroup::Id'
+  KeyName:
+    Description: EC2 Key Pair Name
+    Type: 'AWS::EC2::KeyPair::KeyName'
 
 Resources:
   MySecurityGroup:
@@ -29,7 +35,7 @@ Resources:
       ImageId: !Ref ImageId
       InstanceType: !Ref InstanceType
       SecurityGroups:
-        - !GetAtt MySecurityGroup.GroupId
+        - !Ref SecurityGroup
       KeyName: !Ref KeyName
   
   MyAutoScalingGroup:
