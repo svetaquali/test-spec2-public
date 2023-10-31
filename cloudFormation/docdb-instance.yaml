@@ -9,7 +9,7 @@ Parameters:
   DBMasterUsername:
     Type: String
     Description: Master username for the DocumentDB instance
-    Default: admin
+    Default: mydocdbuser
   DBMasterPassword:
     Type: String
     Description: Master password for the DocumentDB instance
