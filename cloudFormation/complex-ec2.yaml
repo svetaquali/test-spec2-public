@@ -98,7 +98,3 @@ Outputs:
   VPNConnectionId:
     Description: The ID of the VPN Connection
     Value: !Ref MyVPNConnection
-
-  VPNGatewayId:
-    Description: The ID of the VPN Gateway
-    Value: !GetAtt MyVPNGateway.VpnGatewayId
