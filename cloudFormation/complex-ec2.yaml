@@ -66,7 +66,7 @@ Resources:
       CustomerGatewayId: !Ref MyCustomerGateway
       StaticRoutesOnly: false
       Type: ipsec.1
-      VpnGatewayId: !GetAtt MyVPNGateway.VpnGatewayId
+      VpnGatewayId: !Ref myVPNGateway
 
   MyVPNGateway:
     Type: AWS::EC2::VPNGateway
