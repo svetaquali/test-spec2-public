@@ -1,0 +1,11 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MyLoadBalancer:
+    Type: AWS::ElasticLoadBalancing::LoadBalancer
+    Properties:
+      AvailabilityZones:
+        - eu-west-1a
+      Listeners:
+        # - LoadBalancerPort: '80'
+        #   InstancePort: '80'
+        #   Protocol: HTTP
