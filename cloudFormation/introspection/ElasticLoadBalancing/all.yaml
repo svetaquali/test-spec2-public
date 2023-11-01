@@ -1,11 +1,16 @@
 AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  Subnets:
+    Description: "List of private subnets for the load balancer"
+    Type: List<AWS::EC2::Subnet::Id>
+    MinLength: 1
 Resources:
-  MyLoadBalancer:
+  MyInternalLoadBalancer:
     Type: AWS::ElasticLoadBalancing::LoadBalancer
     Properties:
-      AvailabilityZones:
-        - eu-west-1a
+      Subnets: !Ref Subnets
+      Scheme: internal
       Listeners:
-        # - LoadBalancerPort: '80'
-        #   InstancePort: '80'
-        #   Protocol: HTTP
+        - LoadBalancerPort: '80'
+          InstancePort: '80'
+          Protocol: HTTP
