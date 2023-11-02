@@ -1,0 +1,99 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "intended to include all resources of RDS service. currently missing: CustomDBEngineVersion, DBProxy, DBProxyEndpoint, DBProxyTargetGroup, DBSecurityGroupIngress, EventSubscription, GlobalCluster, OptionGroup",
+  "Parameters": {
+    "Password": {
+        "NoEcho": "true",
+        "Description": "Password for Aurora MySQL database access",
+        "Type": "String",
+        "MinLength": "8",
+        "MaxLength": "41",
+        "AllowedPattern": "[a-zA-Z0-9]*",
+        "ConstraintDescription": "must contain only alphanumeric characters."
+    }
+  },
+  "Resources": {
+    "MyVPC": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "10.1.0.0/16"
+      }
+    },
+    "MySubnet1": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "AvailabilityZone": { "Fn::Select": [ 0, { "Fn::GetAZs": { "Ref": "AWS::Region" } } ] },
+        "VpcId": { "Ref": "MyVPC" },
+        "CidrBlock": "10.1.1.0/24"
+      }
+    },
+    "MySubnet2": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "AvailabilityZone": { "Fn::Select": [ 1, { "Fn::GetAZs": { "Ref": "AWS::Region" } } ] },
+        "VpcId": { "Ref": "MyVPC" },
+        "CidrBlock": "10.1.2.0/24"
+      }
+    },
+    "MyDBSubnetGroup": {
+      "Type": "AWS::RDS::DBSubnetGroup",
+      "Properties": {
+        "SubnetIds": [ { "Ref": "MySubnet1" }, { "Ref": "MySubnet2" } ],
+        "DBSubnetGroupDescription": "Subnet group for RDS"
+      }
+    },
+    "MyDBSecurityGroup": {
+      "Type": "AWS::RDS::DBSecurityGroup",
+      "Properties": {
+        "DBSecurityGroupIngress" : {
+          "CIDRIP" : "192.168.0.0/32"
+        },        
+        "GroupDescription": "DB Security Group"
+      }
+    },
+    "MyDBCluster": {
+      "Type": "AWS::RDS::DBCluster",
+      "Properties": {
+        "DeletionPolicy": "Delete",
+        "Engine": "aurora-mysql",
+        "MasterUsername": "admin123",
+        "MasterUserPassword": { "Ref": "Password" },
+        "DBSubnetGroupName": { "Ref": "MyDBSubnetGroup" }
+      }
+    },
+    "MyDBClusterParameterGroup": {
+      "Type": "AWS::RDS::DBClusterParameterGroup",
+      "Properties": {
+        "Description": "DB cluster parameter group",
+        "Family": "aurora5.6",
+        "Parameters": {
+          "read_only": "true"
+        }
+      }
+    },
+    "MyDBParameterGroup": {
+      "Type": "AWS::RDS::DBParameterGroup",
+      "Properties": {
+        "Description": "DB parameter group",
+        "Family": "aurora5.6",
+        "Parameters": {
+          "read_only": "true"
+        }
+      }
+    },
+    "MyDBInstance": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "DeletionPolicy": "Delete",
+        "DBInstanceClass": "db.t2.micro",
+        "AllocatedStorage": 20,
+        "Engine": "MySQL",
+        "EngineVersion": "8.0.33",
+        "PubliclyAccessible": false,
+        "DBSubnetGroupName": { "Ref": "MyDBSubnetGroup" },
+        "MasterUsername": "admin456",
+        "MasterUserPassword": { "Ref": "Password" }
+      }
+    }
+  }
+}

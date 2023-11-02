@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "all resources of ElasticLoadBalancingV2 service, minus MyListenerCertificate",
+  "Description": "intended to include all resources of ElasticLoadBalancingV2 service. currently missing: MyListenerCertificate",
   "Resources": {
     "MyVPC": {
       "Type": "AWS::EC2::VPC",

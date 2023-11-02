@@ -1,5 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "intended to include all resources of ElasticLoadBalancing service",
   "Resources": {
     "MyVPC": {
       "Type": "AWS::EC2::VPC",
