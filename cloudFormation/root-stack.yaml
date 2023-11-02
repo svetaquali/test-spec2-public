@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Root Stack
+
+Parameters:
+  ImageId:
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
+
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+
+  NestedStack1:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://cloudformation-shirel.s3.amazonaws.com/cfn+stacks/nested-stack1.yaml
+      Parameters:
+        VPCId: !Ref VPC
+        ImageId: !Ref ImageId  # Pass ImageId to Nested Stack 1
+
+Outputs:
+  VPCId:
+    Description: VPC ID
+    Value: !Ref VPC
