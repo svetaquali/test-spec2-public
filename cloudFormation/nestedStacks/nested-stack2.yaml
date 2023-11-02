@@ -23,10 +23,5 @@ Resources:
   SubnetResource:
     Type: AWS::EC2::Subnet
     Properties:
-      VpcId: !Ref VPCId
+      VpcId: vpc-048b6d919e823c0eb
       CidrBlock: 10.0.1.0/24  # Replace with the desired subnet CIDR
-
-Outputs:
-  InstanceId:
-    Description: EC2 Instance ID
-    Value: !Ref EC2Instance

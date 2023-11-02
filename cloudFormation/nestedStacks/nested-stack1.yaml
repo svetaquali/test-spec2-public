@@ -2,8 +2,6 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: Nested Stack 1
 
 Parameters:
-  VPCId:
-    Type: String
   ImageId:
     Type: AWS::EC2::Image::Id
 
@@ -11,7 +9,6 @@ Resources:
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      VpcId: !Ref VPCId
       GroupDescription: Allow SSH access
       SecurityGroupIngress:
         - IpProtocol: tcp
@@ -26,9 +23,4 @@ Resources:
       Parameters:
         SecurityGroupId: !GetAtt SecurityGroup.GroupId
         ImageId: !Ref ImageId
-        VpcId: !Ref VPCId
-
-Outputs:
-  SecurityGroupId:
-    Description: Security Group ID
-    Value: !Ref SecurityGroup
+    DependsOn: SecurityGroup

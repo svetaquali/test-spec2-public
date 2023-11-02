@@ -7,15 +7,9 @@ Parameters:
     Default: ami-0e42de9d667b232f7
 
 Resources:
-  VPC:
-    Type: AWS::EC2::VPC
-    Properties:
-      CidrBlock: 10.0.0.0/16
-
   NestedStack1:
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL: https://cloudformation-shirel.s3.amazonaws.com/cfn%20stacks/nested-stack1.yaml
       Parameters:
-        VPCId: !GetAtt VPC.VpcId
         ImageId: !Ref ImageId  # Pass ImageId to Nested Stack 1
