@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Nested Stack 1
+
+Parameters:
+  ImageId:
+    Type: AWS::EC2::Image::Id
+
+Resources:
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH access
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 0.0.0.0/0
+  
+  NestedStack2:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://cloudformation-shirel.s3.amazonaws.com/cfn%20stacks/nested-stack2.yaml
+      Parameters:
+        SecurityGroupId: !GetAtt SecurityGroup.GroupId
+        ImageId: !Ref ImageId
+    DependsOn: SecurityGroup

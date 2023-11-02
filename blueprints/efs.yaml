@@ -1,0 +1,29 @@
+spec_version: 2
+description: cfn efs
+# blueprint inputs can be provided by the user, API or CI plugin when creating an environment from this blueprint.
+inputs:
+  agent:
+    type: agent
+  region:
+    type: string
+# blueprint outputs define which data that was generated during environment provisioning will be returned to the user, API or CI.
+outputs: {}
+grains:
+  efs:
+    kind: cloudformation
+    spec:
+      source:
+        store: test-spec2-public
+        path: cloudFormation/efs.yaml
+      agent:
+      # The Torque agent that will be used to provision the environment.
+        name: '{{ .inputs.agent }}'
+        # A service account annotated with a role ARN with permissions to run the asset
+        # service-account: <service-account-name>
+        # Will override the default value for Runners isolation
+        # isolated: <boolean>
+      # The environment variables declared in this section will be available during the grain deployment as well as the grain destroy phase
+      # env-vars:
+      # - VAR_NAME: var value
+      env-vars: []
+      region: '{{ .inputs.region }}'

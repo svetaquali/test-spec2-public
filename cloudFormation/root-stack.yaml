@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Root Stack
+
+Parameters:
+  ImageId:
+    Type: AWS::EC2::Image::Id
+    Default: ami-0e42de9d667b232f7
+
+Resources:
+  NestedStack1:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://cloudformation-shirel.s3.amazonaws.com/cfn%20stacks/nested-stack1.yaml
+      Parameters:
+        ImageId: !Ref ImageId  # Pass ImageId to Nested Stack 1

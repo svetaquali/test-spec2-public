@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Nested Stack 2
+
+Parameters:
+  SecurityGroupId:
+    Type: String
+  ImageId:
+    Type: AWS::EC2::Image::Id
+
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      SecurityGroupIds:
+        - !Ref SecurityGroupId
+      ImageId: !Ref ImageId  # Use the ImageId parameter

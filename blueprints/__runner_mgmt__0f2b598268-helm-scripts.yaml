@@ -1,0 +1,63 @@
+spec_version: 2
+
+description: description text
+
+inputs:
+  name:
+    type: string
+    default: defaultbob
+  compute_service_name:
+    type: agent
+ 
+# namespace:
+#   type: string
+#   default: "yakir-agent"
+   
+outputs: 
+  OutputHelm:
+    value: '{{.grains.helloHelm.scripts.post-helm-install.outputs.testoutput}}'
+  OutputKube:
+    value: '{{.grains.helloKube.scripts.post-kubernetes-install.outputs.testoutput}}'   
+    
+grains:
+  helloHelm:
+    kind: helm
+    spec:
+      source:
+        path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx-test
+      agent:
+        name: '{{.inputs.compute_service_name}}'       
+      commands:
+        - dep up helm/nginx-test
+      scripts:
+        post-helm-install:
+          source:
+            store: test-spec2-public
+            path:  scripts/sample-k8s.sh
+          arguments: '{{ .inputs.name }}'
+          outputs:
+            - testoutput
+      inputs:
+        - replicaSet: 1
+        - input_2: 'test'
+        - input_3: 3
+        
+  helloKube:
+    kind: kubernetes
+    spec:     
+      agent:
+        name: '{{.inputs.compute_service_name}}'       
+      source:
+        path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml              
+      env-vars:
+        - test: newValue
+      tags:
+        auto-tag: false           
+      scripts:
+        post-kubernetes-install:
+          source:
+            store: test-spec2-public
+            path:  scripts/sample-k8s.sh
+          arguments: '{{ .inputs.name }}'
+          outputs:
+            - testoutput      
