@@ -17,10 +17,5 @@ Resources:
     Properties:
       TemplateURL: https://cloudformation-shirel.s3.amazonaws.com/cfn%20stacks/nested-stack1.yaml
       Parameters:
-        VPCId: !Ref VPC
+        VPCId: !GetAtt VPC.VpcId
         ImageId: !Ref ImageId  # Pass ImageId to Nested Stack 1
-
-Outputs:
-  VPCId:
-    Description: VPC ID
-    Value: !Ref VPC
