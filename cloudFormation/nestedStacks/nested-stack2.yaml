@@ -2,8 +2,6 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: Nested Stack 2
 
 Parameters:
-  VPCId:
-    Type: String
   SecurityGroupId:
     Type: String
   ImageId:
@@ -16,12 +14,4 @@ Resources:
       InstanceType: t2.micro
       SecurityGroupIds:
         - !Ref SecurityGroupId
-      SubnetId: !GetAtt SubnetResource.SubnetId
       ImageId: !Ref ImageId  # Use the ImageId parameter
-    DependsOn: SubnetResource
-
-  SubnetResource:
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId: vpc-048b6d919e823c0eb
-      CidrBlock: 10.0.1.0/24  # Replace with the desired subnet CIDR
