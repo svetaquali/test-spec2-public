@@ -8,9 +8,6 @@ Parameters:
   UserName:
     Description: Name of the IAM User
     Type: String
-  InstanceProfileName:
-    Description: Name of the IAM Instance Profile
-    Type: String
 
 Resources:
   MyIAMGroup:
@@ -26,7 +23,6 @@ Resources:
   MyInstanceProfile:
     Type: AWS::IAM::InstanceProfile
     Properties:
-      InstanceProfileName: !Ref InstanceProfileName
       Roles:
         - !GetAtt MyIAMGroup.Arn  # Associate the IAM Group with the Instance Profile
     DependsOn: MyIAMGroup
