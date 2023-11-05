@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Minimal IAM Resources Template
+
+Parameters:
+  GroupName:
+    Description: Name of the IAM Group
+    Type: String
+  UserName:
+    Description: Name of the IAM User
+    Type: String
+  InstanceProfileName:
+    Description: Name of the IAM Instance Profile
+    Type: String
+
+Resources:
+  MyIAMGroup:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: !Ref GroupName
+
+  MyIAMUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: !Ref UserName
+
+  MyInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      InstanceProfileName: !Ref InstanceProfileName
+      Roles:
+        - !GetAtt MyIAMGroup.Arn  # Associate the IAM Group with the Instance Profile
+    DependsOn: MyIAMGroup
