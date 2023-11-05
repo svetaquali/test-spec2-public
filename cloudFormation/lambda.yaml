@@ -1,0 +1,82 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Lambda Function for introspection
+
+Resources:
+  BasicLambdaExecutionRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: ["lambda.amazonaws.com"]
+            Action: "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        - PolicyName: "lambda_policy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                Resource: "arn:aws:logs:*:*:*"
+  FetchIPRangeLambda:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      Code:
+        ZipFile: |
+          import urllib
+          import urllib.request
+          import json
+          import os
+          import cfnresponse
+
+          def get_url_content(url):
+            try:
+              template_raw_data = urllib.request.urlopen(url).read().decode('utf-8')
+              return template_raw_data.strip()
+            except:
+              return "ERROR"
+
+          def get_ip_range(service, region):
+            ip_ranges_url = os.environ['ip_ranges_url']
+            ip_ranges_text = get_url_content(ip_ranges_url)
+            ip_ranges_json = json.loads(ip_ranges_text)
+            prefix_dict = ip_ranges_json["prefixes"]
+            connect_prefix = [x for x in prefix_dict if x['service'] == service and x['region'] == region]
+            return connect_prefix[0]['ip_prefix']
+
+          def handler(event, context):
+            print('Received event: %s' % json.dumps(event))
+            status = cfnresponse.SUCCESS
+            try:
+                if event['RequestType'] == 'Delete':
+                    cfnresponse.send(event, context, status, {})
+                else:
+                    region = event['ResourceProperties']['Region']
+                    responseData = {}
+                    responseData['ip_range'] = get_ip_range('EC2_INSTANCE_CONNECT', region)
+                    cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData)
+            except Exception as e:
+                logging.error('Exception: %s' % e, exc_info=True)
+                status = cfnresponse.FAILED
+                cfnresponse.send(event, context, status, {}, None)
+      Environment:
+        Variables:
+          ip_ranges_url: 'https://ip-ranges.amazonaws.com/ip-ranges.json'
+      Handler: "index.handler"
+      Runtime: "python3.9"
+      Timeout: "30"
+      Role: !GetAtt BasicLambdaExecutionRole.Arn
+  FetchIPRange:
+    Type: "Custom::GenerateCronExpression"
+    Version: "1.0"
+    Properties:
+      ServiceToken: !GetAtt FetchIPRangeLambda.Arn
+      Region: !Ref AWS::Region
+
+
