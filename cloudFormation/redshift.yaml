@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Redshift Cluster Template with Security Group
+
+Parameters:
+  MasterUserPassword:
+      Description: Master user password for the Redshift cluster
+      Type: String
+      NoEcho: true
+      Default: MyPassword123
+ 
+Resources:
+  MyVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+
+  MySubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      CidrBlock: 10.0.0.0/24
+      AvailabilityZone: us-east-1a
+    DependsOn: MyVPC
+
+  MyClusterParameterGroup:
+    Type: "AWS::Redshift::ClusterParameterGroup"
+    Properties:
+      Description: "My parameter group"
+      ParameterGroupFamily: "redshift-1.0"
+      Parameters:
+        - ParameterName: "enable_user_activity_logging"
+          ParameterValue: "true"
+
+  MyClusterSubnetGroup:
+    Type: 'AWS::Redshift::ClusterSubnetGroup'
+    Properties:
+      Description: My ClusterSubnetGroup
+      SubnetIds:
+        - !Ref MySubnet1
+    DependsOn: MySubnet1
+
+  MyCluster:
+    Type: "AWS::Redshift::Cluster"
+    Properties:
+      DBName: "mydb"
+      MasterUsername: "master"
+      MasterUserPassword: !Ref MasterUserPassword
+      NodeType: "dc2.large"
+      ClusterType: "single-node"

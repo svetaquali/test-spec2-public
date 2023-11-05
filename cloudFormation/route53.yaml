@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Minimal Route 53 Hosted Zone Template
+
+Parameters:
+  DomainName:
+    Description: Domain name for the Route 53 hosted zone
+    Type: String
+    Default: shirel.com
+
+Resources:
+  MyHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: !Ref DomainName

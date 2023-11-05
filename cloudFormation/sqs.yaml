@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Minimal SQS Queue Template
+
+Parameters:
+  QueueName:
+    Description: Name for the SQS queue
+    Type: String
+
+Resources:
+  MySQSQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Ref QueueName
+
