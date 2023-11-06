@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Minimal ECS Service Template
+
+Resources:
+  MyECSCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: shirel-cluster
+  
+  MyECSTaskRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: MyECSTaskRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+
+  MyECSTaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: my-ecs-task
+      NetworkMode: bridge
+      RequiresCompatibilities:
+        - EC2
+      TaskRoleArn: !GetAtt MyECSTaskRole.Arn
+      ContainerDefinitions:
+        - Name: my-container
+          Image: nginx:latest
+          PortMappings:
+            - ContainerPort: 80
+          Memory: 256
+
+  MyECSService: 
+    Type: AWS::ECS::Service
+    Properties: 
+      ServiceName: shirel-service
+      Cluster: 
+        Ref: "MyECSCluster"
+      DesiredCount: 1
+      TaskDefinition: 
+        Ref: "MyECSTaskDefinition"
+      EnableExecuteCommand: true

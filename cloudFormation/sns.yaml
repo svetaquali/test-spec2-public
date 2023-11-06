@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Minimal SNS Topic and Subscription Template with Default Values
+
+Parameters:
+  TopicName:
+    Description: Name for the SNS topic
+    Type: String
+    Default: MySNSTopic
+  Protocol:
+    Description: The protocol for the subscription (e.g., email, SMS, etc.)
+    Type: String
+    Default: email
+  Endpoint:
+    Description: The endpoint for the subscription (e.g., email address or phone number)
+    Type: String
+    Default: example@email.com
+
+Resources:
+  MySNSTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: !Ref TopicName
+
+  MySNSSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: !Ref Protocol
+      TopicArn: !Ref MySNSTopic
+      Endpoint: !Ref Endpoint
