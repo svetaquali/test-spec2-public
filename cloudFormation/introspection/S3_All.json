@@ -1,0 +1,149 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "intended to include all resources of S3 service. currently missing: AccessPoint, MultiRegionAccessPoint, MultiRegionAccessPointPolicy, StorageLens",
+    "Resources": {
+        "MyS3BucketWithDefaults": {
+            "Type": "AWS::S3::Bucket"
+        },
+        "MyS3BucketWithConfiguration": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+                "AccelerateConfiguration": {
+                    "AccelerationStatus" : "Enabled"
+                },
+                "AnalyticsConfigurations": [
+                    {
+                        "Id": "AnalyticsConfigurationId",
+                        "StorageClassAnalysis": {},
+                        "Prefix": "SomeComplexAnalyticsConfigurationPrefix123"
+                    }
+                ],
+                "BucketEncryption": {
+                    "ServerSideEncryptionConfiguration": [
+                        {
+                            "ServerSideEncryptionByDefault": {
+                                "SSEAlgorithm": "AES256"
+                            }
+                        }
+                    ]
+                },
+                "CorsConfiguration": {
+                    "CorsRules": [
+                        {
+                            "AllowedOrigins": [
+                                "http://www.quali.com"
+                            ],
+                            "AllowedMethods": [
+                                "GET"
+                            ],
+                            "AllowedHeaders": [
+                                "*"
+                            ],
+                            "MaxAge": 0
+                        }
+                    ]
+                },
+                "InventoryConfigurations": [
+                    {
+                        "Id": "InventoryConfigurationId",
+                        "Destination": {
+                            "BucketArn": {
+                                "Fn::GetAtt": [
+                                    "MyS3BucketWithDefaults",
+                                    "Arn"
+                                ]
+                            },
+                            "Format": "CSV",
+                            "Prefix": "InventoryDestinationPrefix"
+                        },
+                        "Enabled": false,
+                        "IncludedObjectVersions": "Current",
+                        "Prefix": "SomeComplexInventoryConfigurationPrefix456",
+                        "ScheduleFrequency": "Weekly"
+                    }
+                ],
+                "LifecycleConfiguration": {
+                    "Rules": [
+                        {
+                            "Id": "DeleteOldObjects",
+                            "Prefix": "SomePrefixNeverToBeMatched123",
+                            "Status": "Disabled",
+                            "ExpirationInDays": 30
+                        }
+                    ]
+                },
+                "LoggingConfiguration": {
+                    "LogFilePrefix": "logs/"
+                },
+                "MetricsConfigurations": [
+                    {
+                        "Id": "EntireBucket",
+                        "Prefix": "SomePrefixNeverToBeMatched123"
+                    }
+                ],
+                "ObjectLockConfiguration":{
+                    "ObjectLockEnabled" : "Enabled",
+                    "Rule" : {
+                        "DefaultRetention" : {
+                            "Days" : 30,
+                            "Mode" : "COMPLIANCE"
+                          }
+                      }
+                },
+                "ObjectLockEnabled": true,
+                "PublicAccessBlockConfiguration": {
+                    "BlockPublicAcls": true,
+                    "BlockPublicPolicy": false,
+                    "IgnorePublicAcls": true,
+                    "RestrictPublicBuckets": true
+                },
+                "Tags": [
+                    {
+                        "Key": "ExampleTagName",
+                        "Value": "Production"
+                    }
+                ],
+                "VersioningConfiguration": {
+                    "Status": "Enabled"
+                },
+                "WebsiteConfiguration": {
+                    "IndexDocument": "index.html"
+                }
+            }
+        },
+        "MyBucketPolicy": {
+            "Type": "AWS::S3::BucketPolicy",
+            "Properties": {
+                "Bucket": {
+                    "Ref": "MyS3BucketWithConfiguration"
+                },
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "AWS": {
+                                  "Fn::Sub": "arn:aws:iam::${AWS::AccountId}:root"
+                                }
+                              },
+                            "Action": "s3:GetObject",
+                            "Resource": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:aws:s3:::",
+                                  {
+                                    "Ref": "MyS3BucketWithConfiguration"
+                                  },
+                                  "/*"
+                                ]
+                              ]
+                            }
+                          }
+                    ]
+                }
+            }
+        }
+    }
+}
