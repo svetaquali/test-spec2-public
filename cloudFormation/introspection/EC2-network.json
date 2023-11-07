@@ -1,0 +1,61 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "intended to include resources of EC2 service related to networking",
+  "Parameters": {
+  },
+  "Resources": {
+    "MyVPC": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock":  "10.1.0.0/16"
+      }
+    },
+    "MySubnet1": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "AvailabilityZone": { "Fn::Select": [ 0, { "Fn::GetAZs": { "Ref": "AWS::Region" } } ] },
+        "VpcId": { "Ref": "MyVPC" },
+        "CidrBlock": "10.1.1.0/24"
+      }
+    },
+    "MySubnet2": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "AvailabilityZone": { "Fn::Select": [ 1, { "Fn::GetAZs": { "Ref": "AWS::Region" } } ] },
+        "VpcId": { "Ref": "MyVPC" },
+        "CidrBlock": "10.1.2.0/24"
+      }
+    },
+    "MySecurityGroupInVPC": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "My security group denies all access",
+        "VpcId": { "Ref": "MyVPC" },
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          }
+        ],
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          }
+        ]
+      }
+    },
+    "MySecurityGroupInDefaultVPC": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "My security group denies all access in Default VPC",
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          }
+        ]
+      }
+    }
+  }
+}
