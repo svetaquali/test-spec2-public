@@ -38,7 +38,9 @@ resource "aws_s3_bucket_policy" "allow_access_from_this_account" {
             "s3:GetObject"
         ],
         Resource: ["arn:aws:s3:::${var.name}/*"],
-        Principal: "arn:aws:iam::${local.account_id}:root"
+        Principal: {
+           "AWS": "arn:aws:iam::${local.account_id}:root"
+          }
         }
     ]
   })
