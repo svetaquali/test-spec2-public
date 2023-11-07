@@ -25,7 +25,7 @@ locals {
 }
 
 resource "aws_s3_bucket_policy" "allow_access_from_this_account" {
-  bucket = aws_s3_bucket.example.id
+  bucket = aws_s3_bucket.bucket.id
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
