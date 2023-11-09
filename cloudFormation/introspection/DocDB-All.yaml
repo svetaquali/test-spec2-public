@@ -16,7 +16,7 @@ Resources:
     Type: AWS::DocDB::DBCluster
     Properties:
       AvailabilityZones:
-        - us-east-1a
+        - eu-west-1a
       MasterUsername: admin678
       MasterUserPassword: !Ref DBMasterPassword
       BackupRetentionPeriod: 7
