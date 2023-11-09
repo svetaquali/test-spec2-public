@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'intended to include all resources of DocDB service. currently missing: DBSubnetGroup, EventSubscription'
+
+Parameters:
+  DBMasterUsername:
+    Type: String
+    Description: Master username for the DocumentDB instance
+    Default: mydocdbuser
+  DBMasterPassword:
+    Type: String
+    Description: Master password for the DocumentDB instance
+    NoEcho: true
+
+Resources:
+  DBCluster:
+    Type: AWS::DocDB::DBCluster
+    Properties:
+      AvailabilityZones:
+        - us-east-1a
+      MasterUsername: admin678
+      MasterUserPassword: !Ref DBMasterPassword
+      BackupRetentionPeriod: 7
+
+  DBInstance:
+    Type: AWS::DocDB::DBInstance
+    Properties:
+      DBInstanceIdentifier: MyDBInstance
+      DBInstanceClass: db.t3.medium
+      DBClusterIdentifier: !Ref DBCluster
+  
+  DBClusterParameterGroup:
+    Type: AWS::DocDB::DBClusterParameterGroup
+    Properties:
+      Description: "DB cluster parameter group"
+      Family: "docdb3.6"
+      Parameters: 
+        audit_logs: "disabled"
