@@ -12,3 +12,6 @@ Resources:
     Properties:
       InstanceType: t2.micro
       ImageId: !Ref LatestAmiId
+      Tags:
+        - Key: Name
+          Value: MyEC2Instance
