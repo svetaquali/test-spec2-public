@@ -7,7 +7,10 @@ inputs:
     type: agent     
   release:
     type: string
-    default: "canary"
+    default: ""
+  hello:
+    type: string
+    default: "yoyoyo"
     sensitive: true
 
 outputs:
@@ -32,8 +35,7 @@ grains:
         - replicaSet: 1
         - input_2: 'test'
         - input_3: 3
-      env-vars:
-        - test: newValue
+        - hello: '{{.inputs.hello}}'
       scripts:
         post-helm-install:
           source:
