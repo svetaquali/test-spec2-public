@@ -53,47 +53,47 @@ grains:
       inputs:
         - test_input2: "input2"      
          
-  # tf4:
-  #   kind: terraform    
-  #   spec:
-  #     source:
-  #       path: terraform/simple-tf-module
-  #       store: test-spec2-public
-  #     agent:
-  #       name: '{{.inputs.compute_service_name}}'
-  #     inputs:
-  #       - test_input2: "input2"      
+  tf4:
+    kind: terraform    
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input2: "input2"      
           
-  # tf5:
-  #   kind: terraform    
-  #   spec:
-  #     source:
-  #       path: terraform/simple-tf-module
-  #       store: test-spec2-public
-  #     agent:
-  #       name: '{{.inputs.compute_service_name}}'
-  #     inputs:
-  #       - test_input2: "input2"    
+  tf5:
+    kind: terraform    
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input2: "input2"    
           
-  # tf6:
-  #   kind: terraform    
-  #   spec:
-  #     source:
-  #       path: terraform/simple-tf-module
-  #       store: test-spec2-public
-  #     agent:
-  #       name: '{{.inputs.compute_service_name}}'
-  #     inputs:
-  #       - test_input2: "input2"
-  #     scripts:         
+  tf6:
+    kind: terraform    
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input2: "input2"
+      scripts:         
 
-  # tf7:
-  #   kind: terraform    
-  #   spec:
-  #     source:
-  #       path: terraform/simple-tf-module
-  #       store: test-spec2-public
-  #     agent:
-  #       name: '{{.inputs.compute_service_name}}'
-  #     inputs:
-  #       - test_input2: "input2"      
+  tf7:
+    kind: terraform    
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input2: "input2"      
