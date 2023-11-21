@@ -11,9 +11,9 @@ grains:
     spec:
       auto-approve: false
       source:
-        path: https://github.com/yakirlevi/iac-samples//terraform/debug-module
-        # path: terraform/debug-module
-        # store: test-spec2-public
+        # path: https://github.com/yakirlevi/iac-samples//terraform/debug-module
+        path: terraform/debug-module
+        store: iac-samples
       agent:
         name: '{{.inputs.compute_service_name}}'
       inputs:
