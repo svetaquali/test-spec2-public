@@ -3,6 +3,9 @@ spec_version: 2-preview
 inputs:
   compute_service_name:
     type: agent    
+  sleep_iterations:
+    type: string    
+    default: 50
 
 grains:
   tf1:
@@ -18,3 +21,4 @@ grains:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - test_input2: "input2"  
+        - iterations: '{{.inputs.sleep_iterations}}'
