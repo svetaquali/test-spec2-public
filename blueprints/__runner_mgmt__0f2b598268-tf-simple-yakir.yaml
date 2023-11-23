@@ -4,6 +4,10 @@ inputs:
   compute_service_name:
     type: agent  
 
+  tf_input:
+    type: string
+    default: "default_input"
+    
 outputs:
   tf_output: 
     value: '{{.grains.tf1.outputs.output2}}'
@@ -21,6 +25,7 @@ grains:
       agent:
         name: '{{.inputs.compute_service_name}}'
       inputs:
+        - test_input1: '{{.inputs.tf_input}}'
         - test_input2: "input2"  
       outputs:
         - output2
