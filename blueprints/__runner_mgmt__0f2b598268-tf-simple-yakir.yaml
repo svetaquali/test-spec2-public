@@ -2,7 +2,10 @@ spec_version: 2-preview
 
 inputs:
   compute_service_name:
-    type: agent    
+    type: agent  
+
+outputs:
+  tf_output: '{{.grains.tf1.outputs.output2}}'
     
 
 grains:
@@ -18,3 +21,5 @@ grains:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - test_input2: "input2"  
+      outputs:
+        - output2
