@@ -16,20 +16,19 @@ data "aws_iam_user" "input_user" {
   user_name = var.user
 }
 
-data "my_secret_data" "my_secret_input" {
-  tag = "never ask"
+data "aws_ssm_parameter" "my-secret-token" {
+  name = "my-secret-token"
 }
 
 resource "aws_s3_bucket" "bucket" {
   bucket = var.name
-  acl    = var.acl
   force_destroy = true
 
   tags = {
     Name        = "My bucket"
     Environment = "Dev"
     A_NEW_TAG = "NEW TAG"
-    SecretDataTag = data.my_secret_data.my_secret_input.tag
+    SecretDataTag = data.aws_ssm_parameter.my-secret-token.arn
   }
 }
 
