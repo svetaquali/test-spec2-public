@@ -10,9 +10,9 @@ grains:
     tf-version: 1.3.5
     spec:
       source:
-        path: terraform/simple-tf-module
-        store: test-spec2-public
-        branch: yakir-test
+        path: https://github.com/QualiNext/test-spec2-public/terraform/simple-tf-module
+        # store: test-spec2-public
+        # branch: yakir-test
       agent:
         name: '{{.inputs.compute_service_name}}'
         isolated: false
