@@ -10,7 +10,7 @@ grains:
     tf-version: 1.3.5
     spec:
       source:
-        path: https://github.com/QualiNext/test-spec2-public/terraform/simple-tf-module
+        path: https://github.com/QualiNext/test-spec2-public/tree/master/terraform/simple-tf-module
         # store: test-spec2-public
         # branch: yakir-test
       agent:
