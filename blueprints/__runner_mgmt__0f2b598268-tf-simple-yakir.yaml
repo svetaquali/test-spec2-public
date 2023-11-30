@@ -20,7 +20,7 @@ grains:
     spec:
       source:
         # path: https://github.com/yakirlevi/iac-samples//terraform/simple-tf-module
-        path: terraform/simple-tf-module
+        path: terraform/complex-references
         store: iac-samples
       agent:
         name: '{{.inputs.compute_service_name}}'
