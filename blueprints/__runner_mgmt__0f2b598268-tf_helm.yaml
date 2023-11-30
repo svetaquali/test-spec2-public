@@ -5,9 +5,7 @@ description: description text
 
 outputs:
  generic_output:
-   value: '{{.inputs.generic_input}}' 
- helm_output:
-   value: '{{.grains.helm3.scripts.post-helm-install.outputs.testoutput}}'
+   value: '{{.inputs.generic_input}}'  
  terraform_output:
    value: '{{.grains.terraform1.outputs.output1}}'
 
