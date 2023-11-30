@@ -45,7 +45,7 @@ grains:
     spec:
       source:
         path: terraform/simple-tf-module
-        store: test-spec2-publi
+        store: test-spec2-public
       agent:
         name: '{{.inputs.execution_host1}}'
       inputs:
