@@ -24,6 +24,7 @@ grains:
         store: iac-samples
       agent:
         name: '{{.inputs.compute_service_name}}'
+        storage-size: 950
       inputs:
         - test_input1: '{{.inputs.tf_input}}'
         - test_input2: "input2"  
