@@ -17,5 +17,5 @@ grains:
       agent:
         name: '{{.inputs.agent_name}}'
       mode: data
-      project: '{{.inputs.project}}'
-      application: '{{.inputs.application_name}}'
+      project: '{{.inputs.project1}}'
+      application: '{{.inputs.application_name1}}'
