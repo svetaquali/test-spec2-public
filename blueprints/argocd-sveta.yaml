@@ -1,0 +1,21 @@
+spec_version: 2
+description: connect to an existing application on ArgoCD server
+
+inputs:
+  application_name:
+    type: string
+  project:
+    type: string
+    default: default
+  agent_name:
+    type: agent
+
+grains:
+  argo-app:
+    kind: argocd
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      mode: data
+      project: '{{.inputs.project}}'
+      application: '{{.inputs.application_name}}'
