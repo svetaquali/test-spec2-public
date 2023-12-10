@@ -1,0 +1,4 @@
+apiVersion: v2
+name: namespace
+description: A Helm chart for creating a dynamic namespace
+version: 1.1.0
