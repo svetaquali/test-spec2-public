@@ -23,4 +23,4 @@ grains:
       commands:
         - dep up helm/nginx-test
       inputs:
-        - namespace: '{{.inputs.namespace_to_create}}'
+        - namespace.name: '{{.inputs.namespace_to_create}}'
