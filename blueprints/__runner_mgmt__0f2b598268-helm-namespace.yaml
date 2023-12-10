@@ -1,0 +1,26 @@
+spec_version: 2-preview
+
+inputs:
+  compute_service_name:
+    type: agent
+  target_namespace:
+    type: string
+    default: yakir-test
+  namespace_to_create:
+    type: string
+     
+    
+grains:
+  helloHelm:
+    kind: helm    
+    spec:
+      target-namespace: '{{.inputs.target_namespace}}'
+      source:
+        store: test-spec2-public
+        path: helm/namespace      
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      commands:
+        - dep up helm/nginx-test
+      inputs:
+        - namespace: '{{.inputs.namespace_to_create}}'
