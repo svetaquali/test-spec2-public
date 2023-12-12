@@ -1,0 +1,24 @@
+spec_version: 2-preview
+
+description: write content to an existing s3 bucket
+
+inputs:
+  bucket_name:
+    type: string
+  compute_service_name:
+    type: agent
+  region:
+    type: parameter
+    parameter-name: regions
+grains:
+  s3-write:
+    kind: terraform
+    spec:
+      source:        
+        path: github.com/QualiNext/terraform/s3-write
+      agent:
+        name: '{{.inputs.compute_service_name}}'        
+      inputs:
+        - BUCKET_NAME: '{{.inputs.bucket_name}}'
+        - SANDBOX_ID: '{{sandboxId}}'
+        - CONTENT: '{{.inputs.region}}'
