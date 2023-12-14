@@ -2,24 +2,22 @@ spec_version: 2
 description: Blueprint for nginx helm chart 
 
 inputs:
-  host_name:
-    type: string
-    default: "eks"
+  agent:
+    type: agent
   namespace:
     type: string
-    # default: "sveta-test"
+    default: "sveta-test"
 
 grains:
-
   nginx:
     kind: helm
     spec:
       source:
         store: test-spec2-public
-        path: helm/nginx
+        path: helm/nginx-test
       agent:
-        name: '{{ .inputs.host_name }}'
+        name: '{{ .inputs.agent }}'
       namespace: '{{ inputs.namespace }}'
       commands:
-        - dep up helm/nginx
+        - dep up helm/nginx-test
       inputs:
