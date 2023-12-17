@@ -1,0 +1,18 @@
+apiVersion: ec2.aws.crossplane.io/v1alpha1
+kind: Instance
+metadata:
+  name: {{ .Values.InstanceName }}-{{ .Values.EnvironmentID }}
+spec:
+  forProvider:
+    region: eu-west-1
+    imageId: ami-0e42de9d667b232f7  # ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-20230531
+    instanceType: t3.micro
+    # securityGroupRefs:
+    #   - name: sample-cluster-sg
+    # subnetIdRef:
+    #   name: sample-subnet1  
+    tags:
+    - key: Name
+      value: {{ .Values.InstanceName }}-{{ .Values.EnvironmentID }}
+  providerConfigRef:
+    name: default
