@@ -1,0 +1,4 @@
+apiVersion: v1
+name: rds-dbinstance-crossplane
+version: 0.0.1
+description: RDS DBInstance deployment using Crossplane
