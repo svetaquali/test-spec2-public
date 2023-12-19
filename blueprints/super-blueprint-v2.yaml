@@ -89,6 +89,7 @@ grains:
       namespace: '{{.inputs.namespace}}'           
       inputs:        
         - EnvironmentID: '{{ envid | downcase }}'
+        - serviceAccount.name: 'sa-{{ envid | downcase }}'
 
   bp:
     depends-on: helm1
