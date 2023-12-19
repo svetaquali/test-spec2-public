@@ -1,5 +1,8 @@
 namespace:
   name: default-ns
 
-serviceAccount:
-  name: default-sa
+serviceAccount1:
+  name: default-sa-1
+
+serviceAccount2:
+  name: default-sa-2
