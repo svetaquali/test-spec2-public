@@ -119,7 +119,7 @@ grains:
     kind: terraform
     spec:
       source:
-        path: terraform/simple-tf-module
+        path: terraform/complex-references
         store: test-spec2-public
         branch: yakir-test
       agent:
@@ -127,6 +127,8 @@ grains:
       inputs:
         - test_input1: '{{.grains.terraform1.outputs.output1}}'
         - test_input2: dontcare
+      outputs:
+        - output_from_dub_module
       scripts: 
         pre-tf-init:
           source:
@@ -145,14 +147,18 @@ grains:
     depends-on: ansible1
     spec:
       source:
-        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+        path: helm/namespace
+        store: test-spec2-public
       agent:
         name: '{{.inputs.execution_host1}}'
         service-account: '{{.inputs.service_account}}'
       commands:
         - dep up chart/hello
       release: '{{.inputs.release_name}}'
-      namespace: '{{.inputs.namespace}}'
+      target-namespace: '{{.inputs.namespace}}'
+      inputs:
+#        - namespace.name: '{{.inputs.namespace_to_create}}'
+        - namespace.name: '{{ sandboxid | downcase }}'
 
   helm3:
     kind: helm
@@ -165,7 +171,7 @@ grains:
       commands:
         - dep up chart/hello
       release: '{{.inputs.release_name}}'
-      namespace: '{{.inputs.namespace}}'
+      target-namespace: '{{.inputs.namespace}}'
       scripts:
         post-helm-install:
           source:
@@ -181,7 +187,7 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml
-      namespace: '{{ .inputs.namespace }}'
+      target-namespace: '{{ .inputs.namespace }}'
       env-vars:
         - test: newValue
       agent:
