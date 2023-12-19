@@ -4,14 +4,16 @@ description: description text
 
 
 outputs:
- generic_output:
-   value: '{{.inputs.generic_input}}'
- kubernetes_output:
-   value: '{{.grains.kubernetes1.scripts.post-kubernetes-install.outputs.testoutput}}'
- helm_output:
-   value: '{{.grains.helm3.scripts.post-helm-install.outputs.testoutput}}'
- terraform_output:
-   value: '{{.grains.terraform1.outputs.output1}}'
+  generic_output:
+    value: '{{.inputs.generic_input}}'
+  kubernetes_output:
+    value: '{{.grains.kubernetes1.scripts.post-kubernetes-install.outputs.testoutput}}'
+  helm_output:
+    value: '{{.grains.helm3.scripts.post-helm-install.outputs.testoutput}}'
+  terraform_output:
+    value: '{{.grains.terraform1.outputs.output1}}'
+  terraform_output_from_submodule:
+    value: '{{.grains.terraform3.outputs.output_from_dub_module}}'
 
 inputs:
   namespace:
@@ -119,14 +121,17 @@ grains:
     kind: terraform
     spec:
       source:
-        path: terraform/simple-tf-module
+        path: terraform/complex-references
         store: test-spec2-public
         branch: yakir-test
       agent:
         name: '{{.inputs.execution_host1}}'
+        isolated: false
       inputs:
         - test_input1: '{{.grains.terraform1.outputs.output1}}'
         - test_input2: dontcare
+      outputs:
+        - output_from_dub_module
       scripts: 
         pre-tf-init:
           source:
@@ -145,14 +150,19 @@ grains:
     depends-on: ansible1
     spec:
       source:
-        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+        path: helm/namespace
+        store: test-spec2-public
       agent:
         name: '{{.inputs.execution_host1}}'
         service-account: '{{.inputs.service_account}}'
+        storage-size: 500
       commands:
         - dep up chart/hello
       release: '{{.inputs.release_name}}'
-      namespace: '{{.inputs.namespace}}'
+      target-namespace: '{{.inputs.namespace}}'
+      inputs:
+#        - namespace.name: '{{.inputs.namespace_to_create}}'
+        - namespace.name: '{{ sandboxid | downcase }}'
 
   helm3:
     kind: helm
@@ -162,10 +172,11 @@ grains:
         path: https://github.com/open-toolchain/hello-helm.git//chart/hello
       agent:
         name: '{{.inputs.execution_host1}}'
+        isolated: true
       commands:
         - dep up chart/hello
       release: '{{.inputs.release_name}}'
-      namespace: '{{.inputs.namespace}}'
+      target-namespace: '{{.inputs.namespace}}'
       scripts:
         post-helm-install:
           source:
@@ -181,7 +192,7 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml
-      namespace: '{{ .inputs.namespace }}'
+      target-namespace: '{{ .inputs.namespace }}'
       env-vars:
         - test: newValue
       agent:
