@@ -79,17 +79,21 @@ grains:
     kind: helm
     spec:
       source:
-        store: test-spec2-public
-        path: helm/nginx        
+        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
       agent:
         name: '{{.inputs.execution_host1}}'
       commands:
-        - dep up helm/nginx
+        - dep up chart/hello
       release: '{{.inputs.release_name}}'
-      namespace: '{{.inputs.namespace}}'           
-      inputs:        
-        - EnvironmentID: '{{ envid | downcase }}'
-        - serviceAccount.name: 'sa-{{ envid | downcase }}'
+      target-namespace: '{{.inputs.namespace}}'
+      scripts:
+        post-helm-install:
+          source:
+            store: test-spec2-public
+            path: scripts/sample-k8s.sh
+          arguments: '{{ .inputs.generic_input }}'
+          outputs:
+            - testoutput
 
   bp:
     depends-on: helm1
