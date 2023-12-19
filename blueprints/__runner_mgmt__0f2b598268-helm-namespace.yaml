@@ -21,6 +21,6 @@ grains:
       agent:
         name: '{{.inputs.compute_service_name}}'
       commands:
-        - dep up helm/nginx-test
+        - dep up helm/namespace
       inputs:
         - namespace.name: '{{.inputs.namespace_to_create}}'

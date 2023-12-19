@@ -158,7 +158,7 @@ grains:
         service-account: '{{.inputs.service_account}}'
         storage-size: 500
       commands:
-        - dep up chart/hello
+        - dep up helm/namespace
       release: '{{.inputs.release_name}}'
       target-namespace: '{{.inputs.namespace}}'
       inputs:
