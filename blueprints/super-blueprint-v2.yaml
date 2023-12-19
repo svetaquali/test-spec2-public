@@ -4,14 +4,16 @@ description: description text
 
 
 outputs:
- generic_output:
-   value: '{{.inputs.generic_input}}'
- kubernetes_output:
-   value: '{{.grains.kubernetes1.scripts.post-kubernetes-install.outputs.testoutput}}'
- helm_output:
-   value: '{{.grains.helm3.scripts.post-helm-install.outputs.testoutput}}'
- terraform_output:
-   value: '{{.grains.terraform1.outputs.output1}}'
+  generic_output:
+    value: '{{.inputs.generic_input}}'
+  kubernetes_output:
+    value: '{{.grains.kubernetes1.scripts.post-kubernetes-install.outputs.testoutput}}'
+  helm_output:
+    value: '{{.grains.helm3.scripts.post-helm-install.outputs.testoutput}}'
+  terraform_output:
+    value: '{{.grains.terraform1.outputs.output1}}'
+  terraform_output_from_submodule:
+    value: '{{.grains.terraform3.outputs.output_from_dub_module}}'
 
 inputs:
   namespace:
@@ -124,6 +126,7 @@ grains:
         branch: yakir-test
       agent:
         name: '{{.inputs.execution_host1}}'
+        isolated: false
       inputs:
         - test_input1: '{{.grains.terraform1.outputs.output1}}'
         - test_input2: dontcare
@@ -152,6 +155,7 @@ grains:
       agent:
         name: '{{.inputs.execution_host1}}'
         service-account: '{{.inputs.service_account}}'
+        storage-size: 500
       commands:
         - dep up chart/hello
       release: '{{.inputs.release_name}}'
@@ -168,6 +172,7 @@ grains:
         path: https://github.com/open-toolchain/hello-helm.git//chart/hello
       agent:
         name: '{{.inputs.execution_host1}}'
+        isolated: true
       commands:
         - dep up chart/hello
       release: '{{.inputs.release_name}}'
