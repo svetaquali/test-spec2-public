@@ -79,13 +79,16 @@ grains:
     kind: helm
     spec:
       source:
-        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+        path: helm/deployment
+        store: test-spec2-public
       agent:
         name: '{{.inputs.execution_host1}}'
       commands:
-        - dep up chart/hello
+        - dep up helm/deployment
       release: '{{.inputs.release_name}}'
       target-namespace: '{{.inputs.namespace}}'
+      inputs:
+        - deployment.namespace: '{{.inputs.namespace}}'
       scripts:
         post-helm-install:
           source:
@@ -172,17 +175,17 @@ grains:
 
   helm3:
     kind: helm
-    depends-on: helm2
     spec:
       source:
-        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+        path: https://github.com/QualiNext/test-spec2-public.git//helm/deployment
       agent:
         name: '{{.inputs.execution_host1}}'
-        isolated: true
       commands:
-        - dep up chart/hello
+        - dep up helm/deployment
       release: '{{.inputs.release_name}}'
       target-namespace: '{{.inputs.namespace}}'
+      inputs:
+        - deployment.namespace: '{{.inputs.namespace}}'
       scripts:
         post-helm-install:
           source:
@@ -190,7 +193,7 @@ grains:
             path: scripts/sample-k8s.sh
           arguments: '{{ .inputs.generic_input }}'
           outputs:
-            - testoutput
+            - testoutpu
 
   kubernetes1:
     kind: kubernetes
