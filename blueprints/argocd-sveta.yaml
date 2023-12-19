@@ -16,6 +16,6 @@ grains:
     spec:
       agent:
         name: '{{.inputs.agent_name}}'
-      mode: data
+      #mode: data
       project: '{{.inputs.project}}'
       application: '{{.inputs.application_name}}'
