@@ -193,7 +193,7 @@ grains:
             path: scripts/sample-k8s.sh
           arguments: '{{ .inputs.generic_input }}'
           outputs:
-            - testoutpu
+            - testoutput
 
   kubernetes1:
     kind: kubernetes
