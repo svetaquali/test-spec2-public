@@ -1,0 +1,36 @@
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstance
+metadata:
+  name: rds-instance-{{ .Values.EnvironmentID }}
+spec:
+  forProvider:
+    region: eu-west-1
+    engine: mysql
+    engineVersion: "8.0.33"
+    dbInstanceClass: db.t2.micro
+    allocatedStorage: 20
+    storageType: gp2
+    publiclyAccessible: false
+    skipFinalSnapshotBeforeDeletion: true
+    monitoringInterval: 0
+    dbName: minimi
+    masterUsername: admin789
+    # masterUserPasswordSecretRef:
+    #   key: password
+    #   name: rds-instance-{{ .Values.EnvironmentID }}
+    #   namespace: {{ .Release.Namespace }}
+  providerConfigRef:
+    name: default
+  writeConnectionSecretToRef:
+    name: rds-instance-{{ .Values.EnvironmentID }}-out
+    namespace: {{ .Release.Namespace }}
+
+# ---
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: rds-instance-{{ .Values.EnvironmentID }}
+#   namespace: {{ .Release.Namespace }}
+# type: Opaque
+# stringData:
+#   password: {{ .Values.MasterPassword }}
