@@ -17,8 +17,8 @@ outputs:
     value: 'http://my-env-{{ sandboxid }}/some/api'
     kind: link
     quick: true
-  output4:
-    value: '{{ .params.MY_PARAM }}'
+  # output4:
+  #   value: '{{ .params.MY_PARAM }}'
     
 
 grains:
@@ -33,14 +33,14 @@ grains:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - test_input2: "input2"
-      scripts: 
-        pre-tf-init:
-          source:
-            store: test-spec2-public
-            path : scripts/tomerv_user_script.sh
-          arguments: "value"
-        pre-tf-destroy:
-          source:
-            store: test-spec2-public
-            path : scripts/tomerv_user_script.sh
-          arguments: "value" 
+      # scripts: 
+      #   pre-tf-init:
+      #     source:
+      #       store: test-spec2-public
+      #       path : scripts/tomerv_user_script.sh
+      #     arguments: "value"
+      #   pre-tf-destroy:
+      #     source:
+      #       store: test-spec2-public
+      #       path : scripts/tomerv_user_script.sh
+      #     arguments: "value" 
