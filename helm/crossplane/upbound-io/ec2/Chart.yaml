@@ -1,0 +1,4 @@
+apiVersion: v1
+name: ec2-instance-crossplane
+version: 0.0.1
+description: EC2 Instance deployment using Crossplane's upbound.io provider
