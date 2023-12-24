@@ -1,0 +1,28 @@
+apiVersion: rds.aws.upbound.io/v1beta1
+kind: Instance
+metadata:
+  name: db-instance-{{ .Values.EnvironmentID }}
+spec:
+  forProvider:
+    region: eu-west-1
+    engine: mysql
+    engineVersion: "8.0.33"
+    instanceClass: db.t2.micro
+    allocatedStorage: 20
+    storageType: gp2
+    publiclyAccessible: false
+    skipFinalSnapshot: true
+    monitoringInterval: 0
+    dbName: minimi
+    username: admin789
+    autoGeneratePassword: true
+    # secret where the auto-generated password will be stored
+    passwordSecretRef:
+      key: password
+      name: db-instance-{{ .Values.EnvironmentID }}
+      namespace: {{ .Release.Namespace }}
+  providerConfigRef:
+    name: default
+  writeConnectionSecretToRef:
+    name: db-instance-{{ .Values.EnvironmentID }}-out
+    namespace: {{ .Release.Namespace }}
