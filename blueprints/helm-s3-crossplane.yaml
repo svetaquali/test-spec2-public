@@ -1,0 +1,24 @@
+spec_version: 2
+description: create s3 bucket using helm chart with crossplane CRD
+
+inputs:
+  region:
+    type: string
+    default: eu-west-1
+  agent_name:
+    type: agent
+
+grains:
+  s3-bucket-crossplane:
+    kind: helm
+    spec: 
+      source:
+        store: test-spec2-public
+        path: helm/crossplane/s3
+      agent:
+        name: '{{.inputs.agent_name}}'
+      inputs:
+        - AWSRegion: '{{.inputs.region}}'
+        - BucketACL: private
+        - BucketName: 'bucket-by-crossplane' 
+        - EnvironmentID: '{{ envid | downcase }}'
