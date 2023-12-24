@@ -20,5 +20,18 @@ grains:
       inputs:
         - AWSRegion: '{{.inputs.region}}'
         - BucketACL: private
-        - BucketName: 'bucket-by-crossplane' 
+        - BucketName: 'bucket-by-crossplane'
+        - EnvironmentID: '{{ envid | downcase }}'
+  
+  s3-bucket-upbound:
+    kind: helm
+    spec: 
+      source:
+        store: test-spec2-public
+        path: helm/crossplane/upbound-io/s3
+      agent:
+        name: '{{.inputs.agent_name}}'
+      inputs:
+        - AWSRegion: '{{.inputs.region}}'
+        - BucketName: 'bucket-by-upbound'
         - EnvironmentID: '{{ envid | downcase }}'
