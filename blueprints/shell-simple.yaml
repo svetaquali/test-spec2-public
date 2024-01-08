@@ -6,8 +6,7 @@ inputs:
   compute-service:
     type: agent
     display-style: normal
-    description: "Compute service name."
-    default: moshe-localhost
+    description: "Compute service name."    
 
 grains:
   validate:
@@ -16,9 +15,9 @@ grains:
       agent:
         name: '{{ .inputs.compute-service }}'
       files:
-      - path: "scripts/echo.sh"
+      - path: "scripts/long-loop.sh"
         source: test-spec2-public
       activities:
         deploy:
           commands:
-            - "./echo.sh"
+            - "./long-loop.sh"
