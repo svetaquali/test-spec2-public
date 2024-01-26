@@ -4,8 +4,10 @@ description: connect to existing applications on ArgoCD server
 inputs:
   application_name1:
     type: string
+    default: sveta-s3-upbound
   application_name2:
     type: string
+    default: sveta-nginx-deployment
   project:
     type: string
     default: default
