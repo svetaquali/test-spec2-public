@@ -5,6 +5,6 @@ apt update -y >& /dev/null
 apt install -y jq >& /dev/null
 
 # will print the attribute "day" of the resource
-jq --arg id "$resource_id" '.resources[] | select(.idenfitier == $id) | .attributes | .day' $contract_path
+jq --arg id "$resource_id" '.resources[] | select(.identifier == $id) | .attributes | .day' $contract_path
 
 
