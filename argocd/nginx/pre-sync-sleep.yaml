@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   generateName: sleep-before-sync-
+  # name: sleep-before-sync-job
   annotations:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
@@ -15,3 +16,4 @@ spec:
           - "sleep"
           - "60"
       restartPolicy: Never
+  backoffLimit: 1
