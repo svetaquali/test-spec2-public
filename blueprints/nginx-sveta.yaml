@@ -7,6 +7,9 @@ inputs:
   namespace:
     type: string
     default: "sveta-test"
+  runner_namespace:
+    type: string
+    default: "sveta-test"
 
 grains:
   nginx:
@@ -17,6 +20,7 @@ grains:
         path: helm/nginx-test
       agent:
         name: '{{ .inputs.agent }}'
+        runner-namespace: '{{ inputs.runner_namespace }}'
       namespace: '{{ inputs.namespace }}'
       commands:
         - dep up helm/nginx-test
