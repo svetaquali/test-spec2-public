@@ -14,6 +14,6 @@ spec:
         image: bash:latest
         command:
           - "sleep"
-          - "60"
+          - "30"
       restartPolicy: Never
   backoffLimit: 1
