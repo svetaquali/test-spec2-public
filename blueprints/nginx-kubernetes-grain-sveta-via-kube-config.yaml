@@ -17,4 +17,9 @@ grains:
         path: manifests/nginx1/nginxmanifest.yaml
       agent:
         name: '{{ .inputs.agent }}'
+        kubernetes:
+          permissions:
+            # secret-namespace is the runner namespace which is the agent's default namespace
+            secret-name: playground-config
+            destination-context-name: playground-eks
       target-namespace: '{{ inputs.target-namespace }}'
