@@ -17,6 +17,7 @@ grains:
         path: helm/nginx-test
       agent:
         name: '{{ .inputs.agent }}'
+        service-account: remote-cluster-accessor
         kubernetes:
           permissions:
             # secret-namespace is the runner namespace which is the agent's default namespace
