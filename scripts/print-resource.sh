@@ -6,7 +6,8 @@ contract_path=$CONTRACT_FILE_PATH
 
 echo "extracting power state attribute from resource"
 # will print the attribute "power_state" of the resource
-export print=$(jq --arg ResourceId "$resource_id" --arg GrainPath "$grain_path" '.resources[] | select(.identifier == $ResourceId and .grain_path == $GrainPath) | .attributes | .power_state' $contract_path)
+state=$(jq --arg ResourceId "$resource_id" --arg GrainPath "$grain_path" '.resources[] | select(.identifier == $ResourceId and .grain_path == $GrainPath) | .attributes | .power_state' $contract_path)
+export print=$(echo $state | tr -d '"')
 
 echo "extraction completed successfully"
 
