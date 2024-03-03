@@ -14,7 +14,7 @@ grains:
     spec:
       sources:
       - store: test-spec2-public
-        path: manifests/nginx-folder/nginx-deployment.yaml
+        path: manifests/nginx-folder
       agent:
         name: '{{ .inputs.agent }}'
       target-namespace: '{{ inputs.target-namespace }}'
