@@ -5,6 +5,6 @@ token=$3
 contract_path=$CONTRACT_FILE_PATH
 
 # will print the attribute "power_state" of the resource
-jq --arg ResourceId "$resource_id" --arg GrainPath "$grain_path" '.resources[] | select(.identifier == $ResourceId and .grain_path == $GrainPath) | .attributes | .power_state' $contract_path
+export print=$(jq --arg ResourceId "$resource_id" --arg GrainPath "$grain_path" '.resources[] | select(.identifier == $ResourceId and .grain_path == $GrainPath) | .attributes | .power_state' $contract_path)
 
 
