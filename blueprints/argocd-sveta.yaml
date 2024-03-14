@@ -16,7 +16,7 @@ grains:
   argo-app:
     kind: argocd
     spec:
-      deployment_engine: '{{.inputs.deployment_engine_name}}'
+      deployment_engine: argo-4-all
       agent:
         name: '{{.inputs.agent_name}}'
       mode: data
