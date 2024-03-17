@@ -20,7 +20,7 @@ grains:
   argo-app1:
     kind: argocd
     spec:
-      deployment_engine: my-ede
+      deployment_engine: '{{.inputs.deployment_engine_name}}'
       agent:
         name: '{{.inputs.agent_name}}'
       mode: data
