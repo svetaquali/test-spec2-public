@@ -20,7 +20,7 @@ grains:
   argo-app1:
     kind: argocd
     spec:
-      deployment_engine: argo-4-all
+      deployment-engine: argo-4-all
       agent:
         name: '{{.inputs.agent_name}}'
       mode: data
@@ -30,7 +30,7 @@ grains:
   argo-app2:
     kind: argocd
     spec:
-      deployment_engine: '{{.inputs.deployment_engine_name}}'
+      deployment-engine: '{{.inputs.deployment_engine_name}}'
       agent:
         name: '{{.inputs.agent_name}}'
       mode: data
