@@ -49,7 +49,7 @@ grains:
         spec:
             agent:
                 name: '{{ .inputs.agent }}'
-            actvities:
+            activities:
               deploy:
                 commands:
                   - command: 'echo hello from job2' 
