@@ -19,9 +19,9 @@ inputs:
 
 outputs:
   job1_output:
-    value: '{{ .grains.job1.activities.deploy.commands.print }}'
+    value: '{{ .grains.job1.activities.commands.print }}'
   job2_output: 
-    value: '{{ .grains.job2.activities.deploy.commands.print }}'
+    value: '{{ .grains.job2.activities.commands.print }}'
   input1:
     value: '{{ .inputs.input1 }}'
   input2:
