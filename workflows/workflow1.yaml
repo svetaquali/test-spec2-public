@@ -2,7 +2,6 @@ spec_version: 2
 workflow: true
 description: some workflow 2
 
-
 workflow-metadata:
   scope: env_resource
   label-selector: vm
@@ -18,11 +17,11 @@ inputs:
     display-style: normal
     description: "agent name." 
 
-outputs:
-  job1_output: '{{ .grains.job1.outputs.print }}'
-  job2_output: '{{ .grains.job2.outputs.print }}'
-  input1: '{{ .inputs.input1 }}'
-  input2: '{{ .inputs.input2 }}'
+# outputs:
+#   job1_output: '{{ .grains.job1.activities.deploy.print }}'
+#   job2_output: '{{ .grains.job2.outputs.print }}'
+#   input1: '{{ .inputs.input1 }}'
+#   input2: '{{ .inputs.input2 }}'
   
 grains:
     job1:
