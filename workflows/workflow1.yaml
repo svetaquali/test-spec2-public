@@ -17,11 +17,15 @@ inputs:
     display-style: normal
     description: "agent name." 
 
-# outputs:
-#   job1_output: '{{ .grains.job1.activities.deploy.print }}'
-#   job2_output: '{{ .grains.job2.outputs.print }}'
-#   input1: '{{ .inputs.input1 }}'
-#   input2: '{{ .inputs.input2 }}'
+outputs:
+  job1_output:
+    value: '{{ .grains.job1.activities.deploy.commands.print }}'
+  job2_output: 
+    value: '{{ .grains.job2.activities.deploy.commands.print }}'
+  input1:
+    value: '{{ .inputs.input1 }}'
+  input2:
+    value: '{{ .inputs.input2 }}'
   
 grains:
     job1:
