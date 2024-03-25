@@ -40,7 +40,8 @@ grains:
               deploy:
                 commands:
                   - name: print
-                    command:  './print-resource.sh {{ .bindings.resource_id }} {{ .bindings.grain_path }} {{ .params.token }}'
+                    command:  './print-resource.sh my-vm vm1 {{ .params.token }}'
+                    #command:  './print-resource.sh {{ .bindings.resource_id }} {{ .bindings.grain_path }} {{ .params.token }}'                    
             outputs:
                 - print
 
