@@ -13,14 +13,16 @@ inputs:
     default: default
   agent_name:
     type: agent
-  deployment_engine_name:
+  deployment_engine_name1:
+    type: string
+  deployment_engine_name2:
     type: string
 
 grains:
   argo-app1:
     kind: argocd
     spec:
-      deployment-engine: argo-4-all
+      deployment-engine: '{{.inputs.deployment_engine_name1}}'
       agent:
         name: '{{.inputs.agent_name}}'
       mode: data
@@ -30,7 +32,7 @@ grains:
   argo-app2:
     kind: argocd
     spec:
-      deployment-engine: '{{.inputs.deployment_engine_name}}'
+      deployment-engine: '{{.inputs.deployment_engine_name2}}'
       agent:
         name: '{{.inputs.agent_name}}'
       mode: data
