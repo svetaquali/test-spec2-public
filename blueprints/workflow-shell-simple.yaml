@@ -27,8 +27,7 @@ outputs:
 grains:                
 
     job1:
-        kind: shell
-        depends-on: job1
+        kind: shell        
         spec:
             agent:
                 name: '{{ .inputs.agent }}'
