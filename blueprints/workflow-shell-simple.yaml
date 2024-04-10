@@ -1,0 +1,40 @@
+spec_version: 2
+workflow: true
+description: some workflow 2
+
+workflow-metadata:  
+  label-selector: vm
+  
+inputs:
+  input1:
+    type: string
+    default: 'yaml-default1'
+  input2:
+    type: string
+  agent:
+    type: agent
+    display-style: normal
+    description: "agent name." 
+
+outputs:
+  job1_output:
+    value: '{{ .grains.job1.activities.deploy.commands.print.output }}'  
+  input1:
+    value: '{{ .inputs.input1 }}'
+  input2:
+    value: '{{ .inputs.input2 }}'
+  
+grains:                
+
+    job1:
+        kind: shell
+        depends-on: job1
+        spec:
+            agent:
+                name: '{{ .inputs.agent }}'
+            activities:
+              deploy:
+                commands:
+                  - command: 'echo hello from job2' 
+                  - name: print                  
+                    command:  'echo print-output'
