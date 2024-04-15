@@ -3,6 +3,7 @@ workflow: true
 description: some workflow 2
 
 workflow-metadata:  
+  scope: env
   label-selector: vm
   
 inputs:
