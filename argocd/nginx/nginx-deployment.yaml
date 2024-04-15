@@ -4,6 +4,7 @@ metadata:
   name: my-nginx-deployment
   labels:
     app.kubernetes.io/name: nginx
+    owner: svetlana.c
 spec:
   selector:
     matchLabels:
