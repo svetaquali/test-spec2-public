@@ -39,7 +39,7 @@ grains:
               deploy:
                 commands:
                   - name: print                    
-                    command:  'echo job1'                    
+                    command:  'echo -n job1'                    
 
     job2:
         kind: shell
