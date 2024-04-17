@@ -8,9 +8,9 @@ inputs:
   application_name2:
     type: string
     default: sveta-nginx-deployment
-  project:
+  application_namespace2:
     type: string
-    default: default
+    default: argocd
   agent_name:
     type: agent
   deployment_engine_name1:
@@ -26,7 +26,6 @@ grains:
       agent:
         name: '{{.inputs.agent_name}}'
       mode: data
-      project: '{{.inputs.project}}'
       application: '{{.inputs.application_name1}}'
   
   argo-app2:
@@ -36,5 +35,5 @@ grains:
       agent:
         name: '{{.inputs.agent_name}}'
       mode: data
-      project: '{{.inputs.project}}'
       application: '{{.inputs.application_name2}}'
+      application-namespace: '{{.inputs.application_namespace2}}'
