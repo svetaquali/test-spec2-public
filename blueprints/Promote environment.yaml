@@ -1,0 +1,77 @@
+spec_version: 2
+workflow: true
+description: |
+  Promotes version to production.
+  Authenticates with Jenkins, triggers a job that builds the current code, runs tests, 
+  packages artifacts, pushes to a repository, and promotes the new version to production environments
+  by changing the prodcution environment.yaml
+  Notifies on success/failure.
+
+workflow-metadata:  
+  scope: env
+  
+inputs:
+  Target Environment:
+    type: string
+    allowed-values: ['production', 'staging', 'review1', 'review2']
+    default: 'production'
+  Skip E2E:
+    type: string
+    allowed-values: ['No', 'Yes']
+    default: 'No'
+  agent:
+    type: agent
+
+outputs:
+  build_version_output:
+    value: '{{ .grains.trigger-build-job.activities.deploy.commands.print.output }}'
+  test_results_output:
+    value: '{{ .grains.trigger-test-job.activities.deploy.commands.print.output }}'
+  promote_output: 
+    value: '{{ .grains.trigger-promote-job.activities.deploy.commands.print.output }}'
+  Target Environment:
+    value: '{{ .inputs.["Target Environment"] }}'
+  Skip E2E:
+    value: '{{ .inputs.["Skip E2E"] }}'
+  
+grains:
+  trigger-build-job:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: test-spec2-public
+          path: scripts/print-resource.sh
+      activities:
+        deploy:
+          commands:
+            - name: print                    
+              command:  'echo -n trigger-build-job'
+              
+  trigger-test-job:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: test-spec2-public
+          path: scripts/print-resource.sh
+      activities:
+        deploy:
+          commands:
+            - name: print                    
+              command:  'echo https://reportportal.qualilabs.net/ui/#quali/dashboard/4'
+
+  trigger-promote-job:
+    kind: shell
+    depends-on: trigger-build-job, trigger-test-job
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - command: 'echo hello from trigger-promote-job' 
+            - name: print                  
+              command:  'echo {{.grains.trigger-build-job.activities.deploy.commands.print.output}}'
