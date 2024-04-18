@@ -1,6 +1,9 @@
 spec_version: 2
 workflow: true
-description: some workflow 2
+description: |
+  Gracefully powers off all running virtual machines. 
+  It checks user permissions, enumerates running VMs, sends shutdown signals, and forces power-off if needed. 
+  Upon completion, it summarizes the power-off operation, including successful VMs and errors encountered.
 
 workflow-metadata:  
   scope: env
