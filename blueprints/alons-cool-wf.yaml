@@ -26,7 +26,7 @@ outputs:
   build_version_output:
     value: '{{ .grains.trigger-build-job.activities.deploy.commands.print.output }}'
   test_results_output:
-    value: '{{ .grains.trigger-build-job.activities.deploy.commands.print.output }}'
+    value: '{{ .grains.trigger-test-job.activities.deploy.commands.print.output }}'
   promote_output: 
     value: '{{ .grains.trigger-promote-job.activities.deploy.commands.print.output }}'
   Target Environment:
