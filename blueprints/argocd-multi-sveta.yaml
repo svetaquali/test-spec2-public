@@ -18,6 +18,10 @@ inputs:
   deployment_engine_name2:
     type: string
 
+outputs:
+  application_url2:
+    value: '{{.grains.argo-app2.outputs.application-url}}'
+
 grains:
   argo-app1:
     kind: argocd
@@ -37,3 +41,5 @@ grains:
       mode: data
       application: '{{.inputs.application_name2}}'
       application-namespace: '{{.inputs.application_namespace2}}'
+      outputs:
+        - application-url
