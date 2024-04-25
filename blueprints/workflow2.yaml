@@ -36,7 +36,7 @@ grains:
       agent:
         name: '{{ .inputs.agent }}'
       files:
-        - source: test-spec2-public-2
+        - source: test-spec2-public
           path: scripts/print-resource.sh
       activities:
         deploy:
