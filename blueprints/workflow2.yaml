@@ -42,7 +42,7 @@ grains:
         deploy:
           commands:
             - name: print                    
-              command:  'echo -n power-off-vms'                    
+              command:  'sleep 300 && echo -n power-off-vms'                    
 
   notify-it-channel:
     kind: shell
