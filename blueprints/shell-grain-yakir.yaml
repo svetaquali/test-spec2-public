@@ -29,7 +29,7 @@ grains:
         deploy:
           commands:                                        
             - name: output1
-              command: "./echo.sh"            
+              command: "source echo.sh"            
         destroy:
           commands:
             - echo "destroying"
