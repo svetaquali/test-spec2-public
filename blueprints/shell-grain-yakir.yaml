@@ -17,7 +17,7 @@ outputs:
     value: '{{ .grains.shell.activities.deploy.commands.output1.output }}'
 
 grains:
-  shell1:
+  shell:
     kind: shell
     spec:
       agent:
