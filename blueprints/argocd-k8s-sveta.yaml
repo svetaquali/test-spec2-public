@@ -27,6 +27,7 @@ grains:
   
   nginx-app-auto-data:
     kind: argocd
+    depends-on: nginx-app-auto
     spec:
       deployment-engine: '{{.inputs.deployment_engine_name}}'
       agent:
