@@ -1,0 +1,38 @@
+spec_version: 2
+description: deploy an ArgoCD application and view its data
+
+inputs:
+  application_namespace:
+    type: string
+    default: argocd
+  agent_name:
+    type: agent
+  deployment_engine_name:
+    type: string
+
+outputs:
+  application_url2:
+    value: '{{.grains.argo-app2.outputs.application-url}}'
+
+grains:
+  nginx-app-auto:
+    kind: kubernetes
+    spec:
+      sources:
+      - store: test-spec2-public
+        path: argocd/apps/nginx-app-auto.yaml
+      target-namespace: '{{ inputs.application_namespace }}'
+      agent:
+        name: '{{.inputs.agent_name}}'
+  
+  nginx-app-auto-data:
+    kind: argocd
+    spec:
+      deployment-engine: '{{.inputs.deployment_engine_name}}'
+      agent:
+        name: '{{.inputs.agent_name}}'
+      mode: data
+      application: nginx-app-auto
+      application-namespace: '{{.inputs.application_namespace}}'
+      outputs:
+        - application-url
