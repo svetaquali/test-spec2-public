@@ -12,6 +12,9 @@ inputs:
     default: "http://github.com/QualiNext/test-spec2-public"
     description: "path to the repo to clone"
 
+outputs:
+  shell-output:
+    value: '{{ .grains.shell.activities.deploy.commands.output1.output }}'
 
 grains:
   shell1:
@@ -19,16 +22,14 @@ grains:
     spec:
       agent:
         name: '{{.inputs.compute_service_name}}'
+      files:
+        - source: test-spec2-public
+          path: scripts/echo.sh
       activities:
         deploy:
-          commands:            
-            # - "sleep 300s"
-            # - "curl https://get.datree.io | /bin/bash"
-            # - "datree test {{.inputs.repoName}}/{{.inputs.filePath}}"
-            - echo "hello1"
-            - echo "printing filesystem"
-            - df
-            - echo "done"
+          commands:                                        
+            - name: output1
+              command: "./echo.sh"            
         destroy:
           commands:
             - echo "destroying"
