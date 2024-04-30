@@ -30,6 +30,7 @@ grains:
           commands:                                        
             - name: output1
               command: "source echo.sh"            
+            - 'echo hello'
         destroy:
           commands:
             - echo "destroying"
