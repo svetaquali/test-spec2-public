@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  # ClusterIP, NodePort, LoadBalancer
+  type: {{ .Values.service.type }}
+  ports:
+  # the port that this service should serve on
+  - port: {{ .Values.service.port }}
+    # the container on each pod to connect to, can be a name
+    # (e.g. 'www') or a number (e.g. 80)
+    targetPort: {{ .Values.service.containerPort }}
+    protocol: TCP
+  # just like the selector in the deployment,
+  # but this time it identifies the set of pods to load balance
+  # traffic to.
+  selector:
+    app.kubernetes.io/name: nginx

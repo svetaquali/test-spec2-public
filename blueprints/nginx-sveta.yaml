@@ -14,9 +14,9 @@ grains:
     spec:
       source:
         store: test-spec2-public
-        path: helm/nginx-test
+        path: helm/nginx-stripped
       agent:
         name: '{{ .inputs.agent }}'
       target-namespace: '{{ inputs.target-namespace }}'
       commands:
-        - dep up helm/nginx-test
+        - dep up helm/nginx-stripped
