@@ -7,6 +7,9 @@ inputs:
   target-namespace:
     type: string
     default: "sveta-test"
+  service-type:
+    type: string
+    default: ClusterIP
 
 grains:
   nginx:
@@ -20,3 +23,5 @@ grains:
       target-namespace: '{{ inputs.target-namespace }}'
       commands:
         - dep up helm/nginx-stripped
+      inputs:
+        - service.type: '{{.inputs.service-type}}'
