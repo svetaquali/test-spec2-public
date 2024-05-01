@@ -1,9 +1,8 @@
 kind: bluperint 
-spec_version: 2-preview
-
+spec_version: 2
 
 inputs:
-  compute_service_name:
+  agent:
     type: agent
     
   repoUrl:
@@ -14,23 +13,33 @@ inputs:
 
 outputs:
   shell-output:
-    value: '{{ .grains.shell.activities.deploy.commands.output1.output }}'
+    value: '{{ .grains.shell.activities.deploy.commands.my_shell_script.outputs.output1 }}'
+  # python-output:
+  #   value: '{{ .grains.shell.activities.deploy.commands.my_python_script.output }}'
 
 grains:
   shell:
     kind: shell
     spec:
       agent:
-        name: '{{.inputs.compute_service_name}}'
+        name: '{{.inputs.agent}}'
       files:
         - source: test-spec2-public
           path: scripts/echo.sh
+        - source: test-spec2-public
+          path: scripts/echo.py
+      env_vars:
+        - VAR_NAME1: var1
       activities:
         deploy:
           commands:                                        
-            - name: output1
-              command: "source echo.sh"            
-            - 'echo hello'
+            - name: my_shell_script
+              command: "source echo.sh"
+              outputs:
+                - output1
+                - output2
+            # - name: my_python_script
+            #   command: "source python echo.py"
         destroy:
           commands:
             - echo "destroying"
