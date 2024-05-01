@@ -8,6 +8,8 @@ spec:
     repoURL: "https://github.com/QualiNext/test-spec2-public.git"
     path: argocd/nginx
     targetRevision: HEAD
+    directory:
+      exclude: 'pre-sync-sleep.yaml'
   destination:
     server: "https://kubernetes.default.svc"
     namespace: sveta-argocd
