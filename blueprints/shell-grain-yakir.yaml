@@ -12,22 +12,18 @@ inputs:
     description: "path to the repo to clone"
 
 outputs:
-  shell-output:
-    value: '{{ .grains.shell.activities.deploy.commands.my_shell_script.outputs.output1 }}'
-  # python-output:
-  #   value: '{{ .grains.shell.activities.deploy.commands.my_python_script.output }}'
+  shell2-output1:
+    value: '{{ .grains.shell2.activities.deploy.commands.cmd2.outputs.output1 }}'  
 
 grains:
-  shell:
+  shell1:
     kind: shell
     spec:
       agent:
         name: '{{.inputs.agent}}'
       files:
         - source: test-spec2-public
-          path: scripts/echo.sh
-        - source: test-spec2-public
-          path: scripts/echo.py
+          path: scripts/echo.sh        
       env_vars:
         - VAR_NAME1: var1
       activities:
@@ -38,8 +34,32 @@ grains:
               outputs:
                 - output1
                 - output2
-            # - name: my_python_script
-            #   command: "source python echo.py"
+            - 'echo second command'            
+        destroy:
+          commands:
+            - echo "destroying"
+            
+ shell2:
+    kind: shell
+    depends-on: shell1
+    spec:
+      agent:
+        name: '{{.inputs.agent}}'
+      files:
+        - source: test-spec2-public
+          path: scripts/echo.sh        
+      env_vars:
+        - VAR_NAME1: var1
+      activities:
+        deploy:
+          commands:                                        
+            - name: cmd1
+              command: "echo {{ .grains.shell.activities.deploy.commands.my_shell_script.outputs.output1 }}"
+            - name: cmd2
+              command: "source echo.sh"
+              outputs:
+                - output1
+                - output2            
         destroy:
           commands:
             - echo "destroying"
