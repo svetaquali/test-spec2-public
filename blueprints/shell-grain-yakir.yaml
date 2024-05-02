@@ -54,7 +54,7 @@ grains:
         deploy:
           commands:                                        
             - name: cmd1
-              command: "echo {{ .grains.shell.activities.deploy.commands.my_shell_script.outputs.output1 }}"
+              command: "echo {{ .grains.shell1.activities.deploy.commands.my_shell_script.outputs.output1 }}"
             - name: cmd2
               command: "source echo.sh"
               outputs:
