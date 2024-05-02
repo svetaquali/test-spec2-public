@@ -39,7 +39,7 @@ grains:
           commands:
             - echo "destroying"
             
- shell2:
+  shell2:
     kind: shell
     depends-on: shell1
     spec:
