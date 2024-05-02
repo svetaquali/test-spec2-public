@@ -11,9 +11,9 @@ inputs:
     default: "http://github.com/QualiNext/test-spec2-public"
     description: "path to the repo to clone"
 
-# outputs:
-#   shell2-output1:
-#     value: '{{ .grains.shell2.activities.deploy.commands.cmd2.outputs.output1 }}'  
+outputs:
+  shell2-output1:
+    value: '{{ .grains.shell2.activities.deploy.commands.cmd2.outputs.output1 }}'  
 
 grains:
   shell1:
@@ -39,27 +39,27 @@ grains:
           commands:
             - echo "destroying"
             
-  # shell2:
-  #   kind: shell
-  #   depends-on: shell1
-  #   spec:
-  #     agent:
-  #       name: '{{.inputs.agent}}'
-  #     files:
-  #       - source: test-spec2-public
-  #         path: scripts/echo.sh        
-  #     env_vars:
-  #       - VAR_NAME1: var1
-  #     activities:
-  #       deploy:
-  #         commands:                                        
-  #           - name: cmd1
-  #             command: "echo {{ .grains.shell1.activities.deploy.commands.my_shell_script.outputs.output1 }}"
-  #           - name: cmd2
-  #             command: "source echo.sh"
-  #             outputs:
-  #               - output1
-  #               - output2            
-  #       destroy:
-  #         commands:
-  #           - echo "destroying"
+  shell2:
+    kind: shell
+    depends-on: shell1
+    spec:
+      agent:
+        name: '{{.inputs.agent}}'
+      files:
+        - source: test-spec2-public
+          path: scripts/echo.sh        
+      env_vars:
+        - VAR_NAME1: var1
+      activities:
+        deploy:
+          commands:                                        
+            - name: cmd1
+              command: "echo {{ .grains.shell1.activities.deploy.commands.my_shell_script.outputs.output1 }}"
+            - name: cmd2
+              command: "source echo.sh"
+              outputs:
+                - output1
+                - output2            
+        destroy:
+          commands:
+            - echo "destroying"
