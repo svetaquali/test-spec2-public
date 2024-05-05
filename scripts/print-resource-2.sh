@@ -9,7 +9,5 @@ state=$(jq --arg ResourceId "$resource_id" --arg GrainPath "$grain_path" '.resou
 
 state_tr=`echo -n $state | tr -d '"'`
 
-
-
 echo $state_tr
-export state_tr=hellooooo
+export $state_tr
