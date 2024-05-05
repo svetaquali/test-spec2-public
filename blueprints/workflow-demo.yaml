@@ -19,7 +19,7 @@ inputs:
 
 outputs:
   resource_state:
-    value: '{{ .grains.job1.activities.deploy.commands.print.outputs.state_tr }}'  
+    value: '{{ .grains.job1.activities.deploy.commands.print.outputs.state_tr_1 }}'  
   input1:
     value: '{{ .inputs.input1 }}'  
   
