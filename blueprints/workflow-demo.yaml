@@ -39,7 +39,7 @@ grains:
                     # command:  './print-resource.sh azurerm_virtual_machine.example vm1 {{ .params.token }}'
                     command:  './print-resource-2.sh {{ .bindings.resource_id }} {{ .bindings.grain_path }} {{ .params.token }}'
                     outputs:
-                      - state
+                      - state_tr
 
     job2:
         kind: shell
