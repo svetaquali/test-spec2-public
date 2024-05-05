@@ -1,6 +1,6 @@
 spec_version: 2
 workflow: true
-description: workflow demo
+description: workflow demo new
 
 workflow-metadata:
   scope: env_resource
