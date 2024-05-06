@@ -9,5 +9,6 @@ state=$(jq --arg ResourceId "$resource_id" --arg GrainPath "$grain_path" '.resou
 
 state_tr=`echo -n $state | tr -d '"'`
 
+cat $CONTRACT_FILE_PATH
 echo $state_tr
 export $state_tr
