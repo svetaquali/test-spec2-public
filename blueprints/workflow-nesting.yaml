@@ -37,7 +37,7 @@ grains:
             - name: print                    
               command:  'echo "job1 output"'                    
 
-  workflow:
+  simple-workflow-env-scope:
     kind: blueprint
     depends-on: shell
     spec:
