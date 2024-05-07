@@ -17,10 +17,6 @@ inputs:
     description: "agent name." 
 
 outputs:
-  power-off-vms-output:
-    value: '{{ .grains.power-off-vms.activities.deploy.commands.print.output }}'
-  notify-it-channel-output: 
-    value: '{{ .grains.notify-it-channel.activities.deploy.commands.print.output }}'
   input1:
     value: '{{ .inputs.input1 }}'
   input2:
