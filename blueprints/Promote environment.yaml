@@ -26,7 +26,7 @@ outputs:
   build_version_output:
     value: '{{ .grains.trigger-build-job.activities.deploy.commands.print.output }}'
   test_results_output:
-    value: '{{ .grains.trigger-test-job.activities.deploy.commands.print.output }}'
+    value: '{{ .grains.trigger-test-job.activities.deploy.commands.print.outputs.test_url }}'
   promote_output: 
     value: '{{ .grains.trigger-promote-job.activities.deploy.commands.print.output }}'
   Target Environment:
@@ -61,7 +61,9 @@ grains:
         deploy:
           commands:
             - name: print                    
-              command:  'echo https://reportportal.qualilabs.net/ui/#quali/dashboard/4'
+              command:  'export test_url=https://reportportal.qualilabs.net/ui/#quali/dashboard/4'
+              outputs:
+                - test_url
 
   trigger-promote-job:
     kind: shell
