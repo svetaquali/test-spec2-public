@@ -1,0 +1,35 @@
+spec_version: 2
+description: simple workflow for scope env 
+
+workflow: true
+workflow-metadata:  
+  scope: env
+  
+inputs:
+  input1:
+    type: string
+    default: 'yaml-default1'
+  agent:
+    type: agent
+    display-style: normal
+    description: "agent name." 
+
+outputs:
+  input1:
+    value: '{{ .inputs.input1 }}'
+  
+grains:
+  shell-example:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: test-spec2-public
+          path: scripts/print-resource.sh
+      activities:
+        deploy:
+          commands:
+            - name: print                    
+              command:  'echo "job1 output"'                    
+
