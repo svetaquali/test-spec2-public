@@ -39,7 +39,7 @@ grains:
 
   workflow:
     kind: blueprint
-    depends-on: job1
+    depends-on: shell
     spec:
       source:
         path: blueprints/simple-workflow-env-scope
