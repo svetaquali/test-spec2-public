@@ -1,0 +1,53 @@
+spec_version: 2
+description: workflow with nested yaml 
+
+workflow: true
+workflow-metadata:  
+  scope: env
+  
+inputs:
+  input1:
+    type: string
+    default: 'yaml-default1'
+  input2:
+    type: string
+  agent:
+    type: agent
+    display-style: normal
+    description: "agent name." 
+
+outputs:
+  power-off-vms-output:
+    value: '{{ .grains.power-off-vms.activities.deploy.commands.print.output }}'
+  notify-it-channel-output: 
+    value: '{{ .grains.notify-it-channel.activities.deploy.commands.print.output }}'
+  input1:
+    value: '{{ .inputs.input1 }}'
+  input2:
+    value: '{{ .inputs.input2 }}'
+  
+grains:
+  shell:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: test-spec2-public
+          path: scripts/print-resource.sh
+      activities:
+        deploy:
+          commands:
+            - name: print                    
+              command:  'echo "job1 output"'                    
+
+  workflow:
+    kind: blueprint
+    depends-on: job1
+    spec:
+      source:
+        path: blueprints/simple-workflow-env-scope
+        store: test-spec2-public
+      inputs:
+        - agent: '{{.inputs.agent}}'  
+    
