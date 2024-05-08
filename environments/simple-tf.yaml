@@ -1,6 +1,6 @@
 kind: environment
 environment_name: Simple TF
-state: active
+state: inactive
 owner_email: yakir.l@quali.com
 blueprint:
   name: simple-tf-yakir
