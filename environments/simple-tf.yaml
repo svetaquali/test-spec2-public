@@ -5,7 +5,7 @@ owner_email: yakir.l@quali.com
 blueprint:
   name: simple-tf-yakir
   repository_name: test-spec2-public
-  commit: d908088
+  commit: f6b2399e9f7bfa030148564c9598bdf985c343ff
 inputs:
   compute_service_name: aks-prod-2  
 tags: {}
