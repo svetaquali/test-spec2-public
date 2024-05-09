@@ -63,3 +63,26 @@ grains:
         destroy:
           commands:
             - echo "destroying"
+
+  shell3:
+    kind: shell
+    depends-on: shell1
+    spec:
+      agent:
+        name: '{{.inputs.agent}}'      
+      env_vars:
+        - VAR_NAME1: var1
+      activities:
+        deploy:
+          commands:                                        
+            - name: cmd1
+              command: "echo {{ .grains.shell1.activities.deploy.commands.my_shell_script.outputs.output1 }}"
+            - name: cmd2
+              command: "echo cmd2out && export output1=val1 && export output2=val2"
+              outputs:
+                - output1
+                - output2            
+        destroy:
+          commands:
+            - echo "destroying"
+
