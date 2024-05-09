@@ -78,7 +78,7 @@ grains:
             - name: cmd1
               command: "echo {{ .grains.shell1.activities.deploy.commands.my_shell_script.outputs.output1 }}"
             - name: cmd2
-              command: "echo cmd2out && export output1=val1 && export output2=val2"
+              command: "export output1=$(echo aa >> /tmp/tmpfile && echo outputval1)"
               outputs:
                 - output1
                 - output2            
