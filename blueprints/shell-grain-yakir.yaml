@@ -83,7 +83,7 @@ grains:
                 - output1
                 - output2            
             - name: sleep
-              command: sleep 600
+              command: sleep 1
         destroy:
           commands:
             - echo "destroying"
