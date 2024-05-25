@@ -94,3 +94,36 @@ grains:
         - test_list_string
         - test_map_string
         - test_object
+
+  # similar to 'first' but provide also inputs in structured way 
+  third:
+    kind: terraform
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public.git//terraform/tf-complex-types
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_number: 6
+        # - vm_name: '{{ .inputs.["VM Name"] }}'
+        #  - source_cidr: '{{ .inputs.["Source CIDR"] }}'
+        # - test_string_liquid: '{{.grains.helm-qualix.scripts.post-helm-install.outputs.qualixoutboundip | strip_newlines}}/32'
+        - test_string_liquid: '{{.inputs.input_string | strip_newlines}}/32'
+        - test_string: '{{.inputs.input_string}}'
+#         - test_list_string: '{{.inputs.input_list_string}}'
+        - test_list_string:
+            - a
+            - b
+            - c          
+        - test_map_string: '{{.inputs.input_map_string}}'
+        - test_map_string2: '{{.inputs.input_map_string_default}}'       
+        - test_object:
+            key1: ThisIsString
+            key2: 5
+        - test_liquid: env-id-{{sandboxId}}
+      outputs:
+        - test_number
+        - test_string
+        - test_list_string
+        - test_map_string
+        - test_object
