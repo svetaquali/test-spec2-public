@@ -26,7 +26,7 @@ grains:
       agent:
         name: '{{.inputs.compute_service_name}}'
       commands:
-        - dep up helm/nginx
+        - dep up helm/nginx-test
       inputs:
         - replicaSet: 1
         - input_2: 'test'
