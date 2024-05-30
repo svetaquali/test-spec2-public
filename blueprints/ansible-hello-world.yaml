@@ -18,6 +18,7 @@ grains:
         name: '{{ .inputs.agent }}'
       inputs:
         - name: '{{ .inputs.name }}'
+      command-arguments: '--limit="localhost"'
       inventory-file:
         localhost:
           hosts:
