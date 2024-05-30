@@ -26,6 +26,7 @@ grains:
       agent:
         name: '{{.inputs.compute_service_name}}'
       commands:
+        - list && cp -R ${VALUES_REPO_DIR}/helm/nginx-test/ci ${WORK_DIR}/helm/nginx-test/new-dir
         - dep up helm/nginx-test
       inputs:
         - replicaSet: 1
