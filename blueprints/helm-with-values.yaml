@@ -1,0 +1,48 @@
+spec_version: 2
+
+description: description text
+
+inputs:
+  compute_service_name:
+    type: agent     
+  release:
+    type: string
+    default: ""
+
+outputs:
+  output1:
+    value: 'https://{{.grains.nginx-simple.scripts.post-helm-install.outputs.output1}}'
+    kind: link
+  output2:
+    value: '{{.grains.nginx-simple.scripts.post-helm-install.outputs.output2}}'
+
+grains:
+  nginx-simple:
+    kind: helm
+    spec:
+      source:
+        store: test-spec2-public
+        path: helm/nginx-test
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      commands:
+        - dep up helm/nginx
+      inputs:
+        - replicaSet: 1
+        - input_2: 'test'
+        - input_3: 3
+      values-files:
+        - source: 
+            store: test-spec2-public
+            path: helm/nginx-test/values.yaml
+      command-arguments: '--version 3.0.0'
+      env-vars:
+        - test: newValue
+      scripts:
+        post-helm-install:
+          source:
+            store: test-spec2-public
+            path:  scripts/post-install-script.sh
+          outputs:
+            - output1
+            - output2
