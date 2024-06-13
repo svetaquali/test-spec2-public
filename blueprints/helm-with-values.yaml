@@ -34,8 +34,8 @@ grains:
         - input_3: 3
       values-files:
         - source: 
-            store: test-spec2-public
-            path: helm/nginx-test/values.yaml
+            store: dbs
+            path: helm/values
       command-arguments: '--version 3.0.0'
       env-vars:
         - test: newValue
