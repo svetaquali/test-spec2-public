@@ -40,8 +40,8 @@ grains:
             commit: 25dbe596bb083ca9346692f3cc846cd061f30a14
         - source: 
             store: test-spec2-public
-            path: helm/nginx-test/values.yaml
-            commit: ff02f93408b9034069e80efaed45524a700e069a
+            # path: helm/nginx-test/values.yaml
+            commit: ff02f93408b9034069e80efaed45524a700e069a        
       command-arguments: '--version 3.0.0'
       env-vars:
         - test: newValue
