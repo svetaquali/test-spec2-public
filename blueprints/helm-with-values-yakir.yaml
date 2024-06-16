@@ -42,6 +42,10 @@ grains:
             store: test-spec2-public
             # path: helm/nginx-test/values.yaml
             commit: ff02f93408b9034069e80efaed45524a700e069a        
+        - source: 
+            store: iac-samples
+            # path: helm/nginx-test/values.yaml
+            commit: eb7bf547f916ff11f0f95e35fb1e8c6fd6535ce1
       command-arguments: '--version 3.0.0'
       env-vars:
         - test: newValue
