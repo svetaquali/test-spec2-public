@@ -16,9 +16,11 @@ grains:
   nginx:
     kind: kubernetes
     spec:
-      source:
-        store: test-spec2-public
-        path: manifests/nginx1/nginxmanifest.yaml
+      sources:
+        - store: test-spec2-public
+          path: manifests/nginx1/nginxmanifest.yaml
+        - store: iac-samples
+          path: manifests/nginx/nginx.yaml
         # path: github.com/QualiNext/test-spec2-public.git//manifests/nginx1/nginxmanifest.yaml
       namespace: '{{ .inputs.namespace }}'
       agent:
