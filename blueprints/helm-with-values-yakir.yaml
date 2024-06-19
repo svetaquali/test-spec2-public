@@ -27,7 +27,7 @@ grains:
         name: '{{.inputs.compute_service_name}}'
       commands:
         # - list && cp -R ${workspace_dir1}/helm/nginx-test/ci ${WORK_DIR}/helm/nginx-test/directory_from_dir1
-        - list && cp -R ${workspace_dir2}/terraform/simple-tf-module/main.tf ${WORK_DIR}/helm/nginx-test/file_from_dir2
+        # - list && cp -R ${workspace_dir2}/terraform/simple-tf-module/main.tf ${WORK_DIR}/helm/nginx-test/file_from_dir2
         - dep up helm/nginx-test
       inputs:
         - replicaSet: 1
