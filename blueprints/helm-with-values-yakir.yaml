@@ -33,16 +33,16 @@ grains:
         - replicaSet: 1
         - input_2: 'test'
         - input_3: 3
-      # workspace-directories:
-      #   # - source: 
-      #   #     name: workspace_dir1
-      #   #     store: test-spec2-public
-      #   #     # path: helm/nginx-test/values.yaml
-      #   #     commit: 25dbe596bb083ca9346692f3cc846cd061f30a14
-      #   - source: 
-      #       name: workspace_dir2
-      #       store: iac-samples
-      #       # commit: eb7bf547f916ff11f0f95e35fb1e8c6fd6535ce1
+      workspace-directories:
+        # - source: 
+        #     name: workspace_dir1
+        #     store: test-spec2-public
+        #     # path: helm/nginx-test/values.yaml
+        #     commit: 25dbe596bb083ca9346692f3cc846cd061f30a14
+        - source: 
+            name: workspace_dir2
+            store: iac-samples
+            # commit: eb7bf547f916ff11f0f95e35fb1e8c6fd6535ce1
       values-files:
         - source: 
             store: test-spec2-public
