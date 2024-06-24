@@ -42,6 +42,9 @@ inputs:
     display-style: masked
     default: my-secret
     description: secret input for testing  
+  store:
+    type: string
+    default: iac-samples
 
 
 # Dependencies Schema
@@ -68,7 +71,17 @@ grains:
         store: test-spec2-public
         branch: yakir-test
       agent:
-        name: '{{.inputs.execution_host1}}'
+        name: '{{.inputs.execution_host1}}'      
+      workspace-directories:
+        - source: 
+            name: workspace_dir1
+            store: test-spec2-public
+            # path: helm/nginx-test/values.yaml
+            commit: 25dbe596bb083ca9346692f3cc846cd061f30a14
+        - source: 
+            name: workspace_dir2
+            store: '{{.inputs.store}}'
+            # commit: eb7bf547f916ff11f0f95e35fb1e8c6fd6535ce1
       inputs:
         - test_input1: '{{.inputs.generic_input}}'
         - test_input2: dontcare
@@ -89,6 +102,10 @@ grains:
       target-namespace: '{{.inputs.namespace}}'
       inputs:
         - deployment.namespace: '{{.inputs.namespace}}'
+      workspace-directories:
+        - source: 
+            name: workspace_dir1
+            store: '{{.inputs.store}}'            
       scripts:
         post-helm-install:
           source:
