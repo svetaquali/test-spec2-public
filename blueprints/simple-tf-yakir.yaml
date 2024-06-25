@@ -38,7 +38,7 @@ grains:
       tfvars-files:
         - source:
             store: test-spec2-public
-            path: terraform/simple-tf-module/values.tfvars
+            path: terraform/sub-module/values.tfvars
       outputs:
         - output2
       # scripts: 
