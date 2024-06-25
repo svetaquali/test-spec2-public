@@ -11,7 +11,7 @@ grains:
     spec:
       backend:
         type: s3
-        bucket: my-bucket
+        bucket: tf-backend-test-2
         region: eu-west-1
       source:
         path: terraform/simple-tf-module
