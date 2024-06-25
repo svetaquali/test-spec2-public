@@ -33,6 +33,10 @@ grains:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - test_input2: "input2"
+      tfvars-files:
+        - source:
+            store: test-spec2-public
+            path: terraform/simple-tf-module/values.tfvars
       # scripts: 
       #   pre-tf-init:
       #     source:
