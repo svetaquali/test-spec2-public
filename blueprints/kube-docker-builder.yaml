@@ -1,6 +1,5 @@
 kind: blueprint
-spec: 2
-spec_version: 2-preview
+spec_version: 2
 description: Blueprint with k8s grain docker builder
     
 inputs:
