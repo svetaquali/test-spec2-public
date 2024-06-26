@@ -1,0 +1,24 @@
+kind: blueprint
+spec: 2
+spec_version: 2-preview
+description: Blueprint with k8s grain docker builder
+    
+inputs:
+  compute_service_name:
+    type: agent
+  namespace:
+    type: string
+    default: yakir-test
+    description: "Kubernetes namespace for sandbox to be ran in."
+
+
+grains:
+  docker:
+    kind: kubernetes
+    spec:
+      sources:
+        - store: test-spec2-public
+          path: manifests/docker-builder/docker-builder-pod.yaml        
+      namespace: '{{ .inputs.namespace }}'
+      agent:
+        name: '{{.inputs.compute_service_name}}'
