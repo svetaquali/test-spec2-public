@@ -21,7 +21,7 @@ grains:
     kind: helm
     spec:
       source:
-        store: test-spec2-public
+        store:k9sa test-spec2-public
         path: helm/nginx-test
       agent:
         name: '{{.inputs.compute_service_name}}'
