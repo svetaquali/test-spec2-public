@@ -42,6 +42,7 @@ grains:
         - source: 
             name: workspace_dir2
             store: iac-samples
+            path: .
             # commit: eb7bf547f916ff11f0f95e35fb1e8c6fd6535ce1
       values-files:
         - source: 
