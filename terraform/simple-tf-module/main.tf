@@ -38,7 +38,7 @@ resource "null_resource" "task_log" {
 # }
 
 locals {
-  key1 = "somekey"
+  key1 = "somekey
 }
 
 #vido was here
