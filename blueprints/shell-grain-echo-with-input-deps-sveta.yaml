@@ -7,11 +7,11 @@ inputs:
     default: eks1
   input1:
     type: parameter
-    parameter-name: param1
+    parameter-name: param-list-1
   input2:
     type: parameter
-    parameter-name: param2
-    depends-on: param1
+    parameter-name: param-list-2
+    depends-on: input1
 
 grains:
   sleep:
