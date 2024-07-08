@@ -1,0 +1,25 @@
+spec_version: 2
+description: sleep
+
+inputs:
+  agent_name:
+    type: agent
+    default: eks1
+  input1:
+    type: parameter
+    parameter-name: param1
+  input2:
+    type: parameter
+    parameter-name: param2
+    depends-on: param1
+
+grains:
+  sleep:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      activities:
+        deploy:
+          commands:
+            - "echo {{ .inputs.input2 }}"
