@@ -10,7 +10,7 @@ inputs:
     parameter-name: param-list-1
   input2:
     type: parameter
-    parameter-name: param-list-2
+    parameter-name: '{{ .inputs.abc }}-param-2'
     depends-on: input1
 
 grains:
