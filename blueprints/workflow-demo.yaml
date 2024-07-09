@@ -3,7 +3,7 @@ description: workflow demo
 
 workflow:
   scope: env_resource
-  label-selector: vm,azurerm_linux_virtual_machine
+  label-selector: azurerm_linux_virtual_machine
   
 inputs:
   input1:
