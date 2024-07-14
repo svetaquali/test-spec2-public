@@ -1,0 +1,62 @@
+{
+	"Parameters": {
+		"accesscontrol": {
+			"Type": "String",
+			"Default": "PublicRead",
+			"Description": "Access Control value"
+		}
+	},
+	"Outputs": {
+		"Arn": {
+			"Description": "The Bucket Arn",
+			"Value": {
+				"Fn::GetAtt": [
+					"S3Bucket",
+					"Arn"
+				]
+			}
+		},
+		"DomainName": {
+			"Description": "The Bucket Domain Name",
+			"Value": {
+				"Fn::GetAtt": [
+					"S3Bucket",
+					"DomainName"
+				]
+			}
+		}
+	},
+	"Description": "Creates an S3 Bucket blah blah123",
+	"Resources": {
+		"S3Bucket": {
+			"Type": "AWS::S3::Bucket",
+			"Properties": {
+				"AccessControl": {
+					"Ref": "accesscontrol"
+				},
+				"Tags": [
+					{
+					  "Key": "tag3",
+					  "Value": 3
+					},
+					{
+					  "Key": "Tag",
+					  "Value": "Shirel"
+					},
+					{
+					  "Key": "tag2",
+					  "Value": 2
+					},
+					{
+					  "Key": "tag1",
+					  "Value": 1
+					},
+					{
+					  "Key": "newtagkey",
+					  "Value": "newtagvalue"
+					}
+				]
+			}
+		}
+	}
+}

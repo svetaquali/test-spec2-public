@@ -11,6 +11,7 @@ grains:
     kind: blueprint
     spec:
       source:
+        store: test-spec2-public
         path: blueprints/deploy-s3-two-buckets.yaml
       agent:
         name: '{{.inputs.compute_service_name}}'
