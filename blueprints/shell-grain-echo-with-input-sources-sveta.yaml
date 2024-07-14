@@ -1,0 +1,32 @@
+spec_version: 2
+description: sleep
+
+inputs:
+  agent_name:
+    type: agent
+    default: eks1
+  bucket_objects:
+    type: input-source
+    source-name: s3-bucket-objects-list
+  object_key_for_content:
+    type: string
+    allowed-values:
+      - for_input_sources_small.json
+      - for_input_sources_big.json
+  object_content_item:
+    type: input-source
+    source-name: s3-object-json-content-list
+    depends-on: object_key_for_content
+    overrides:
+      - object_key: '{{ .inputs.object_key_for_content }}'
+
+grains:
+  sleep:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      activities:
+        deploy:
+          commands:
+            - "echo {{ .inputs.object_content_item }}"

@@ -1,0 +1,39 @@
+spec_version: 2-preview
+
+inputs:
+  compute_service_name:
+    type: agent
+  bucket_name:
+    type: string
+
+outputs:
+  output1:
+    value: "http://www.google.com"
+    kind: link
+    quick: true
+  output2:
+    value: '{{.inputs.compute_service_name}}'
+    kind: link
+    quick: true
+  output3:
+    value: 'http://my-env-{{ sandboxid }}/some/api'
+    kind: link
+    quick: true
+  output4:
+    value: '{{.grains.terragrunt1.outputs.bucket_arn}}'      
+    
+
+grains:
+  terragrunt1:
+    kind: terragrunt
+    tf-version: 1.3.5
+    spec:
+      source:
+        path: terragrunt/s3-bucket/non-prod/us-east-1/qa/bucket
+        store: test-spec2-public
+      agent:        
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - name:  '{{.inputs.bucket_name}}'     
+      outputs:
+        - bucket_arn

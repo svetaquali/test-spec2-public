@@ -1,10 +1,9 @@
 spec_version: 2
-workflow: true
 description: workflow demo
 
-workflow-metadata:
+workflow:
   scope: env_resource
-  label-selector: vm,azurerm_linux_virtual_machine
+  label-selector: azurerm_linux_virtual_machine
   
 inputs:
   input1:
