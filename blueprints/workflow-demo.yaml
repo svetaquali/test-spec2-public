@@ -13,7 +13,6 @@ inputs:
     type: string
   agent:
     type: agent
-    display-style: normal
     description: "agent name." 
 
 outputs:
