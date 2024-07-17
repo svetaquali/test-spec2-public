@@ -18,6 +18,6 @@ grains:
     spec:
       built-in: true
       source:
-        path: https://github.com/QualiTorque/torque-actions/blob/main/resource/aws-power-off-ec2-tf.yaml
+        path: https://github.com/QualiTorque/torque-actions.git//resource/aws-power-off-ec2-tf.yaml
       agent:
         name: '{{ .inputs.agent }}'
