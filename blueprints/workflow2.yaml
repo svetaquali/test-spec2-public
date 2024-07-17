@@ -4,8 +4,7 @@ description: |
   It checks user permissions, enumerates running VMs, sends shutdown signals, and forces power-off if needed. 
   Upon completion, it summarizes the power-off operation, including successful VMs and errors encountered.
 
-workflow: true
-workflow-metadata:  
+workflow:  
   scope: env
   
 inputs:
@@ -16,7 +15,6 @@ inputs:
     type: string
   agent:
     type: agent
-    display-style: normal
     description: "agent name." 
 
 outputs:
