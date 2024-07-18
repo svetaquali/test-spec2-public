@@ -35,7 +35,7 @@ grains:
       agent:
         name: eks
       activities:
-        deploy:
+        destroy:
           commands:
             # - "apt-get -y install git unzip curl"
             # - "git clone {{ .inputs.repoUrl }}"
