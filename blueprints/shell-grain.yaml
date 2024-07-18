@@ -54,7 +54,6 @@ grains:
 
   installNginx:
     kind: kubernetes
-    depends-on: validate
     spec:
       agent:
         name: eks
