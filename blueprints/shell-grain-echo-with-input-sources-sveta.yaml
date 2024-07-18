@@ -19,6 +19,9 @@ inputs:
     depends-on: object_key_for_content
     overrides:
       - object_key: '{{ .inputs.object_key_for_content }}'
+  
+  credential_name:
+    type: credentials
 
 grains:
   sleep:
