@@ -3,28 +3,28 @@ spec_version: 2-preview
 description: validating a k8s deployment file and then deploy it
 
 grains:
-  only-destroy:
-    kind: shell
-    spec:
-      agent:
-        name: eks
-      activities:
-        destroy:
-          commands:
-            # - "apt-get -y install git unzip curl"
-            # - "git clone {{ .inputs.repoUrl }}"
-            # - "sleep 300s"
-            # - "curl https://get.datree.io | /bin/bash"
-            # - "datree test {{.inputs.repoName}}/{{.inputs.filePath}}"
-            - echo "hello command 1"
-            - echo "hello command 2"
-            # - sleep 10s
-            # - echo "hello command 3"
-            # - echo "hello command 4"
-            # - sleep 5s
-            # - echo "hello command 5"
-            - sleep 300s
-            - echo "hello command 3"
+  # only-destroy:
+  #   kind: shell
+  #   spec:
+  #     agent:
+  #       name: eks
+  #     activities:
+  #       destroy:
+  #         commands:
+  #           # - "apt-get -y install git unzip curl"
+  #           # - "git clone {{ .inputs.repoUrl }}"
+  #           # - "sleep 300s"
+  #           # - "curl https://get.datree.io | /bin/bash"
+  #           # - "datree test {{.inputs.repoName}}/{{.inputs.filePath}}"
+  #           - echo "hello command 1"
+  #           - echo "hello command 2"
+  #           # - sleep 10s
+  #           # - echo "hello command 3"
+  #           # - echo "hello command 4"
+  #           # - sleep 5s
+  #           # - echo "hello command 5"
+  #           - sleep 300s
+  #           - echo "hello command 3"
   only-deploy:
     kind: shell
     spec:
