@@ -31,7 +31,7 @@ inputs:
   
   filter_for_content:
     type: string
-    default: ''
+    default: a
 
   # input-source input with dependecy and override
   object_content_item:
