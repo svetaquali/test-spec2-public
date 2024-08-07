@@ -27,14 +27,20 @@ inputs:
     allowed-values:
       - for_input_sources_small.json
       - for_input_sources_big.json
+    default: for_input_sources_small.json
+  
+  filter_for_content:
+    type: string
+    default: ''
 
   # input-source input with dependecy and override
   object_content_item:
-    depends-on: object_key_for_content
+    depends-on: object_key_for_content, filter_for_content
     type: input-source
     source-name: s3-object-json-content-list
     overrides:
       - object_key: '{{ .inputs.object_key_for_content }}'
+      - filter: '{{ .inputs.filter_for_content }}'
   
 grains:
   sleep:
