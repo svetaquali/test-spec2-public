@@ -23,6 +23,9 @@ outputs:
 grains:
   MyTF:
     kind: terraform
+    env-labels:
+      on-success:
+        - power-off
     spec:
       source:
         path: terraform/create-ec2-instance
