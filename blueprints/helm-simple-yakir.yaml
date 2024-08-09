@@ -12,8 +12,7 @@ inputs:
     type: string
     default: yakir-prod
   execution_host:
-    type: string
-    default: qualidev2
+    type: string    
     description: the name of the execution host to be used
   release_name:
     type: string
