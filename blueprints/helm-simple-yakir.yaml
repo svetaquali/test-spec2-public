@@ -12,7 +12,7 @@ inputs:
     type: string
     default: yakir-prod
   execution_host:
-    type: string    
+    type: agent   
     description: the name of the execution host to be used
   release_name:
     type: string
