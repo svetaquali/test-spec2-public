@@ -1,5 +1,8 @@
 spec_version: 2
-description: showcase for all types of inputs that support allowed values
+description: showcase for all types of inputs that support allowed values in workflow
+
+workflow:  
+  scope: env
 
 inputs:
   agent_name:

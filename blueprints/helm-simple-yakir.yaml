@@ -10,10 +10,9 @@ outputs:
 inputs:
   namespace:
     type: string
-    default: yakir-prod
+    default: yakir-test
   execution_host:
-    type: string
-    default: qualidev2
+    type: agent   
     description: the name of the execution host to be used
   release_name:
     type: string
@@ -41,7 +40,7 @@ grains:
       commands:
         - dep up helm/nginx-test
       release: '{{.inputs.release_name}}'
-      namespace: '{{.inputs.namespace}}'
+      target-namespace: '{{.inputs.namespace}}'
       inputs:
         - replicaCount: '{{.inputs.replica_count}}'
         - image.debug: 'true'
