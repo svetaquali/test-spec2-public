@@ -114,7 +114,7 @@ updateStrategy:
 ## @param podLabels Additional labels for NGINX pods
 ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 ##
-podLabels
+podLabels:
   test_num_p: "1"
   test_num_p: "2"
   test_dup_p: "1"
