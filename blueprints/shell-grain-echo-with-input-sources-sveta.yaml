@@ -17,7 +17,7 @@ inputs:
       - dummy_amis.json
   object_content_item:
     type: input-source
-    source-name: s3-object-json-content-list2
+    source-name: s3-people-json-list
     depends-on: object_key_for_content
     overrides:
       - object_key: '{{ .inputs.object_key_for_content }}'
