@@ -4,7 +4,6 @@ description: sleep
 inputs:
   agent_name:
     type: agent
-    default: eks1
   bucket_objects:
     type: input-source
     source-name: s3-bucket-objects-list
