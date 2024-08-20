@@ -1,5 +1,5 @@
 spec_version: 2
-description: sleep
+description: echo
 
 inputs:
   agent_name:
@@ -25,7 +25,7 @@ inputs:
     type: credentials
 
 grains:
-  sleep:
+  echo:
     kind: shell
     spec:
       agent:

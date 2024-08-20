@@ -6,7 +6,7 @@ workflow:
   triggers:
     - type: manual
     - type: cron
-      cron: '*/15 * * * *'
+      cron: '0 * * * *'
       overridable: true
 
 inputs:
