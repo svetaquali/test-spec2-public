@@ -1,0 +1,62 @@
+spec_version: 2
+description: showcase for all types of inputs that support allowed values in workflow
+
+workflow:  
+  scope: env
+  triggers:
+    - type: manual
+    - type: cron
+      cron: '0 * * * *'
+      overridable: true
+
+inputs:
+  agent_name:
+    type: agent
+
+  credential_name:
+    type: credentials
+
+  param_value_1:
+    type: parameter
+    parameter-name: value-list-1
+  
+  # param input with dependecy
+  param_value_2:
+    depends-on: param_value_1
+    type: parameter
+    parameter-name: '{{ .inputs.param_value_1 }}-value-list-2'
+
+  bucket_objects:
+    type: input-source
+    source-name: s3-bucket-objects-list
+
+  object_key_for_content:
+    type: string
+    allowed-values:
+      - for_input_sources_small.json
+      - for_input_sources_big.json
+    default: for_input_sources_small.json
+  
+  filter_for_content:
+    type: string
+    default: a
+
+  # input-source input with dependecy and override
+  object_content_item:
+    depends-on: object_key_for_content, filter_for_content
+    type: input-source
+    source-name: s3-object-json-content-list
+    overrides:
+      - object_key: '{{ .inputs.object_key_for_content }}'
+      - filter: '{{ .inputs.filter_for_content }}'
+  
+grains:
+  sleep:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      activities:
+        deploy:
+          commands:
+            - "echo {{ .inputs.object_content_item }}"

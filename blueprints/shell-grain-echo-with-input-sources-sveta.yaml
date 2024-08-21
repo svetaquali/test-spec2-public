@@ -1,10 +1,9 @@
 spec_version: 2
-description: sleep
+description: echo
 
 inputs:
   agent_name:
     type: agent
-    default: eks1
   bucket_objects:
     type: input-source
     source-name: s3-bucket-objects-list
@@ -26,7 +25,7 @@ inputs:
     type: credentials
 
 grains:
-  sleep:
+  echo:
     kind: shell
     spec:
       agent:

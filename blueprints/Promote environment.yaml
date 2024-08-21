@@ -1,5 +1,4 @@
 spec_version: 2
-workflow: true
 description: |
   Promotes version to production.
   Authenticates with Jenkins, triggers a job that builds the current code, runs tests, 
@@ -7,7 +6,7 @@ description: |
   by changing the prodcution environment.yaml
   Notifies on success/failure.
 
-workflow-metadata:  
+workflow:  
   scope: env
   
 inputs:

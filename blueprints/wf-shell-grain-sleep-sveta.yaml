@@ -1,0 +1,27 @@
+spec_version: 2
+description: sleep
+
+workflow:  
+  scope: env
+  triggers:
+    - type: manual
+    - type: cron
+      cron: '0 * * * *'
+      overridable: true
+
+inputs:
+  agent_name:
+    type: agent
+  sleep_secs:
+    type: string
+
+grains:
+  sleep:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      activities:
+        deploy:
+          commands:
+            - "sleep {{ .inputs.sleep_secs }}"
