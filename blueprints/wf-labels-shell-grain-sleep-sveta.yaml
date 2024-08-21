@@ -3,7 +3,7 @@ description: sleep
 
 workflow:  
   scope: env
-  labels-selector: my-label
+  labels-selector: my-label:best
   triggers:
     - type: manual
     - type: cron
