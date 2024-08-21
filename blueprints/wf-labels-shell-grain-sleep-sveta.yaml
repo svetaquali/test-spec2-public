@@ -15,6 +15,7 @@ inputs:
     type: agent
   sleep_secs:
     type: string
+    default: 3
 
 grains:
   sleep:
