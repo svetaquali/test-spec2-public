@@ -212,6 +212,35 @@ grains:
           outputs:
             - testoutput
 
+  opentofu1:
+    depends-on: helm3
+    kind: opentofu
+    spec:
+      source:
+        path: terraform/complex-references
+        store: test-spec2-public
+#        branch: yakir-test
+      agent:
+        name: '{{.inputs.execution_host1}}'
+        isolated: false
+      inputs:
+        - test_input1: '{{.grains.terraform1.outputs.output1}}'
+        - test_input2: dontcare
+      outputs:
+        - output_from_dub_module
+      # scripts: 
+      #   pre-tf-init:
+      #     source:
+      #       store: test-spec2-public
+      #       path : scripts/tomerv_user_script.sh
+      #       branch: yakir-test
+      #     arguments: "value"
+      #   pre-tf-destroy:
+      #     source:
+      #       store: test-spec2-public
+      #       path : scripts/tomerv_user_script.sh
+      #     arguments: "value"  
+
   kubernetes1:
     kind: kubernetes
     depends-on: terraform1, helm1
