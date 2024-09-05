@@ -1,0 +1,39 @@
+spec_version: 2-preview
+description: deploy s3 buckets using terraform and cloudformation
+
+inputs:
+   agent:
+     type: agent
+  #  The access_control property is case-sensitive and must be one of the following values:
+  #  Private, PublicRead, PublicReadWrite, AuthenticatedRead, LogDeliveryWrite, BucketOwnerRead, BucketOwnerFullControl, or AwsExecRead
+   access_control:
+     type: string
+     display-style: normal
+     default: "Private"
+   role_arn:
+     type: string
+     display-style: masked
+   external_id:
+     type: string
+     display-style: masked
+
+outputs:
+  cfn_bucket_4:
+    value: '{{ .grains.cfn-bucket.outputs.Arn }}'
+
+grains:  
+  cfn-bucket:
+    kind: cloudformation
+    spec:
+      agent:
+        name: {{.inputs.agent}}
+      source:
+        path: https://quali-dannyk-storage.s3.amazonaws.com/AWSS3Bucket_in_out.json    
+      region: us-east-1
+      # authentication:
+      #   role-arn: '{{ .inputs.role_arn }}'
+      #   external-id: '{{ .inputs.external_id }}'
+      inputs:
+        - accesscontrol: '{{ .inputs.access_control }}'
+      outputs:
+         - Arn
