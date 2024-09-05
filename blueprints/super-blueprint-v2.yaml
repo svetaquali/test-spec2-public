@@ -14,6 +14,10 @@ outputs:
     value: '{{.grains.terraform1.outputs.output1}}'
   terraform_output_from_submodule:
     value: '{{.grains.terraform3.outputs.output_from_dub_module}}'
+  cfn_bucket_name:
+    value: '{.grains.cfn1.outputs.BucketName}'
+  terragrunt_bucket_name:
+    value: '{.grains.terragrunt1.outputs.bucket_arn}'
 
 inputs:
   namespace:
@@ -49,9 +53,10 @@ inputs:
 
 # Dependencies Schema
 #
-#                                                  /-----> terraform3
+#    cfn1  ---> terragrunt1
+#                                                /-----> terraform3
 #   terraform1 -------\_________> ansible1 -----/
-#                     /   \                       \------> helm2 -----> helm3
+#                     /   \                       \------> helm2 -----> helm3 --> opentofu1
 #   helm1 -----------/     \---> kubernetes1                         /
 #        \                                  \_____> shell1          /
 #          \                   __________________                  /
@@ -240,6 +245,35 @@ grains:
       #       store: test-spec2-public
       #       path : scripts/tomerv_user_script.sh
       #     arguments: "value"  
+
+  cfn1:
+    kind: cloudformation
+    spec:
+      agent:
+        name: '{{.inputs.agent}}'
+      source:
+        store: test-spec2-public
+        path: cloudFormation/Bucket.json
+      region: us-east-1
+      # authentication:
+      #   - '{{.inputs.credentials_input_name}}'
+      inputs:
+        - bucketname: '{{ sandboxId | downcase }}-cloud-formation-bucket'
+      outputs:
+         - BucketName
+
+  terragrunt1:
+    kind: terragrunt    
+    spec:
+      source:
+        path: terragrunt/s3-bucket/non-prod/us-east-1/qa/bucket
+        store: test-spec2-public
+      agent:        
+        name: '{{.inputs.agent}}'
+      inputs:
+        - name:  '{{ sandboxId | downcase }}-terragrunt1-bucket'
+      outputs:
+        - bucket_arn
 
   kubernetes1:
     kind: kubernetes
