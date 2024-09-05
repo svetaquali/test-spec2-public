@@ -26,7 +26,7 @@ grains:
     kind: cloudformation
     spec:
       agent:
-        name: {{.inputs.agent}}
+        name: '{{.inputs.agent}}'
       source:
         path: https://quali-dannyk-storage.s3.amazonaws.com/AWSS3Bucket_in_out.json    
       region: us-east-1
