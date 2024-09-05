@@ -1,6 +1,6 @@
 spec_version: 2-preview
 
-description: blueprint aim to cover most grains and features, while require minimal setup.  requirements: agent with service account with aws role and this repo onboarded
+description: 'blueprint aim to cover most grains and features, while require minimal setup.  requirements: agent with service account with aws role and this repo onboarded'
 
 
 outputs:
