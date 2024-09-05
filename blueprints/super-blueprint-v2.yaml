@@ -250,7 +250,7 @@ grains:
     kind: cloudformation
     spec:
       agent:
-        name: '{{.inputs.agent}}'
+        name: '{{.inputs.execution_host1}}'
       source:
         store: test-spec2-public
         path: cloudFormation/Bucket.json
@@ -269,7 +269,7 @@ grains:
         path: terragrunt/s3-bucket/non-prod/us-east-1/qa/bucket
         store: test-spec2-public
       agent:        
-        name: '{{.inputs.agent}}'
+        name: '{{.inputs.execution_host1}}'
       inputs:
         - name:  '{{ sandboxId | downcase }}-terragrunt1-bucket'
       outputs:
