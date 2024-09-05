@@ -28,12 +28,12 @@ grains:
       agent:
         name: '{{.inputs.agent}}'
       source:
-        path: https://quali-dannyk-storage.s3.amazonaws.com/AWSS3Bucket_in_out.json    
+        store: test-spec2-public
+        path: cloudFormation/Bucket.json
       region: us-east-1
       # authentication:
-      #   role-arn: '{{ .inputs.role_arn }}'
-      #   external-id: '{{ .inputs.external_id }}'
+      #   - '{{.inputs.credentials_input_name}}'
       inputs:
-        - accesscontrol: '{{ .inputs.access_control }}'
+        - bucketname: '{{ sandboxId | downcase }}-cloud-formation-bucket'
       outputs:
-         - Arn
+         - BucketName
