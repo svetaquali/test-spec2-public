@@ -18,8 +18,8 @@ inputs:
      display-style: masked
 
 outputs:
-  cfn_bucket_4:
-    value: '{{ .grains.cfn-bucket.outputs.Arn }}'
+  cfn_bucket:
+    value: '{{ .grains.cfn-bucket.outputs.BucketName }}'
 
 grains:  
   cfn-bucket:
