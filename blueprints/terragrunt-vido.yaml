@@ -36,8 +36,9 @@ grains:
       scripts: 
         pre-tf-init:
           source:
-            store: test-spec2-public
-            path : scripts/script-with-args.sh            
+            # store: test-spec2-public
+            # path : scripts/script-with-args.sh            
+            path: https://github.com/QualiNext/test-spec2-public.git//scripts/script-with-args.sh
           arguments: "first second third"
       # inputs:
       #   - name:  '{{.inputs.bucket_name}}'     
