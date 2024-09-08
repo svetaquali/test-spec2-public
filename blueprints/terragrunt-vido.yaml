@@ -33,6 +33,12 @@ grains:
         store: vido-prod-tests
       agent:        
         name: '{{.inputs.compute_service_name}}'
+      scripts: 
+        pre-tf-init:
+          source:
+            store: test-spec2-public
+            path : scripts/script-with-args.sh            
+          arguments: "first second third"
       # inputs:
       #   - name:  '{{.inputs.bucket_name}}'     
       # outputs:
