@@ -34,7 +34,7 @@ grains:
       agent:        
         name: '{{.inputs.compute_service_name}}'
       env-vars:
-        TG_STATE_BUCKET_NAME: '{{ sandboxid }}tg1'
+        TG_STATE_KEY_NAME: '{{ sandboxid | downcase }}tg1'
       inputs:
         - name:  '{{.inputs.bucket_name}}'     
       outputs:
