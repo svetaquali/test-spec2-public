@@ -33,6 +33,8 @@ grains:
         store: test-spec2-public
       agent:        
         name: '{{.inputs.compute_service_name}}'
+      env-vars:
+        TG_STATE_BUCKET_NAME: '{{ sandboxid }}tg1'
       inputs:
         - name:  '{{.inputs.bucket_name}}'     
       outputs:
