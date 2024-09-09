@@ -42,7 +42,7 @@ remote_state {
     encrypt        = true
     bucket = "${get_env("TG_STATE_BUCKET_NAME", "terragrunt-state-yakir")}"
     # bucket         = "${get_env("TG_BUCKET_PREFIX", "")}terragrunt-example-tf-state-${local.account_name}-${local.aws_region}"
-    key            = "${path_relative_to_include()}/tf.tfstate"
+    key            = "${path_relative_to_include()}/${get_env("TG_STATE_KEY_NAME", "tf")}.tfstate"
     region         = local.aws_region
     dynamodb_table = "tf-locks"
   }
