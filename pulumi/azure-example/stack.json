@@ -1,0 +1,173 @@
+{
+    "version": 3,
+    "deployment": {
+        "manifest": {
+            "time": "2024-09-08T19:34:46.4628269+03:00",
+            "magic": "59ab42470ec682a2eb8566128a64ecaee8e5d25c6d5902576977eb325cf4d7b3",
+            "version": "v3.130.0"
+        },
+        "secrets_providers": {
+            "type": "passphrase",
+            "state": {
+                "salt": "v1:ezlQaYOmSAc=:v1:5H+EolVjJrrl/bDf:WuJXfDeClGAJt7klSM7jTJZH9p6dIw=="
+            }
+        },
+        "resources": [
+            {
+                "urn": "urn:pulumi:dev::azure-example::pulumi:pulumi:Stack::azure-example-dev",
+                "custom": false,
+                "type": "pulumi:pulumi:Stack",
+                "outputs": {
+                    "primaryStorageKey": {
+                        "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                        "ciphertext": "v1:jUFw+2ih6GIuFmAH:oTtpjTVCkO9HtvaAxH+CiOYZAsPvfs+MUJDjHLICEihbkzmMTlKj4foctpTz4X2UAsT/7jC9NTptH1vVKaousFsnFZSZLjrlGJeASmTCNPY+vqPaOvXeNFq1MgogTtsacEkQdpIgoP/2xA=="
+                    }
+                },
+                "created": "2024-09-08T16:34:03.0787814Z",
+                "modified": "2024-09-08T16:34:03.0787814Z"
+            },
+            {
+                "urn": "urn:pulumi:dev::azure-example::pulumi:providers:azure-native::default_2_59_0",
+                "custom": true,
+                "id": "735f36c6-d96b-4e36-8d47-95a0ebbae06d",
+                "type": "pulumi:providers:azure-native",
+                "inputs": {
+                    "__internal": {},
+                    "defaultTags": "{\"tags\":{\"Owner\":\"Shirel\"}}",
+                    "location": "WestUS2",
+                    "version": "2.59.0"
+                },
+                "outputs": {
+                    "defaultTags": "{\"tags\":{\"Owner\":\"Shirel\"}}",
+                    "location": "WestUS2",
+                    "version": "2.59.0"
+                },
+                "created": "2024-09-08T16:34:04.4100307Z",
+                "modified": "2024-09-08T16:34:04.4100307Z"
+            },
+            {
+                "urn": "urn:pulumi:dev::azure-example::azure-native:resources:ResourceGroup::resourceGroup",
+                "custom": true,
+                "id": "/subscriptions/24aae708-4612-497c-a91e-7ec5c657f9db/resourceGroups/resourceGroup9380e90c",
+                "type": "azure-native:resources:ResourceGroup",
+                "inputs": {
+                    "__createBeforeDelete": true,
+                    "location": "WestUS2",
+                    "resourceGroupName": "resourceGroup9380e90c"
+                },
+                "outputs": {
+                    "__inputs": {
+                        "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                        "ciphertext": "v1:oekP+zHz5S7tG6IN:lDdq1k4UJ6Yr8P6zFepEUqV5rui4Qx7pmEbwP77dTf20zg7jWNwDEb/RFVOWcXEHnQYOST001GV8ES54GSBS3j5o57q/Pg+qiD1jwRKLRD08iVxaSO+3Mc0Kh+JWNm0jGtSbJGyS/4IbDU3kuUg="
+                    },
+                    "id": "/subscriptions/24aae708-4612-497c-a91e-7ec5c657f9db/resourceGroups/resourceGroup9380e90c",
+                    "location": "westus2",
+                    "name": "resourceGroup9380e90c",
+                    "properties": {
+                        "provisioningState": "Succeeded"
+                    },
+                    "type": "Microsoft.Resources/resourceGroups"
+                },
+                "parent": "urn:pulumi:dev::azure-example::pulumi:pulumi:Stack::azure-example-dev",
+                "provider": "urn:pulumi:dev::azure-example::pulumi:providers:azure-native::default_2_59_0::735f36c6-d96b-4e36-8d47-95a0ebbae06d",
+                "created": "2024-09-08T16:34:15.8839419Z",
+                "modified": "2024-09-08T16:34:15.8839419Z"
+            },
+            {
+                "urn": "urn:pulumi:dev::azure-example::azure-native:storage:StorageAccount::sa",
+                "custom": true,
+                "id": "/subscriptions/24aae708-4612-497c-a91e-7ec5c657f9db/resourceGroups/resourceGroup9380e90c/providers/Microsoft.Storage/storageAccounts/sa6b1f35dd",
+                "type": "azure-native:storage:StorageAccount",
+                "inputs": {
+                    "__createBeforeDelete": true,
+                    "accountName": "sa6b1f35dd",
+                    "kind": "StorageV2",
+                    "location": "WestUS2",
+                    "resourceGroupName": "resourceGroup9380e90c",
+                    "sku": {
+                        "name": "Standard_LRS"
+                    },
+                    "tags": {
+                        "owner": "shirel"
+                    }
+                },
+                "outputs": {
+                    "__inputs": {
+                        "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                        "ciphertext": "v1:sf4UmEgjlyKZUubU:T/yvAJuTMlevkBj1Z+o5iXumNMs9OkBqh7Ey+UorSAwOSYuwFOTJWO8jgmoHH883+dn9Olj0nI43LvaonYkbw4TPZko/u6PJi8lgEKAKPusxOEAo3oCR+ikRCFpPUiMAA1O3k6JE0yrS3SjDIkRdcR0bJJritG4dmuymCs5Jwl3xrNIXRi2Tfv/nFELTMkQ0nUMF95Zi3+9jURUtpEADTaQ86wR0TLAEwdk9iWozQyskoOIqcMIlXjOCo8LMqfQ35yAPWnwmAzsfALKrQQ1b0qgHXF8="
+                    },
+                    "accessTier": "Hot",
+                    "allowBlobPublicAccess": false,
+                    "allowCrossTenantReplication": false,
+                    "creationTime": "2024-09-08T16:33:57.9304367Z",
+                    "enableHttpsTrafficOnly": true,
+                    "encryption": {
+                        "keySource": "Microsoft.Storage",
+                        "services": {
+                            "blob": {
+                                "enabled": true,
+                                "keyType": "Account",
+                                "lastEnabledTime": "2024-09-08T16:33:58.5085963Z"
+                            },
+                            "file": {
+                                "enabled": true,
+                                "keyType": "Account",
+                                "lastEnabledTime": "2024-09-08T16:33:58.5085963Z"
+                            }
+                        }
+                    },
+                    "id": "/subscriptions/24aae708-4612-497c-a91e-7ec5c657f9db/resourceGroups/resourceGroup9380e90c/providers/Microsoft.Storage/storageAccounts/sa6b1f35dd",
+                    "keyCreationTime": {
+                        "key1": "2024-09-08T16:33:58.0710910Z",
+                        "key2": "2024-09-08T16:33:58.0710910Z"
+                    },
+                    "kind": "StorageV2",
+                    "location": "westus2",
+                    "minimumTlsVersion": "TLS1_0",
+                    "name": "sa6b1f35dd",
+                    "networkRuleSet": {
+                        "bypass": "AzureServices",
+                        "defaultAction": "Allow",
+                        "ipRules": [],
+                        "virtualNetworkRules": []
+                    },
+                    "primaryEndpoints": {
+                        "blob": "https://sa6b1f35dd.blob.core.windows.net/",
+                        "dfs": "https://sa6b1f35dd.dfs.core.windows.net/",
+                        "file": "https://sa6b1f35dd.file.core.windows.net/",
+                        "queue": "https://sa6b1f35dd.queue.core.windows.net/",
+                        "table": "https://sa6b1f35dd.table.core.windows.net/",
+                        "web": "https://sa6b1f35dd.z5.web.core.windows.net/"
+                    },
+                    "primaryLocation": "westus2",
+                    "privateEndpointConnections": [],
+                    "provisioningState": "Succeeded",
+                    "sku": {
+                        "name": "Standard_LRS",
+                        "tier": "Standard"
+                    },
+                    "statusOfPrimary": "available",
+                    "tags": {
+                        "owner": "shirel"
+                    },
+                    "type": "Microsoft.Storage/storageAccounts"
+                },
+                "parent": "urn:pulumi:dev::azure-example::pulumi:pulumi:Stack::azure-example-dev",
+                "dependencies": [
+                    "urn:pulumi:dev::azure-example::azure-native:resources:ResourceGroup::resourceGroup"
+                ],
+                "provider": "urn:pulumi:dev::azure-example::pulumi:providers:azure-native::default_2_59_0::735f36c6-d96b-4e36-8d47-95a0ebbae06d",
+                "propertyDependencies": {
+                    "kind": [],
+                    "resourceGroupName": [
+                        "urn:pulumi:dev::azure-example::azure-native:resources:ResourceGroup::resourceGroup"
+                    ],
+                    "sku": [],
+                    "tags": []
+                },
+                "created": "2024-09-08T16:34:44.8650305Z",
+                "modified": "2024-09-08T16:34:44.8650305Z"
+            }
+        ]
+    }
+}

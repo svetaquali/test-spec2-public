@@ -1,0 +1,6 @@
+encryptionsalt: v1:ezlQaYOmSAc=:v1:5H+EolVjJrrl/bDf:WuJXfDeClGAJt7klSM7jTJZH9p6dIw==
+config:
+  azure-native:location: WestUS2
+  azure-native:defaultTags:
+    tags:
+      Owner: "Shirel"
