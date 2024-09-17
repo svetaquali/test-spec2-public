@@ -48,7 +48,7 @@ inputs:
     description: secret input for testing  
   store:
     type: string
-    default: iac-samples
+    # default: iac-samples
 
 
 # Dependencies Schema
