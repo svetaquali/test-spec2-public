@@ -8,6 +8,7 @@ description: |
 
 workflow:  
   scope: env
+  labels-selector: promote
   
 inputs:
   Target Environment:
