@@ -9,6 +9,10 @@ inputs:
     type: string
     default: '60'
 
+outputs:
+  out1:
+    value: '{{ .grains.sleep.activities.deploy.commands.sleep_cmd.outputs.output1 }}'  
+
 grains:
   sleep:
     kind: shell
@@ -18,4 +22,7 @@ grains:
       activities:
         deploy:
           commands:
-            - "sleep {{ .inputs.sleep_secs }}"
+            - name: sleep_cmd
+              command: "sleep {{ .inputs.sleep_secs }} && export output1='output1-value'"
+              outputs:
+                - output1
