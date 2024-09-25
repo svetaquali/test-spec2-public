@@ -4,8 +4,6 @@ description: manual blueprint for terraform module hello_world
 
 workflow: 
   scope: space
-  triggers:
-  - type: manual
     
 inputs:
   my_name:
