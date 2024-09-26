@@ -1,0 +1,321 @@
+spec_version: 2
+
+description: 'blueprint aim to cover most grains and features, while require minimal setup.  requirements: agent with service account with aws role and this repo onboarded'
+
+
+outputs:
+  generic_output:
+    value: '{{.inputs.generic_input}}'
+  kubernetes_output:
+    value: '{{.grains.kubernetes1.scripts.post-kubernetes-install.outputs.testoutput}}'
+  helm_output:
+    value: '{{.grains.helm3.scripts.post-helm-install.outputs.testoutput}}'
+  terraform_output:
+    value: '{{.grains.terraform1.outputs.output1}}'
+  terraform_output_from_submodule:
+    value: '{{.grains.terraform3.outputs.output_from_dub_module}}'
+  cfn_bucket_name:
+    value: '{.grains.cfn1.outputs.BucketName}'
+  terragrunt_bucket_name:
+    value: '{.grains.terragrunt1.outputs.bucket_arn}'
+
+inputs:
+  namespace:
+    type: string
+    default: sveta-test
+  execution_host1:
+    type: agent    
+    description: must be k8s
+  service_account:
+    type: string
+    default: default
+  release_name:
+    type: string
+    default: ''
+    description: the name of helm release
+  generic_input:
+    type: string
+    default: nothing
+    description: an input for testing
+  secret_input:
+    type: string
+    sensitive: true
+    default: my-secret
+    description: secret input for testing  
+  main_store:
+    type: string
+    default: test-spec2-public
+  store:
+    type: string
+    # default: iac-samples
+
+
+# Dependencies Schema
+#
+#    cfn1  ---> terragrunt1
+#                                                /-----> terraform3
+#   terraform1 -------\_________> ansible1 -----/
+#                     /   \                       \------> helm2 -----> helm3 --> opentofu1
+#   helm1 -----------/     \---> kubernetes1                         /
+#        \                                  \_____> shell1          /
+#          \                   __________________                  /
+#            ----------------->|   bp           |----------------/
+#                              |      \         |
+#                              |         tf1    |
+#                              |________________|
+#                                 
+
+grains:
+
+  terraform1:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: '{{.inputs.main_store}}'
+        branch: yakir-test
+      agent:
+        name: '{{.inputs.execution_host1}}'      
+      workspace-directories:
+        - source: 
+            name: workspace_dir1
+            store: '{{.inputs.main_store}}'
+            # path: helm/nginx-test/values.yaml
+            commit: 25dbe596bb083ca9346692f3cc846cd061f30a14
+        - source: 
+            name: workspace_dir2
+            store: '{{.inputs.store}}'
+            # commit: eb7bf547f916ff11f0f95e35fb1e8c6fd6535ce1
+      inputs:
+        - test_input1: '{{.inputs.generic_input}}'
+        - test_input2: dontcare
+      outputs:
+        - output1
+
+  helm1:
+    kind: helm
+    spec:
+      source:
+        path: helm/deployment
+        store: '{{.inputs.main_store}}'
+      agent:
+        name: '{{.inputs.execution_host1}}'
+      commands:
+        - dep up helm/deployment
+      release: '{{.inputs.release_name}}'
+      target-namespace: '{{.inputs.namespace}}'
+      inputs:
+        - deployment.namespace: '{{.inputs.namespace}}'
+      workspace-directories:
+        - source: 
+            name: workspace_dir1
+            store: '{{.inputs.store}}'            
+      scripts:
+        post-helm-install:
+          source:
+            store: '{{.inputs.main_store}}'
+            path: scripts/sample-k8s.sh
+          arguments: '{{ .inputs.generic_input }}'
+          outputs:
+            - testoutput
+
+  bp:
+    depends-on: helm1
+    kind: blueprint
+    spec:
+      source:
+        path: blueprints/simple-tf-source-input-sveta.yaml
+        store: '{{.inputs.main_store}}'
+      inputs:
+        - agent: '{{.inputs.execution_host1}}'
+        - store: '{{.inputs.main_store}}'
+
+  ansible1:
+    kind: ansible
+    depends-on: terraform1
+    spec: 
+      source:
+        store: '{{.inputs.main_store}}'
+        path: ansible/hello_world.yaml
+      agent:
+        name: '{{ .inputs.execution_host1 }}'
+      inputs:
+        - name: '{{ .inputs.generic_input }}'
+      inventory-file:
+        localhost:
+          hosts:
+            127.0.0.1:
+              ansible_connection: local
+              
+  terraform3:
+    depends-on: ansible1
+    kind: terraform
+    spec:
+      source:
+        path: terraform/complex-references
+        store: '{{.inputs.main_store}}'
+#        branch: yakir-test
+      agent:
+        name: '{{.inputs.execution_host1}}'
+        isolated: false
+      inputs:
+        - test_input1: '{{.grains.terraform1.outputs.output1}}'
+        - test_input2: dontcare
+      outputs:
+        - output_from_dub_module
+      scripts: 
+        pre-tf-init:
+          source:
+            store: '{{.inputs.main_store}}'
+            path : scripts/tomerv_user_script.sh
+            branch: yakir-test
+          arguments: "value"
+        pre-tf-destroy:
+          source:
+            store: '{{.inputs.main_store}}'
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"  
+
+  helm2:
+    kind: helm
+    depends-on: ansible1
+    spec:
+      source:
+        path: helm/namespace
+        store: '{{.inputs.main_store}}'
+      agent:
+        name: '{{.inputs.execution_host1}}'
+        service-account: '{{.inputs.service_account}}'
+        storage-size: 500
+      commands:
+        - dep up helm/namespace
+      release: '{{.inputs.release_name}}'
+      target-namespace: '{{.inputs.namespace}}'
+      inputs:
+#        - namespace.name: '{{.inputs.namespace_to_create}}'
+        - namespace.name: '{{ sandboxid | downcase }}'
+
+  helm3:
+    kind: helm
+    spec:
+      source:
+        path: 'https://github.com/QualiNext/{{.inputs.main_store}}.git//helm/deployment'
+      agent:
+        name: '{{.inputs.execution_host1}}'
+      commands:
+        - dep up helm/deployment
+      release: '{{.inputs.release_name}}'
+      target-namespace: '{{.inputs.namespace}}'
+      inputs:
+        - deployment.namespace: '{{.inputs.namespace}}'
+      scripts:
+        post-helm-install:
+          source:
+            store: '{{.inputs.main_store}}'
+            path: scripts/sample-k8s.sh
+          arguments: '{{ .inputs.generic_input }}'
+          outputs:
+            - testoutput
+
+  opentofu1:
+    depends-on: helm3
+    kind: opentofu
+    spec:
+      source:
+        path: terraform/complex-references
+        store: '{{.inputs.main_store}}'
+#        branch: yakir-test
+      agent:
+        name: '{{.inputs.execution_host1}}'
+        isolated: false
+      inputs:
+        - test_input1: '{{.grains.terraform1.outputs.output1}}'
+        - test_input2: dontcare
+      outputs:
+        - output_from_dub_module
+      # scripts: 
+      #   pre-tf-init:
+      #     source:
+      #       store: '{{.inputs.main_store}}'
+      #       path : scripts/tomerv_user_script.sh
+      #       branch: yakir-test
+      #     arguments: "value"
+      #   pre-tf-destroy:
+      #     source:
+      #       store: '{{.inputs.main_store}}'
+      #       path : scripts/tomerv_user_script.sh
+      #     arguments: "value"  
+
+  cfn1:
+    kind: cloudformation
+    spec:
+      agent:
+        name: '{{.inputs.execution_host1}}'
+      source:
+        store: '{{.inputs.main_store}}'
+        path: cloudFormation/Bucket.json
+      region: us-east-1
+      # authentication:
+      #   - '{{.inputs.credentials_input_name}}'
+      inputs:
+        - bucketname: '{{ sandboxId | downcase }}-cloud-formation-bucket'
+      outputs:
+         - BucketName
+
+  terragrunt1:
+    kind: terragrunt    
+    spec:
+      source:
+        path: terragrunt/s3-bucket/non-prod/us-east-1/qa/bucket
+        store: '{{.inputs.main_store}}'
+      agent:        
+        name: '{{.inputs.execution_host1}}'
+      inputs:
+        - name:  '{{ sandboxId | downcase }}-terragrunt1-bucket'
+      outputs:
+        - bucket_arn
+
+  kubernetes1:
+    kind: kubernetes
+    depends-on: terraform1, helm1
+    spec:
+      source:
+        path: 'github.com/QualiNext/{{.inputs.main_store}}//manifests/nginx/nginxmanifest.yaml'
+      target-namespace: '{{ .inputs.namespace }}'
+      env-vars:
+        - test: newValue
+      agent:
+        name: '{{.inputs.execution_host1}}'
+      #         service-account: "yakirl-sa"
+      tags:
+        auto-tag: false
+      workspace-directories:
+        - source: 
+            name: workspace_dir1
+            store: '{{.inputs.main_store}}'
+            # path: helm/nginx-test/values.yaml
+            commit: 25dbe596bb083ca9346692f3cc846cd061f30a14
+      scripts:
+        post-kubernetes-install:
+          source:
+            store: '{{.inputs.main_store}}'
+            path: scripts/sample-k8s.sh
+          arguments: '{{ .inputs.generic_input }}'
+          outputs:
+            - testoutput
+
+  shell1:
+    kind: shell
+    depends-on: kubernetes1
+    spec:
+      agent:
+        name: '{{.inputs.execution_host1}}'
+      files:
+        - source: '{{.inputs.main_store}}'
+          path: scripts/echo.sh
+      env-vars:
+        - VAR_NAME1: var1 value
+      activities:
+        deploy:
+          commands:
+            - echo environment id '{{ sandboxid | downcase }}'

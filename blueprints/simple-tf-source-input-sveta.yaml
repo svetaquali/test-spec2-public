@@ -1,0 +1,32 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+  store:
+    type: string
+  branch:
+    type: string
+    default: master
+
+outputs:
+  output1:
+    value: '{{.grains.tf1.outputs.output1}}'
+    
+
+grains:
+  tf1:
+    kind: terraform
+    spec:
+      source:
+        store: '{{.inputs.store}}'
+        path: terraform/simple-tf-module
+        branch: '{{.inputs.branch}}'
+      agent:
+        name: '{{.inputs.agent}}'
+      inputs:
+        - test_input1: env-input
+        - test_input2: env-id-{{sandboxId}}
+      outputs:
+        - output1
+        - output2
