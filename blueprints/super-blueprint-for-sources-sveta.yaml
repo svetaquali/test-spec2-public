@@ -72,14 +72,16 @@ grains:
     spec:
       source:
         path: terraform/simple-tf-module
-        store: '{{.inputs.main_store}}'
+        # store: '{{.inputs.main_store}}'
+        store: test-spec2-public
         branch: yakir-test
       agent:
         name: '{{.inputs.execution_host1}}'      
       workspace-directories:
         - source: 
             name: workspace_dir1
-            store: '{{.inputs.main_store}}'
+            # store: '{{.inputs.main_store}}'
+            store: test-spec2-public
             # path: helm/nginx-test/values.yaml
             commit: 25dbe596bb083ca9346692f3cc846cd061f30a14
         - source: 
@@ -97,7 +99,8 @@ grains:
     spec:
       source:
         path: helm/deployment
-        store: '{{.inputs.main_store}}'
+        # store: '{{.inputs.main_store}}'
+        store: test-spec2-public
       agent:
         name: '{{.inputs.execution_host1}}'
       commands:
@@ -113,7 +116,8 @@ grains:
       scripts:
         post-helm-install:
           source:
-            store: '{{.inputs.main_store}}'
+            # store: '{{.inputs.main_store}}'
+            store: test-spec2-public
             path: scripts/sample-k8s.sh
           arguments: '{{ .inputs.generic_input }}'
           outputs:
@@ -137,7 +141,8 @@ grains:
     depends-on: terraform1
     spec: 
       source:
-        store: '{{.inputs.main_store}}'
+        # store: '{{.inputs.main_store}}'
+        store: test-spec2-public
         path: ansible/hello_world.yaml
       agent:
         name: '{{ .inputs.execution_host1 }}'
@@ -155,7 +160,8 @@ grains:
     spec:
       source:
         path: terraform/complex-references
-        store: '{{.inputs.main_store}}'
+        # store: '{{.inputs.main_store}}'
+        store: test-spec2-public
 #        branch: yakir-test
       agent:
         name: '{{.inputs.execution_host1}}'
@@ -168,13 +174,15 @@ grains:
       scripts: 
         pre-tf-init:
           source:
-            store: '{{.inputs.main_store}}'
+            # store: '{{.inputs.main_store}}'
+            store: test-spec2-public
             path : scripts/tomerv_user_script.sh
             branch: yakir-test
           arguments: "value"
         pre-tf-destroy:
           source:
-            store: '{{.inputs.main_store}}'
+            # store: '{{.inputs.main_store}}'
+            store: test-spec2-public
             path : scripts/tomerv_user_script.sh
           arguments: "value"  
 
@@ -184,7 +192,8 @@ grains:
     spec:
       source:
         path: helm/namespace
-        store: '{{.inputs.main_store}}'
+        # store: '{{.inputs.main_store}}'
+        store: test-spec2-public
       agent:
         name: '{{.inputs.execution_host1}}'
         service-account: '{{.inputs.service_account}}'
@@ -213,7 +222,8 @@ grains:
       scripts:
         post-helm-install:
           source:
-            store: '{{.inputs.main_store}}'
+            # store: '{{.inputs.main_store}}'
+            store: test-spec2-public
             path: scripts/sample-k8s.sh
           arguments: '{{ .inputs.generic_input }}'
           outputs:
@@ -225,7 +235,8 @@ grains:
     spec:
       source:
         path: terraform/complex-references
-        store: '{{.inputs.main_store}}'
+        # store: '{{.inputs.main_store}}'
+        store: test-spec2-public
 #        branch: yakir-test
       agent:
         name: '{{.inputs.execution_host1}}'
@@ -254,7 +265,8 @@ grains:
       agent:
         name: '{{.inputs.execution_host1}}'
       source:
-        store: '{{.inputs.main_store}}'
+        # store: '{{.inputs.main_store}}'
+        store: test-spec2-public
         path: cloudFormation/Bucket.json
       region: us-east-1
       # authentication:
@@ -269,7 +281,8 @@ grains:
     spec:
       source:
         path: terragrunt/s3-bucket/non-prod/us-east-1/qa/bucket
-        store: '{{.inputs.main_store}}'
+        # store: '{{.inputs.main_store}}'
+        store: test-spec2-public
       agent:        
         name: '{{.inputs.execution_host1}}'
       inputs:
@@ -294,13 +307,15 @@ grains:
       workspace-directories:
         - source: 
             name: workspace_dir1
-            store: '{{.inputs.main_store}}'
+            # store: '{{.inputs.main_store}}'
+            store: test-spec2-public
             # path: helm/nginx-test/values.yaml
             commit: 25dbe596bb083ca9346692f3cc846cd061f30a14
       scripts:
         post-kubernetes-install:
           source:
-            store: '{{.inputs.main_store}}'
+            # store: '{{.inputs.main_store}}'
+            store: test-spec2-public
             path: scripts/sample-k8s.sh
           arguments: '{{ .inputs.generic_input }}'
           outputs:
@@ -313,7 +328,8 @@ grains:
       agent:
         name: '{{.inputs.execution_host1}}'
       files:
-        - source: '{{.inputs.main_store}}'
+        - source: test-spec2-public
+          # source: '{{.inputs.main_store}}'
           path: scripts/echo.sh
       env-vars:
         - VAR_NAME1: var1 value
