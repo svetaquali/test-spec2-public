@@ -125,7 +125,9 @@ grains:
     spec:
       source:
         path: blueprints/simple-tf-source-input-sveta.yaml
-        store: '{{.inputs.main_store}}'
+        # currently doesn't work - fails in validation
+        # store: '{{.inputs.main_store}}'
+        store: test-spec2-public
       inputs:
         - agent: '{{.inputs.execution_host1}}'
         - store: '{{.inputs.main_store}}'
