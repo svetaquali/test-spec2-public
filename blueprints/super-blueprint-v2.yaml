@@ -163,6 +163,11 @@ grains:
         - test_input2: dontcare
       outputs:
         - output_from_dub_module
+      tfvars-files:
+        - source:
+             store: test-spec2-public
+             path: terraform/tfvars/complex-references1.tfvars
+           
       scripts: 
         pre-tf-init:
           source:
