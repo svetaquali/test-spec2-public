@@ -330,8 +330,8 @@ grains:
       agent:
         name: '{{.inputs.execution_host1}}'
       files:
-        - source: test-spec2-public
-        # - source: '{{.inputs.main_store}}'
+        # - source: test-spec2-public
+        - source: '{{.inputs.main_store}}'
           path: scripts/echo.sh
       env-vars:
         - VAR_NAME1: var1 value
