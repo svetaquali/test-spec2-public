@@ -19,10 +19,10 @@ grains:
     kind: terraform
     spec:
       source:
-        # store: '{{.inputs.store}}'
-        store: test-spec2-public
+        store: '{{.inputs.store}}'
+        # store: test-spec2-public
         path: terraform/simple-tf-module
-        # branch: '{{.inputs.branch}}'
+        branch: '{{.inputs.branch}}'
       agent:
         name: '{{.inputs.agent}}'
       inputs:
