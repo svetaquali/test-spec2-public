@@ -346,19 +346,36 @@ grains:
           outputs:
             - testoutput
 
-  # shell1:
-  #   kind: shell
-  #   depends-on: kubernetes1
-  #   spec:
-  #     agent:
-  #       name: '{{.inputs.execution_host1}}'
-  #     files:
-  #       # - source: test-spec2-public
-  #       - source: '{{.inputs.main_store}}'
-  #         path: scripts/echo.sh
-  #     env-vars:
-  #       - VAR_NAME1: var1 value
-  #     activities:
-  #       deploy:
-  #         commands:
-  #           - echo environment id '{{ sandboxid | downcase }}'
+  shell1:
+    kind: shell
+    depends-on: kubernetes1
+    spec:
+      agent:
+        name: '{{.inputs.execution_host1}}'
+      files:
+        # - source: test-spec2-public
+        - source: '{{.inputs.main_store}}'
+          path: scripts/echo.sh
+      env-vars:
+        - VAR_NAME1: var1 value
+      activities:
+        deploy:
+          commands:
+            - echo environment id '{{ sandboxid | downcase }}'
+
+  shell2:
+    kind: shell
+    depends-on: kubernetes1
+    spec:
+      agent:
+        name: '{{.inputs.execution_host1}}'
+      files:
+        # - source: test-spec2-public
+        - source: '{{.inputs.main_store}}'
+          path: scripts/echo.sh
+      env-vars:
+        - VAR_NAME1: var1 value
+      activities:
+        deploy:
+          commands:
+            - echo environment id '{{ sandboxid | downcase }}'
