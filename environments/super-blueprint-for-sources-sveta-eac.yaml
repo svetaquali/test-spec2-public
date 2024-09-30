@@ -6,7 +6,7 @@ environment:
   environment_name: my-eac-env
   description: eac env for testing
   owner_email: svetlana.c@quali.com
-  state: active
+  state: inactive
   spaces:
     - my-test-spec2-public
     
@@ -37,7 +37,7 @@ inputs:
     default: eks1
   service_account:
     type: string
-    default: default
+    default: aws-power
   release_name:
     type: string
     default: ''
