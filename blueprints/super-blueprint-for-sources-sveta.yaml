@@ -153,6 +153,12 @@ grains:
           hosts:
             127.0.0.1:
               ansible_connection: local
+      scripts:
+        pre-ansible-run:
+          source:
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
+            path : scripts/shell-grain-script.sh
               
   terraform3:
     depends-on: ansible1
@@ -180,6 +186,12 @@ grains:
             branch: yakir-test
           arguments: "value"
         pre-tf-destroy:
+          source:
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
+            path : scripts/shell-grain-script.sh
+          arguments: "value"
+        post-tf-plan:
           source:
             store: '{{.inputs.main_store}}'
             # store: test-spec2-public
