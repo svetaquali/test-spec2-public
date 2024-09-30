@@ -7,7 +7,8 @@ environment:
   description: eac env for testing
   owner_email: svetlana.c@quali.com
   state: active
-  spaces: [my-test-spec2-public]
+  spaces:
+    - my-test-spec2-public
     
 
 outputs:
