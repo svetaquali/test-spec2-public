@@ -34,6 +34,7 @@ inputs:
   execution_host1:
     type: agent    
     description: must be k8s
+    default: eks1
   service_account:
     type: string
     default: default
@@ -55,6 +56,7 @@ inputs:
     default: test-spec2-public
   store:
     type: string
+    default: test-spec2-public
     # default: iac-samples
 
 
