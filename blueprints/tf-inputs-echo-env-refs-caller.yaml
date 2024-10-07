@@ -16,7 +16,7 @@ env-refs:
 
 outputs:
   tf_output:
-    value: '1: {{ .grains.tf-inputs-echo.outputs.test_string1 }}, 2: {{ .grains.tf-inputs-echo.outputs.test_string2 }}'
+    value: '1: {{ .grains.tf-inputs-echo-0.outputs.test_string1 }}, 2: {{ .grains.tf-inputs-echo-0.outputs.test_string2 }}'
   
   env_ref_output:
     value: '{{ .envrefs.some_env.outputs.out1 }}'
@@ -25,7 +25,7 @@ outputs:
     value: 'tf: {{ .grains.bp-tf-inputs-echo.outputs.tf_output }}, env_ref: {{ .grains.bp-tf-inputs-echo.outputs.env_ref_output }}'
 
 grains:
-  tf-inputs-echo:
+  tf-inputs-echo-0:
     kind: terraform
     spec:
       agent:
