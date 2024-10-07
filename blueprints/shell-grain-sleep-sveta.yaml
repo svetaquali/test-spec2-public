@@ -23,6 +23,6 @@ grains:
         deploy:
           commands:
             - name: sleep_cmd
-              command: "sleep {{ .inputs.sleep_secs }} && export output1='output1-value'"
+              command: "sleep {{ .inputs.sleep_secs }} && export output1=$(date +%s)"
               outputs:
                 - output1
