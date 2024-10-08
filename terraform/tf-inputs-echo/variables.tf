@@ -1,6 +1,7 @@
 # inputs
 variable "test_string1" {
     type = string
+    description = "ddd"
     default = "the default1"
 }
 
