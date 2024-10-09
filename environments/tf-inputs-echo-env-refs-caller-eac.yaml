@@ -67,4 +67,20 @@ grains:
       outputs:
         - tf_output
         - env_ref_output
+  
+  bp-tf-inputs-echo-2:
+    kind: blueprint
+    spec:
+      source:
+        store: test-spec2-public
+        path: blueprints/tf-inputs-echo-env-refs.yaml
+      inputs:
+        - agent_name: '{{ .inputs.agent_name }}'
+        - store_name: '{{ .inputs.store_name }}'
+        - just_a_string: '{{ .envrefs.another_env.outputs.out1 }}'
+      env-refs:
+        - my_env: another_env
+      outputs:
+        - tf_output
+        - env_ref_output
       
