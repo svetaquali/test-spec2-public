@@ -19,7 +19,7 @@ inputs:
     default: test-spec2-public
   
   some_string:
-    default: some value11
+    default: some value111
 
 env-refs:
   some_env: null
