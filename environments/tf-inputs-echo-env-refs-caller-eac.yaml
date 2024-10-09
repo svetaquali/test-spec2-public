@@ -3,7 +3,7 @@ spec_version: 2
 environment:
   environment_name: eac-env-with-env-refs
   owner_email: svetlana.c@quali.com
-  state: inactive
+  state: active
   spaces:
     - my-test-spec2-public
   env_references_values:
@@ -68,22 +68,22 @@ grains:
         - tf_output
         - env_ref_output
   
-  bp-tf-inputs-echo-2:
-    kind: blueprint
-    spec:
-      source:
-        store: test-spec2-public
-        path: blueprints/tf-inputs-echo-env-refs.yaml
-      inputs:
-        # expressions not rsolved at precreation
-        # - agent_name: '{{ .inputs.agent_name }}'
-        - agent_name: eks1
-        # - store_name: '{{ .inputs.store_name }}'
-        - store_name: test-spec2-public
-        - just_a_string: '{{ .envrefs.another_env.outputs.out1 }}'
-      env-refs:
-        - my_env: another_env
-      outputs:
-        - tf_output
-        - env_ref_output
+  # bp-tf-inputs-echo-2:
+  #   kind: blueprint
+  #   spec:
+  #     source:
+  #       store: test-spec2-public
+  #       path: blueprints/tf-inputs-echo-env-refs.yaml
+  #     inputs:
+  #       # expressions not rsolved at precreation
+  #       # - agent_name: '{{ .inputs.agent_name }}'
+  #       - agent_name: eks1
+  #       # - store_name: '{{ .inputs.store_name }}'
+  #       - store_name: test-spec2-public
+  #       - just_a_string: '{{ .envrefs.another_env.outputs.out1 }}'
+  #     env-refs:
+  #       - my_env: another_env
+  #     outputs:
+  #       - tf_output
+  #       - env_ref_output
       
