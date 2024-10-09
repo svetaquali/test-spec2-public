@@ -7,7 +7,7 @@ environment:
   spaces:
     - my-test-spec2-public
   env_references_values:
-    some_env: xDxFmWnWgwLU  # xDxFmWnWgwLU, I2NhQrR9UERy
+    some_env: xDxFmWnWgwLU  # xDxFmWnWgwLU, I2NhQrR9UERy, 
     # another_env: I2NhQrR9UERy
 
 inputs:
