@@ -75,8 +75,11 @@ grains:
         store: test-spec2-public
         path: blueprints/tf-inputs-echo-env-refs.yaml
       inputs:
-        - agent_name: '{{ .inputs.agent_name }}'
-        - store_name: '{{ .inputs.store_name }}'
+        # expressions not rsolved at precreation
+        # - agent_name: '{{ .inputs.agent_name }}'
+        - agent_name: eks1
+        # - store_name: '{{ .inputs.store_name }}'
+        - store_name: test-spec2-public
         - just_a_string: '{{ .envrefs.another_env.outputs.out1 }}'
       env-refs:
         - my_env: another_env
