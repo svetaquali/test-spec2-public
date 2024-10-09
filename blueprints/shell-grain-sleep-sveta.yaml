@@ -11,7 +11,7 @@ inputs:
 
 outputs:
   out1:
-    value: '{{ .grains.sleep.activities.deploy.commands.sleep_cmd.outputs.output1 }}'  
+    value: '{{ "now" | date: "%s" }}'  
 
 grains:
   sleep:
@@ -23,6 +23,6 @@ grains:
         deploy:
           commands:
             - name: sleep_cmd
-              command: "sleep {{ .inputs.sleep_secs }} && export output1=$(date +%s)"
+              command: "sleep {{ .inputs.sleep_secs }}"
               outputs:
                 - output1
