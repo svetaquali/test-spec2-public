@@ -80,9 +80,9 @@ grains:
         - agent_name: eks1
         # - store_name: '{{ .inputs.store_name }}'
         - store_name: test-spec2-public
-        - just_a_string: '{{ .envrefs.another_env.outputs.out1 }}'
+        - just_a_string: '{{ .envrefs.some_env.outputs.out1 }}'
       env-refs:
-        - my_env: another_env
+        - my_env: some_env
       outputs:
         - tf_output
         - env_ref_output
