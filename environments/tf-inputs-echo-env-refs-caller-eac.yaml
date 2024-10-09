@@ -7,7 +7,7 @@ environment:
   spaces:
     - my-test-spec2-public
   env_references_values:
-    some_env: xDxFmWnWgwLU
+    some_env: I2NhQrR9UERy  # xDxFmWnWgwLU
 
 inputs:
   agent_name:
