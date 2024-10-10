@@ -10,7 +10,7 @@ environment:
 inputs:
   agent_name:
     type: agent
-    default: eks12
+    # default: eks1
   store_name:
     type: string
     default: test-spec2-public  
