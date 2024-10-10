@@ -15,7 +15,7 @@ inputs:
     type: string
     default: test-spec2-public  
   some_string:
-    default: some value 111
+    default: some value
 
 
 outputs:
@@ -32,7 +32,7 @@ grains:
       inputs:
         - agent_name: '{{ .inputs.agent_name }}'
         - store_name: '{{ .inputs.store_name }}'
-        - just_a_string: '{{ .inputs.some_string }}'
+        - just_a_string: abc #'{{ .inputs.some_string }}'
       outputs:
         - tf_output
   
