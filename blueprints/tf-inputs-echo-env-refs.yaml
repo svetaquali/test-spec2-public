@@ -13,6 +13,7 @@ inputs:
 
 env-refs:
   my_env: null
+  a_env:
 
 outputs:
   tf_output:
@@ -32,7 +33,7 @@ grains:
         path: terraform/tf-inputs-echo
       inputs:
         - test_string1: '{{ .inputs.just_a_string }}'
-        - test_string2: '{{ .envrefs.my_env.outputs.out1 }}'
+        - test_string2: '{{ .envrefs.a_env.outputs.out1 }}'
       outputs:
         - test_string1
         - test_string2
