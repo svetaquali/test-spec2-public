@@ -15,7 +15,7 @@ inputs:
     type: string
     default: test-spec2-public  
   some_string:
-    default: some value
+    default: some value 111
 
 
 outputs:
