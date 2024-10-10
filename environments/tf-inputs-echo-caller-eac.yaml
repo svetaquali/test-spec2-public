@@ -10,7 +10,7 @@ environment:
 inputs:
   agent_name:
     type: agent
-    default: eks1
+    default: eks12
   store_name:
     type: string
     default: test-spec2-public  
@@ -32,7 +32,7 @@ grains:
       inputs:
         - agent_name: '{{ .inputs.agent_name }}'
         - store_name: '{{ .inputs.store_name }}'
-        - just_a_string: '{{ .inputs.some_string1 }}'
+        - just_a_string: '{{ .inputs.some_string }}'
       outputs:
         - tf_output
   
