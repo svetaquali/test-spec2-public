@@ -29,10 +29,11 @@ grains:
       source:
         store: test-spec2-public
         path: blueprints/tf-inputs-echo.yaml
+        commit: d189b349fb30019e1ddcd889fa3c50546c3b3d63
       inputs:
         - agent_name: '{{ .inputs.agent_name }}'
         - store_name: '{{ .inputs.store_name }}'
-        - just_a_string: abc #'{{ .inputs.some_string }}'
+        - just_a_string: '{{ .inputs.some_string }}'
       outputs:
         - tf_output
   
