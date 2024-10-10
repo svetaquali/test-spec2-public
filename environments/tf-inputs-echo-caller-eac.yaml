@@ -1,0 +1,39 @@
+spec_version: 2
+
+environment:
+  environment_name: eac-env-with-env-refs
+  owner_email: svetlana.c@quali.com
+  state: active
+  spaces:
+    - my-test-spec2-public
+
+inputs:
+  agent_name:
+    type: agent
+    default: eks1
+  store_name:
+    type: string
+    default: test-spec2-public  
+  some_string:
+    default: some value
+
+
+outputs:
+  bp_output:
+    value: 'tf: {{ .grains.bp-tf-inputs-echo.outputs.tf_output }}'
+
+grains:
+  bp-tf-inputs-echo:
+    kind: blueprint
+    spec:
+      source:
+        store: test-spec2-public
+        path: blueprints/tf-inputs-echo.yaml
+      inputs:
+        - agent_name: '{{ .inputs.agent_name }}'
+        - store_name: '{{ .inputs.store_name }}'
+        - just_a_string: '{{ .inputs.some_string1 }}'
+      outputs:
+        - tf_output
+  
+      
