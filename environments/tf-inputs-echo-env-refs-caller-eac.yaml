@@ -58,7 +58,7 @@ grains:
       source:
         store: test-spec2-public
         path: blueprints/tf-inputs-echo-env-refs.yaml
-        commit: 892b7d3b769d929bb9a8b5d9819b25a46c08afb4
+        commit: d9620a148fcd8c902975d602bc670df15b2aa0a3
       inputs:
         - agent_name: '{{ .inputs.agent_name }}'
         - store_name: '{{ .inputs.store_name }}'
