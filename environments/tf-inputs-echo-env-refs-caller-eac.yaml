@@ -26,6 +26,7 @@ inputs:
 env-refs:
   some_env: null
   another_env: 
+  third_env:
 
 outputs:
   tf_output:
