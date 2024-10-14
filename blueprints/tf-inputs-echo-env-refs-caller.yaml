@@ -11,7 +11,7 @@ inputs:
   some_string:
     default: some value
 
-env-refs:
+env_references:
   some_env: null
 
 outputs:
@@ -19,7 +19,7 @@ outputs:
     value: '1: {{ .grains.tf-inputs-echo-0.outputs.test_string1 }}, 2: {{ .grains.tf-inputs-echo-0.outputs.test_string2 }}'
   
   env_ref_output:
-    value: '{{ .envrefs.some_env.outputs.out1 }}'
+    value: '{{ .env_references.some_env.outputs.out1 }}'
   
   bp_output:
     value: 'tf: {{ .grains.bp-tf-inputs-echo.outputs.tf_output }}, env_ref: {{ .grains.bp-tf-inputs-echo.outputs.env_ref_output }}'
@@ -35,7 +35,7 @@ grains:
         path: terraform/tf-inputs-echo
       inputs:
         - test_string1: '{{ .inputs.some_string }}'
-        - test_string2: '{{ .envrefs.some_env.outputs.out1 }}'
+        - test_string2: '{{ .env_references.some_env.outputs.out1 }}'
       outputs:
         - test_string1
         - test_string2
@@ -49,8 +49,8 @@ grains:
       inputs:
         - agent_name: '{{ .inputs.agent_name }}'
         - store_name: '{{ .inputs.store_name }}'
-        - just_a_string: '{{ .envrefs.some_env.outputs.out1 }}'
-      env-refs:
+        - just_a_string: '{{ .env_references.some_env.outputs.out1 }}'
+      env_references:
         - my_env: some_env
       outputs:
         - tf_output
