@@ -87,6 +87,7 @@ grains:
         - just_a_string: '{{ .env_references.another_env2.outputs.out1 }}'
       env_references:
         - my_env: another_env2
+        - a_env: another_env2
       outputs:
         - tf_output
         - env_ref_output
