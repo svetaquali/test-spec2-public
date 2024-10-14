@@ -8,8 +8,8 @@ environment:
     - my-test-spec2-public
   env_reference_values:
     some_env: xDxFmWnWgwLU  # xDxFmWnWgwLU, I2NhQrR9UERy
-    # another_env: I2NhQrR9UERy
-    another_env2: xDxFmWnWgwLU
+    another_env: I2NhQrR9UERy
+    # another_env2: xDxFmWnWgwLU
 
 inputs:
   agent_name:
@@ -25,8 +25,8 @@ inputs:
 
 env_references:
   some_env: null
-  # another_env: 
-  another_env2:
+  another_env: 
+  # another_env2:
 
 outputs:
   tf_output:
@@ -66,8 +66,8 @@ grains:
         - store_name: '{{ .inputs.store_name }}'
         - just_a_string: '{{ .env_references.some_env.outputs.out1 }}'
       env_references:
-        - my_env: another_env2
-        - a_env: another_env2
+        - my_env: another_env
+        - a_env: another_env
       outputs:
         - tf_output
         - env_ref_output
@@ -84,10 +84,10 @@ grains:
         - agent_name: eks1
         # - store_name: '{{ .inputs.store_name }}'
         - store_name: test-spec2-public
-        - just_a_string: '{{ .env_references.another_env2.outputs.out1 }}'
+        - just_a_string: '{{ .env_references.another_env.outputs.out1 }}'
       env_references:
-        - my_env: another_env2
-        - a_env: another_env2
+        - my_env: another_env
+        - a_env: another_env
       outputs:
         - tf_output
         - env_ref_output
