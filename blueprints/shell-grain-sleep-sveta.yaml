@@ -4,7 +4,6 @@ description: sleep
 inputs:
   agent_name:
     type: agent
-    default: eks1
   sleep_secs:
     type: string
     default: '60'
