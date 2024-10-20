@@ -4,14 +4,13 @@ description: sleep
 inputs:
   agent_name:
     type: agent
-    default: eks1
   sleep_secs:
     type: string
     default: '60'
 
 outputs:
   out1:
-    value: '{{ .grains.sleep.activities.deploy.commands.sleep_cmd.outputs.output1 }}'  
+    value: '{{ "now" | date: "%H:%m:%s" }}'  
 
 grains:
   sleep:
@@ -23,6 +22,6 @@ grains:
         deploy:
           commands:
             - name: sleep_cmd
-              command: "sleep {{ .inputs.sleep_secs }} && export output1='output1-value'"
+              command: "sleep {{ .inputs.sleep_secs }}"
               outputs:
                 - output1

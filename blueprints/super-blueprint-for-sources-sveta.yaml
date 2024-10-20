@@ -1,4 +1,4 @@
-spec_version: 2-preview
+spec_version: 2
 
 description: 'blueprint aim to cover most grains and features, while require minimal setup.  requirements: agent with service account with aws role and this repo onboarded'
 
@@ -22,13 +22,10 @@ outputs:
 inputs:
   namespace:
     type: string
-    default: yakir-test
+    default: sveta-test
   execution_host1:
     type: agent    
     description: must be k8s
-  execution_host2:
-    type: agent    
-    description: can be k8s or docker
   service_account:
     type: string
     default: default
@@ -43,9 +40,11 @@ inputs:
   secret_input:
     type: string
     sensitive: true
-    display-style: masked
     default: my-secret
     description: secret input for testing  
+  main_store:
+    type: string
+    default: test-spec2-public
   store:
     type: string
     # default: iac-samples
@@ -73,14 +72,16 @@ grains:
     spec:
       source:
         path: terraform/simple-tf-module
-        store: test-spec2-public
+        store: '{{.inputs.main_store}}'
+        # store: test-spec2-public
         branch: yakir-test
       agent:
         name: '{{.inputs.execution_host1}}'      
       workspace-directories:
         - source: 
             name: workspace_dir1
-            store: test-spec2-public
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
             # path: helm/nginx-test/values.yaml
             commit: 25dbe596bb083ca9346692f3cc846cd061f30a14
         - source: 
@@ -98,7 +99,8 @@ grains:
     spec:
       source:
         path: helm/deployment
-        store: test-spec2-public
+        store: '{{.inputs.main_store}}'
+        # store: test-spec2-public
       agent:
         name: '{{.inputs.execution_host1}}'
       commands:
@@ -114,7 +116,8 @@ grains:
       scripts:
         post-helm-install:
           source:
-            store: test-spec2-public
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
             path: scripts/sample-k8s.sh
           arguments: '{{ .inputs.generic_input }}'
           outputs:
@@ -125,17 +128,21 @@ grains:
     kind: blueprint
     spec:
       source:
-        path: blueprints/__runner_mgmt__0f2b598268-tf-simple.yaml
+        path: blueprints/simple-tf-source-input-sveta.yaml
+        # currently doesn't work - fails in validation
+        # store: '{{.inputs.main_store}}'
         store: test-spec2-public
       inputs:
-        - compute_service_name: '{{.inputs.execution_host1}}'
+        - agent: '{{.inputs.execution_host1}}'
+        - store: '{{.inputs.main_store}}'
 
   ansible1:
     kind: ansible
     depends-on: terraform1
     spec: 
       source:
-        store: test-spec2-public
+        store: '{{.inputs.main_store}}'
+        # store: test-spec2-public
         path: ansible/hello_world.yaml
       agent:
         name: '{{ .inputs.execution_host1 }}'
@@ -146,6 +153,12 @@ grains:
           hosts:
             127.0.0.1:
               ansible_connection: local
+      scripts:
+        pre-ansible-run:
+          source:
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
+            path : scripts/shell-grain-script.sh
               
   terraform3:
     depends-on: ansible1
@@ -153,7 +166,8 @@ grains:
     spec:
       source:
         path: terraform/complex-references
-        store: test-spec2-public
+        store: '{{.inputs.main_store}}'
+        # store: test-spec2-public
 #        branch: yakir-test
       agent:
         name: '{{.inputs.execution_host1}}'
@@ -163,22 +177,25 @@ grains:
         - test_input2: dontcare
       outputs:
         - output_from_dub_module
-      tfvars-files:
-        - source:
-             store: test-spec2-public
-             path: terraform/tfvars/complex-references1.tfvars
-           
       scripts: 
         pre-tf-init:
           source:
-            store: test-spec2-public
-            path : scripts/tomerv_user_script.sh
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
+            path : scripts/shell-grain-script.sh
             branch: yakir-test
           arguments: "value"
         pre-tf-destroy:
           source:
-            store: test-spec2-public
-            path : scripts/tomerv_user_script.sh
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
+            path : scripts/shell-grain-script.sh
+          arguments: "value"
+        post-tf-plan:
+          source:
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
+            path : scripts/shell-grain-script.sh
           arguments: "value"  
 
   helm2:
@@ -187,7 +204,8 @@ grains:
     spec:
       source:
         path: helm/namespace
-        store: test-spec2-public
+        store: '{{.inputs.main_store}}'
+        # store: test-spec2-public
       agent:
         name: '{{.inputs.execution_host1}}'
         service-account: '{{.inputs.service_account}}'
@@ -204,7 +222,7 @@ grains:
     kind: helm
     spec:
       source:
-        path: https://github.com/QualiNext/test-spec2-public.git//helm/deployment
+        path: 'https://github.com/QualiNext/{{.inputs.main_store}}.git//helm/deployment'
       agent:
         name: '{{.inputs.execution_host1}}'
       commands:
@@ -216,7 +234,8 @@ grains:
       scripts:
         post-helm-install:
           source:
-            store: test-spec2-public
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
             path: scripts/sample-k8s.sh
           arguments: '{{ .inputs.generic_input }}'
           outputs:
@@ -228,7 +247,8 @@ grains:
     spec:
       source:
         path: terraform/complex-references
-        store: test-spec2-public
+        store: '{{.inputs.main_store}}'
+        # store: test-spec2-public
 #        branch: yakir-test
       agent:
         name: '{{.inputs.execution_host1}}'
@@ -241,14 +261,14 @@ grains:
       # scripts: 
       #   pre-tf-init:
       #     source:
-      #       store: test-spec2-public
-      #       path : scripts/tomerv_user_script.sh
+      #       store: '{{.inputs.main_store}}'
+      #       path : scripts/shell-grain-script.sh
       #       branch: yakir-test
       #     arguments: "value"
       #   pre-tf-destroy:
       #     source:
-      #       store: test-spec2-public
-      #       path : scripts/tomerv_user_script.sh
+      #       store: '{{.inputs.main_store}}'
+      #       path : scripts/shell-grain-script.sh
       #     arguments: "value"  
 
   cfn1:
@@ -257,7 +277,8 @@ grains:
       agent:
         name: '{{.inputs.execution_host1}}'
       source:
-        store: test-spec2-public
+        store: '{{.inputs.main_store}}'
+        # store: test-spec2-public
         path: cloudFormation/Bucket.json
       region: us-east-1
       # authentication:
@@ -272,7 +293,8 @@ grains:
     spec:
       source:
         path: terragrunt/s3-bucket/non-prod/us-east-1/qa/bucket
-        store: test-spec2-public
+        store: '{{.inputs.main_store}}'
+        # store: test-spec2-public
       agent:        
         name: '{{.inputs.execution_host1}}'
       inputs:
@@ -285,7 +307,9 @@ grains:
     depends-on: terraform1, helm1
     spec:
       source:
-        path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml
+        store: '{{.inputs.main_store}}'
+        path: manifests/nginx/nginxmanifest.yaml
+        # path: 'github.com/QualiNext/{{.inputs.main_store}}//manifests/nginx/nginxmanifest.yaml'
       target-namespace: '{{ .inputs.namespace }}'
       env-vars:
         - test: newValue
@@ -297,13 +321,15 @@ grains:
       workspace-directories:
         - source: 
             name: workspace_dir1
-            store: test-spec2-public
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
             # path: helm/nginx-test/values.yaml
             commit: 25dbe596bb083ca9346692f3cc846cd061f30a14
       scripts:
         post-kubernetes-install:
           source:
-            store: test-spec2-public
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
             path: scripts/sample-k8s.sh
           arguments: '{{ .inputs.generic_input }}'
           outputs:
@@ -315,6 +341,12 @@ grains:
     spec:
       agent:
         name: '{{.inputs.execution_host1}}'
+      files:
+        # - source: test-spec2-public
+        - source: '{{.inputs.main_store}}'
+          path: scripts/echo.sh
+      env-vars:
+        - VAR_NAME1: var1 value
       activities:
         deploy:
           commands:
