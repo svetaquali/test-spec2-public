@@ -13,7 +13,6 @@ inputs:
 
 env_references:
   my_env: null
-  a_env:
 
 outputs:
   tf_output:

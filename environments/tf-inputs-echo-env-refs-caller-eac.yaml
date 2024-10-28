@@ -3,13 +3,18 @@ spec_version: 2
 environment:
   environment_name: eac-env-with-env-refs
   owner_email: svetlana.c@quali.com
-  state: inactive
+  state: active
   spaces:
     - my-test-spec2-public
-  env_reference_values:
+  env_references_values:
     some_env: xDxFmWnWgwLU  # xDxFmWnWgwLU, I2NhQrR9UERy
     # another_env: I2NhQrR9UERy
     # another_env2: xDxFmWnWgwLU
+
+env_references:
+  some_env: null
+  # another_env: 
+  # another_env2:
 
 inputs:
   agent_name:
@@ -22,11 +27,6 @@ inputs:
   
   some_string:
     default: some value
-
-env_references:
-  some_env: null
-  # another_env: 
-  # another_env2:
 
 outputs:
   tf_output:
@@ -67,7 +67,6 @@ grains:
         - just_a_string: '{{ .env_references.some_env.outputs.out1 }}'
       env_references:
         - my_env: some_env
-        - a_env: some_env
       outputs:
         - tf_output
         - env_ref_output
@@ -79,7 +78,7 @@ grains:
   #       store: test-spec2-public
   #       path: blueprints/tf-inputs-echo-env-refs.yaml
   #     inputs:
-  #       # expressions not rsolved at precreation
+  #       # expressions not resolved at precreation
   #       # - agent_name: '{{ .inputs.agent_name }}'
   #       - agent_name: eks1
   #       # - store_name: '{{ .inputs.store_name }}'
@@ -87,7 +86,6 @@ grains:
   #       - just_a_string: '{{ .env_references.another_env.outputs.out1 }}'
   #     env_references:
   #       - my_env: another_env
-  #       - a_env: another_env
   #     outputs:
   #       - tf_output
   #       - env_ref_output
