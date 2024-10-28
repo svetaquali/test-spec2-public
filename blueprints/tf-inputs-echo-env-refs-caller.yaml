@@ -12,7 +12,8 @@ inputs:
     default: some value
 
 env_references:
-  some_env: null
+  some_env:
+    labels-selector: best
 
 outputs:
   tf_output:
