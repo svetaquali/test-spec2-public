@@ -3,17 +3,17 @@ spec_version: 2
 environment:
   environment_name: eac-env-with-env-refs
   owner_email: svetlana.c@quali.com
-  state: active
+  state: inactive
   spaces:
     - my-test-spec2-public
   env_references_values:
     some_env: xDxFmWnWgwLU  # xDxFmWnWgwLU, I2NhQrR9UERy
-    another_env: I2NhQrR9UERy
+    # another_env: I2NhQrR9UERy
     # another_env2: xDxFmWnWgwLU
 
 env_references:
   some_env: null
-  another_env: 
+  # another_env: 
   # another_env2:
 
 inputs:
@@ -54,20 +54,20 @@ grains:
         - test_string1
         - test_string2
   
-  tf-inputs-echo-1:
-    kind: terraform
-    spec:
-      agent:
-        name: '{{ inputs.agent_name }}'
-      source:
-        store: '{{ .inputs.store_name }}'
-        path: terraform/tf-inputs-echo
-      inputs:
-        - test_string1: '{{ .inputs.some_string }}'
-        - test_string2: '{{ .env_references.another_env.outputs.out1 }}'
-      outputs:
-        - test_string1
-        - test_string2
+  # tf-inputs-echo-1:
+  #   kind: terraform
+  #   spec:
+  #     agent:
+  #       name: '{{ inputs.agent_name }}'
+  #     source:
+  #       store: '{{ .inputs.store_name }}'
+  #       path: terraform/tf-inputs-echo
+  #     inputs:
+  #       - test_string1: '{{ .inputs.some_string }}'
+  #       - test_string2: '{{ .env_references.another_env.outputs.out1 }}'
+  #     outputs:
+  #       - test_string1
+  #       - test_string2
   
   bp-tf-inputs-echo:
     kind: blueprint
