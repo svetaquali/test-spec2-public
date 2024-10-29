@@ -7,7 +7,7 @@ terraform {
 
 
 
-// Torque can now update environments!!!
+// Torque can now update environments!
 
 resource "time_static" "example" {}
 
