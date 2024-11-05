@@ -2,7 +2,7 @@ spec_version: 2
 description: This workflow powers-off azure vm
 
 workflow:
-  scope: env
+  scope: env_resource
   label-selector: azurerm_windows_virtual_machine
   triggers:
     - type: manual
