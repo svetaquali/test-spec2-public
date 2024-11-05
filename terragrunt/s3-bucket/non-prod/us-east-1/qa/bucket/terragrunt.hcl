@@ -23,11 +23,11 @@ include "envcommon" {
 terraform {
   source = "${include.envcommon.locals.base_source_url}"
 
-  after_hook "after_hook" {
-    commands     = ["init"]
-    execute      = ["echo", "this is after hook"]
-    run_on_error = true
-  }
+  #after_hook "after_hook" {
+  #  commands     = ["init"]
+  #  execute      = ["echo", "this is after hook"]
+  #  run_on_error = true
+  #}
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
