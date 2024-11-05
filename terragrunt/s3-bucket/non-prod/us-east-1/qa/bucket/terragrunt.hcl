@@ -25,7 +25,7 @@ terraform {
 
   after_hook "after_hook" {
     commands     = ["init"]
-    execute      = ["ls"]
+    execute      = ["echo", "this is after hook"]
     run_on_error = true
   }
 }
