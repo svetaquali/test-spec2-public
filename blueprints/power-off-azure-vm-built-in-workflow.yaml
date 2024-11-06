@@ -13,7 +13,7 @@ inputs:
     default: aks
 
 grains:
-  pause_eks:
+  power_off_vm:
     kind: ansible
     spec:
       built-in: true
@@ -21,3 +21,6 @@ grains:
         path: https://github.com/QualiTorque/torque-actions.git//resource/azure-power-off-vm-tf.yaml
       agent:
         name: '{{ .inputs.agent }}'
+        kubernetes:
+          pod-labels: 
+            - azure.workload.identity/use: true
