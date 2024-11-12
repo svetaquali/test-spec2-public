@@ -1,0 +1,27 @@
+spec_version: 2
+description: sleep
+
+workflow:  
+  scope: env
+  triggers:
+    - type: manual
+
+inputs:
+  agent_name:
+    type: agent
+  sleep_secs:
+    type: string
+
+env_references:
+  my_env: null
+
+grains:
+  sleep:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      activities:
+        deploy:
+          commands:
+            - "echo {{ .env_references.my_env.outputs.out1 }}"
