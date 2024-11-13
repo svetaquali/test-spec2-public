@@ -12,6 +12,7 @@ workflow:
 inputs:
   agent_name:
     type: agent
+    default: eks
   sleep_secs:
     type: string
 
