@@ -1,5 +1,5 @@
 spec_version: 2
-description: workflow with env references and automatic triggers
+description: workflow with env references and automatic triggers, yey
 
 workflow:  
   scope: env
