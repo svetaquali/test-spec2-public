@@ -1,5 +1,5 @@
 spec_version: 2
-description: sleep
+description: workflow with env references and automatic triggers
 
 workflow:  
   scope: env
