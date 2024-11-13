@@ -18,8 +18,8 @@ inputs:
   sleep_secs:
     type: string
 
-# env_references:
-#   my_env: null
+env_references:
+  my_env: null
 
 grains:
   sleep:
