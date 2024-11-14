@@ -16,8 +16,10 @@ workflow:
 inputs:
   agent_name:
     type: agent
+    default: eks1
   sleep_secs:
     type: string
+    default: 1
 
 env_references:
   my_env: null
