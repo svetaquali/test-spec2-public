@@ -11,6 +11,7 @@ workflow:
     - type: event
       event:
         - Environment Extended
+        - Approval Request Denied
 
 inputs:
   agent_name:
