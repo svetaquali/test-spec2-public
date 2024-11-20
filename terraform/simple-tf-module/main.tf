@@ -42,4 +42,3 @@ locals {
 }
 
 #vido was here
-#shirel was here as well
