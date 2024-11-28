@@ -5,7 +5,7 @@ inputs:
     type: agent    
   sleep_iterations:
     type: string    
-    default: 50
+    default: 4
 
 grains:
   tf1:
