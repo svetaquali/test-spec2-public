@@ -12,7 +12,7 @@ workflow:
   triggers:
     - type: event
       event:
-        - 'Environment Ended'
+        - 'Environment Extended'
   
 inputs:
   Target Environment:
