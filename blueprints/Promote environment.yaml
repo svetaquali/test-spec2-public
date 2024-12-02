@@ -9,6 +9,10 @@ description: |
 workflow:  
   scope: env
   labels-selector: promote
+  triggers:
+    - type: event
+      event:
+        - 'Environment Ended'
   
 inputs:
   Target Environment:
