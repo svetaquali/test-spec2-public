@@ -1,0 +1,27 @@
+spec_version: 2
+description: sleep with output
+
+inputs:
+  agent_name:
+    type: agent
+  input_str:
+    type: string
+    default: some text
+
+outputs:
+  out1:
+    value: '{{ "now" | date: "%H:%m:%s" }}'
+  output_str:
+    value: '{{ .inputs.input_str }}'
+
+grains:
+  echo:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      activities:
+        deploy:
+          commands:
+            - name: sleep_cmd
+              command: "echo {{ .inputs.input_str }}"
