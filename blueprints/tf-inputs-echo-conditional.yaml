@@ -29,8 +29,8 @@ grains:
         - test_string1: >-
             {% if .inputs.just_a_string == "some value" -%}
             got default value
-            {%- else -%}{
-            { .inputs.just_a_string }}
+            {%- else -%}
+            {{ .inputs.just_a_string }}
             {%- endif %}
       outputs:
         - test_string1
