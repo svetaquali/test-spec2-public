@@ -14,7 +14,7 @@ workflow:
 inputs:
   agent:
     type: agent
-    default: eks
+    default: eks-shirel
 
 grains:
   pause_eks:

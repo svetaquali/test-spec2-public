@@ -12,7 +12,7 @@ workflow:
 inputs:
   agent_name:
     type: agent
-    default: eks
+    default: eks-shirel
   sleep_secs:
     type: string
 

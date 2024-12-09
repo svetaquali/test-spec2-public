@@ -25,7 +25,7 @@ inputs:
     default: 'No'
   agent:
     type: agent
-    default: eks
+    default: eks-shirel
 
 outputs:
   build_version_output:
