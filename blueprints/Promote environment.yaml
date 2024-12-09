@@ -8,7 +8,7 @@ description: |
 
 workflow:  
   scope: env
-  labels-selector: promote
+  labels-selector: promote, ec2
   triggers:
     - type: event
       event:
