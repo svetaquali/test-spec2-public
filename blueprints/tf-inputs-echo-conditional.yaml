@@ -1,0 +1,37 @@
+spec_version: 2
+
+inputs:
+  agent_name:
+    type: agent
+  
+  store_name:
+    type: string
+    default: test-spec2-public
+  
+  just_a_string:
+    default: some value
+
+outputs:
+  tf_output:
+    value: '{{ .grains.tf-inputs-echo.outputs.test_string1 }}'
+
+grains:
+  tf-inputs-echo:
+    kind: terraform
+    spec:
+      agent:
+        name: '{{ inputs.agent_name }}'
+      source:
+        store: '{{ .inputs.store_name }}'
+        path: terraform/tf-inputs-echo
+      inputs:
+        # - test_string1: '{% if .inputs.just_a_string == "some value" -%}got default value{%- else -%}{{ .inputs.just_a_string }}{%- endif %}'
+        - test_string1: >-
+            {% if .inputs.just_a_string == "some value" -%}
+            got default value
+            {%- else -%}
+            {{ .inputs.just_a_string }}
+            {%- endif %}
+      outputs:
+        - test_string1
+      

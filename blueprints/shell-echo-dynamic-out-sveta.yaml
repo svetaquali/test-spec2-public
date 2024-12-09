@@ -1,5 +1,5 @@
 spec_version: 2
-description: sleep with output
+description: run echo and output dynamic value
 
 inputs:
   agent_name:
