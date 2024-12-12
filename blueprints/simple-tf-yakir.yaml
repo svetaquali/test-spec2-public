@@ -33,6 +33,9 @@ grains:
         store: test-spec2-public
       agent:        
         name: '{{.inputs.compute_service_name}}'
+        kubernetes:
+          pod-annotations:
+            - user: shirel
       inputs:
         - test_input2: "input2"
       tfvars-files:
