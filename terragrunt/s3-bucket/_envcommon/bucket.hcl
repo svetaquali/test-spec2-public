@@ -24,7 +24,8 @@ locals {
 # These are the variables we have to pass in to use the module. This defines the parameters that are common across all
 # environments.
 # ---------------------------------------------------------------------------------------------------------------------
-inputs = {
-  # name              = "mysql_${local.env}"
-  name = "${get_env("TF_VAR_bucket_name", "created-by-terragrunt")}"
-}
+
+#inputs = {
+#  # name              = "mysql_${local.env}"
+#  name = "${get_env("TF_VAR_bucket_name", "created-by-terragrunt")}"
+#}
