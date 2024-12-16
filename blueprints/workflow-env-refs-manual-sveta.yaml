@@ -25,3 +25,4 @@ grains:
         deploy:
           commands:
             - "echo {{ .env_references.my_env.outputs.out1 }}"
+            - "sleep {{.inputs.sleep_secs }}"
