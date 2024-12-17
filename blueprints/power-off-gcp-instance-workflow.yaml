@@ -1,0 +1,24 @@
+spec_version: 2
+description: This workflow stops GCP instance
+
+workflow:
+  scope: env_resource
+  labels-selector: gcp
+  resource-types: google_compute_instance
+  triggers:
+    - type: manual
+
+inputs:
+  agent:
+    type: agent
+    default: eks
+
+grains:
+  power-off-gcp-instance:
+    kind: ansible
+    spec:
+      built-in: true
+      source:
+        path: https://github.com/QualiTorque/torque-actions.git//resource/gcp-power-off-compute-instance-tf.yaml
+      agent:
+        name: '{{ .inputs.agent }}'
