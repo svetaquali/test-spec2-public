@@ -4,7 +4,7 @@ provider "google" {
 }
 
 resource "google_service_account" "default" {
-  account_id   = "969185291983-compute"
+  account_id   = "compute-engine-default-service-account"
   display_name = "Custom SA for VM Instance"
 }
 
