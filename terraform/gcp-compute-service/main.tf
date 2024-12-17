@@ -1,3 +1,8 @@
+provider "google" {
+  project     = var.project_id
+  region      = var.region
+}
+
 resource "google_service_account" "default" {
   account_id   = "969185291983-compute"
   display_name = "Custom SA for VM Instance"

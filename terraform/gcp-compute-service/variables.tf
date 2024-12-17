@@ -1,8 +1,3 @@
-variable "service_account_key_file" {
-  description = "Path to the GCP service account key file"
-  type        = string
-}
-
 variable "project_id" {
   description = "GCP Project ID"
   type        = string
