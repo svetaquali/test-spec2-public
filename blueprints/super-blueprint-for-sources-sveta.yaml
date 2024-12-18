@@ -48,6 +48,9 @@ inputs:
   store:
     type: string
     # default: iac-samples
+  shell_source_path:
+    type: string
+    default: scripts/echo.sh
 
 
 # Dependencies Schema
@@ -343,8 +346,9 @@ grains:
         name: '{{.inputs.execution_host1}}'
       files:
         # - source: test-spec2-public
+        #   path: scripts/echo.sh
         - source: '{{.inputs.main_store}}'
-          path: scripts/echo.sh
+          path: '{{.inputs.shell_source_path}}'
       env-vars:
         - VAR_NAME1: var1 value
       activities:
