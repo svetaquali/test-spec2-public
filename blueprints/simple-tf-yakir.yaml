@@ -3,8 +3,6 @@ spec_version: 2-preview
 inputs:
   compute_service_name:
     type: agent
-  user:
-    type: string
 
 outputs:
   output1:
@@ -37,7 +35,7 @@ grains:
         name: '{{.inputs.compute_service_name}}'
         kubernetes:
           pod-annotations:
-          - user: '{{.inputs.user}}'
+          - user: "boni"
       inputs:
         - test_input2: "input2"
       tfvars-files:
