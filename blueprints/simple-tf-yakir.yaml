@@ -35,7 +35,7 @@ grains:
         name: '{{.inputs.compute_service_name}}'
         kubernetes:
           pod-annotations:
-          - user: "boni"
+          - user: "{{ sandboxid }}"
       inputs:
         - test_input2: "input2"
       tfvars-files:
