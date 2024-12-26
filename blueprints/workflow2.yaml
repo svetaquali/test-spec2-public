@@ -6,6 +6,11 @@ description: |
 
 workflow:  
   scope: env
+  triggers:
+    - type: manual
+    - type: cron
+      cron: '0 * * * *'
+      overridable: true
   
 inputs:
   input1:
