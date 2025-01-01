@@ -19,7 +19,7 @@ inputs:
     type: string
   agent:
     type: agent
-    description: "agent name" 
+    description: "agent name." 
 
 outputs:
   power-off-vms-output:
