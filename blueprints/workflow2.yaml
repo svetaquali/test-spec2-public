@@ -8,14 +8,8 @@ workflow:
   scope: env
   triggers:
     - type: cron
-      cron: '0 * * * *'
+      cron: '/5 * * * *'
       overridable: false
-    - type: cron
-      cron: '*/10 * * * *'
-      overridable: true
-    - type: cron
-      cron: '*/5 * * * *'
-      overridable: true
   
 inputs:
   input1:
@@ -25,7 +19,7 @@ inputs:
     type: string
   agent:
     type: agent
-    description: "agent name." 
+    description: "agent name" 
 
 outputs:
   power-off-vms-output:
