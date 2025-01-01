@@ -9,7 +9,7 @@ workflow:
   triggers:
     - type: cron
       cron: '0 * * * *'
-      overridable: true
+      overridable: false
     - type: cron
       cron: '*/10 * * * *'
       overridable: true
