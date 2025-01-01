@@ -7,15 +7,11 @@ description: |
 workflow:  
   scope: env
   triggers:
-    - type: manual
     - type: cron
       cron: '0 * * * *'
       overridable: false
     - type: cron
       cron: '*/10 * * * *'
-      overridable: true
-    - type: cron
-      cron: '*/5 * * * *'
       overridable: true
   
 inputs:
