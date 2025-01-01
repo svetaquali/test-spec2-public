@@ -8,7 +8,7 @@ workflow:
   scope: env
   triggers:
     - type: cron
-      cron: '/5 * * * *'
+      cron: '*/5 * * * *'
       overridable: false
   
 inputs:
