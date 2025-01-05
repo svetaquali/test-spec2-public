@@ -275,6 +275,8 @@ grains:
         store: test-spec2-public
       agent:        
         name: '{{.inputs.execution_host1}}'
+      tags:
+        auto-tag: false
       inputs:
         - name:  '{{ sandboxId | downcase }}-terragrunt1-bucket'
       outputs:
