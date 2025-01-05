@@ -20,20 +20,20 @@ locals {
   aws_region   = local.region_vars.locals.aws_region
 }
 
-# Generate an AWS provider block
-generate "provider" {
-  path      = "provider.tf"
-  if_exists = "overwrite_terragrunt"
-  contents  = <<EOF
-provider "aws" {
+## Generate an AWS provider block
+#generate "provider" {
+#  path      = "provider.tf"
+#  if_exists = "overwrite_terragrunt"
+#  contents  = <<EOF
+#provider "aws" {
 
-  region = "${local.aws_region}"
+  #region = "${local.aws_region}"
 
   # Only these AWS Account IDs may be operated on by this template
-  allowed_account_ids = ["${local.account_id}"]
-}
-EOF
-}
+ # allowed_account_ids = ["${local.account_id}"]
+#}
+#EOF
+#}
 
 # Configure Terragrunt to automatically store tfstate files in an S3 bucket
 remote_state {
