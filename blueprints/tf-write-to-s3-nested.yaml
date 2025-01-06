@@ -25,7 +25,7 @@ grains:
     depends-on: simple-tf
     spec:
       source:
-        store: spec2-public
+        store: test-spec2-public
         path: blueprints
       agent:
         name: '{{inputs.tf-host-name}}'
