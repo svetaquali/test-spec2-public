@@ -10,11 +10,13 @@ grains:
     kind: terraform
     spec:
       source:
-        path: github.com/QualiNext/test-spec2-public/terraform/simple-tf-module
+        store: test-spec2-public
+        path: terraform/simple-tf-module
       agent:
         name: '{{inputs.tf-host-name}}'
       inputs:
         - test_input1: input-{{sandboxId}}
+        - test_input2: input2
         - test_input3: '["abc"]'
       outputs:
         - output1
