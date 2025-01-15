@@ -21,6 +21,11 @@ variable "vm_name" {
   default     = "example-vm"  # Default VM name
 }
 
+variable "service_account_name" {
+  type       = string
+  default    = "compute-engine-sa"
+}
+
 variable "machine_type" {
   description = "Machine type for the VM instance"
   type        = string
