@@ -1,0 +1,27 @@
+spec_version: 2-preview
+description: description text
+
+inputs:
+  agent_name:
+    type: agent 
+
+outputs:
+  public_ip:
+    value: '{{.grains.MyTF.outputs.public_ip}}'
+  password:
+    value: '{{.grains.MyTF.outputs.password}}'
+
+grains:
+  MyCdk:
+    kind: aws-cdk
+    spec:
+      source:
+        path: cdk/ec2-cdk
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.agent_name}}'
+      outputs:
+        - InstancePublicIp
+        - InstancePrivateIp
+          
+
