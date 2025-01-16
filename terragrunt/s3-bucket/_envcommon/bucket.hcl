@@ -25,7 +25,7 @@ locals {
 # environments.
 # ---------------------------------------------------------------------------------------------------------------------
 
-inputs = {
+#inputs = {
 #  # name              = "mysql_${local.env}"
-  test_input = "${get_env("TF_VAR_test_input", "input_value-by-terragrunt")}"
-}
+  #test_input = "${get_env("TF_VAR_test_input", "input_value-by-terragrunt")}"
+#}
