@@ -4,3 +4,12 @@ variable "name" {
     nullable = false
     default = "default-tf-bucket-name1111"
 }
+
+variable "test_input" {
+    description = "Mandatory input"
+    type = string
+    # nullable = false
+    # default = "default-tf-bucket-name1111"
+}
+
+
