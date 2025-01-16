@@ -7,9 +7,9 @@ inputs:
 
 outputs:
   public_ip:
-    value: '{{.grains.MyTF.outputs.public_ip}}'
-  password:
-    value: '{{.grains.MyTF.outputs.password}}'
+    value: '{{.grains.MyCdk.outputs.InstancePublicIp}}'
+  private_ip:
+    value: '{{.grains.MyCdk.outputs.InstancePrivateIp}}'
 
 grains:
   MyCdk:
