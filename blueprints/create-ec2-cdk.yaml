@@ -7,21 +7,18 @@ inputs:
 
 outputs:
   public_ip:
-    value: '{{.grains.MyCdk.outputs.InstancePublicIp}}'
-  private_ip:
-    value: '{{.grains.MyCdk.outputs.InstancePrivateIp}}'
+    value: '{{.grains.MyCdk.outputs.InstanceId}}'
 
 grains:
   MyCdk:
     kind: aws-cdk
     spec:
       source:
-        path: cdk/ec2-cdk
+        path: cdk/ec2-cdk-python
         store: test-spec2-public
       agent:
         name: '{{.inputs.agent_name}}'
       outputs:
-        - InstancePublicIp
-        - InstancePrivateIp
+        - InstanceId
           
 
