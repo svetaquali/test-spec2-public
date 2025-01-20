@@ -8,10 +8,10 @@ workflow:
   triggers:
     - type: manual
 
+
 inputs:
   agent:
     type: agent
-    default: eks
 
 grains:
   power-off-gcp-instance:
