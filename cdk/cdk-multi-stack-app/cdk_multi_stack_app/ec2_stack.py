@@ -25,4 +25,4 @@ class Ec2Stack(Stack):
         )
 
         # Output the public IP of the EC2 instance
-        CfnOutput(self, "EC2PublicIP", value=instance.instance_public_ip)
+        CfnOutput(self, "InstanceId", value=instance.instance_id)
