@@ -1,6 +1,7 @@
 from aws_cdk import App
 from cdk_multi_stack_app.ec2_stack import Ec2Stack
 from cdk_multi_stack_app.s3_stack import S3Stack
+import aws_cdk as cdk
 
 app = App()
 
