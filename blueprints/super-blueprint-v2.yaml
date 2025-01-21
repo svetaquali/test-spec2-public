@@ -316,7 +316,7 @@ grains:
             # path: helm/nginx-test/values.yaml
             commit: 25dbe596bb083ca9346692f3cc846cd061f30a14
       scripts:
-        post-kube rnetes-install:
+        post-kubernetes-install:
           source:
             store: test-spec2-public
             path: scripts/sample-k8s.sh
