@@ -1,0 +1,18 @@
+spec_version: 2-preview
+description: description text
+
+inputs:
+  agent_name:
+    type: agent 
+
+grains:
+  MultiStackCdk:
+    kind: aws-cdk
+    spec:
+      source:
+        path: cdk/multistack
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.agent_name}}'
+          
+
