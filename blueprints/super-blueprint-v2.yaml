@@ -278,6 +278,7 @@ grains:
       tags:
         auto-tag: false
       inputs:
+        - test_input: input1
         - name:  '{{ sandboxId | downcase }}-terragrunt1-bucket'
       outputs:
         - bucket_arn
