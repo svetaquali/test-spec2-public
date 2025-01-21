@@ -1,9 +1,6 @@
-from aws_cdk import (
-    # Duration,
-    Stack,
-    # aws_sqs as sqs,
-)
+import aws_cdk as cdk
 from constructs import Construct
+from aws_cdk import aws_s3 as s3
 
 class MultistackStack(Stack):
 
