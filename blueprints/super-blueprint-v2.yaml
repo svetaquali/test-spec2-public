@@ -233,6 +233,12 @@ grains:
       agent:
         name: '{{.inputs.execution_host1}}'
         isolated: false
+      pre-tofu-init:
+        source:
+          store: test-spec2-public
+          path : scripts/set-envs.sh
+          # branch: yakir-test
+        arguments: "value"
       inputs:
         - test_input1: '{{.grains.terraform1.outputs.output1}}'
         - test_input2: dontcare
@@ -277,6 +283,12 @@ grains:
         name: '{{.inputs.execution_host1}}'
       tags:
         auto-tag: false
+      pre-tf-init:
+        source:
+          store: test-spec2-public
+          path : scripts/set-envs.sh
+          # branch: yakir-test
+        arguments: "value"
       inputs:
         - test_input: input1
         - name:  '{{ sandboxId | downcase }}-terragrunt1-bucket'
@@ -304,7 +316,7 @@ grains:
             # path: helm/nginx-test/values.yaml
             commit: 25dbe596bb083ca9346692f3cc846cd061f30a14
       scripts:
-        post-kubernetes-install:
+        post-kube rnetes-install:
           source:
             store: test-spec2-public
             path: scripts/sample-k8s.sh
