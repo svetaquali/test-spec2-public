@@ -5,14 +5,20 @@ inputs:
   agent_name:
     type: agent 
 
+outputs:
+  public_ip:
+    value: '{{.grains.MultiStackCdk.outputs.EC2PublicIP}}'
+
 grains:
   MultiStackCdk:
     kind: aws-cdk
     spec:
       source:
-        path: cdk/multistack
+        path: cdk/cdk-multi-stack-app
         store: test-spec2-public
       agent:
         name: '{{.inputs.agent_name}}'
+      outputs:
+        - EC2PublicIP
           
 
