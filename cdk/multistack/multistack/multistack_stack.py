@@ -2,7 +2,7 @@ import aws_cdk as cdk
 from constructs import Construct
 from aws_cdk import aws_s3 as s3
 
-class MultistackStack(Stack):
+class MultistackStack(cdk.Stack):
 
     def __init__(self, scope: Construct, id: str, *, encrypt_bucket=False,
                  **kwargs) -> None:
