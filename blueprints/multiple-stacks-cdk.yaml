@@ -6,7 +6,7 @@ inputs:
     type: agent 
 
 outputs:
-  public_ip:
+  instance_id:
     value: '{{.grains.MultiStackCdk.outputs.InstanceId}}'
 
 grains:
