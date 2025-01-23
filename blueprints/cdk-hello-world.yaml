@@ -1,0 +1,24 @@
+spec_version: 2-preview
+description: description text
+
+inputs:
+  agent_name:
+    type: agent 
+
+outputs:
+  function_url:
+    value: '{{.grains.MyCdk.outputs.myFunctionUrlOutput}}'
+
+grains:
+  MyCdk:
+    kind: aws-cdk
+    spec:
+      source:
+        path: cdk/hello-cdk-python
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.agent_name}}'
+      outputs:
+        - myFunctionUrlOutput
+          
+
