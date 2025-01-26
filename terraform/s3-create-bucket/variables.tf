@@ -8,6 +8,7 @@ variable "name" {
 variable "test_input" {
     description = "Mandatory input"
     type = string
+    default = "default_value"
     # nullable = false
     # default = "default-tf-bucket-name1111"
 }
