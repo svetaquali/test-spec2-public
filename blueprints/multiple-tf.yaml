@@ -23,9 +23,9 @@ inputs:
     default: "val1"
     description: "environment variable test"
 
-  outputs:
-    hello-world:
-      value: '{{ .grains.first.outputs.output2 }} {{ "now" | date: "%H:%m:%s" }}'
+outputs:
+  hello-world:
+    value: '{{ .grains.first.outputs.output2 }} {{ "now" | date: "%H:%m:%s" }}'
     
 # instructions:
   # source:
