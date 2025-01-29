@@ -41,6 +41,7 @@ grains:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - test: '1-{{.inputs.env_test}}-2'
+        - test_input2: '1-{{.inputs.env_test}}-3'
       outputs:
         - output2
         
