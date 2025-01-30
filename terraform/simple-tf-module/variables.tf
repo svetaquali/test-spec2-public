@@ -3,6 +3,7 @@ variable "test_input1" {
     default = "default"
 }
 
+#some changes to the vars 1234546
 variable "test_input2" {
     type = string
 }
