@@ -20,5 +20,16 @@ grains:
         name: '{{.inputs.agent_name}}'
       outputs:
         - InstanceId
+      scripts: 
+        pre-aws-cdk-deploy:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"
+        post-aws-cdk-deploy:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value" 
           
 

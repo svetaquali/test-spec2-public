@@ -9,8 +9,9 @@ class Ec2Stack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
+        vpc_name = self.node.try_get_context("vpcname")
         # Create a VPC
-        vpc = ec2.Vpc(self, "MyVpc", max_azs=2)
+        vpc = ec2.Vpc(self, vpc_name, max_azs=2)
 
         # Create a key pair
         key_pair = ec2.CfnKeyPair(self, "MyKeyPair", key_name="my-key-pair")
