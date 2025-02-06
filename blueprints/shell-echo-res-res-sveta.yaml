@@ -1,0 +1,36 @@
+spec_version: 2
+description: require resources and output dynamic value
+
+inputs:
+  agent_name:
+    type: agent
+  tenant_quantity:
+    type: string
+    default: 2
+
+outputs:
+  out1:
+    value: '{{ "now" | date: "%H:%m:%s" }}'
+  output_str:
+    value: '{{ .resources.my-tenant }},,,,{{ .resources.my-other-tenant }}'
+
+resources:
+  my-tenant:
+    selector:
+      type: tenant
+      quantity: '{{ .inputs.tenant_quantity }}'
+  my-other-tenant:
+    selector:
+      type: tenant
+
+grains:
+  echo:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      activities:
+        deploy:
+          commands:
+            - name: 'echo_cmd'
+              command: 'echo ''{{ .resources.my-tenant }},,,,{{ .resources.my-other-tenant }}'''
