@@ -24,6 +24,10 @@ grains:
         - myFunctionUrlOutput
         - envVarOutput
       env-vars:
-        - MY_ENV_VAR: hello
+        - MY_ENV_VAR: ${MY-CONFIG-REPO}
+      workspace-directories:
+        - source:
+            name: MY-CONFIG-REPO
+            store: test
       
 
