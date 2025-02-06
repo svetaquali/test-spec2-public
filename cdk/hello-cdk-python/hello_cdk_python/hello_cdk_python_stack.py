@@ -1,12 +1,12 @@
 from aws_cdk import (
     # Duration,
-    os,
     Stack,
     aws_lambda as _lambda,
     CfnOutput
     # aws_sqs as sqs,
 )
 from constructs import Construct
+import os
 
 class HelloCdkPythonStack(Stack):
 
