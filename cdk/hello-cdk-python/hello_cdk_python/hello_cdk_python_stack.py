@@ -35,4 +35,4 @@ class HelloCdkPythonStack(Stack):
 
         # Define a CloudFormation output for your URL
         CfnOutput(self, "myFunctionUrlOutput", value=my_function_url.url)
-        CfnOutput(self, "envVarOutput", value=os.environ["MY_ENV_VAR"])
+        CfnOutput(self, "envVarOutput", value=os.environ["MY_CONFIG_REPO"])
