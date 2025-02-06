@@ -12,7 +12,7 @@ outputs:
     value: '{{.grains.MyCdk.outputs.envVarOutput}}'
 
 grains:
-  MyCdk:
+  MyCdk  :
     kind: aws-cdk
     spec:
       source:
@@ -24,7 +24,7 @@ grains:
         - myFunctionUrlOutput
         - envVarOutput
       env-vars:
-        - MY_ENV_VAR: 'hello'
+        - MY_ENV_VAR: 'he'
       workspace-directories:
         - source:
             name: MY_CONFIG_REPO
