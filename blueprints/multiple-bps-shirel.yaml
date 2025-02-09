@@ -47,7 +47,7 @@ grains:
     spec:
       source:
         store: test-spec2-public
-        path: blueprints
+        path: blueprints/tf-write-to-s3.yaml
       agent:
         name: '{{inputs.compute_service_name}}'
       inputs:
@@ -62,6 +62,6 @@ grains:
     spec:
       source:
         store: test-spec2-public
-        path: blueprints
+        path: blueprints/tf-write-to-s3.yaml
       agent:
         name: '{{inputs.compute_service_name}}'
