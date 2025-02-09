@@ -3,10 +3,6 @@ spec_version: 2-preview
 inputs:
   compute_service_name:
     type: agent
-  user:
-    type: string
-  favorite_food:
-    type: string
 
 outputs:
   output1:
@@ -37,11 +33,6 @@ grains:
         store: test-spec2-public
       agent:        
         name: '{{.inputs.compute_service_name}}'
-        kubernetes:
-          pod-annotations: 
-            - '{{ .inputs.user }}': '{{ .inputs.favorite_food }}'
-            - annotationKey1: annotationVal1
-            - annotationKey2: '{{ .inputs.user }}'
       inputs:
         - test_input2: "input2"
       tfvars-files:

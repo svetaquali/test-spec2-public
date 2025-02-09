@@ -1,0 +1,24 @@
+spec_version: 2-preview
+
+inputs:
+  compute_service_name:
+    type: agent
+
+grains:
+  bp1:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprints/simple-tf-yakir.yaml
+        store: test-spec2-public
+      inputs:
+        - compute_service_name: '{{.inputs.compute_service_name}}'
+  
+  bp2:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprints/simple-tf-yakir.yaml
+        store: test-spec2-public
+      inputs:
+        - compute_service_name: '{{.inputs.compute_service_name}}'
