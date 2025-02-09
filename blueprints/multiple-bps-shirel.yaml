@@ -3,6 +3,10 @@ spec_version: 2-preview
 inputs:
   compute_service_name:
     type: agent
+  bucket_name_1:
+    type: string
+  bucket_name_2:
+    type: string
 
 grains:
   bp1:
@@ -22,3 +26,42 @@ grains:
         store: test-spec2-public
       inputs:
         - compute_service_name: '{{.inputs.compute_service_name}}'
+  
+  tf-write-to-s3-1:
+    kind: blueprint
+    spec:
+      source:
+        store: test-spec2-public
+        path: blueprints
+      agent:
+        name: '{{inputs.compute_service_name}}'
+      inputs:
+        - bucket_name: '{{inputs.bucket_name_1}}'
+        - compute_service_name: '{{inputs.compute_service_name}}'
+        - content: 'blah blah blah'
+      outputs:
+        - the_output
+  
+  tf-write-to-s3-2:
+    kind: blueprint
+    spec:
+      source:
+        store: test-spec2-public
+        path: blueprints
+      agent:
+        name: '{{inputs.compute_service_name}}'
+      inputs:
+        - bucket_name: '{{inputs.bucket_name_2}}'
+        - compute_service_name: '{{inputs.compute_service_name}}'
+        - content: 'blah blah blah 2'
+      outputs:
+        - the_output
+  
+  shell-grain-sleep:
+    kind: blueprint
+    spec:
+      source:
+        store: test-spec2-public
+        path: blueprints
+      agent:
+        name: '{{inputs.compute_service_name}}'
