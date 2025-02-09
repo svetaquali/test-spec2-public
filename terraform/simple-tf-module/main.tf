@@ -40,5 +40,3 @@ resource "null_resource" "task_log" {
 locals {
   key1 = "somekey"
 }
-
-#shirel was here
