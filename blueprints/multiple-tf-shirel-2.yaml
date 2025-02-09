@@ -1,0 +1,57 @@
+spec_version: 2-preview
+
+inputs:
+  compute_service_name:
+    type: agent
+  user:
+    type: string
+  favorite_food:
+    type: string
+
+outputs:
+  output1:
+    value: "http://www.google.com"
+    kind: link
+    quick: true
+  output2:
+    value: '{{.inputs.compute_service_name}}'
+    kind: link
+    quick: true
+  output3:
+    value: 'http://my-env-{{ sandboxid }}/some/api'
+    kind: link
+    quick: true
+  output4:
+    value: '{{.grains.tf1.outputs.output2}}'    
+  # output4:
+  #   value: '{{ .params.MY_PARAM }}'
+    
+
+grains:
+  tf1:
+    kind: terraform
+    tf-version: 1.5.3
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:        
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input2: "input2"
+      outputs:
+        - output2
+  
+  tf2:
+    kind: terraform
+    tf-version: 1.5.3
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:        
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input2: "input2"
+      outputs:
+        - output2
