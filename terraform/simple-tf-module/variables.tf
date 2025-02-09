@@ -1,9 +1,8 @@
 variable "test_input1" {
     type = string
-    default = "default"
+    default = "test input 1 value"
 }
 
-#some changes to the vars 1234546
 variable "test_input2" {
     type = string
 }
