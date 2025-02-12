@@ -18,7 +18,7 @@ outputs:
   out1:
     value: '{{ "now" | date: "%H:%m:%s" }}'
   output_str:
-    value: '{{ .resources.my-tenants }}'
+    value: '{{ .resources.tenants }}'
 
 grains:
   echo:
@@ -30,4 +30,4 @@ grains:
         deploy:
           commands:
             - name: 'echo_cmd'
-              command: 'echo ''{{ .resources.my-tenants }}'' '
+              command: 'echo ''{{ .resources.tenants }}'' '
