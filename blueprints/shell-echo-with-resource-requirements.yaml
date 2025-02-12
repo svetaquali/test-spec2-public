@@ -8,20 +8,17 @@ inputs:
     type: string
     default: 2
 
+resources:
+  tenants:
+    selector:
+      type: demo_tenant_type
+      quantity: '{{ .inputs.tenant_quantity }}'
+
 outputs:
   out1:
     value: '{{ "now" | date: "%H:%m:%s" }}'
   output_str:
-    value: '{{ .resources.my-tenant }},,,,{{ .resources.my-other-tenant }}'
-
-resources:
-  my-tenant:
-    selector:
-      type: tenant
-      quantity: '{{ .inputs.tenant_quantity }}'
-  my-other-tenant:
-    selector:
-      type: tenant
+    value: '{{ .resources.my-tenants }}'
 
 grains:
   echo:
@@ -33,4 +30,4 @@ grains:
         deploy:
           commands:
             - name: 'echo_cmd'
-              command: 'echo ''{{ .resources.my-tenant }},,,,{{ .resources.my-other-tenant }}'''
+              command: 'echo ''{{ .resources.my-tenants }}'' '
