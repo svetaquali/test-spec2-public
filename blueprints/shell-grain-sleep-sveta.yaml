@@ -11,8 +11,6 @@ inputs:
 outputs:
   out1:
     value: '{{ "now" | date: "%H:%m:%s" }}'
-  out2:
-    value: '{{ "now" | date: "%H:%m:%s" }}'
 
 grains:
   sleep:
