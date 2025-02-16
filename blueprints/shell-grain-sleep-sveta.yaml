@@ -1,8 +1,5 @@
 spec_version: 2
-description: sleep with output
-env_references:
-  my_env_1: null
-  my_env_2: null
+description: sleep with dynamic output value
 
 inputs:
   agent_name:
@@ -13,9 +10,9 @@ inputs:
 
 outputs:
   out1:
-    value: '{{ .env_references.my_env_1.outputs.output1 }} {{ "now" | date: "%H:%m:%s" }}'
+    value: '{{ "now" | date: "%H:%m:%s" }}'
   out2:
-    value: '{{ .env_references.my_env_2.outputs.hello-world }} {{ "now" | date: "%H:%m:%s" }}'
+    value: '{{ "now" | date: "%H:%m:%s" }}'
 
 grains:
   sleep:
