@@ -1,0 +1,27 @@
+spec_version: 2
+description: sleep with dynamic output value
+
+inputs:
+  agent_name:
+    type: agent
+  sleep_secs:
+    type: string
+    default: '60'
+
+outputs:
+  out1:
+    value: '{{ "now" | date: "%H:%m:%s" }}'
+
+grains:
+  sleep:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      activities:
+        deploy:
+          commands:
+            - name: sleep_cmd
+              command: "sleep {{ .inputs.sleep_secs }}"
+              outputs:
+                - output1
