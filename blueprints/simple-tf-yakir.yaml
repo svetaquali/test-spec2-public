@@ -39,12 +39,12 @@ grains:
       #       path: terraform/sub-module/values.tfvars
       outputs:
         - output2
-      # scripts: 
-      #   pre-tf-init:
-      #     source:
-      #       store: test-spec2-public
-      #       path : scripts/tomerv_user_script.sh
-      #     arguments: "value"
+      scripts: 
+        pre-tf-init:
+          source:
+            store: test-spec2-public
+            path : scripts/print-env-vars.sh
+          arguments: "value"
       #   pre-tf-destroy:
       #     source:
       #       store: test-spec2-public
