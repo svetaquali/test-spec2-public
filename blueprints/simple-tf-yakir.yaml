@@ -33,6 +33,8 @@ grains:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - test_input2: "input2"
+      env-vars:
+        - VAR1: VAL1
       # tfvars-files:
       #   - source:
       #       store: test-spec2-public
