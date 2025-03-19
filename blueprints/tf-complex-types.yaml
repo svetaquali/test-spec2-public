@@ -41,6 +41,8 @@ outputs:
     value: '{{ .grains.second.outputs.test_list_string}}'
   output5:
     value: '{{ .grains.second.outputs.test_object}}'
+  output6:
+    value: '{{ .grains.second.outputs.test_string_2}}'
 
 
 grains:
@@ -64,12 +66,14 @@ grains:
         - test_map_string2: '{{.inputs.input_map_string_default}}'       
         - test_object: '{{.inputs.input_object}}'
         - test_liquid: env-id-{{sandboxId}}
+        - test_string_2: '{{.inputs.input_string}}'
       outputs:
         - test_number
         - test_string
         - test_list_string
         - test_map_string
         - test_object
+        - test_string_2
 
   second:
     kind: terraform
@@ -88,11 +92,13 @@ grains:
         - test_map_string2: '{{.grains.first.outputs.test_map_string}}'   
         - test_object: '{{.grains.first.outputs.test_object}}'
         - test_liquid: env-id-{{sandboxId}}
+        - test_string_2: '{{.grains.first.test_string_2}}'
       outputs:
         - test_string
         - test_list_string
         - test_map_string
         - test_object
+        - test_string_2
 
   # similar to 'first' but provide also inputs in structured way 
   third:
