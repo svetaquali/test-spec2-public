@@ -180,6 +180,12 @@ grains:
         - test_input2: dontcare
       outputs:
         - output_from_dub_module
+      tfvars-files:
+        - source:
+             store: '{{.inputs.main_store}}'
+            #  store: test-spec2-public
+             path: terraform/tfvars/complex-references1.tfvars
+           
       scripts: 
         pre-tf-init:
           source:
@@ -256,6 +262,14 @@ grains:
       agent:
         name: '{{.inputs.execution_host1}}'
         isolated: false
+      scripts:
+        pre-tofu-init:
+          source:
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
+            path : scripts/set-envs.sh
+          # branch: yakir-test
+          arguments: "value"
       inputs:
         - test_input1: '{{.grains.terraform1.outputs.output1}}'
         - test_input2: dontcare
@@ -300,7 +314,18 @@ grains:
         # store: test-spec2-public
       agent:        
         name: '{{.inputs.execution_host1}}'
+      tags:
+        auto-tag: false
+      scripts:
+        pre-tf-init:
+          source:
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
+            path : scripts/set-envs.sh
+            # branch: yakir-test
+          arguments: "value"
       inputs:
+        - test_input: input1
         - name:  '{{ sandboxId | downcase }}-terragrunt1-bucket'
       outputs:
         - bucket_arn
