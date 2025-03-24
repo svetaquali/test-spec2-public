@@ -51,6 +51,9 @@ inputs:
   shell_source_path:
     type: string
     default: scripts/echo.sh
+  artifactory_credential:
+    type: credentials
+    default: artifactory
 
 
 # Dependencies Schema
@@ -112,10 +115,20 @@ grains:
       target-namespace: '{{.inputs.namespace}}'
       inputs:
         - deployment.namespace: '{{.inputs.namespace}}'
+      values-files:
+        - source: 
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
+            path: helm/deployment/values.yaml
+            # commit: ff02f93408b9034069e80efaed45524a700e069a   
       workspace-directories:
         - source: 
             name: workspace_dir1
-            store: '{{.inputs.store}}'            
+            store: '{{.inputs.store}}'
+        - source: 
+            name: workspace_dir2
+            store: 'artifactory/{{ .inputs.artifactory_credential }}'
+            path: helm/bla-0.1.0.tgz
       scripts:
         post-helm-install:
           source:
