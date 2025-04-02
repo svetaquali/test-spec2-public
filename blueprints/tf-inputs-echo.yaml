@@ -24,6 +24,7 @@ grains:
       source:
         store: '{{ .inputs.store_name }}'
         path: terraform/tf-inputs-echo
+        commit: a7b64a901a2934b8b26c0f3337bb1cc296cc63ac
       inputs:
         - test_string1: '{{ .inputs.just_a_string }}'
         - test_string2: my value
