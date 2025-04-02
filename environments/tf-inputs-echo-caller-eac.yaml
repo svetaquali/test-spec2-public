@@ -30,7 +30,7 @@ grains:
       source:
         store: test-spec2-public
         path: blueprints/tf-inputs-echo.yaml
-        # commit: d189b349fb30019e1ddcd889fa3c50546c3b3d63
+        commit: 337d0bacfed2a99ca798d9e5487bc9e82d9c7b7d
       inputs:
         - agent_name: '{{ .inputs.agent_name }}'
         - store_name: '{{ .inputs.store_name }}'
