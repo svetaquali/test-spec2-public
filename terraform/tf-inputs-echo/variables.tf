@@ -12,7 +12,6 @@ variable "test_string2" {
 
 variable "test_string3" {
     type = string
-    default = "the default3"
 }
 
 variable "test_number" {
