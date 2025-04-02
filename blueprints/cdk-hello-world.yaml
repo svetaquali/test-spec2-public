@@ -1,0 +1,44 @@
+spec_version: 2-preview
+description: description text
+
+inputs:
+  agent_name:
+    type: agent 
+
+outputs:
+  function_url:
+    value: '{{.grains.MyCdk.outputs.myFunctionUrlOutput}}'
+  env_var_output:
+    value: '{{.grains.MyCdk.outputs.envVarOutput}}'
+
+grains:
+  MyCdk  :
+    kind: aws-cdk
+    spec:
+      source:
+        path: cdk/hello-cdk-python
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.agent_name}}'
+      outputs:
+        - myFunctionUrlOutput
+        - envVarOutput
+      env-vars:
+        - MY_ENV_VAR: 'he'
+      workspace-directories:
+        - source:
+            name: MY_CONFIG_REPO
+            store: test
+      scripts:
+        pre-aws-cdk-deploy:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"
+        post-aws-cdk-deploy:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value" 
+      
+

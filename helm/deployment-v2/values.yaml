@@ -1,0 +1,12 @@
+replicaCount: 2
+
+
+image:
+  repository: nginx
+  tag: stable
+
+deployment:
+  namespace: default
+
+service:
+  port: 80

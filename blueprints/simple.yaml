@@ -2,7 +2,9 @@ spec_version: 2-preview
 
 description: description text
 
-
+instructions:
+  text: "blah blah blah blah"
+  
 inputs:
   input1:
     type: string
@@ -43,3 +45,5 @@ grains:
       ouputs:
         - output1
         - output2
+
+# comment

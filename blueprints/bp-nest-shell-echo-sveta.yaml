@@ -1,0 +1,36 @@
+spec_version: 2
+
+inputs:
+  agent_name:
+    type: agent
+  input_str:
+    type: string
+    default: some text
+
+grains:
+  bp-shell-1:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprints/shell-echo-dynamic-out-sveta.yaml
+        store: test-spec2-public
+      inputs:
+        - agent_name: '{{.inputs.agent_name}}'
+        - input_str: '{{.inputs.input_str}}'
+      outputs:
+        - out1
+        - output_str
+  
+  bp-shell-2:
+    kind: blueprint
+    depends-on: bp-shell-1
+    spec:
+      source:
+        path: blueprints/shell-echo-dynamic-out-sveta.yaml
+        store: test-spec2-public
+      inputs:
+        - agent_name: '{{.inputs.agent_name}}'
+        - input_str: '{{.grains.bp-shell-1.outputs.out1}}'
+      outputs:
+        - out1
+        - output_str

@@ -1,0 +1,36 @@
+spec_version: 2
+description: workflow with env references and automatic triggers, yey
+
+workflow:  
+  scope: env
+  triggers:
+    - type: manual
+    - type: cron
+      cron: '0 * * * *'
+      overridable: true
+    - type: event
+      event:
+        - Environment Extended
+        - Approval Request Denied
+
+inputs:
+  agent_name:
+    type: agent
+    default: eks1
+  sleep_secs:
+    type: string
+    default: 1
+
+env_references:
+  my_env: null
+
+grains:
+  sleep:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      activities:
+        deploy:
+          commands:
+            - "echo {{ .env_references.my_env.outputs.out1 }}"

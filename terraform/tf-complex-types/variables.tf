@@ -2,6 +2,11 @@ variable "test_string" {
     type = string
 }
 
+variable "test_string_2" {
+  type = string
+  default = "[\n  {\n    \"name\": \"cfox-test\",\n    \"logConfiguration\": {\n  \"logDriver\": \"awslogs\",\n  \"options\": {\n    \"awslogs-group\": \"cfox-test\",\n    \"awslogs-region\": \"us-west-2\",\n    \"awslogs-stream-prefix\": \"cfox-test\"\n  }\n},\n  \"portMappings\": [{\n  \"containerPort\": 8080,\n  \"hostPort\": 8080,\n  \"protocol\": \"tcp\"\n  }],\n  \"environment\": [\n  {\"name\" : \"AWS_DEFAULT_REGION\", \"value\" : \"us-west-2\"}\n]\n  }\n]\n"
+}
+
 variable "test_string_liquid" {
     type = string
 }

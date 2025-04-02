@@ -48,6 +48,12 @@ inputs:
   store:
     type: string
     # default: iac-samples
+  shell_source_path:
+    type: string
+    default: scripts/echo.sh
+  artifactory_credential:
+    type: credentials
+    default: artifactory
 
 
 # Dependencies Schema
@@ -109,10 +115,20 @@ grains:
       target-namespace: '{{.inputs.namespace}}'
       inputs:
         - deployment.namespace: '{{.inputs.namespace}}'
+      values-files:
+        - source: 
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
+            path: helm/deployment/values.yaml
+            # commit: ff02f93408b9034069e80efaed45524a700e069a   
       workspace-directories:
         - source: 
             name: workspace_dir1
-            store: '{{.inputs.store}}'            
+            store: '{{.inputs.store}}'
+        - source: 
+            name: workspace_dir2
+            store: 'artifactory/{{ .inputs.artifactory_credential }}'
+            path: helm/bla-0.1.0.tgz
       scripts:
         post-helm-install:
           source:
@@ -177,6 +193,12 @@ grains:
         - test_input2: dontcare
       outputs:
         - output_from_dub_module
+      tfvars-files:
+        - source:
+             store: '{{.inputs.main_store}}'
+            #  store: test-spec2-public
+             path: terraform/tfvars/complex-references1.tfvars
+           
       scripts: 
         pre-tf-init:
           source:
@@ -253,6 +275,14 @@ grains:
       agent:
         name: '{{.inputs.execution_host1}}'
         isolated: false
+      scripts:
+        pre-tofu-init:
+          source:
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
+            path : scripts/set-envs.sh
+          # branch: yakir-test
+          arguments: "value"
       inputs:
         - test_input1: '{{.grains.terraform1.outputs.output1}}'
         - test_input2: dontcare
@@ -297,7 +327,18 @@ grains:
         # store: test-spec2-public
       agent:        
         name: '{{.inputs.execution_host1}}'
+      tags:
+        auto-tag: false
+      scripts:
+        pre-tf-init:
+          source:
+            store: '{{.inputs.main_store}}'
+            # store: test-spec2-public
+            path : scripts/set-envs.sh
+            # branch: yakir-test
+          arguments: "value"
       inputs:
+        - test_input: input1
         - name:  '{{ sandboxId | downcase }}-terragrunt1-bucket'
       outputs:
         - bucket_arn
@@ -343,8 +384,9 @@ grains:
         name: '{{.inputs.execution_host1}}'
       files:
         # - source: test-spec2-public
+        #   path: scripts/echo.sh
         - source: '{{.inputs.main_store}}'
-          path: scripts/echo.sh
+          path: '{{.inputs.shell_source_path}}'
       env-vars:
         - VAR_NAME1: var1 value
       activities:

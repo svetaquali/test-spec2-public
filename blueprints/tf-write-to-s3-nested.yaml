@@ -3,18 +3,20 @@ spec_version: 2
 inputs:
   bucket_name:
   tf-host-name:
-    default: "eks"
+    type: agent
 
 grains:
   simple-tf:
     kind: terraform
     spec:
       source:
-        path: github.com/QualiNext/test-spec2-public/terraform/simple-tf-module
+        store: test-spec2-public
+        path: terraform/simple-tf-module
       agent:
         name: '{{inputs.tf-host-name}}'
       inputs:
         - test_input1: input-{{sandboxId}}
+        - test_input2: input2
         - test_input3: '["abc"]'
       outputs:
         - output1
@@ -25,7 +27,7 @@ grains:
     depends-on: simple-tf
     spec:
       source:
-        store: spec2-public
+        store: test-spec2-public
         path: blueprints
       agent:
         name: '{{inputs.tf-host-name}}'

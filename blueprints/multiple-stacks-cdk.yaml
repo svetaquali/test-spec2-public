@@ -1,0 +1,35 @@
+spec_version: 2-preview
+description: description text
+
+inputs:
+  agent_name:
+    type: agent 
+
+outputs:
+  instance_id:
+    value: '{{.grains.MultiStackCdk.outputs.InstanceId}}'
+
+grains:
+  MultiStackCdk:
+    kind: aws-cdk
+    spec:
+      source:
+        path: cdk/cdk-multi-stack-app
+        store: test-spec2-public
+      agent:
+        name: '{{.inputs.agent_name}}'
+      outputs:
+        - InstanceId
+      scripts: 
+        pre-aws-cdk-deploy:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value"
+        post-aws-cdk-deploy:
+          source:
+            store: test-spec2-public
+            path : scripts/tomerv_user_script.sh
+          arguments: "value" 
+          
+

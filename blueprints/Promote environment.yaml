@@ -8,7 +8,11 @@ description: |
 
 workflow:  
   scope: env
-  labels-selector: promote
+  labels-selector: promote, ec2
+  triggers:
+    - type: event
+      event:
+        - 'Environment Extended'
   
 inputs:
   Target Environment:
@@ -21,6 +25,7 @@ inputs:
     default: 'No'
   agent:
     type: agent
+    default: eks-shirel
 
 outputs:
   build_version_output:

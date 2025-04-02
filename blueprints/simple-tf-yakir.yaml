@@ -19,14 +19,12 @@ outputs:
     quick: true
   output4:
     value: '{{.grains.tf1.outputs.output2}}'    
-  # output4:
-  #   value: '{{ .params.MY_PARAM }}'
     
 
 grains:
   tf1:
     kind: terraform
-    tf-version: 1.3.5
+    tf-version: 1.5.3
     spec:
       source:
         path: terraform/simple-tf-module
@@ -35,18 +33,20 @@ grains:
         name: '{{.inputs.compute_service_name}}'
       inputs:
         - test_input2: "input2"
-      tfvars-files:
-        - source:
-            store: test-spec2-public
-            path: terraform/sub-module/values.tfvars
+      env-vars:
+        - VAR1: VAL1
+      # tfvars-files:
+      #   - source:
+      #       store: test-spec2-public
+      #       path: terraform/sub-module/values.tfvars
       outputs:
         - output2
-      # scripts: 
-      #   pre-tf-init:
-      #     source:
-      #       store: test-spec2-public
-      #       path : scripts/tomerv_user_script.sh
-      #     arguments: "value"
+      scripts: 
+        pre-tf-init:
+          source:
+            store: test-spec2-public
+            path : scripts/print-env-vars.sh
+          arguments: "value"
       #   pre-tf-destroy:
       #     source:
       #       store: test-spec2-public

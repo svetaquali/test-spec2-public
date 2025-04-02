@@ -1,0 +1,48 @@
+spec_version: 2-preview
+
+inputs:
+  compute_service_name:
+    type: agent
+  bucket_name_prefix_1:
+    type: string
+  bucket_name_prefix_2:
+    type: string
+
+grains:
+  bp1:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprints/simple-tf-yakir.yaml
+        store: test-spec2-public
+      inputs:
+        - compute_service_name: '{{.inputs.compute_service_name}}'
+  
+  bp2:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprints/simple-tf-yakir.yaml
+        store: test-spec2-public
+      inputs:
+        - compute_service_name: '{{.inputs.compute_service_name}}'
+  
+  s3-bucket-1:
+    kind: blueprint
+    spec:
+      source: 
+        path: blueprints/deploy-s3-one-bucket.yaml
+        store: test-spec2-public
+      inputs:
+        - compute_service_name: '{{.inputs.compute_service_name}}'
+        - bucket_name_prefix: '{{.inputs.bucket_name_prefix_1}}'
+
+  s3-bucket-2:
+    kind: blueprint
+    spec:
+      source: 
+        path: blueprints/deploy-s3-one-bucket.yaml
+        store: test-spec2-public
+      inputs:
+        - compute_service_name: '{{.inputs.compute_service_name}}'
+        - bucket_name_prefix: '{{.inputs.bucket_name_prefix_2}}'

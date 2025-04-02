@@ -6,6 +6,16 @@ description: |
 
 workflow:  
   scope: env
+  triggers:
+    - type: cron
+      cron: '*/5 * * * *'
+      overridable: true
+    - type: cron
+      cron: '* * * * *'
+      overridable: false
+    - type: cron
+      cron: '*/10 * * * *'
+      overridable: true
   
 inputs:
   input1:

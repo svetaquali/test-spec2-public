@@ -6,6 +6,10 @@ output test_string {
   value = var.test_string
 }
 
+output test_string_2 {
+  value = var.test_string_2
+}
+
 output test_bool {
   value = var.test_bool
 }

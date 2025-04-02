@@ -6,9 +6,6 @@ terraform {
 }
 
 
-
-// Torque can now update environments!!!
-
 resource "time_static" "example" {}
 
 resource "null_resource" "task_log" {
@@ -40,5 +37,3 @@ resource "null_resource" "task_log" {
 locals {
   key1 = "somekey"
 }
-
-#vido was here

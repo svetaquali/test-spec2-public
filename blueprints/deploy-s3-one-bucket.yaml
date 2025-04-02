@@ -7,8 +7,10 @@ outputs:
 
 inputs:
   compute_service_name:
+    type: agent
+  bucket_name_prefix:
     type: string
-    default: "My bucket"
+    default: "test-bucket"
 
 grains:
   bucket_1:
@@ -22,7 +24,7 @@ grains:
       inputs:
         - region: eu-west-1
         - acl: private
-        - name: 'test-bucket-1-s3-{{ sandboxid | downcase }}'
+        - name: '{{.inputs.bucket_name_prefix}}-{{ sandboxid | downcase }}'
       outputs:
         - s3_bucket_arn
 

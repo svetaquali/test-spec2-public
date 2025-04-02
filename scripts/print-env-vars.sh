@@ -1,0 +1,2 @@
+echo "Environment variables:"
+env

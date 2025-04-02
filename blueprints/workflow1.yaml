@@ -4,7 +4,7 @@ description: some workflow 2
 
 workflow:
   scope: env_resource
-  label-selector: vm
+  label-selector: vm, aws_instance
   
 inputs:
   input1:
