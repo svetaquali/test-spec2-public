@@ -34,7 +34,7 @@ inputs:
   execution_host1:
     type: agent    
     description: must be k8s
-    default: eks1
+    default: eks
   service_account:
     type: string
     default: aws-power

@@ -19,7 +19,7 @@ env_references:
 inputs:
   agent_name:
     type: agent
-    default: eks1
+    default: eks
   
   store_name:
     type: string
