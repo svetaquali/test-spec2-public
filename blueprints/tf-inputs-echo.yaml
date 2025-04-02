@@ -27,6 +27,7 @@ grains:
       inputs:
         - test_string1: '{{ .inputs.just_a_string }}'
         - test_string2: my value
+        - test_string3: new value
       outputs:
         - test_string1
         - test_string2
