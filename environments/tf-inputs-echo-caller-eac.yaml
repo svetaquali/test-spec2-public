@@ -6,6 +6,7 @@ environment:
   state: active
   spaces:
     - my-test-spec2-public
+    - my-spec2-public
 
 inputs:
   agent_name:
