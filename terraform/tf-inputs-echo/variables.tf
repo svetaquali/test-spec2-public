@@ -10,6 +10,11 @@ variable "test_string2" {
     default = "the default2"
 }
 
+variable "test_string3" {
+    type = string
+    default = "the default3"
+}
+
 variable "test_number" {
    type = number
    default = 5
