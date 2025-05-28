@@ -3,7 +3,7 @@ spec_version: 2
 environment:
   environment_name: eac-env-with-tf-inputs-echo
   owner_email: svetlana.c@quali.com
-  state: inactive
+  state: active
   spaces:
     - my-test-spec2-public
     - my-spec2-public
@@ -30,7 +30,7 @@ grains:
       source:
         store: test-spec2-public
         path: blueprints/tf-inputs-echo.yaml
-        commit: f86f2184a9e3fc62ab8363a2c84484f43b156fef
+        # commit: f86f2184a9e3fc62ab8363a2c84484f43b156fef
       inputs:
         - agent_name: '{{ .inputs.agent_name }}'
         - store_name: '{{ .inputs.store_name }}'
