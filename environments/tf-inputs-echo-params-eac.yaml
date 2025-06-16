@@ -3,9 +3,10 @@ spec_version: 2
 environment:
   environment_name: eac-env-with-tf-inputs-echo-params
   owner_email: svetlana.c@quali.com
-  state: inactive
+  state: active
   spaces:
-    - my-spec2-public
+    # - my-spec2-public  # local
+    - sveta  # reviews
 
 inputs:
   agent_name:
