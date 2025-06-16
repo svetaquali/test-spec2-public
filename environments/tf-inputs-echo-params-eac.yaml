@@ -10,6 +10,7 @@ environment:
 inputs:
   agent_name:
     type: agent
+    default: eks 
 
 outputs:
   tf_output:
