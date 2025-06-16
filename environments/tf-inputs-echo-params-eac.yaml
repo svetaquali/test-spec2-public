@@ -57,24 +57,24 @@ grains:
           commands:
             - "sleep {{ .params.sleep_param }}"
   
-  nginx:
-    kind: helm
-    spec:
-      source:
-        store: test-spec2-public
-        path: helm/nginx-stripped
-      agent:
-        name: '{{ .params.default_agent_name_param }}'
-      target-namespace: '{{ params.default_target_namespace_param }}'
-      release: '{{ envId | downcase }}'
-      commands:
-        - dep up helm/nginx-stripped
-      inputs:
-        - service.type: '{{ .params.nginx_service_type_param }}'
-      scripts:
-        post-helm-install:
-          source:
-            store: test-spec2-public
-            path:  scripts/script-with-args.sh
-          arguments: '{{ params.helm_arguments_param }}'
+  # nginx:
+  #   kind: helm
+  #   spec:
+  #     source:
+  #       store: test-spec2-public
+  #       path: helm/nginx-stripped
+  #     agent:
+  #       name: '{{ .params.default_agent_name_param }}'
+  #     target-namespace: '{{ params.default_target_namespace_param }}'
+  #     release: '{{ envId | downcase }}'
+  #     commands:
+  #       - dep up helm/nginx-stripped
+  #     inputs:
+  #       - service.type: '{{ .params.nginx_service_type_param }}'
+  #     scripts:
+  #       post-helm-install:
+  #         source:
+  #           store: test-spec2-public
+  #           path:  scripts/script-with-args.sh
+  #         arguments: '{{ params.helm_arguments_param }}'
       
