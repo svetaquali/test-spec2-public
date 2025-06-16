@@ -14,7 +14,7 @@ inputs:
 
 outputs:
   tf_output:
-    value: '1: {{ .grains.tf-inputs-echo.outputs.test_string1 }}, 2: {{ .grains.tf-inputs-echo.outputs.test_string2 }}'
+    value: '1: {{ .grains.tf-inputs-echo.outputs.test_string1 }}, 2: {{ .grains.tf-inputs-echo.outputs.test_string2 }}, 3: {{ .grains.tf-inputs-echo.outputs.test_string3 }}'
   param_output:
     value: '{{ params.param3 }}'
 
@@ -38,9 +38,11 @@ grains:
       inputs:
         - test_string1: 'ahoi {{ params.param1 }}'
         - test_string2: '{{ params.param2 }}'
+        - test_string3: '{{ params.new_param }}'
       outputs:
         - test_string1
         - test_string2
+        - test_string3
   
   sleep:
     kind: shell
