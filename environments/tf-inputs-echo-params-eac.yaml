@@ -6,12 +6,13 @@ environment:
   state: active
   spaces:
     # - my-spec2-public  # local
-    - sveta  # reviews
+    - sveta-eac  # reviews
 
 inputs:
   agent_name:
     type: agent
-    default: eks 
+    # default: eks # local
+    default: sveta-eac  # reviews
 
 outputs:
   tf_output:
