@@ -12,7 +12,8 @@ inputs:
   agent_name:
     type: agent
     # default: eks # local
-    default: eks-sveta  # reviews
+    # reviews
+    default: eks-sveta
 
 outputs:
   tf_output:
