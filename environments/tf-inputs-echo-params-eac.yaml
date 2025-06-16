@@ -6,7 +6,8 @@ environment:
   state: active
   spaces:
     # - my-spec2-public  # local
-    - sveta-eac  # reviews
+    # reviews
+    - sveta-eac
 
 inputs:
   agent_name:
