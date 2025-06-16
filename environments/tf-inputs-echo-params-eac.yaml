@@ -1,0 +1,56 @@
+spec_version: 2
+
+environment:
+  environment_name: eac-env-with-tf-inputs-echo
+  owner_email: svetlana.c@quali.com
+  state: active
+  spaces:
+    - my-spec2-public
+
+inputs:
+  agent_name:
+    type: agent
+
+outputs:
+  tf_output:
+    value: '1: {{ .grains.tf-inputs-echo.outputs.test_string1 }}, 2: {{ .grains.tf-inputs-echo.outputs.test_string2 }}'
+  param_output:
+    value: '{{ params.param3 }}'
+
+grains:
+  tf-inputs-echo:
+    kind: terraform
+    spec:
+      agent:
+        name: '{{ inputs.agent_name }}'
+        kubernetes:
+          pod-annotations:
+            - my-annot: '{{ .params.custom-pod-annotation-value }}'
+      source:
+        store: test-spec2-public
+        path: terraform/tf-inputs-echo
+      workspace-directories:
+        - source: 
+            name: workspace_dir1
+            store: test-spec2-public
+            path: '{{ params.workspace-dir-path }}'
+      inputs:
+        - test_string1: 'ahoi {{ params.param1 }}'
+        - test_string2: '{{ params.param2 }}'
+      outputs:
+        - test_string1
+        - test_string2
+  
+  sleep:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      activities:
+        deploy:
+          commands:
+            - "sleep {{ .params.sleep_param }}"
+        destroy:
+          commands:
+            - "sleep {{ .params.sleep_param }}"
+      
