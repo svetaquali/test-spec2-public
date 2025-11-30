@@ -1,5 +1,5 @@
 spec_version: 2
-description: grains using agent
+description: many grains using agent
 inputs:
   agent_name:
     type: agent
