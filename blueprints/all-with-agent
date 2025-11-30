@@ -1,0 +1,187 @@
+spec_version: 2
+description: grains using dynamic agent
+inputs:
+  agent_name:
+    type: agent
+  # agent_name_to_output:
+  #   type: string
+  input_str:
+    type: string
+    default: some text
+  runner_namespace:
+    type: string
+    default: sveta-test1
+  runner_sa:
+    type: string
+    default: default
+  pod-annotation-value:
+    type: string
+  target-namespace:
+    type: string
+    default: sveta-test-k8s
+outputs:
+  now:
+    value: '{{ "now" | date: "%H:%m:%s" }}'
+  output_str:
+    value: '{{ .inputs.input_str }}'
+grains:
+  # agent-creator:
+  #   kind: shell
+  #   spec:
+  #     agent:
+  #       name: '{{.inputs.agent_name}}'
+  #     activities:
+  #       deploy:
+  #         commands:
+  #           - name: echo_agent
+  #             command: export agent_name_for_grain={{ .inputs.agent_name_to_output }} && echo $agent_name_for_grain
+  #             outputs:
+  #               - agent_name_for_grain
+  #     inputs: []
+  shell_g:
+    kind: shell
+    spec:
+      agent:
+        # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
+        name: '{{.inputs.agent_name}}'
+        isolated: false
+        runner-namespace: '{{ .inputs.runner_namespace }}'
+        service-account: '{{ .inputs.runner_sa }}'
+        kubernetes:
+          pod-labels:
+            - my_label: abc
+          pod-annotations:
+            - my-annot: '{{ .inputs.pod-annotation-value }}'
+      activities:
+        deploy:
+          commands:
+            - name: echo_cmd
+              command: echo {{ .inputs.input_str }}
+        destroy:
+          commands:
+            - echo bye {{ .inputs.input_str }}
+      inputs: []
+    # depends-on: agent-creator
+  ansible_g:
+    kind: ansible
+    spec:
+      source:
+        store: test-spec2-public
+        path: ansible/hello_world.yaml
+      agent:
+        # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
+        name: '{{.inputs.agent_name}}'
+        isolated: true
+      command-arguments: '--limit="localhost"'
+      inventory-file:
+        localhost:
+          hosts:
+            127.0.0.1:
+              ansible_connection: local
+      inputs:
+        - name: '{{ .inputs.input_str }}'
+    # depends-on: agent-creator
+  tf_g:
+    kind: terraform
+    spec:
+      source:
+        store: test-spec2-public
+        path: terraform/tf-inputs-echo
+      agent:
+        # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
+        name: '{{.inputs.agent_name}}'
+        isolated: true
+      inputs:
+        - test_string1: '{{ .inputs.input_str }}'
+      outputs:
+        - test_string1
+    # depends-on: agent-creator
+  open-tf_g:
+    kind: opentofu
+    spec:
+      source:
+        store: test-spec2-public
+        path: terraform/tf-inputs-echo
+      agent:
+        # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
+        name: '{{.inputs.agent_name}}'
+        isolated: true
+      inputs:
+        - test_string1: '{{ .inputs.input_str }}'
+      outputs:
+        - test_string1
+    # depends-on: agent-creator
+  tg_g:
+    kind: terragrunt
+    spec:
+      source:
+        store: test-spec2-public
+        path: terragrunt/s3-bucket/non-prod/us-east-1/qa/bucket
+      agent:
+        # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
+        name: '{{.inputs.agent_name}}'
+        isolated: true
+      inputs:
+        - name: '{{ sandboxId | downcase }}-tg'
+      outputs:
+        - bucket_arn
+    # depends-on: agent-creator
+  helm_g:
+    kind: helm
+    spec:
+      source:
+        store: test-spec2-public
+        path: helm/nginx-stripped
+      agent:
+        # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
+        name: '{{.inputs.agent_name}}'
+        isolated: true
+      target-namespace: '{{ .inputs.target-namespace }}'
+      release: my-release-{{ envId | downcase }}
+      commands:
+        - dep up helm/nginx-stripped
+      inputs: []
+    # depends-on: agent-creator
+  kubernetes_g:
+    kind: kubernetes
+    spec:
+      source:
+        store: test-spec2-public
+        path: manifests/nginx1/nginxmanifest.yaml
+      agent:
+        # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
+        name: '{{.inputs.agent_name}}'
+        isolated: true
+      target-namespace: '{{ .inputs.target-namespace }}'
+      inputs: []
+    # depends-on: agent-creator
+  aws-cdk_g:
+    kind: aws-cdk
+    spec:
+      source:
+        store: test-spec2-public
+        path: cdk/hello-cdk-python
+      agent:
+        # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
+        name: '{{.inputs.agent_name}}'
+        isolated: true
+      inputs: []
+      outputs:
+        - myFunctionUrlOutput
+    # depends-on: agent-creator
+  cfn_g:
+    kind: cloudformation
+    spec:
+      source:
+        store: test-spec2-public
+        path: cloudFormation/Bucket.json
+      region: eu-west-1
+      agent:
+        # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
+        name: '{{.inputs.agent_name}}'
+        isolated: true
+      inputs:
+        - bucketname: '{{ sandboxId | downcase }}-cloud-formation-bucket-1'
+      outputs:
+        - BucketName
+    # depends-on: agent-creator
