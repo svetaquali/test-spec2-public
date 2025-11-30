@@ -1,5 +1,5 @@
 spec_version: 2
-description: grains using dynamic agent
+description: grains using agent
 inputs:
   agent_name:
     type: agent
