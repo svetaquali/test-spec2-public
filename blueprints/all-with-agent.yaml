@@ -38,29 +38,29 @@ grains:
   #             outputs:
   #               - agent_name_for_grain
   #     inputs: []
-  shell_g:
-    kind: shell
-    spec:
-      agent:
-        # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
-        name: '{{.inputs.agent_name}}'
-        isolated: false
-        runner-namespace: '{{ .inputs.runner_namespace }}'
-        service-account: '{{ .inputs.runner_sa }}'
-        kubernetes:
-          pod-labels:
-            - my_label: abc
-          pod-annotations:
-            - my-annot: '{{ .inputs.pod-annotation-value }}'
-      activities:
-        deploy:
-          commands:
-            - name: echo_cmd
-              command: echo {{ .inputs.input_str }}
-        destroy:
-          commands:
-            - echo bye {{ .inputs.input_str }}
-      inputs: []
+  # shell_g:
+  #   kind: shell
+  #   spec:
+  #     agent:
+  #       # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
+  #       name: '{{.inputs.agent_name}}'
+  #       isolated: false
+  #       runner-namespace: '{{ .inputs.runner_namespace }}'
+  #       service-account: '{{ .inputs.runner_sa }}'
+  #       kubernetes:
+  #         pod-labels:
+  #           - my_label: abc
+  #         pod-annotations:
+  #           - my-annot: '{{ .inputs.pod-annotation-value }}'
+  #     activities:
+  #       deploy:
+  #         commands:
+  #           - name: echo_cmd
+  #             command: echo {{ .inputs.input_str }}
+  #       destroy:
+  #         commands:
+  #           - echo bye {{ .inputs.input_str }}
+  #     inputs: []
     # depends-on: agent-creator
   ansible_g:
     kind: ansible
