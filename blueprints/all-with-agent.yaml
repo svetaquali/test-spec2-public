@@ -142,18 +142,18 @@ grains:
         - dep up helm/nginx-stripped
       inputs: []
     # depends-on: agent-creator
-  kubernetes_g:
-    kind: kubernetes
-    spec:
-      source:
-        store: test-spec2-public
-        path: manifests/nginx1/nginxmanifest.yaml
-      agent:
-        # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
-        name: '{{.inputs.agent_name}}'
-        isolated: false
-      target-namespace: '{{ .inputs.target-namespace }}'
-      inputs: []
+  # kubernetes_g:
+  #   kind: kubernetes
+  #   spec:
+  #     source:
+  #       store: test-spec2-public
+  #       path: manifests/nginx1/nginxmanifest.yaml
+  #     agent:
+  #       # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
+  #       name: '{{.inputs.agent_name}}'
+  #       isolated: false
+  #     target-namespace: '{{ .inputs.target-namespace }}'
+  #     inputs: []
     # depends-on: agent-creator
   aws-cdk_g:
     kind: aws-cdk
