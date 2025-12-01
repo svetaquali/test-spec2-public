@@ -7,10 +7,6 @@ output "test_string2" {
   value = var.test_string2
 }
 
-output "test_string3" {
-  value = var.test_string3
-}
-
 output "test_number" {
   value = var.test_number
 }

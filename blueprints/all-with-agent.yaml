@@ -71,7 +71,7 @@ grains:
       agent:
         # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
         name: '{{.inputs.agent_name}}'
-        isolated: true
+        isolated: false
       command-arguments: '--limit="localhost"'
       inventory-file:
         localhost:
@@ -90,7 +90,7 @@ grains:
       agent:
         # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
         name: '{{.inputs.agent_name}}'
-        isolated: true
+        isolated: false
       inputs:
         - test_string1: '{{ .inputs.input_str }}'
       outputs:
@@ -105,7 +105,7 @@ grains:
       agent:
         # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
         name: '{{.inputs.agent_name}}'
-        isolated: true
+        isolated: false
       inputs:
         - test_string1: '{{ .inputs.input_str }}'
       outputs:
@@ -120,7 +120,7 @@ grains:
       agent:
         # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
         name: '{{.inputs.agent_name}}'
-        isolated: true
+        isolated: false
       inputs:
         - name: '{{ sandboxId | downcase }}-tg'
       outputs:
@@ -135,7 +135,7 @@ grains:
       agent:
         # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
         name: '{{.inputs.agent_name}}'
-        isolated: true
+        isolated: false
       target-namespace: '{{ .inputs.target-namespace }}'
       release: my-release-{{ envId | downcase }}
       commands:
@@ -151,7 +151,7 @@ grains:
       agent:
         # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
         name: '{{.inputs.agent_name}}'
-        isolated: true
+        isolated: false
       target-namespace: '{{ .inputs.target-namespace }}'
       inputs: []
     # depends-on: agent-creator
@@ -164,7 +164,7 @@ grains:
       agent:
         # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
         name: '{{.inputs.agent_name}}'
-        isolated: true
+        isolated: false
       inputs: []
       outputs:
         - myFunctionUrlOutput
@@ -179,7 +179,7 @@ grains:
       agent:
         # name: '{{ .grains.agent-creator.activities.deploy.commands.echo_agent.outputs.agent_name_for_grain }}'
         name: '{{.inputs.agent_name}}'
-        isolated: true
+        isolated: false
       inputs:
         - bucketname: '{{ sandboxId | downcase }}-cloud-formation-bucket-1'
       outputs:

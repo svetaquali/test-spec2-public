@@ -10,10 +10,6 @@ variable "test_string2" {
     default = "the default2"
 }
 
-variable "test_string3" {
-    type = string
-}
-
 variable "test_number" {
    type = number
    default = 5
