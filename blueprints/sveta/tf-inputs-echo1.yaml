@@ -4,7 +4,7 @@ description: something else
 metadata:
   self-service: true
   icon: 
-    path: images/openshift-logo.svg
+    path: graphics/openshift-logo.svg
 
 inputs:
   agent_name:
