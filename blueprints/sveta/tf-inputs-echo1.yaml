@@ -4,7 +4,7 @@ description: something or other
 metadata:
   self-service: true
   icon: 
-    path: images/redhat-logo.svg
+    # path: images/redhat-logo.svg
 
 inputs:
   agent_name:
