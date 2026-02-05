@@ -4,7 +4,7 @@ description: something else
 metadata:
   self-service: true
   icon: 
-    path: graphics/openshift-logo.svg
+    path: graphics_big/folder6/splunk-green.svg
 
 inputs:
   agent_name:
