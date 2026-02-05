@@ -1,5 +1,10 @@
 spec_version: 2
 
+metadata:
+  self-service: true
+  icon: 
+    path: graphics/Resource_Notebook.svg
+
 inputs:
   agent_name:
     type: agent

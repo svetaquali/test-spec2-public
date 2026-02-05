@@ -2,9 +2,8 @@ spec_version: 2
 description: something else
 
 metadata:
-  self-service: true
   icon: 
-    path: graphics_big/folder6/splunk-green.svg
+    path: graphics/Resource_Notebook.svg
 
 inputs:
   agent_name:
