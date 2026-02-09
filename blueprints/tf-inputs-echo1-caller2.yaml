@@ -1,0 +1,24 @@
+spec_version: 2
+
+metadata:
+  icon: 
+    path: graphics/redhat-logo.svg
+
+inputs:
+  agent_name:
+    type: agent
+
+
+grains:  
+  tf-inputs-echo1:
+    kind: blueprint
+    spec:
+      source:
+        store: test-spec2-public
+        path: blueprints/sveta/tf-inputs-echo1.yaml
+      inputs:
+        - agent_name: '{{ .inputs.agent_name }}'
+        - just_a_string: some value
+      outputs:
+        - tf_output
+      
