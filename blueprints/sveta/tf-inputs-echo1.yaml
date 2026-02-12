@@ -3,7 +3,7 @@ description: something else
 
 metadata:
   icon: 
-    path: graphics/Resource_Notebook.svg
+    path: /graphics/Resource_Notebook.svg
 
 inputs:
   agent_name:
