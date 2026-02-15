@@ -3,7 +3,7 @@ description: sleep
 
 metadata:
   icon: 
-    path: graphics/non-svg/sidebar_collapsed_tooltip.jpeg
+    path: graphics/non-svg/person.jpeg
 
 workflow:  
   scope: env

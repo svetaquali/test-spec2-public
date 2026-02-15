@@ -3,7 +3,7 @@ description: sleep
 
 metadata:
   icon: 
-    path: graphics/non-svg/favicon.ico
+    path: graphics/non-svg/amd.jpg
 
 workflow:  
   scope: env

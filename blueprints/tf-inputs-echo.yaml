@@ -3,7 +3,7 @@ spec_version: 2
 metadata:
   self-service: true
   icon: 
-    path: graphics/non-svg/UCS-C220-M8.jpg
+    path: graphics/non-svg/favicon.ico
 
 inputs:
   agent_name:
