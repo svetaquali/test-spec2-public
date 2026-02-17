@@ -1,6 +1,10 @@
 spec_version: 2
 description: sleep with dynamic output value
 
+metadata:
+  icon: 
+    path: unidentified.svg
+
 inputs:
   agent_name:
     type: agent
