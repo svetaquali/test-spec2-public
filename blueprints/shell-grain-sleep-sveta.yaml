@@ -3,7 +3,7 @@ description: sleep with dynamic output value
 
 metadata:
   icon: 
-    path: unidentified1.svg
+    path: unidentified.svg
 
 inputs:
   agent_name:
