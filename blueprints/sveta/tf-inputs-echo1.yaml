@@ -3,7 +3,7 @@ description: something else to test
 
 metadata:
   icon: 
-    path: /graphics/redhat-logo.svg
+    path: /graphics/Resource_Notebook.svg
 
 inputs:
   agent_name:
