@@ -1,0 +1,36 @@
+spec_version: 2
+description: something else
+
+inputs:
+  agent_name:
+    type: agent
+  
+  main_store:
+    type: string
+    default: test-spec2-public
+  
+  just_a_string:
+    default: some value
+
+outputs:
+  cfn_output:
+    value: '{{ .grains.cfn-s3-bucket.outputs.BucketName }}'
+
+grains:
+  cfn-s3-bucket:
+    kind: cloudformation
+    spec:
+      agent:
+        name: '{{ inputs.agent_name }}'
+      source:
+        store: '{{.inputs.main_store}}'
+        # store: test-spec2-public
+        path: cloudFormation/Bucket-2-del.json
+      region: eu-west-1
+      # authentication:
+      #   - '{{.inputs.credentials_input_name}}'
+      inputs:
+        - bucketname: '{{ sandboxId | downcase }}-cloud-formation-bucket'
+      outputs:
+         - BucketName
+      
