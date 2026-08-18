@@ -1,0 +1,49 @@
+spec_version: 2
+
+environment:
+  environment_name: eac-env-with-env-refs-full
+  owner_email: svetlana.c@quali.com
+  state: inactive
+  spaces:
+    - my-spec2-public
+  env_references_values:
+    some_env_with_out1: null
+
+env_references:
+  some_env_with_out1: null
+
+inputs:
+  agent_name:
+    type: agent
+    default: eks
+  
+  store_name:
+    type: string
+    default: test-spec2-public
+  
+  some_string:
+    default: some value
+
+outputs:
+  tf_output:
+    value: '1: {{ .grains.tf-inputs-echo-0.outputs.test_string1 }}, 2: {{ .grains.tf-inputs-echo-0.outputs.test_string2 }}'
+  
+  env_ref_output:
+    value: '{{ .env_references.some_env_with_out1.outputs.out1 }}'  
+
+
+grains:
+  tf-inputs-echo-0:
+    kind: terraform
+    spec:
+      agent:
+        name: '{{ inputs.agent_name }}'
+      source:
+        store: '{{ .inputs.store_name }}'
+        path: terraform/tf-inputs-echo
+      inputs:
+        - test_string1: '{{ .inputs.some_string }}'
+        - test_string2: '{{ .env_references.some_env_with_out1.outputs.out1 }}'
+      outputs:
+        - test_string1
+        - test_string2

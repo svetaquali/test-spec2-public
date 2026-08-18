@@ -1,0 +1,12 @@
+spec_version: 2
+
+environment:
+  environment_name: eac-env-now-out1
+  owner_email: svetlana.c@quali.com
+  state: active
+  spaces:
+    - my-spec2-public
+
+outputs:
+  out1:
+    value: '{{ "now" | date: "%H:%m:%s" }}'
