@@ -1,13 +1,13 @@
 spec_version: 2
 
 environment:
-  environment_name: eac-env-with-env-refs-full
+  environment_name: eac-env-with-env-refs-simple
   owner_email: svetlana.c@quali.com
-  state: inactive
+  state: active
   spaces:
     - my-spec2-public
   env_references_values:
-    some_env_with_out1: null
+    some_env_with_out1: zNFKd521IwI6
 
 env_references:
   some_env_with_out1: null
